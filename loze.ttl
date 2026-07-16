@@ -52,7 +52,7 @@ loze:Object a owl:Class ;
     rdfs:label "Object" ;
     skos:definition "A thing that is individuated by a certain internal organisation, function, or form" ;
     skos:example "A human, a horse, a molecule, a table, a computer, a planet, a paracetamol tablet" ;
-    skos:note: "An object persists over time as long as it preserves the internal organisation, function, or form that individuates it; as long as that is preserved, the parts of the objects and their types can change without causing the destruction of the object" ;
+    skos:note "An object persists over time as long as it preserves the internal organisation, function, or form that individuates it; as long as that is preserved, the parts of the objects and their types can change without causing the destruction of the object" ;
     rdfs:subClassOf loze:Thing ;
     owl:disjointWith loze:DerivativeThing .
 
