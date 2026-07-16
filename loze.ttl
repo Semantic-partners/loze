@@ -1,3 +1,4 @@
+@prefix : <workspace:///loze.ttl#> .
 @prefix loze: <http://loze-upper-level-ontology.org/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -113,6 +114,8 @@ loze:isConcretizationOf a owl:ObjectProperty ;
 
 loze:hasConcretization a owl:ObjectProperty ;
     rdfs:label "has Concretization" ;
+    rdfs:domain loze:SchematicParticular ;
+    rdfs:range loze:ConcreteParticular ;
     owl:inverseOf loze:isConcretizationOf .
 
 
@@ -131,6 +134,8 @@ loze:isParticipantIn a owl:ObjectProperty ;
 
 loze:hasParticipant a owl:ObjectProperty ;
     rdfs:label "has Participant" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Entity ;
     owl:inverseOf loze:isParticipantIn .
 
 loze:isThemeIn a owl:ObjectProperty ;
@@ -144,6 +149,8 @@ loze:isThemeIn a owl:ObjectProperty ;
 
 loze:hasTheme a owl:ObjectProperty ;
     rdfs:label "has Theme" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isThemeIn .
 
 loze:isAgentIn a owl:ObjectProperty ;
@@ -159,6 +166,8 @@ loze:isAgentIn a owl:ObjectProperty ;
 
 loze:hasAgent a owl:ObjectProperty ;
     rdfs:label "has Agent" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Thing ;
     owl:inverseOf loze:isAgentIn .
 
 loze:isAffectedIn a owl:ObjectProperty ;
@@ -173,6 +182,8 @@ loze:isAffectedIn a owl:ObjectProperty ;
 
 loze:hasAffected a owl:ObjectProperty ;
     rdfs:label "has Patient" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Thing ;
     owl:inverseOf loze:isAffectedIn .
 
 loze:isProductIn a owl:ObjectProperty ;
@@ -187,6 +198,8 @@ loze:isProductIn a owl:ObjectProperty ;
 
 loze:hasProduct a owl:ObjectProperty ;
     rdfs:label "has Product" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isProductIn .
 
 loze:isInstrumentIn a owl:ObjectProperty ;
@@ -200,6 +213,8 @@ loze:isInstrumentIn a owl:ObjectProperty ;
 
 loze:hasInstrument a owl:ObjectProperty ;
     rdfs:label "has Instrument" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isInstrumentIn .
 
 loze:isRecipientIn a owl:ObjectProperty ;
@@ -213,6 +228,8 @@ loze:isRecipientIn a owl:ObjectProperty ;
 
 loze:hasRecipient a owl:ObjectProperty ;
     rdfs:label "has Recipient" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isRecipientIn .
 
 loze:isBeneficiaryIn a owl:ObjectProperty ;
@@ -227,6 +244,8 @@ loze:isBeneficiaryIn a owl:ObjectProperty ;
 
 loze:hasBeneficiary a owl:ObjectProperty ;
     rdfs:label "has Beneficiary" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isBeneficiaryIn .
 
 loze:isTopicIn a owl:ObjectProperty ;
@@ -240,6 +259,8 @@ loze:isTopicIn a owl:ObjectProperty ;
 
 loze:hasTopic a owl:ObjectProperty ;
     rdfs:label "has Topic" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Entity ;
     owl:inverseOf loze:isTopicIn .
 
 loze:isOriginIn a owl:ObjectProperty ;
@@ -253,48 +274,56 @@ loze:isOriginIn a owl:ObjectProperty ;
 
 loze:hasOrigin a owl:ObjectProperty ;
     rdfs:label "has Origin" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isOriginIn .
 
 loze:isDestinationIn a owl:ObjectProperty ;
     rdfs:label "is Destination In" ;
-    skos:definition "The relation that obtains between a concrete particular p and an eventuality e if and only if p is the terminal point of movement or change in the context of e" ;
+    skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is the terminal point of movement or change in the context of e" ;
     skos:example "" ;
     skos:note "The destination does not need to be a place, but it can be a thing or a period of time too" ;
     skos:note "The change in question does not need to be a movement, but it can be a qualitative or quantitative change too: for example, if an eventuality consists in one object becoming more similar to another one, the former will be the agent in the eventuality and the latter will be the destination" ;
-    rdfs:domain loze:ConcreteParticular ;
+    rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isParticipantIn .
 
 loze:hasDestination a owl:ObjectProperty ;
     rdfs:label "has Destination" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isDestinationIn .
 
 loze:isWaypointIn a owl:ObjectProperty ;
     rdfs:label "is Waypoint In" ;
-    skos:definition "The relation that obtains between a concrete particular p and an eventuality e if and only if p is an intermediate point of movement or change in the context of e" ;
+    skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is an intermediate point of movement or change in the context of e" ;
     skos:example "" ;
     skos:note "The destination does not need to be a place, but it can be a thing or a period of time too" ;
-    rdfs:domain loze:ConcreteParticular ;
+    rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isParticipantIn .
 
 loze:hasWaypoint a owl:ObjectProperty ;
     rdfs:label "has Waypoint" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isWaypointIn .
 
 loze:isReferencePointIn a owl:ObjectProperty ;
     rdfs:label "is Reference Point In" ;
-    skos:definition "The relation that obtains between a concrete particular p and an eventuality e if and only if p the reference point or framework for a movement, change, or comparison in the context of e" ;
+    skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p the reference point or framework for a movement, change, or comparison in the context of e" ;
     skos:example "" ;
     skos:note "The possibility of absolute motion is controversial in theoretical physics and philosophy; however, the matter is operationally irrelevant, because in practice motion can only be assessed relative to a reference framework" ;
     skos:note "In ordinary talk, the reference point of a movement is often not mentioned because it's identified by default with the Earth - or some Earth-based reference framework" ;
     skos:note "The scope of this thematic relation is not limited to motion, but also encompasses other changes as well as comparisons: for example, if an eventuality consists in an object being larger than another one, the larger object will be the theme and the other will be the reference point" ;
-    rdfs:domain loze:ConcreteParticular ;
+    rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isParticipantIn .
 
 loze:hasReferencePoint a owl:ObjectProperty ;
     rdfs:label "has Reference Point" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isReferencePointIn .
 
 loze:isHostIn a owl:ObjectProperty ;
@@ -308,6 +337,8 @@ loze:isHostIn a owl:ObjectProperty ;
 
 loze:hasHost a owl:ObjectProperty ;
     rdfs:label "has Host" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isHostIn .
 
 loze:isContentIn a owl:ObjectProperty ;
@@ -320,6 +351,8 @@ loze:isContentIn a owl:ObjectProperty ;
 
 loze:hasContent a owl:ObjectProperty ;
     rdfs:label "has Content" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isContentIn .
 
 loze:isHolderIn a owl:ObjectProperty ;
@@ -332,6 +365,8 @@ loze:isHolderIn a owl:ObjectProperty ;
 
 loze:hasHolder a owl:ObjectProperty ;
     rdfs:label "has Holder" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Entity ;
     owl:inverseOf loze:isHolderIn .
 
 loze:isHeldIn a owl:ObjectProperty ;
@@ -344,6 +379,8 @@ loze:isHeldIn a owl:ObjectProperty ;
 
 loze:hasHeld a owl:ObjectProperty ;
     rdfs:label "has Held" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Entity ;
     owl:inverseOf loze:isHeldIn .
 
 loze:isSettingIn a owl:ObjectProperty ;
@@ -358,6 +395,8 @@ loze:isSettingIn a owl:ObjectProperty ;
 
 loze:hasSetting a owl:ObjectProperty ;
     rdfs:label "has Setting" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Object ;
     owl:inverseOf loze:isSettingIn .
 
 
@@ -412,6 +451,8 @@ loze:isComponentIn a owl:ObjectProperty ;
 
 loze:hasComponent a owl:ObjectProperty ;
     rdfs:label "has Component" ;
+    rdfs:domain loze:Composition ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isComponentIn .
 
 loze:isCompositeIn a owl:ObjectProperty ;
@@ -424,6 +465,8 @@ loze:isCompositeIn a owl:ObjectProperty ;
 
 loze:hasComposite a owl:ObjectProperty ;
     rdfs:label "has Composite" ;
+    rdfs:domain loze:Composition ;
+    rdfs:range loze:Particular ;
     owl:inverseOf loze:isCompositeIn .
 
 loze:isRepeatedComponentIn a owl:ObjectProperty ;
@@ -438,6 +481,8 @@ loze:isRepeatedComponentIn a owl:ObjectProperty ;
 
 loze:hasRepeatedComponent a owl:ObjectProperty ;
     rdfs:label "has Repeated Component" ;
+    rdfs:domain loze:Composition ;
+    rdfs:range loze:SchematicParticular ;
     owl:inverseOf loze:isRepeatedComponentIn .
 
 loze:isIngredientIn a owl:ObjectProperty ;
@@ -451,6 +496,8 @@ loze:isIngredientIn a owl:ObjectProperty ;
 
 loze:hasIngredient a owl:ObjectProperty ;
     rdfs:label "has Ingredient" ;
+    rdfs:domain loze:Composition ;
+    rdfs:range loze:Substance ;
     owl:inverseOf loze:isIngredientIn .
 
 loze:isRepeatedContentIn a owl:ObjectProperty ;
@@ -465,6 +512,8 @@ loze:isRepeatedContentIn a owl:ObjectProperty ;
 
 loze:hasRepeatedContent a owl:ObjectProperty ;
     rdfs:label "has Repeated Content" ;
+    rdfs:domain loze:Containment ;
+    rdfs:range loze:SchematicParticular ;
     owl:inverseOf loze:isRepeatedContentIn .
 
 loze:hasNumberOfOccurrences a owl:DatatypeProperty ;
@@ -490,6 +539,8 @@ loze:isCauseOf a owl:ObjectProperty ;
 
 loze:hasCause a owl:ObjectProperty ;
     rdfs:label "has Cause" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Eventuality ;
     owl:inverseOf loze:isCauseOf .
 
 loze:isStageOf a owl:ObjectProperty ;
@@ -503,6 +554,8 @@ loze:isStageOf a owl:ObjectProperty ;
 
 loze:hasStage a owl:ObjectProperty ;
     rdfs:label "has Stage" ;
+    rdfs:domain loze:Eventuality ;
+    rdfs:range loze:Eventuality ;
     owl:inverseOf loze:isStageOf .
 
 
