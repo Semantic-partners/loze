@@ -110,6 +110,10 @@ loze:isConcretizationOf a owl:ObjectProperty ;
     rdfs:domain loze:ConcreteParticular ;
     rdfs:range loze:SchematicParticular .
 
+loze:hasConcretization a owl:ObjectProperty ;
+    rdfs:label "has Concretization" ;
+    owl:inverseOf loze:isConcretizationOf .
+
 
 #########################################
 # Domain-independent thematic relations #
@@ -331,7 +335,7 @@ loze:hasHolder a owl:ObjectProperty ;
 
 loze:isHeldIn a owl:ObjectProperty ;
     rdfs:label "is Held In" ;
-    skos:definition "The relation that obtains between an entity e and an eventuality e' if and only if e controls or is super-ordinated to some other entity in the context of e' " ;
+    skos:definition "The relation that obtains between an entity e and an eventuality e' if and only if e is controlled by or subordinated to some other entity in the context of e' " ;
     skos:example "The possessed thing is the held in a possession or ownership" ;
     rdfs:domain loze:Entity ;
     rdfs:range loze:Eventuality ;
@@ -365,7 +369,7 @@ loze:Parthood a owl:Class ;
     skos:definition "An eventuality that consists in one particular being part of another particular" ;
     skos:example "An arm being part of a person, a wall being part of a house, a compressor being part of a refrigerator, a wood board being part of a table, a nucleus being part of an atom, Mars being part of the solar system, the lithosphere being part of the Earth; a movement being part of symphony; hydrogen atom being part of water molecule" ;
     skos:note "The core participants in a parthood are the part (loze:isComponentIn) and the composite (loze:isCompositeIn)" ;
-    rdfs:subClassOf loze:Composition .
+    rdfs:subClassOf loze:Eventuality .
 
 loze:Constitution a owl:Class ;
     rdfs:label "Constitution" ;
@@ -374,7 +378,7 @@ loze:Constitution a owl:Class ;
     skos:note "In a constitution, the core participants are the composite (loze:isCompositeIn) and the schematic particular that is repeated in it (loze:isComponentIn)" ;
     skos:note "In formal mereology, one particular being 'entirely made up' by repeated occurrences, means that it is identical to the mereological sum of those occurrences: as an approximation, this means that its only parts are those occurrences and the parts of those occurrences; more rigorous definitions can be found in the philosophical literature on formal mereology" ;
     skos:note "In practice, the function of this class of eventualities is to describe the overall composition of a particular without giving an enumeration of its individual parts" ;
-    rdfs:subClassOf loze:Composition .
+    rdfs:subClassOf loze:Eventuality .
 
 loze:Composition a owl:Class ;
     rdfs:label "Composition" ;
@@ -499,70 +503,6 @@ loze:isStageOf a owl:ObjectProperty ;
 loze:hasStage a owl:ObjectProperty ;
     rdfs:label "has Stage" ;
     owl:inverseOf loze:isStageOf .
-
-
-################
-# Core classes #
-################
-
-loze:Substance a owl:Class ;
-    rdfs:label "Substance" ;
-    skos:definition "A schematic particular that is highly dissectable" ;
-    skos:example "Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint" ;
-    skos:note "Dissectability consists in concretizations being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold" ;
-    skos:note "Here the word 'substance' is used in the chemical sense, and not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics" ;
-    rdfs:subClassOf loze:SchematicParticular .
-
-loze:Artefact a owl:Class ;
-    rdfs:label "Artefact" ;
-    skos:definition "An object that is designed and made by humans for serving a certain purpose or function" ;
-    skos:example "A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device" ;
-    rdfs:subClassOf loze:Object .
-
-loze:LivingBeing a owl:Class ;
-    rdfs:label "Living Being" ;
-    skos:definition "An object that " ;
-    skos:note "The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; nevertheless, there are still borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)" ;
-    rdfs:subClassOf loze:Object .
-
-loze:Animal a owl:Class ;
-    rdfs:label "Animal" ;
-    skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings; animals typically have a more flexible body than plants and fungi and are able to move" ;
-    skos:note "Within the tree of life, animals are the members of the kingdom of Animalia" ;
-    rdfs:subClassOf loze:LivingBeing .
-
-loze:Plant a owl:Class ;
-    rdfs:label "Plant" ;
-    skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) derives its nourishment from photosynthesis; plants typically have a firmer cellulare structure than animals and are not able to move" ;
-    skos:note "Within the tree of life, plants are the members of the kingdom of Plantae" ;
-    rdfs:subClassOf loze:LivingBeing .
-
-loze:Person a owl:Class ;
-    rdfs:label "Person" ;
-    skos:definition "An animal that is a specimen of the species Homo sapiens" ;
-    skos:note "It does not encompass those entities that in the legal jargon are called 'legal persons' or 'non-physical persons' " ;
-    skos:note "Specimens of other species of the genus Homo (such as Homo erectus or Homo Neanderthalensis) would be problematic to categorise, because they are not specimens of Homo sapiens yet they qualify as humans in a broader sense; in practice, this issue is irrelevant, since Homo sapiens is the only extant species of the genus Homo" ;
-    rdfs:subClassOf loze:Animal .
-
-loze:NonHumanAnimal a owl:Class ;
-    rdfs:label "Non-Human Animal" ;
-    skos:definition "An animal that is not a specimen of the species Homo sapiens" ;
-    skos:note "In ordinary talk as well as legal talk, non-human animals are usually called just 'animals'" ;
-    rdfs:subClassOf loze:Animal .
-
-loze:Group a owl:Class ;
-    rdfs:label "Group" ;
-    skos:definition "An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction" ;
-    skos:example "A household, a family, a couple, any organisation" ;
-    skos:note "Groups don't include collections or classes of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis" ;
-    rdfs:subClassOf loze:Object .
-
-loze:Organisation a owl:Class ;
-    rdfs:label "Organisation" ;
-    skos:definition "A group whose members are acting together in the pursuit of a common goal, based on an agreed upon system of rules and commitments" ;
-    skos:example "A company, a charity or foundation, a political party, a club, a state or government, an international organisation, a criminal gang, a terrorist organisation" ;
-    skos:note "A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are inherently illegal, such as criminal gangs and terrorist organisations" ;
-    rdfs:subClassOf loze:Group .
 
 
 ######################
