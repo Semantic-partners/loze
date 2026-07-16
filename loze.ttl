@@ -5,6 +5,14 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+############
+# Ontology #
+############
+
+loze: a owl:Ontology ;
+    rdfs:label "Lowe-Zemach Inspired Upper Ontology" ;
+    skos:definition "A top-level ontology inspired by the work of the philosopher Lowe" .
+
 #####################
 # Top-level classes #
 #####################
