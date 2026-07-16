@@ -281,7 +281,7 @@ loze:hasOrigin a owl:ObjectProperty ;
 loze:isDestinationIn a owl:ObjectProperty ;
     rdfs:label "is Destination In" ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is the terminal point of movement or change in the context of e" ;
-    skos:example "" ;
+    skos:example "The arrival point in a travel, the distribution point in a utility supply, the buyer in a property conveyance" ;
     skos:note "The destination does not need to be a place, but it can be a thing or a period of time too" ;
     skos:note "The change in question does not need to be a movement, but it can be a qualitative or quantitative change too: for example, if an eventuality consists in one object becoming more similar to another one, the former will be the agent in the eventuality and the latter will be the destination" ;
     rdfs:domain loze:Particular ;
@@ -297,7 +297,7 @@ loze:hasDestination a owl:ObjectProperty ;
 loze:isWaypointIn a owl:ObjectProperty ;
     rdfs:label "is Waypoint In" ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is an intermediate point of movement or change in the context of e" ;
-    skos:example "" ;
+    skos:example "An intermediate stop in a travel, the ducts linking the supply point to a distribution point" ;
     skos:note "The destination does not need to be a place, but it can be a thing or a period of time too" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
@@ -312,7 +312,7 @@ loze:hasWaypoint a owl:ObjectProperty ;
 loze:isReferencePointIn a owl:ObjectProperty ;
     rdfs:label "is Reference Point In" ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p the reference point or framework for a movement, change, or comparison in the context of e" ;
-    skos:example "" ;
+    skos:example "In the case of John being taller than Dan, Dan is the reference point; in the case of an object falling down from the top of a tower, the top of the tower is the reference point; in the case of a vehicle moving on the surface of Earth, Earth - or some Earth-based geolocation framework - is the reference point" ;
     skos:note "The possibility of absolute motion is controversial in theoretical physics and philosophy; however, the matter is operationally irrelevant, because in practice motion can only be assessed relative to a reference framework" ;
     skos:note "In ordinary talk, the reference point of a movement is often not mentioned because it's identified by default with the Earth - or some Earth-based reference framework" ;
     skos:note "The scope of this thematic relation is not limited to motion, but also encompasses other changes as well as comparisons: for example, if an eventuality consists in an object being larger than another one, the larger object will be the theme and the other will be the reference point" ;
@@ -358,7 +358,7 @@ loze:hasContent a owl:ObjectProperty ;
 loze:isHolderIn a owl:ObjectProperty ;
     rdfs:label "is Holder In" ;
     skos:definition "The relation that obtains between an entity e and an eventuality e' if and only if e controls or is super-ordinated to some other entity in the context of e' " ;
-    skos:example "the person or organisation is the holder in a possession or ownership" ;
+    skos:example "the person or organisation is the holder in a possession or ownership; the manager is the holder in a management relationship with the managed employee" ;
     rdfs:domain loze:Entity ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isParticipantIn .
@@ -372,7 +372,7 @@ loze:hasHolder a owl:ObjectProperty ;
 loze:isHeldIn a owl:ObjectProperty ;
     rdfs:label "is Held In" ;
     skos:definition "The relation that obtains between an entity e and an eventuality e' if and only if e is controlled by or subordinated to some other entity in the context of e' " ;
-    skos:example "The possessed thing is the held in a possession or ownership" ;
+    skos:example "The possessed thing is the held in a possession or ownership; the managed employee is the held in a management relationship" ;
     rdfs:domain loze:Entity ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isThemeIn .
@@ -566,15 +566,15 @@ loze:hasStage a owl:ObjectProperty ;
 loze:atTime a owl:ObjectProperty ;
     rdfs:label "at Time" ;
     skos:definition "The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t" ;
-    skos:example "WWII was happening at 1943, " ;
-    skos:note "; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation :atTime with 1943" ;
+    skos:example "WWII was happening at 1943, the French Revolution was happening at 1790, the Hellenistic period was happening at 234 BCE" ;
+    skos:note "This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation :atTime with 1943" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime .
 
 loze:afterTime a owl:ObjectProperty ;
     rdfs:label "after Time" ;
     skos:definition "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely after t" ;
-    skos:example "WWII occurred after 1900, " ;
+    skos:example "WWII occurred after 1900, the birth of Napoleon occurred after 1700, " ;
     skos:note "The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime .
@@ -582,7 +582,7 @@ loze:afterTime a owl:ObjectProperty ;
 loze:beforeTime a owl:ObjectProperty ;
     rdfs:label "before Time" ;
     skos:definition "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t" ;
-    skos:example "" ;
+    skos:example "WWII occurred before 1960, the birth of Napoleon occurred before 1800" ;
     skos:note "The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1980, even though over two decades passed between the end of WWII and 1980" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime .
@@ -590,24 +590,22 @@ loze:beforeTime a owl:ObjectProperty ;
 loze:fromTime a owl:ObjectProperty ;
     rdfs:label "from Time" ;
     skos:definition "The relation that obtains between an eventuality e and a period of time t if and only if e starts occurring at t" ;
-    skos:example "" ;
-    skos:note "" ;
+    skos:example "WWII occurred from 1939, " ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime .
 
 loze:untilTime a owl:ObjectProperty ;
     rdfs:label "until Time" ;
-    skos:definition "The relation obtains between an eventuality e and a period of time t if and only if e ends at t" ;
-    skos:example "" ;
-    skos:note "" ;
+    skos:definition "The relation that obtains between an eventuality e and a period of time t if and only if e ends at t" ;
+    skos:example "WWII occurred until 1945, " ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime .
 
 loze:throughoutTime a owl:ObjectProperty ;
     rdfs:label "throughout Time" ;
-    skos:definition "" ;
-    skos:example "" ;
-    skos:note "" ;
+    skos:definition "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t" ;
+    skos:example "WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period" ;
+    skos:note "The function of this relation is to specify the overall temporal location of an eventuality" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime .
 
