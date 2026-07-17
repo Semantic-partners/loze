@@ -117,7 +117,7 @@ loze:hasConcretization a owl:ObjectProperty ;
     rdfs:range loze:ConcreteParticular ;
     owl:inverseOf loze:isConcretizationOf .
 
-loze:isDeterminationOf a owl:ObjectProperty ;
+loze:isDeterminationOf a owl:TransitiveProperty ;
     rdfs:label "is Determination Of" ;
     skos:definition "The relation that obtains between a schematic particular x and another schematic particular y if and only if x has all the essential properties of y together with further essential properties that y lacks" ;
     skos:example "The Toyota Corolla Hatchback is a determination of the Toyota Corolla; the 1869 version of War and Peace is a determination of War and Peace; Apocalypse Now Redux is a determination of Apocalypse Now; heavy water is a determination of water; anthracite is a determination of coal; carbon-14 is a determination of carbon" ;
