@@ -64,7 +64,7 @@ loze:withinTime a owl:ObjectProperty ;
 
 loze:isSubPeriodOf a owl:ObjectProperty ;
     rdfs:label "is Sub-Period Of" ;
-    skos:definition "The relation that obtains between two periods of time of which the former is part of the latter" ;
+    skos:definition "The relation that obtains between two periods of time of which the former is a part or segment of the latter" ;
     skos:example "The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1715-1789, the June of 1816 is a sub-period of the year 1816" ;
     rdfs:domain loze:PeriodOfTime ;
     rdfs:range loze:PeriodOfTime .

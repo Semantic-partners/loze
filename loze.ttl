@@ -98,9 +98,9 @@ loze:Eventuality a owl:Class ;
     rdfs:subClassOf loze:Particular .
 
 
-##################
-# Concretization #
-##################
+####################################
+# Concretization and determination #
+####################################
 
 loze:isConcretizationOf a owl:ObjectProperty ;
     rdfs:label "is Concretization Of" ;
@@ -116,6 +116,21 @@ loze:hasConcretization a owl:ObjectProperty ;
     rdfs:domain loze:SchematicParticular ;
     rdfs:range loze:ConcreteParticular ;
     owl:inverseOf loze:isConcretizationOf .
+
+loze:isDeterminationOf a owl:ObjectProperty ;
+    rdfs:label "is Determination Of" ;
+    skos:definition "The relation that obtains between a schematic particular x and another schematic particular y if and only if x has all the essential properties of y together with further essential properties that y lacks" ;
+    skos:example "The Toyota Corolla Hatchback is a determination of the Toyota Corolla; the 1869 version of War and Peace is a determination of War and Peace; Apocalypse Now Redux is a determination of Apocalypse Now; heavy water is a determination of water; anthracite is a determination of coal; carbon-14 is a determination of carbon" ;
+    skos:note "If x is a concretization of y and y is a determination of z, then x is also a concretization of z; a Toyota Corolla hatchback is a Toyota Corolla; a heavy water molecule is a water molecule; and so on" ;
+    skos:note "Informally, determination consists in the gradual increase in detailing and specificity of schematic particulars; it can be viewed as the schematic particulars' counterpart of subclasshood" ;
+    rdfs:domain loze:SchematicParticular ;
+    rdfs:range loze:SchematicParticular .
+
+loze:hasDetermination a owl:ObjectProperty ;
+    rdfs:label "has Determination" ;
+    rdfs:domain loze:SchematicParticular ;
+    rdfs:range loze:SchematicParticular ;
+    owl:inverseOf loze:isDeterminationOf .
 
 
 #########################################
