@@ -35,14 +35,14 @@ loze:Animal a owl:Class ;
     rdfs:label "Animal" ;
     skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings" ; 
     skos:note "Animals typically have a more flexible body than plants and fungi and are able to move" ;
-    skos:note "Within the tree of life, animals are the members of the kingdom of Animalia" ;
+    skos:note "Within biological taxonomy - so-called Tree of Life - animals are the members of the kingdom of Animalia" ;
     rdfs:subClassOf loze:LivingBeing .
 
 loze:Plant a owl:Class ;
     rdfs:label "Plant" ;
     skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) derives its nourishment from photosynthesis" ;
     skos:note "Plants typically have a firmer cellular structure than animals and are not able to move" ;
-    skos:note "Within the tree of life, plants are the members of the kingdom of Plantae" ;
+    skos:note "Within biological taxonomy - so-called Tree of Life - plants are the members of the kingdom of Plantae" ;
     rdfs:subClassOf loze:LivingBeing .
 
 loze:Person a owl:Class ;
