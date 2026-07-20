@@ -458,7 +458,7 @@ loze:PlaceOccupation a owl:Class ;
 loze:isComponentIn a owl:ObjectProperty ;
     rdfs:label "is Component In" ;
     skos:definition "The relation that obtains between a particular p and a composition c if and only if p composes some other particular in the context of c" ;
-    skos:example "In my arm being part of my body, my arm is the component and my arm is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component" ;
+    skos:example "In my arm being part of my body, my arm is the component and my body is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Composition ;
     rdfs:subPropertyOf loze:isParticipantIn .
@@ -533,7 +533,7 @@ loze:hasRepeatedContent a owl:ObjectProperty ;
 loze:hasNumberOfOccurrences a owl:DatatypeProperty ;
     rdfs:label "has Number Of Occurrences" ;
     skos:definition "The relation that assignes to an eventuality the number of occurrences in which a certain schematic particular is repeated in the context of that eventuality" ;
-    skos:example "In a composition in which a polymerous sequence has a monomer repeated 3000 times, the number of occurrences is 1000; in the composition of the water molecule out of hydrogen, the number of occurrences is 2; in a containment in which a tablet is repeated 10 times in a blister pack, the number of occurrences is 10" ;
+    skos:example "In a composition in which a polymerous sequence has a monomer repeated 3000 times, the number of occurrences is 3000; in the composition of the water molecule out of hydrogen, the number of occurrences is 2; in a containment in which a tablet is repeated 10 times in a blister pack, the number of occurrences is 10" ;
     skos:note "This relation is mostly intended to be used in the context of compositions (loze:Composition) and containments (loze:Containment); that being said, its application to other eventualities should not be excluded in principle" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range xsd:nonNegativeInteger .

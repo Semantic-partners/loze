@@ -13,6 +13,7 @@ loze:InformationArtefact a owl:Class ;
     rdfs:label "Information Artefact" ;
     skos:definition "An artefact that consists of a structured system of symbols' occurrences meant to convey information" ;
     skos:example "A book, an article, a note, a document, a digital file, a computer programme or software" ;
+    skos:note "The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine" ;
     skos:note "An information object can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete" ;
     skos:note "An information object that is concrete is always going to be the concretization of some schematic information object" ;
     rdfs:subClassOf loze:Artefact .
@@ -22,7 +23,7 @@ loze:Text a owl:Class ;
     skos:definition "An information artefact that consists of sentences in some human-readable language and is meant to convey meaning to humans" ;
     skos:example "A book, an article, a physical document, a text or document file, a book chapter, a dish recipe" ;
     skos:note "According to the definition, not only plain text files, but also document files are instances of loze:Text" ;
-    skos:note "In a software system, a machine code might not be a text, because it's not meant to convey meaning to humans; on the other hand, the source code is a text" ;
+    skos:note "In a software system, a machine code might not be a text, because it's not always meant to convey meaning to humans; on the other hand, the source code is a text, since it's human-readable" ;
     rdfs:subClassOf loze:InformationArtefact . 
 
 loze:isStandardIn a owl:ObjectProperty ;
@@ -56,7 +57,7 @@ loze:hasInstruction a owl:Object ;
 
 loze:isRecipeIn a owl:ObjectProperty ;
     rdfs:label "is Recipe In" ;
-    skos:definition "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars with certain features" ;
+    skos:definition "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features" ;
     skos:example "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula and the alloying instructions are the recipe in the manufacturing of steel slabs" ;
     skos:note "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular" ;
     rdfs:domain loze:InformationArtefact ;
