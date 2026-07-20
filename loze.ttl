@@ -111,6 +111,22 @@ loze:isConcretizationOf a owl:ObjectProperty ;
     rdfs:range loze:SchematicParticular .
 
 
+################
+# Conformance #
+################
+
+loze:conformsTo a owl:ObjectProperty ;
+    rdfs:label "Conforms To" ;
+    skos:definition "The relation that obtains between a particular p and a schematic particular s if and only if p satisfies the requirements, criteria, or norms established by s" ;
+    skos:example "A building conforms to a building code, a product conforms to the ISO 9001 standard, a report conforms to a house style guide, an implementation of a software conforms to its protocol specification, the Toyota Corolla (as a car model) conforms to an emissions regulation" ;
+    skos:note "Conformance and concretization (loze:isConcretizationOf) are distinct relations: concretization requires that p exemplifies or has the main features of s, irrespective of whether p measures up to s, whereas conformance requires that p meets the requirements or criteria set by s, irrespective of whether p exemplifies s" ;
+    skos:note "Neither relation entails the other: a concretization need not conform, since a concretization can deviate from its schematic particular and be defective, faulty, or bad - for example, a faulty Toyota Corolla unit is a concretization of the Toyota Corolla car model even if it fails to conform to an emissions regulation; conversely, a particular can conform to a schematic particular without being a concretization of it, and a particular can conform to one schematic particular while being a concretization of a distinct one - for example, a manufactured unit is a concretization of the Toyota Corolla car model and, separately, conforms to an emissions regulation" ;
+    skos:note "Conformance also applies where concretization would not: a cake baked by following a recipe conforms to the recipe, since its ingredients and preparation satisfy what the recipe specifies, but the cake is not a concretization of the recipe; the recipe's concretizations are things that exemplify it directly, such as the printed recipe in a cookbook or an instance of the baking procedure it prescribes, whereas the cake is the product of one such baking process (loze:hasProduct) rather than an exemplification of the recipe itself" ;
+    rdfs:domain loze:Particular ;
+    rdfs:range loze:SchematicParticular .
+
+
+
 #########################################
 # Domain-independent thematic relations #
 #########################################
