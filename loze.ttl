@@ -500,7 +500,7 @@ loze:hasRepeatedComponent a owl:ObjectProperty ;
 loze:isIngredientIn a owl:ObjectProperty ;
     rdfs:label "is Ingredient In" ;
     skos:definition "The sub-relation of loze:isComponentIn that obtains whenever the component is a substance that occurres in the composite in a given amount" ;
-    skos:example "In the case of a cake having as ingredient 200 grams of wheat flour, the flour is the ingredient; in the case of a solution having as ingredient 2 litres of water, the water is the ingredient" ;
+    skos:example "In the case of a cake having as ingredient 200 grams of wheat flour, wheat flour is the ingredient; in the case of a solution having as ingredient 2 litres of water, water is the ingredient" ;
     skos:note "Substance repetition is impractical to account for in terms of number of occurrences, since the units are too many to be counted; consequently, instead of using loze:hasNumberOfOccurrences, it is advisable to specify quantities based on units of measure" ;
     rdfs:domain loze:Substance ;
     rdfs:range loze:Composition ;
