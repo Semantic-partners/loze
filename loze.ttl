@@ -18,7 +18,7 @@ loze:Entity a owl:Class ;
 
 loze:Particular a owl:Class ;
     rdfs:label "Particular Entity" ;
-    skos:definition "An entity that is not a type or kind of entities" ;
+    skos:definition "An entity that is not a class or type of entities" ;
     skos:note "Particular entities are to be contrasted with classes; the concept of a particular roughly correspond to the Semantic Web concept of an individual or instance" ;
     rdfs:subClassOf loze:Entity ;
     owl:disjointUnionOf (loze:Thing loze:Eventuality) ;
@@ -60,7 +60,7 @@ loze:DerivativeThing a owl:Class ;
     rdfs:label "Derivative Thing" ;
     skos:definition "A thing that is not individuated by an internal organisation, function, or form" ;
     skos:note "Derivative things are to be contrasted with objects: a thing is derivative if and only if it is not an object; every thing is either an object or a derivative thing" ;
-    skos:note "Derivative things are divided into aggregates, places, and periods of time, depending on how they are individuated" ;
+    skos:note "Derivative things are divided into three classes - aggregates, places, and periods of time - depending on how they are individuated" ;
     rdfs:subClassOf loze:Thing ;
     owl:disjointUnionOf (loze:Aggregate loze:PeriodOfTime loze:Place) .
 
