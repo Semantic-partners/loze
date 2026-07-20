@@ -9,23 +9,36 @@
 # Standards #
 #############
 
+loze:Text a owl:ObjectProperty ;
+    rdfs:label "Text" ;
+    skos:definition "" ;
+    skos:example "A book, a document, a text file" ;
+    skos:note "A text can be either a schematic object or a concrete object: War and Peace is a schematic object, whereas its copies are concrete objects; a PDF file is a schematic object, whereas its copies are concrete objects" ;
+    skos:note "A text that is a concrete object is always going to be the concretization of some text that is a schematic object" ;
+    rdfs:subClassOf loze:Object .
+
 loze:isStandardIn a owl:ObjectProperty ;
     rdfs:label "is Standard In" ;
-    skos:definition "" ;
+    skos:definition "The sub-relation of loze:isTopicIn that obtains when the topic provides the rules or standard for the conduction of the eventuality" ;
+    skos:example "" ;
+    skos:note "Only eventualities that have humans as agents (loze:isAgentIn) or are designed by humans can have a standard (loze:isStandardIn), since taking something as a rule or standard of action requires human-like cognitive faculties" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:sTopicIn .
 
 loze:isInstructionIn a owl:ObjectProperty ;
     rdfs:label "is Instruction In" ;
-    skos:definition "" ;
+    skos:definition "The sub-relation of loze:isStandardIn that obtains when the standard in question is a text consisting of instructions for conducting the eventuality" ;
+    skos:example "In the assembly of a piece of furniture, the assembly manual is the instruction; in the making of a cake, the cookbook recipe is the instruction" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isStandardIn .
 
     loze:isRecipeIn a owl:ObjectProperty ;
     rdfs:label "is Recipe In" ;
-    skos:definition "" ;
+    skos:definition "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes doses and procedures for producing " ;
+    skos:example "In the making of a cake, the cookbook recipe is the recipe; in the production of paracetamol tablets, the chemical recipe is the recipe" ;
+    skos:note "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn)" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isInstructionIn .
