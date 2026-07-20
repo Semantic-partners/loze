@@ -5,9 +5,9 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-#############
-# Standards #
-#############
+#######################
+# Texts and standards #
+#######################
 
 loze:Text a owl:Class ;
     rdfs:label "Text" ;
@@ -19,9 +19,9 @@ loze:Text a owl:Class ;
 
 loze:isStandardIn a owl:ObjectProperty ;
     rdfs:label "is Standard In" ;
-    skos:definition "The sub-relation of loze:isTopicIn that obtains when the topic provides the rules or standard for the conduction of the eventuality" ;
+    skos:definition "The sub-relation of loze:isTopicIn that obtains when the topic provides the rules or standard for the performance of the eventuality" ;
     skos:example "Regulations are the standard in a compliant business operation, best practices are the standard in a technical activity or development, the workflow is the standard in the execution of a technical process" ;
-    skos:note "Only eventualities that have humans as agents (loze:isAgentIn) or are designed by humans can have a standard (loze:isStandardIn), since taking something as a rule or standard of action requires human-like cognitive faculties" ;
+    skos:note "Only eventualities that have humans as agents (loze:isAgentIn) or are executed by objects designed by humans - like an automated system - can have a standard (loze:isStandardIn), since treating something as a rule or standard for an action requires human-like cognitive faculties" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:sTopicIn .
@@ -34,8 +34,8 @@ loze:hasStandard a owl:Object ;
 
 loze:isInstructionIn a owl:ObjectProperty ;
     rdfs:label "is Instruction In" ;
-    skos:definition "The sub-relation of loze:isStandardIn that obtains when the standard in question is a text consisting of instructions for conducting the eventuality" ;
-    skos:example "The assembly manual is the instruction in the assembly of a piece of furniture, the cookbook recipe is the instruction in the preparation of a dish, the workflow is the instruction in the execution of a technical process" ;
+    skos:definition "The sub-relation of loze:isStandardIn that obtains when the standard in question is a text consisting of instructions for performing the eventuality" ;
+    skos:example "The assembly manual is the instruction in the assembly of a piece of furniture, the cookbook recipe is the instruction in the preparation of a cake, the workflow documentation is the instruction in the execution of a technical process" ;
     rdfs:domain loze:Text ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isStandardIn .
@@ -48,9 +48,9 @@ loze:hasInstruction a owl:Object ;
 
 loze:isRecipeIn a owl:ObjectProperty ;
     rdfs:label "is Recipe In" ;
-    skos:definition "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes doses and procedures for producing " ;
-    skos:example "The cookbook recipe is the recipe in the preparation of a dish; the chemical recipe is the recipe in the production of paracetamol tablets" ;
-    skos:note "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn)" ;
+    skos:definition "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain class or with certain features" ;
+    skos:example "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula and the alloying instructions are the recipe in the manufacturing of steel slabs" ;
+    skos:note "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular" ;
     rdfs:domain loze:Text ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isInstructionIn .
