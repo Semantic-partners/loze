@@ -13,14 +13,16 @@ loze:Entity a owl:Class ;
     rdfs:label "Entity" ;
     skos:definition "Anything that exists, is real, or is in the world" ;
     skos:note "It corresponds to owl:Thing" ;
-    owl:equivalentClass owl:Thing .
+    owl:equivalentClass owl:Thing ;
+    owl:disjointUnionOf (owl:Class loze:Particular) .
 
 loze:Particular a owl:Class ;
     rdfs:label "Particular Entity" ;
     skos:definition "An entity that is not a type or kind of entities" ;
     skos:note "Particular entities are to be contrasted with classes; the concept of a particular roughly correspond to the Semantic Web concept of an individual or instance" ;
     rdfs:subClassOf loze:Entity ;
-    owl:disjointWith owl:Class .
+    owl:disjointUnionOf (loze:Thing loze:Eventuality) ;
+    owl:disjointUnionOf (loze:SchematicParticular loze:ConcreteParticular) .
 
 loze:ConcreteParticular a owl:Class ;
     rdfs:label "Concrete Particular" ;
@@ -28,8 +30,7 @@ loze:ConcreteParticular a owl:Class ;
     skos:example "Your arm, one Toyota Corolla unit, the computer in front of you, the portion of water in a given glass, a piece of gold, one performance of Beethoven's Symphony No 9, the stabbing of Caesar from Brutus, a heap of sand, your bedroom, the last hour" ;
     skos:note "Differently from Schematic particulars, a concrete particular only occupies one place or location at a time: my copy of War and Peace occupies one slot in my bookcase right now; I can only occupy one place at a time; a unit of Toyota Corolla is in one place at a time; a performance of Beethoven's Symphony No 9 takes place in one and only one venue" ;
     skos:note "The distinction between concrete particulars and Schematic particulars cuts across the other divisions of the class :Particular: there are concrete objects and Schematic objects, concrete eventualities and Schematic eventualities, concrete aggregates and Schematic aggregates, and so on" ;
-    rdfs:subClassOf loze:Particular ;
-    owl:disjointWith loze:SchematicParticular .
+    rdfs:subClassOf loze:Particular .
 
 loze:SchematicParticular a owl:Class ;
     rdfs:label "Schematic Particular" ;
@@ -46,22 +47,22 @@ loze:Thing a owl:Class ;
     skos:definition "A particular entity that is not a way of being or a modification of other entities" ;
     skos:note "Despite the similar local name, this class is much narrower than owl:Thing, which encompasses all entities" ;
     rdfs:subClassOf loze:Particular ;
-    owl:disjointWith loze:Eventuality .
+    owl:disjointUnionOf (loze:Object loze:DerivativeThing) .
 
 loze:Object a owl:Class ;
     rdfs:label "Object" ;
     skos:definition "A thing that is individuated by a certain internal organisation, function, or form" ;
     skos:example "A human, a horse, a molecule, a table, a computer, a planet, a paracetamol tablet" ;
     skos:note "An object persists over time as long as it preserves the internal organisation, function, or form that individuates it; as long as that is preserved, the parts of the objects and their types can change without causing the destruction of the object" ;
-    rdfs:subClassOf loze:Thing ;
-    owl:disjointWith loze:DerivativeThing .
+    rdfs:subClassOf loze:Thing .
 
 loze:DerivativeThing a owl:Class ;
     rdfs:label "Derivative Thing" ;
     skos:definition "A thing that is not individuated by an internal organisation, function, or form" ;
     skos:note "Derivative things are to be contrasted with objects: a thing is derivative if and only if it is not an object; every thing is either an object or a derivative thing" ;
     skos:note "Derivative things are divided into aggregates, places, and periods of time, depending on how they are individuated" ;
-    rdfs:subClassOf loze:Thing .
+    rdfs:subClassOf loze:Thing ;
+    owl:disjointUnionOf (loze:Aggregate loze:PeriodOfTime loze:Place) .
 
 loze:Aggregate a owl:Class ;
     rdfs:label "Aggregate" ;
@@ -69,17 +70,14 @@ loze:Aggregate a owl:Class ;
     skos:example "A chunk of wood, a waterbody, the liquid contained in a tank, a heap of sand, the global petrol supply" ;
     skos:note "Objects are also typically material, but aggregates differ from objects because they are not unified by an internal organisation, function or form" ;
     skos:note "An aggregate can also be scattered across space - such as the total water reserve of England or the amount of methane used for heating my house over last year - in which case its individuation is based on a combination of material composition and practical interests" ;
-    rdfs:subClassOf loze:DerivativeThing ;
-    owl:disjointWith loze:PeriodOfTime ;
-    owl:disjointWith loze:Place .
+    rdfs:subClassOf loze:DerivativeThing .
 
 loze:PeriodOfTime a owl:Class ;
     rdfs:label "Period Of Time" ;
     skos:definition "A derivative thing that is individuated by its coordinates across the temporal axis" ;
     skos:example "The year 1943, the 6th of May of 2005, any second or minute, the period that goes from the 3rd of May of 1467 to the 22nd of July of 1615" ;
     skos:note "Two period of time can have exactly the same duration and yet be distinct period of time; for example, this hour and the next hour are two distinct periods, despite having the exact same duration of 60 minutes" ;
-    rdfs:subClassOf loze:DerivativeThing ;
-    owl:disjointWith loze:Place .
+    rdfs:subClassOf loze:DerivativeThing .
 
 loze:Place a owl:Class ;
     rdfs:label "Place" ;
