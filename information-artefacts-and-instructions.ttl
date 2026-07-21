@@ -14,8 +14,8 @@ loze:InformationArtefact a owl:Class ;
     skos:definition "An artefact that consists of a structured system of symbols' occurrences meant to convey information" ;
     skos:example "A book, an article, a note, a document, a digital file, a computer programme or software" ;
     skos:note "The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine" ;
-    skos:note "An information object can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete" ;
-    skos:note "An information object that is concrete is always going to be the concretization of some schematic information object" ;
+    skos:note "An information artefact can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete" ;
+    skos:note "An information artefact that is concrete is always going to be the concretization of some schematic information artefact" ;
     rdfs:subClassOf loze:Artefact .
 
 loze:Text a owl:Class ;
@@ -29,7 +29,7 @@ loze:Text a owl:Class ;
 loze:isStandardIn a owl:ObjectProperty ;
     rdfs:label "is Standard In" ;
     skos:definition "The sub-relation of loze:isTopicIn that obtains when the topic provides the rules or standard for the performance of the eventuality" ;
-    skos:example "Regulations are the standard in a compliant business operation, best practices are the standard in a technical activity or development, the workflow is the standard in the execution of a technical process" ;
+    skos:example "Regulations are the standard in a compliant business operation, best practices are the standard in a technical development, the workflow is the standard in the execution of a technical process" ;
     skos:note "Only eventualities that have humans as agents (loze:isAgentIn) or are executed by objects designed by humans - like an automated system - can have a standard (loze:isStandardIn), since treating something as a rule or standard for an action requires human-like cognitive faculties" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
@@ -58,7 +58,7 @@ loze:hasInstruction a owl:Object ;
 loze:isRecipeIn a owl:ObjectProperty ;
     rdfs:label "is Recipe In" ;
     skos:definition "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features" ;
-    skos:example "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula and the alloying instructions are the recipe in the manufacturing of steel slabs" ;
+    skos:example "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs" ;
     skos:note "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular" ;
     rdfs:domain loze:InformationArtefact ;
     rdfs:range loze:Eventuality ;

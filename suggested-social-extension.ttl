@@ -20,9 +20,9 @@ loze:Substance a owl:Class ;
 
 loze:Artefact a owl:Class ;
     rdfs:label "Artefact" ;
-    skos:definition "An object that is designed and made by humans for serving a certain purpose or function" ;
+    skos:definition "An object that is designed and made by humans for serving certain purposes or functions" ;
     skos:example "A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork" ;
-    skos:note "Artefact can be either schematic or concrete: a software - in abstraction from its installations - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact" ;
+    skos:note "Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact" ;
     rdfs:subClassOf loze:Object .
 
 loze:LivingBeing a owl:Class ;
@@ -63,7 +63,7 @@ loze:Group a owl:Class ;
     rdfs:label "Group" ;
     skos:definition "An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction" ;
     skos:example "A household, a family, a couple, any organisation" ;
-    skos:note "Groups don't include collections or classes of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis" ;
+    skos:note "Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes" ;
     rdfs:subClassOf loze:Object .
 
 loze:Organisation a owl:Class ;
