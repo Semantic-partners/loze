@@ -2,7 +2,7 @@ PREFIX loze: <http://loze-upper-level-ontology.org/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
 
-# This inference rule can be viewed as the equivalent, for schematic particulars, of the inheritance of class membership# 
+# This inference rule can be viewed as the equivalent, for schematic particulars, of the inheritance of class membership # 
 
 CONSTRUCT { ?x loze:isConcretizationOf ?z . }
 WHERE { ?x loze:isConcretizationOf ?y .
