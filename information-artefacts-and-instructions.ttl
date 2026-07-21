@@ -5,9 +5,16 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-#######################
-# Texts and standards #
-#######################
+#########################################
+# Artefacts, Information, and standards #
+#########################################
+
+loze:Artefact a owl:Class ;
+    rdfs:label "Artefact" ;
+    skos:definition "An object that is designed and made by humans for serving certain purposes or functions" ;
+    skos:example "A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork" ;
+    skos:note "Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact" ;
+    rdfs:subClassOf loze:Object .
 
 loze:InformationArtefact a owl:Class ;
     rdfs:label "Information Artefact" ;
