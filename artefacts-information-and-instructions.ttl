@@ -42,7 +42,7 @@ loze:isStandardIn a owl:ObjectProperty ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:sTopicIn .
 
-loze:hasStandard a owl:Object ;
+loze:hasStandard a owl:ObjectProperty ;
     rdfs:label "has Standard" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:Particular ;
@@ -56,7 +56,7 @@ loze:isInstructionIn a owl:ObjectProperty ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isStandardIn .
 
-loze:hasInstruction a owl:Object ;
+loze:hasInstruction a owl:ObjectProperty ;
     rdfs:label "has Instruction" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:InformationArtefact ;
@@ -71,7 +71,7 @@ loze:isRecipeIn a owl:ObjectProperty ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isInstructionIn .
 
-loze:hasRecipe a owl:Object ;
+loze:hasRecipe a owl:ObjectProperty ;
     rdfs:label "has Recipe" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:InformationArtefact ;
