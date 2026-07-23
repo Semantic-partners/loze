@@ -1,4 +1,4 @@
-# loze
+# Loze
 
 An upper-level ontology largely inspired - with a few deviations and additions - by the Four-Category Ontology outlined by the philosopher E. J. Lowe (2006), supplemented with the concept of a schematic particular explored by Eddy Zemach (1970).
 
