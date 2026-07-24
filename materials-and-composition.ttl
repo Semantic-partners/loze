@@ -5,6 +5,11 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<http://loze-upper-level-ontology.org/materials-and-composition> a owl:Ontology ;
+    rdfs:label "Materials and Composition" ;
+    skos:definition "An extension of loze.ttl with classes and relations for modelling substances and material composition" ;
+    owl:imports loze: .
+
 #############################
 # Materials and Composition #
 #############################
@@ -29,6 +34,7 @@ loze:isRepeatedComponentIn a owl:ObjectProperty ;
 
 loze:hasRepeatedComponent a owl:ObjectProperty ;
     rdfs:label "has Repeated Component" ;
+    skos:definition "The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c" ;
     rdfs:domain loze:Composition ;
     rdfs:range loze:SchematicParticular ;
     owl:inverseOf loze:isRepeatedComponentIn .
@@ -44,6 +50,7 @@ loze:isIngredientIn a owl:ObjectProperty ;
 
 loze:hasIngredient a owl:ObjectProperty ;
     rdfs:label "has Ingredient" ;
+    skos:definition "The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c" ;
     rdfs:domain loze:Composition ;
     rdfs:range loze:Substance ;
     owl:inverseOf loze:isIngredientIn .
@@ -60,6 +67,7 @@ loze:isRepeatedContentIn a owl:ObjectProperty ;
 
 loze:hasRepeatedContent a owl:ObjectProperty ;
     rdfs:label "has Repeated Content" ;
+    skos:definition "The relation that obtains between a containment c and a schematic particular s if and only if s is the repeated content in c" ;
     rdfs:domain loze:Containment ;
     rdfs:range loze:SchematicParticular ;
     owl:inverseOf loze:isRepeatedContentIn .
