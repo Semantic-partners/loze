@@ -7,15 +7,15 @@ Subclasshood relationships between `Eventuality`, `Composition`, `Parthood`, and
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'background': '#FBF8F3'}}}%%
-flowchart TD
+flowchart BT
     Eventuality("Eventuality")
     Composition("Composition")
     Parthood("Parthood")
     Constitution("Constitution")
 
-    Eventuality --> Composition
-    Composition --> Parthood
-    Composition --> Constitution
+    Composition --> Eventuality
+    Parthood --> Composition
+    Constitution --> Composition
 
     classDef node fill:#FADBC8,stroke:#D9834F,stroke-width:1.5px,color:#4A2C1B;
     class Eventuality,Composition,Parthood,Constitution node;
