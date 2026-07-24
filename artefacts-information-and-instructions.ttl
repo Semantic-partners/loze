@@ -5,6 +5,11 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<http://loze-upper-level-ontology.org/artefacts-information-and-instructions> a owl:Ontology ;
+    rdfs:label "Artefacts, Information, and Instructions" ;
+    skos:definition "An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions" ;
+    owl:imports loze: .
+
 ############################################
 # Artefacts, Information, and Instructions #
 ############################################
@@ -40,10 +45,11 @@ loze:isStandardIn a owl:ObjectProperty ;
     skos:note "Only eventualities that have humans as agents (loze:isAgentIn) or are executed by objects designed by humans - like an automated system - can have a standard (loze:isStandardIn), since treating something as a rule or standard for an action requires human-like cognitive faculties" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
-    rdfs:subPropertyOf loze:sTopicIn .
+    rdfs:subPropertyOf loze:isTopicIn .
 
 loze:hasStandard a owl:ObjectProperty ;
     rdfs:label "has Standard" ;
+    skos:definition "The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:Particular ;
     owl:inverseOf loze:isStandardIn .
@@ -58,6 +64,7 @@ loze:isInstructionIn a owl:ObjectProperty ;
 
 loze:hasInstruction a owl:ObjectProperty ;
     rdfs:label "has Instruction" ;
+    skos:definition "The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:InformationArtefact ;
     owl:inverseOf loze:isInstructionIn .
@@ -73,6 +80,7 @@ loze:isRecipeIn a owl:ObjectProperty ;
 
 loze:hasRecipe a owl:ObjectProperty ;
     rdfs:label "has Recipe" ;
+    skos:definition "The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:InformationArtefact ;
     owl:inverseOf loze:isRecipeIn .

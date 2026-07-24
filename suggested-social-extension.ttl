@@ -5,6 +5,10 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<http://loze-upper-level-ontology.org/suggested-social-extension> a owl:Ontology ;
+    rdfs:label "Suggested Social Extension" ;
+    skos:definition "An extension of loze.ttl with classes and relations for modelling living beings and social entities such as persons, groups, and organisations" ;
+    owl:imports loze: .
 
 ################
 # Core classes #
