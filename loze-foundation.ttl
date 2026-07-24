@@ -123,7 +123,7 @@ loze:isDeterminationOf a owl:TransitiveProperty ;
 
 loze:hasDetermination a owl:ObjectProperty ;
     rdfs:label "has Determination" ;
-    skos:definition "The relation that obtains between a schematic particular y and a schematic particular x if and only if x is a determination of y" ;
+    skos:definition "The relation that obtains between a schematic particular x and a schematic particular y if and only if y is a determination of x" ;
     rdfs:domain loze:SchematicParticular ;
     rdfs:range loze:SchematicParticular ;
     owl:inverseOf loze:isDeterminationOf .
@@ -514,7 +514,7 @@ loze:isCauseOf a owl:ObjectProperty ;
 
 loze:hasCause a owl:ObjectProperty ;
     rdfs:label "has Cause" ;
-    skos:definition "The relation that obtains between an eventuality e' and an eventuality e if and only if e is a cause of e'" ;
+    skos:definition "The relation that obtains between an eventuality e and an eventuality e' if and only if e' is a cause of e" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:Eventuality ;
     owl:inverseOf loze:isCauseOf .
@@ -530,7 +530,7 @@ loze:isStageOf a owl:ObjectProperty ;
 
 loze:hasStage a owl:ObjectProperty ;
     rdfs:label "has Stage" ;
-    skos:definition "The relation that obtains between an eventuality e' and an eventuality e if and only if e is a stage of e'" ;
+    skos:definition "The relation that obtains between an eventuality e and an eventuality e' if and only if e' is a stage of e" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:Eventuality ;
     owl:inverseOf loze:isStageOf .
