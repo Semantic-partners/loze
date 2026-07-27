@@ -1,2 +1,61 @@
-# Loze - Main Documentation
+# Loze
+
+Loze is an upper-level ontology largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe (2006, 2009), supplemented with the concept of a schematic particular investigated by Eddy Zemach (1970, 1992). The very name of the ontology consists of homages to those two philosophers: **Lo**we and **Ze**mach, hence **Loze**.
+
+## Loze's Architecture
+
+Loze is partitioned into one foundational modules and a number of mid-level extensions. The foundational core is hosted in ``: it is the most general, top-level part of Loze and is meant to be completely domain-independent. The extensions currently include the following:
+
+1. An ontology of artefacts and information. This models . 
+2. An ontology of materials and compisition: this introduces the concept of a substance (`loze:Substance`), which has as superclass the foundational class `loze:SchematicParticular`, as well as a few relations for modelling the material composition of objects and aggregates. 
+3. A suggested social extension, which consists of highly general classes pertaining to the social domain (``).
+
+The set of extensions is open to additions, so the ones included here should not be viewed as exclusive.
+
+## Loze Foundation
+
+Loze Foundation can be carved itself into - which are highlighted by corresponding comments in the file: (i) a category system consists of top-classes, (ii) an apparatus of domain-independent thematic relations, (iii) five types of eventualities with , and (iv) two relations for linking eventualities. (NB the count of the relations does not include the inverse relations).
+
+### Loze's Category System
+
+. Loze's category system consists of ten class, arranged on four hierarchical levels - that is, between the top-class and the bottom-level classes there are two levels of intermediate classes.
+
+The top-level class of Loze is `loze:Entity`: this is a maximally comprehensive class that is meant to encompass everything that exists, is real, or is in the world. It is equivalent (`owl:equivalentClass`) to the built-in OWL class `owl:Thing`. The direct division of `loze:Entity` is into two direct subclasses, namely `owl:Class` and `loze:Particular`. `owl:Class` is defined in Loze the same way it is defined in the Semantic Web: a class is any entity that is a type or kind of entities, and which can have other entities as instances. The Loze concept of a particular largely correspond to the Semantic Web concept of an individual, but it is not perfectly equivalent: in . By contrast, in Loze a particular is any entity that is *not* a class - that is, any entity that is not a type or kind of entities. Consequently, in Loze `owl:Class` and `loze:Particular` are disjoint, and `loze:Entity` is a disjoint union (`owl:disjouintUnionOf`) of them.
+
+Loze does not introduce any further ontological division under `owl:Class`, so the rest of this documentation will focus on the various subclasses of `loze:Particular` and the relations defined for linking particulars.
+
+The class `loze:Particular` has two direct divisions, based on two different criteria: one is based on inherence and modification, the other on spatial boundaries. The former is the division between those particulars that are modifications or qualifications of other particulars and those that are not: those are called respectively *eventualities* (`loze:Eventuality`) and *things* (`loze:Thing`).
+
+The other direct division of `loze:Particular` is between those particulars that are bounded to one place at a time and those that are not: those are called respectively *concrete particulars * (`loze:ConcreteParticular`) and *schematic particulars* (`loze:SchematicParticular`). Schematic particulars can indeed seem very similar to classes: both are repeatable, since both can ; classes are represented by their instances, schematic particulars are represented by their concretisations. We said that a schematic particular is presented wherever one of its concretisations is present; but by the same token why might say that a class is present wherever one of its instances is present. Given these similarities, one might wonder whether there is any substantive difference between classes and schematic particulars, and whether concretisation is just instantiation under a different name. However, there is one major disanalogy between classes and schematic particulars, which in our view justifies including the latter under the class `loze:Particular`: differently from a class, a schematic particular share the essential properties of its concretisations. For example, *War and Peace* has the same chapter division as its copies, and it is also a book; likewise, a workflow has the same division in steps as its implementations. By contrast, classes don't have any of the essential properties of their instances: a class of books is not a book, and a class of actions is not an action. At first glance, this might seem like a nuanced philosophical distinction of little relevance in an applied ontology, but in section we will see how the distinctive nature of schematic particulars can vastly simplify the patterns for formalising general statements.
+
+### Fourth-level Classes
+
+The class `loze:Thing` is further divided into four subclasses, based on the individual principles of their instances: `loze:Object`, `loze:Aggregate`, `loze:Place`, and `loze:PeriodOfTime`. Objects are those things that are individuated based on their form, internal organisation, or function: . Differently from objects, aggregates are individuated based on their material composition. Needless to say, this does not entail that objects have no material composition, but only that they are not individuated according to it. 
+
+Places are those things that are individuated according to their position relative to other things: for example, . Finally, period of times are those things that are individuated according to their coordinates across the temporal axis - according to their "when", so to say.
+
+The division between concrete particulars and schematic particulars cuts across all the other subclasses of `loze:Particular`: there are concrete objects as well as schematic objects, concrete aggregates as well as schematic aggregates, concrete eventualities as well as schematic eventualities, and so on.
+
+One salient feature of Loze is the category of *eventualities*, which correspond to what Lowe calls *modes*. This top-level class encompasses entities that in other ontologies are variously called 'events', 'processes', 'qualities', 'activities', 'relations' etc... . While those are usually considered to be disjoint categories, we believe that the criteria used for distinguishing between them are either superficial or impractical. With this in mind, we propose to merge them into one comprehensive category that can be used whenever we need to model the way in which something is or goes at a given period of time. For specifying the role that entities occupy in an eventuality, we propose an apparatus of thematic relations that draws from decades of research at the interface of philosophy and linguistics (Parsons 1990 & 1995; Orilia 2019). We believe that the result is a highly versatile and scalable pattern that can be easily applied across domains.
+
+The category of schematic particulars is inspired by what Zemach calls *types*. Such entities are repeatable like classes, but differently from classes they share the essential properties of their concretizations. While the very concept might come across as weird to those who are used to the Semantic Web class-individual duality, it has a robust philosophical underpinning, and we believe that it can provide surprisingly powerful design patterns, which can vastly simplify modelling tasks that are usually addressed using OWL restrictions or punning.
+
+
+## References
+
+Lowe, E. J. (2006). *The Four-Category Ontology*, Oxford: Oxford University Press.
+
+Lowe, E. J. (2009). *More Kinds of Being*, Wiley-Blackwell.
+
+Orilia, F. (2019). "Relations, O-roles and Applied Ontology", *Philosophical Inquiries*, 7 (1), 115-32.
+
+Parsons, T. (1990). *Events in the Semantics of English*, MIT Press.
+
+Parsons, T. (1995). "Thematic Relations and Arguments", *Linguistic Inquiry*, 26 (4): 635-62.
+
+Zemach, E. M. (1970). "Four Ontologies", *The Journal of Philosophy*, 67 (8): 231-47.
+
+Zemach, E. M. (1992). *Types: Essays in Metaphysics*, E. J. Brill Publishers.
+
+
 
