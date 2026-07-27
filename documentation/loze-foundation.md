@@ -4,7 +4,7 @@ Loze is meant as a simple upper-level ontology, which avoids unnecessary categor
 
 ## Loze's Architecture
 
-Loze is partitioned into one foundational modules and a number of mid-level extensions. The foundational core is hosted in ``: it is the most general, top-level part of Loze and is meant to be completely domain-independent. The extensions currently include the following:
+Loze is partitioned into one foundational modules and a number of mid-level extensions. The foundational core is hosted in `/loze-foundation.ttl`: it is the most general, top-level part of Loze and is meant to be completely domain-independent. The extensions currently include the following:
 
 1. An ontology of artefacts and information. This includes the general concept of an artefact (`loze:Artefact`), a few subclasses for information artefacts, and relations . 
 2. An ontology of materials and composition: this introduces the concept of a substance (`loze:Substance`), which has as superclass the foundational class `loze:SchematicParticular`, as well as a few relations for modelling the material composition of objects and aggregates. 
@@ -27,9 +27,17 @@ Loze does not introduce any further ontological division under `owl:Class`, so t
 
 The class `loze:Particular` has two direct divisions, based on two different criteria: one is based on inherence and modification, the other on spatial boundaries. The former is the division between those particulars that are modifications or qualifications of other particulars and those that are not: those are called respectively *eventualities* (`loze:Eventuality`) and *things* (`loze:Thing`).
 
+![Loze's Top-level Taxonomy: Things vs Eventualities](/diagrams/images/loze-top-taxonomy-thing-eventuality.svg)
+
 The other direct division of `loze:Particular` is between those particulars that are bounded to one place at a time and those that are not: those are called respectively *concrete particulars * (`loze:ConcreteParticular`) and *schematic particulars* (`loze:SchematicParticular`). .
 
+![Loze's Top-level Taxonomy: Concrete Particulars vs Schematic Particulars](/diagrams/images/loze-top-taxonomy-schematic-concrete.svg)
+
 Schematic particulars can indeed seem very similar to classes: both are repeatable, since both can ; classes are represented by their instances, schematic particulars are represented by their concretisations. We said that a schematic particular is presented wherever one of its concretisations is present; but by the same token why might say that a class is present wherever one of its instances is present. Given these similarities, one might wonder whether there is any substantive difference between classes and schematic particulars, and whether concretisation is just instantiation under a different name. However, there is one major disanalogy between classes and schematic particulars, which in our view justifies including the latter under the class `loze:Particular`: differently from a class, a schematic particular share the essential properties of its concretisations. For example, *War and Peace* has the same chapter division as its copies, and it is also a book; likewise, a workflow has the same division in steps as its implementations. By contrast, classes don't have any of the essential properties of their instances: a class of books is not a book, and a class of actions is not an action. At first glance, this might seem like a nuanced philosophical distinction of little relevance in an applied ontology, but in section we will see how the distinctive nature of schematic particulars can vastly simplify the patterns for formalising general statements.
+
+The division between concrete particulars and schematic particulars cuts across all the other subclasses of `loze:Particular`: there are concrete objects as well as schematic objects, concrete aggregates as well as schematic aggregates, concrete eventualities as well as schematic eventualities, and so on.
+
+![Loze's Top-level Taxonomy: Complete View](/diagrams/images/loze-top-taxonomy-complete-view.svg)
 
 ### Fourth-level Classes
 
@@ -37,7 +45,7 @@ The class `loze:Thing` is further divided into four subclasses, based on the ind
 
 Places are those things that are individuated according to their position relative to other things: for example, . Finally, period of times are those things that are individuated according to their coordinates across the temporal axis - according to their "when", so to say.
 
-The division between concrete particulars and schematic particulars cuts across all the other subclasses of `loze:Particular`: there are concrete objects as well as schematic objects, concrete aggregates as well as schematic aggregates, concrete eventualities as well as schematic eventualities, and so on.
+![Loze's Top-level Taxonomy: Thing's Children](/diagrams/images/loze-top-taxonomy-thing-children.svg)
 
 One salient feature of Loze is the category of *eventualities*, which correspond to what Lowe calls *modes*. This top-level class encompasses entities that in other ontologies are variously called 'events', 'processes', 'qualities', 'activities', 'relations' etc... . While those are usually considered to be disjoint categories, we believe that the criteria used for distinguishing between them are either superficial or impractical. For example, every event can also be viewed as a relation, because it holds between certain entities considered in a given order. Other ontologies distinguish between happenings that are instantaneous and other - in HQDM, those are called respectively *events* and *activities*. Again, this is also an ephemeral distinction, : as a result, that collapses into the vague distinction between short-lived happenings and long happenings.
 
