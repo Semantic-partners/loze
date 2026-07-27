@@ -1,20 +1,21 @@
 # Loze
 
-Loze is an upper-level ontology largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe (2006, 2009), supplemented with the concept of a schematic particular investigated by Eddy Zemach (1970, 1992). The very name of the ontology consists of homages to those two philosophers: **Lo**we and **Ze**mach, hence **Loze**.
+Loze is an upper-level ontology largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe (2006, 2009), supplemented with the concept of a schematic particular investigated by Eddy Zemach (1970, 1992). The very name of the ontology consists of references to those two philosophers: **Lo**we and **Ze**mach, hence **Loze**.
 
 ## Loze's Architecture
 
 Loze is partitioned into one foundational modules and a number of mid-level extensions. The foundational core is hosted in ``: it is the most general, top-level part of Loze and is meant to be completely domain-independent. The extensions currently include the following:
 
-1. An ontology of artefacts and information. This models . 
-2. An ontology of materials and compisition: this introduces the concept of a substance (`loze:Substance`), which has as superclass the foundational class `loze:SchematicParticular`, as well as a few relations for modelling the material composition of objects and aggregates. 
-3. A suggested social extension, which consists of highly general classes pertaining to the social domain (``).
+1. An ontology of artefacts and information. This includes the general concept of an artefact (`loze:Artefact`), a few subclasses for information artefacts, and relations . 
+2. An ontology of materials and composition: this introduces the concept of a substance (`loze:Substance`), which has as superclass the foundational class `loze:SchematicParticular`, as well as a few relations for modelling the material composition of objects and aggregates. 
+3. A suggested social extension, which consists of highly general classes pertaining to the social domain, such as `loze:Person`, `loze:Group` and `loze:Organisation`.
+4. A set of temporal relations for (i) relating eventualities to periods of time and for (ii) describing the connections between the periods of time themselves. 
 
-The set of extensions is open to additions, so the ones included here should not be viewed as exclusive.
+The set of extensions is open to additions, so the ones included in this repository should not be viewed as exclusive.
 
 ## Loze Foundation
 
-Loze Foundation can be carved itself into - which are highlighted by corresponding comments in the file: (i) a category system consists of top-classes, (ii) an apparatus of domain-independent thematic relations, (iii) five types of eventualities with , and (iv) two relations for linking eventualities. (NB the count of the relations does not include the inverse relations).
+Loze Foundation can be carved itself into - which are highlighted by corresponding comments in the file: (i) a category system consisting of ten top-level classes and two relations, (ii) an apparatus of eighteen domain-independent thematic relations, (iii) five types of eventualities with their two specialised thematic relations, and (iv) two fundamental relations for linking eventualities. (NB the count of the relations does not include their inverses).
 
 ### Loze's Category System
 
@@ -48,7 +49,7 @@ In practical terms, the main rationale for the class `loze:Eventuality` is the c
 
 . The relation `loze:isParticipantIn` is the top thematic relation, in the formal sense that any other thematic relation is a sub-relation of it. That being said, in most contexts `loze:isParticipantIn` will be too broad to be informative: therefore, we propose a gamut of more specific sub-relations. These are still domain-independent, and yet are informative enough .
 
-For a one-by-one illustrations of Loze's thematic relations, we redirect to the detailed annotations contained in the file . Here we are going to offer a quick overview of their scope. For example, `loze:isAgentIn` is the relation for specifying who does things in the context - more formally, for picking the participant that causes changes upon other participants. On the other hand, `loze:isAffectedIn` is meant for specifying the participant that is being acted upon by some other participat. These two are very flexibile yet informative relations that can be applied whenever one entity does something to another one. Similarly, `loze:isInstrumentIn` allows us to specify the means by which an eventuality is performed, and can applied : a kitchen knife is the instrument in a slicing, a debit card is the instrument in a payment, a duct network is the instrument in the supply of water, and so on. Relations like `loze:isRecipientIn` and `loze:isBeneficiaryIn` are meant for specifying . A dedicated set of relations - - . 
+For a one-by-one illustrations of Loze's thematic relations, we redirect to the detailed annotations contained in the file `/loze-foundation.ttl`. Here we are going to offer a quick overview of their scope. For example, `loze:isAgentIn` is the relation for specifying who does things in the context - more formally, for picking the participant that causes changes upon other participants. On the other hand, `loze:isAffectedIn` is meant for specifying the participant that is being acted upon by some other participat. These two are very flexibile yet informative relations that can be applied whenever one entity does something to another one. Similarly, `loze:isInstrumentIn` allows us to specify the means by which an eventuality is performed, and can applied : a kitchen knife is the instrument in a slicing, a debit card is the instrument in a payment, a duct network is the instrument in the supply of water, and so on. Relations like `loze:isRecipientIn` and `loze:isBeneficiaryIn` are meant for specifying . A dedicated set of relations - - . 
 
 
 ## References
