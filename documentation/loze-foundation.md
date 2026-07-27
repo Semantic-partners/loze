@@ -1,6 +1,10 @@
-# Loze
+# Loze's Foundation
 
-Loze is meant as a simple upper-level ontology, which avoids unnecessary categorial distinctions and offers a gamut of highly flexible, easy to use modelling patterns. It is largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe (2006, 2009), supplemented with the concept of a schematic particular investigated by Eddy Zemach (1970, 1992). The very name of the ontology consists of references to the two aforementioned philosophers: **Lo**we and **Ze**mach, hence **Loze**. Our ontology combines that top-level framework with an apparatus of thematic relations that draws from decades of research at the interface of philosophy and linguistics (Parsons 1990 & 1995; Orilia 2019).
+Loze is meant as a simple upper-level ontology, which avoids unnecessary categorial distinctions and offers a gamut of highly flexible, easy to use modelling patterns. Its category systems is largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe (2006, 2009), supplemented with the concept of a schematic particular investigated by Eddy Zemach (1970, 1992). In fact, the very name of the ontology consists of references to the two aforementioned philosophers: **Lo**we and **Ze**mach, hence **Loze**. 
+
+Loze that category system with an apparatus of thematic relations that draws from decades of research at the interface of philosophy and linguistics (Parsons 1990 & 1995; Orilia 2019).
+
+While it has independent philosophical motivations and could be implemented with other formal languages, Loze is specifically optimised for being implemented with the RDF syntax. Indeed, we will see that some of its features are also motivated by finding modelling patterns that are simpler than the conventional Semantic Web solutions.
 
 ## Loze's Architecture
 
@@ -13,17 +17,17 @@ Loze is partitioned into one foundational modules and a number of mid-level exte
 
 The set of extensions is open to additions, so the ones included in this repository should not be viewed as exclusive.
 
-## Loze Foundation
+## Loze Foundation and Its Category System
 
 Loze Foundation can be carved itself into - which are highlighted by corresponding comments in the file: (i) a category system consisting of ten top-level classes and two relations, (ii) an apparatus of eighteen domain-independent thematic relations, (iii) five types of eventualities with their two specialised thematic relations, and (iv) two fundamental relations for linking eventualities. (NB the count of the relations does not include their inverses).
-
-### Loze's Category System
 
 . Loze's category system consists of ten class, arranged on four hierarchical levels - that is, between the top-class and the bottom-level classes there are two levels of intermediate classes.
 
 The top-level class of Loze is `loze:Entity`: this is a maximally comprehensive class that is meant to encompass everything that exists, is real, or is in the world. It is equivalent (`owl:equivalentClass`) to the built-in OWL class `owl:Thing`. The direct division of `loze:Entity` is into two direct subclasses, namely `owl:Class` and `loze:Particular`. `owl:Class` is defined in Loze the same way it is defined in the Semantic Web: a class is any entity that is a type or kind of entities, and which can have other entities as instances. The Loze concept of a particular largely correspond to the Semantic Web concept of an individual, but it is not perfectly equivalent: in . By contrast, in Loze a particular is any entity that is *not* a class - that is, any entity that is not a type or kind of entities. Consequently, in Loze `owl:Class` and `loze:Particular` are disjoint, and `loze:Entity` is a disjoint union (`owl:disjouintUnionOf`) of them.
 
 Loze does not introduce any further ontological division under `owl:Class`, so the rest of this documentation will focus on the various subclasses of `loze:Particular` and the relations defined for linking particulars.
+
+### The Parallel Divisions of Particulars 
 
 The class `loze:Particular` has two direct divisions, based on two different criteria: one is based on inherence and modification, the other on spatial boundaries. The former is the division between those particulars that are modifications or qualifications of other particulars and those that are not: those are called respectively *eventualities* (`loze:Eventuality`) and *things* (`loze:Thing`).
 
@@ -35,10 +39,6 @@ The other direct division of `loze:Particular` is between those particulars that
 
 Schematic particulars can indeed seem very similar to classes: both are repeatable, since both can ; classes are represented by their instances, schematic particulars are represented by their concretisations. We said that a schematic particular is presented wherever one of its concretisations is present; but by the same token why might say that a class is present wherever one of its instances is present. Given these similarities, one might wonder whether there is any substantive difference between classes and schematic particulars, and whether concretisation is just instantiation under a different name. However, there is one major disanalogy between classes and schematic particulars, which in our view justifies including the latter under the class `loze:Particular`: differently from a class, a schematic particular share the essential properties of its concretisations. For example, *War and Peace* has the same chapter division as its copies, and it is also a book; likewise, a workflow has the same division in steps as its implementations. By contrast, classes don't have any of the essential properties of their instances: a class of books is not a book, and a class of actions is not an action. At first glance, this might seem like a nuanced philosophical distinction of little relevance in an applied ontology, but in section we will see how the distinctive nature of schematic particulars can vastly simplify the patterns for formalising general statements.
 
-The division between concrete particulars and schematic particulars cuts across all the other subclasses of `loze:Particular`: there are concrete objects as well as schematic objects, concrete aggregates as well as schematic aggregates, concrete eventualities as well as schematic eventualities, and so on.
-
-![Loze's Top-level Taxonomy: Complete View](/diagrams/images/loze-top-taxonomy-complete-view.svg)
-
 ### Fourth-level Classes
 
 The class `loze:Thing` is further divided into four subclasses, based on the individual principles of their instances: `loze:Object`, `loze:Aggregate`, `loze:Place`, and `loze:PeriodOfTime`. Objects are those things that are individuated based on their form, internal organisation, or function: . Differently from objects, aggregates are individuated based on their material composition. Needless to say, this does not entail that objects have no material composition, but only that they are not individuated according to it. 
@@ -47,7 +47,13 @@ Places are those things that are individuated according to their position relati
 
 ![Loze's Top-level Taxonomy: Thing's Children](/diagrams/images/loze-top-taxonomy-thing-children.svg)
 
-One salient feature of Loze is the category of *eventualities*, which correspond to what Lowe calls *modes*. This top-level class encompasses entities that in other ontologies are variously called 'events', 'processes', 'qualities', 'activities', 'relations' etc... . While those are usually considered to be disjoint categories, we believe that the criteria used for distinguishing between them are either superficial or impractical. For example, every event can also be viewed as a relation, because it holds between certain entities considered in a given order. Other ontologies distinguish between happenings that are instantaneous and other - in HQDM, those are called respectively *events* and *activities*. Again, this is also an ephemeral distinction, : as a result, that collapses into the vague distinction between short-lived happenings and long happenings.
+The division between concrete particulars and schematic particulars cuts across all the other subclasses of `loze:Particular`: there are concrete objects as well as schematic objects, concrete aggregates as well as schematic aggregates, concrete eventualities as well as schematic eventualities, and so on.
+
+![Loze's Top-level Taxonomy: Complete View](/diagrams/images/loze-top-taxonomy-complete-view.svg)
+
+## Eventualities and Participation
+
+One salient feature of Loze is the scope of the category of *eventualities*, which is a direct subclass of `loze:Particular` - disjoint from `loze:Thing`. Eventualities correspond to what Lowe calls *modes*. This top-level class encompasses entities that in other ontologies are variously called 'events', 'processes', 'qualities', 'activities', 'relations' etc... . While those are usually considered to be disjoint categories, we believe that the criteria used for distinguishing between them are either superficial or impractical. For example, every event can also be viewed as a relation, because it holds between certain entities considered in a given order. Other ontologies distinguish between happenings that are instantaneous and other - in HQDM, those are called respectively *events* and *activities*. Again, this is also an ephemeral distinction, : as a result, that collapses into the vague distinction between short-lived happenings and long happenings.
 
 Overall, we conclude that what is common among those entities is much more robust than their differences: these are all entities that make some other entities be in a certain way; they are the *way* in which other entities are. In Lowe's Four-Category Ontology, these entities are aptly called *modes*. Unfortunately, the term "mode" would be very confused in an industry setting, because it can easily make one think of the functional mode of a device. As an alternative, we propose the term *eventuality*. Compared to "event", "eventuality" does not have a dynamic connotation, and it does not suggest a brief duration. Differently from "action" and "activity", it is not commonly used for the performances of agents - that is, beings with deliberative capacities. Finally, "eventuality" is loose enough to encompass relations and qualities, for which the term "event" would be forced.
 
