@@ -19,7 +19,7 @@ The set of extensions is open to additions, so the ones included in this reposit
 
 ## Loze Foundation and Its Category System
 
-Loze Foundation can be carved itself into - which are highlighted by corresponding comments in the file: (i) a category system consisting of ten top-level classes and two relations, (ii) an apparatus of eighteen domain-independent thematic relations, (iii) five types of eventualities with their two specialised thematic relations, and (iv) two fundamental relations for linking eventualities. (NB the count of the relations does not include their inverses).
+Loze Foundation can be carved itself into - which are highlighted by corresponding comments in the file: (i) a category system consisting of ten top-level classes and two logico-ontological relations, (ii) an apparatus of eighteen domain-independent thematic relations, (iii) five types of eventualities with their two specialised thematic relations, and (iv) two fundamental relations for linking eventualities. (NB the count of the relations does not include their inverses).
 
 . Loze's category system consists of ten class, arranged on four hierarchical levels - that is, between the top-class and the bottom-level classes there are two levels of intermediate classes.
 
@@ -50,6 +50,31 @@ Places are those things that are individuated according to their position relati
 The division between concrete particulars and schematic particulars cuts across all the other subclasses of `loze:Particular`: there are concrete objects as well as schematic objects, concrete aggregates as well as schematic aggregates, concrete eventualities as well as schematic eventualities, and so on.
 
 ![Loze's Top-level Taxonomy: Complete View](/diagrams/images/loze-top-taxonomy-complete-view.svg)
+
+### Concretization and Determination
+
+. While we have only used the term "concretization" informally until now, we are actually proposing to have a specialised relation for expressing it in the ontology: `loze:isConcretizationOf`. This relation will have `loze:ConcreteParticular` as domain and `loze:SchematicParticular` as range. .
+
+We have already seen a few analogies between schematic particulars and classes. Now we are going to see another one: just like classes, schematic particulars can entertain *subsumption* with each other. In philosophy and logic, "subsumption" is a broad term used for referring to an entity being a narrower case of another one - a *child*, in the jargon of graphs. In the Semantic Web, the subsumption between classes is represented formally using `rdfs:subClassOf`. However, schematic particulars can also be subsumed under other schematic particulars: for example, the 1869 version of *War and Peace* can be subsumed under *War and Peace*; heavy water can be subsumed under water; the Toyota Corolla Hatchback can be subsumed under the Toyota Corolla. Since schematic particulars are not classes, we cannot formalise those subsumption relationships in terms of subclasshood. Consequently, we have to introduce a specialised relation, which we propose to call *determination*: `loze:isDeterminationOf`. For example, we will say that the 1869 version of *War and Peace* is a determination of *War Peace*, that heavy water is a determination of water, and that the Toyota Corolla Hatchback is a determination of the Toyota Corolla.
+
+It is worth remarking a few logical analogies between determination and subclasshood. First, just like subclasshood, determination is transitive: if *s* is a determination of *s'* and *s''*, then *s* is also a determination of *s''*. For example, .
+
+Second, there is an analogy between instantiation and subclasshood on the one side, and concretization and determination on the other: just like instantiation is inherited through subclasshood, so concretization is inherited through determination. For example, *a* being an instance of *C* and *C* being a subclass of *C'* entails that *a* is also an instance of *C'*. An analogous rule holds for concretization and determination: *c* being a concretization of *s* and *s* being a determination of *s'* entails that *c* is also a concretization of *s'*. For example, a copy of the 1869 version of *War and Peace* is thereby a copy of *War and Peace*; a molecule of heavy water is thereby a molecule of water; a unit of the Toyota Corolla Hatchback is thereby a unit of the Toyota Corolla. 
+
+In SPARQL, such an inference rule will be specified by the following construct-query:
+
+```
+PREFIX loze: <http://loze-upper-level-ontology.org/> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+CONSTRUCT { ?x loze:isConcretizationOf ?z . }
+WHERE { ?x loze:isConcretizationOf ?y .
+        ?y loze:isDeterminationOf ?z . 
+    }
+```
+
+For brevity, we propose to call this rule *concretization inheritance*. In this repository, this and potentially other custom inference rules are hosted in the folder `/inference-rules`.
 
 ## Eventualities and Participation
 
