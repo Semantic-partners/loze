@@ -1,6 +1,6 @@
 # Loze
 
-Loze is an upper-level ontology largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe (2006, 2009), supplemented with the concept of a schematic particular investigated by Eddy Zemach (1970, 1992). The very name of the ontology consists of references to those two philosophers: **Lo**we and **Ze**mach, hence **Loze**.
+Loze is meant as a simple upper-level ontology, which avoids unnecessary categorial distinctions and offers a gamut of highly flexible, easy to use modelling patterns. It is largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe (2006, 2009), supplemented with the concept of a schematic particular investigated by Eddy Zemach (1970, 1992). The very name of the ontology consists of references to the two aforementioned philosophers: **Lo**we and **Ze**mach, hence **Loze**. Our ontology combines that top-level framework with an apparatus of thematic relations that draws from decades of research at the interface of philosophy and linguistics (Parsons 1990 & 1995; Orilia 2019).
 
 ## Loze's Architecture
 
