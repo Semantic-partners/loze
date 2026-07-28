@@ -38,7 +38,7 @@ loze:atTime a owl:ObjectProperty ;
 loze:afterTime a owl:ObjectProperty ;
     rdfs:label "after Time" ;
     skos:definition "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely after t" ;
-    skos:example "WWII occurred after 1900, the birth of Napoleon occurred after 1700, " ;
+    skos:example "WWII occurred after 1900, the birth of Napoleon occurred after 1700" ;
     skos:note "The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime .
@@ -67,7 +67,7 @@ loze:untilTime a owl:ObjectProperty ;
 
 loze:throughoutTime a owl:ObjectProperty ;
     rdfs:label "throughout Time" ;
-    skos:definition "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t" ;
+    skos:definition "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t and until the end of t" ;
     skos:example "WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period" ;
     skos:note "The function of this relation is to specify the temporal location of an eventuality as a whole" ;
     rdfs:domain loze:Eventuality ;
