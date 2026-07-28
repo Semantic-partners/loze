@@ -60,7 +60,7 @@ loze:Organisation a owl:Class ;
     skos:definition "A group whose members are acting together in the pursuit of a common goal, based on an agreed upon system of rules and commitments" ;
     skos:example "A company, a charity or foundation, a political party, a club, a state or government, an international organisation, a criminal gang, a terrorist organisation" ;
     skos:note "A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are inherently illegal, such as criminal gangs and terrorist organisations" ;
-    skos:note "An organisation can have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts" ;
+    skos:note "An organisation can also have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts" ;
     rdfs:subClassOf loze:Group .
 
 loze:OrganisationSubdivision a owl:Class ;
