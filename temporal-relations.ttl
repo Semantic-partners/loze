@@ -7,7 +7,7 @@
 
 <http://loze-upper-level-ontology.org/temporal-relations> a owl:Ontology ;
     rdfs:label "Temporal Relations" ;
-    skos:definition "An extension of loze.ttl with relations for locating eventualities relative to periods of time" ;
+    skos:definition "An extension of loze-foundation.ttl that consists of relations for locating eventualities relative to periods of time" ;
     owl:imports loze: .
 
 ######################

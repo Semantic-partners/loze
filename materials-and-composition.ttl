@@ -7,7 +7,7 @@
 
 <http://loze-upper-level-ontology.org/materials-and-composition> a owl:Ontology ;
     rdfs:label "Materials and Composition" ;
-    skos:definition "An extension of loze.ttl with classes and relations for modelling substances and material composition" ;
+    skos:definition "An extension of loze-foundation.ttl that consists of classes and relations intended for the modelling substances and material composition" ;
     owl:imports loze: .
 
 #############################

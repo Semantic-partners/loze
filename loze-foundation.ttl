@@ -7,7 +7,7 @@
 
 loze: a owl:Ontology ;
     rdfs:label "Loze Upper-Level Ontology" ;
-    skos:definition "A top-level ontology largely inspired - with a few deviations and additions - by the four-category ontology outlined by the philosopher E. J. Lowe (2006), supplemented with the concept of a schematic particular explored by Eddy Zemach (1970)" .
+    skos:definition "An upper-level ontology largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe, supplemented with the concept of a schematic particular explored by Eddy Zemach" .
 
 #####################
 # Top-level classes #

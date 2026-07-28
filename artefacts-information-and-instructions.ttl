@@ -7,7 +7,7 @@
 
 <http://loze-upper-level-ontology.org/artefacts-information-and-instructions> a owl:Ontology ;
     rdfs:label "Artefacts, Information, and Instructions" ;
-    skos:definition "An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions" ;
+    skos:definition "An extension of loze-foundation.ttl pertaining to artefacts, information, and instructions" ;
     owl:imports loze: .
 
 ############################################
