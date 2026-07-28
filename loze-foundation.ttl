@@ -154,7 +154,7 @@ loze:isThemeIn a owl:ObjectProperty ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is in a certain state or occupies a position in the context of e" ;
     skos:example "In a marriage, both spouses are themes; in the case of a glass lying on a table, the glass is the theme; in the case of an amount of liquid contained in a tank, the amount of liquid is the theme; in the case of somebody owning a real estate, the real estate is theme" ;
     skos:note "That of the theme is a broad thematic relations that can be useful whenever no other thematic relation applies; that being said, more specific sub-relations should be defined whenever needed" ;
-    rdfs:domain loze:Particular ;
+    rdfs:domain loze:Entity ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isParticipantIn .
 
