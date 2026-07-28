@@ -487,7 +487,7 @@ loze:hasComponent a owl:ObjectProperty ;
 loze:isCompositeIn a owl:ObjectProperty ;
     rdfs:label "is Composite In" ;
     skos:definition "The relation that obtains between a particular p and a composition c if and only if p has as component some other particular in the context of c" ;
-    skos:example "In my arm being part of my body, my arm is the component and my arm is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component" ;
+    skos:example "In my arm being part of my body, my arm is the component and my body is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Composition ;
     rdfs:subPropertyOf loze:isParticipantIn .
