@@ -76,6 +76,6 @@ loze:throughoutTime a owl:ObjectProperty ;
 loze:withinTime a owl:ObjectProperty ;
     rdfs:label "within Time" ;
     skos:definition "The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t" ;
-    skos:note "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium" ;
+    skos:example "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime .
