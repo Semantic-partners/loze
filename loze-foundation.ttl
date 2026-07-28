@@ -452,7 +452,7 @@ loze:Composition a owl:Class ;
     rdfs:label "Composition" ;
     skos:definition "An eventuality that is either a parthood or a constitution" ;
     rdfs:subClassOf loze:Eventuality ;
-    owl:unionOf (loze:Parthood loze:Constitution) .
+    owl:unionOf ( loze:Parthood loze:Constitution ) .
 
 loze:Containment a owl:Class ;
     rdfs:label "Containment" ;
@@ -465,7 +465,7 @@ loze:PlaceOccupation a owl:Class ;
     rdfs:label "Place Occupation" ;
     skos:definition "An eventuality that consists in one particular entity occupying a place partly or entirely" ;
     skos:example "A carrot occupying the interior of a refrigerator, a sofa occupying a living room, an amount of liquid occupying the interior of a tank" ;
-    skos:note "The core participants in a place occupation are the place (:isHostIn) and the particular entity that occupies it (:isContentIn)" ;
+    skos:note "The core participants in a place occupation are the place (loze:isHostIn) and the particular entity that occupies it (loze:isContentIn)" ;
     skos:note "In a place occupation, the host is always a place, rather than the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself" ;
     rdfs:subClassOf loze:Eventuality .
 
@@ -507,7 +507,7 @@ loze:hasComposite a owl:ObjectProperty ;
 loze:isCauseOf a owl:ObjectProperty ;
     rdfs:label "is Cause Of" ;
     skos:definition "The relation that obtains between two eventualities e and e' if and only if the occurrence of e contributes to make e' occur" ;
-    skos:note "Multiple eventualities can entertain the relation :isCauseOf with a given eventuality, since an eventuality can have more than one cause" ;
+    skos:note "Multiple eventualities can entertain the relation loze:isCauseOf with a given eventuality, since an eventuality can have more than one cause" ;
     skos:note "A simple, informal test for assessing whether an eventuality e is cause of another eventuality e' is to ask whether e'occurs (also) because of e, or whether the occurrence of e' is explained (among the other things) by the occurrence of e; if the answer is affirmative, then e entertains loze:isCauseOf with e' " ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:Eventuality .
