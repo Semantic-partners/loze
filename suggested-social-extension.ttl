@@ -63,9 +63,9 @@ loze:Organisation a owl:Class ;
     skos:note "An organisation can have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts" ;
     rdfs:subClassOf loze:Group .
 
-loze:OrganisationOrgan a owl:Class ;
-    rdfs:label "Organisation Organ" ;
+loze:OrganisationSubdivision a owl:Class ;
+    rdfs:label "Organisation Subdivision" ;
     skos:definition "A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) it not itself an organisation" ;
     skos:example "A government's parliament, a company's committee, a team" ;
-    skos:note "The difference between an organisation organ and an organisation that is part of another organisation is that the official goals of an organ are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation" ;
+    skos:note "The difference between an organisation subdivision and an organisation that is part of another organisation is that the official goals of a subdivision are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation" ;
     rdfs:subClassOf loze:Group .
