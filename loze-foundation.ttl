@@ -121,7 +121,7 @@ loze:isDeterminationOf a owl:TransitiveProperty ;
     rdfs:domain loze:SchematicParticular ;
     rdfs:range loze:SchematicParticular .
 
-loze:hasDetermination a owl:ObjectProperty ;
+loze:hasDetermination a owl:TransitiveProperty ;
     rdfs:label "has Determination" ;
     skos:definition "The relation that obtains between a schematic particular x and a schematic particular y if and only if y is a determination of x" ;
     rdfs:domain loze:SchematicParticular ;
