@@ -519,7 +519,7 @@ loze:hasCause a owl:ObjectProperty ;
     rdfs:range loze:Eventuality ;
     owl:inverseOf loze:isCauseOf .
 
-loze:isStageOf a owl:ObjectProperty ;
+loze:isStageOf a owl:TransitiveProperty ;
     rdfs:label "is Stage Of" ;
     skos:definition "The relation that obtains between two eventualities e and e' if and only if e is a stage or phase in the occurrence of e' " ;
     skos:example "The construction of the foundations of a house is a stage of the construction of the whole house, the preparation of the dough is a stage in the making of a pizza, the positioning of the explosive is a stage in the demolition of a building, the fermentation of the must is a stage in the production of wine" ;
@@ -528,7 +528,7 @@ loze:isStageOf a owl:ObjectProperty ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:Eventuality .
 
-loze:hasStage a owl:ObjectProperty ;
+loze:hasStage a owl:TransitiveProperty ;
     rdfs:label "has Stage" ;
     skos:definition "The relation that obtains between an eventuality e and an eventuality e' if and only if e' is a stage of e" ;
     rdfs:domain loze:Eventuality ;
