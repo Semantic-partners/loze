@@ -456,7 +456,7 @@ loze:Composition a owl:Class ;
 
 loze:Containment a owl:Class ;
     rdfs:label "Containment" ;
-    rdfs:comment "An eventuality in which a particular is positioned within and physically constrained by another object" ;
+    skos:definition "An eventuality in which a particular is positioned within and physically constrained by another object" ;
     skos:example "A box containing eggs, a glass containing a portion of water, a dwelling containing pieces of furniture" ;
     skos:note "In a containment, the core participants are the container (loze:isHostIn) and the content (loze:isContentIn)" ;
     rdfs:subClassOf loze:Eventuality .
