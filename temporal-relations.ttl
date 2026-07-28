@@ -14,18 +14,18 @@
 # Temporal relations #
 ######################
 
-loze:isSubPeriodOf a owl:TransitiveProperty ;
-    rdfs:label "is Sub-Period Of" ;
+loze:isSubperiodOf a owl:TransitiveProperty ;
+    rdfs:label "is Subperiod Of" ;
     skos:definition "The relation that obtains between two periods of time of which the former is a part or segment of the latter" ;
     skos:example "The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816" ;
     rdfs:domain loze:PeriodOfTime ;
     rdfs:range loze:PeriodOfTime .
 
-loze:hasSubPeriod a owl:TransitiveProperty ;
-    rdfs:label "has Sub-Period" ;
+loze:hasSubperiod a owl:TransitiveProperty ;
+    rdfs:label "has Subperiod" ;
     rdfs:domain loze:PeriodOfTime ;
     rdfs:range loze:PeriodOfTime ;
-    owl:inverseOf loze:isSubPeriodOf .
+    owl:inverseOf loze:isSubperiodOf .
 
 loze:atTime a owl:ObjectProperty ;
     rdfs:label "at Time" ;
