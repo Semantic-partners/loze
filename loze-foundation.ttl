@@ -319,7 +319,7 @@ loze:isWaypointIn a owl:ObjectProperty ;
     rdfs:label "is Waypoint In" ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is an intermediate point of movement or change in the context of e" ;
     skos:example "An intermediate stop in a travel, the ducts linking the supply point to a distribution point" ;
-    skos:note "The destination does not need to be a place, but it can be a thing or a period of time too" ;
+    skos:note "The waypoint does not need to be a place, but it can be a thing or a period of time too" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isParticipantIn .
