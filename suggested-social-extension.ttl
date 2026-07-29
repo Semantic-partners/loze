@@ -93,15 +93,30 @@ loze:Membership a owl:Class ;
 
 loze:isMemberIn a owl:ObjectProperty ;
     rdfs:label "is Member In" ;
-    skos:definition "The relation that obtains between an actor and a membership if and only if the actor joins the goals and/or the activities of a group in the context of that membership" ;
-    skos:example "In the membership of France in the European Union, France is the member and the European Union is the composite; in the membership of Toyota in JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the composite" ;
+    skos:definition "The relation that obtains between an actor a and a membership m if and only if a joins the goals and/or the activities of a group in the context of that m" ;
+    skos:example "In the membership of France in the European Union, France is the member and the European Union is the composite group; in the membership of Toyota in JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the composite group" ;
     rdfs:domain loze:Actor ;
     rdfs:range loze:Group ;
     rdfs:subPropertyOf loze:isComponentIn .
 
 loze:hasMember a owl:ObjectProperty ;
     rdfs:label "has Member" ;
-    skos:definition "The relation that obtains between a membership and an actor if and only if the actor joins the activities of a group in the context of that membership" ;
+    skos:definition "The relation that obtains between a membership m and an actor a if and only if a joins the activities of a group in the context of m" ;
     rdfs:domain loze:Group ;
     rdfs:range loze:Actor ;
     owl:inverseOf loze:isMemberIn .
+
+loze:isCompositeGroupIn a owl:ObjectProperty ;
+    rdfs:label "is Composite Group In" ;
+    skos:definition "The relation that obtains between a group g and a membership m if and only if g has some member in the context of m" ;
+    skos:example "In the membership of France in the European Union, France is the member and the European Union is the composite group; in the membership of Toyota in JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the composite group" ;
+    rdfs:domain loze:Group ;
+    rdfs:range loze:Membership ;
+    rdfs:subPropertyOf loze:isCompositeIn .
+
+loze:hasCompositeGroup a owl:ObjectProperty ;
+    rdfs:label "has Composite Group" ;
+    skos:definition "The relation that obtains between a membership m and the group g if and only if g has some member in the context of m" ;
+    rdfs:domain loze:Membership ;
+    rdfs:range loze:Group ;
+    owl:inverseOf loze:isCompositeGroupIn .
