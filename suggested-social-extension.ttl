@@ -75,6 +75,7 @@ loze:OrganisationSubdivision a owl:Class ;
 loze:Actor a owl:Class ;
     rdfs:label "Actor" ;
     skos:definition "An object that is either a person or an organisation" ;
+    skos:note "This class is meant to encompass all the objects that can deliberate, make decisions, and bear responsibility" ;
     skos:note "It roughly corresponds to the legal concept of a legal person" ;
     owl:disjointUnionOf ( loze:Person loze:Organisation ) .
 
@@ -85,16 +86,15 @@ loze:Actor a owl:Class ;
 
 loze:Membership a owl:Class ;
     rdfs:label "Membership" ;
-    skos:definition "An eventuality that consists in an actor being part of a group by joining its goals or activities" ;
-    skos:example "A person being a member of a household, a person being a member of a club or charity, a person being an employee of a company, a company being a member of a trade group, France being a member of the European Union" ;
+    skos:definition "An eventuality that consists in an actor being part of a group by joining its goals and/or activities" ;
+    skos:example "A person being a member of a household, a person being a member of a club or charity, a person being an employee of a company, a company being a member of a trade association, France being a member of the European Union" ;
     skos:note "In a membership, the main participants are the actor that is the member (loze:isMemberIn) and the group of which they are a member (loze:isSettingIn)" ;
     rdfs:subClassOf loze:Eventuality . 
 
 loze:isMemberIn a owl:ObjectProperty ;
     rdfs:label "is Member In" ;
-    skos:definition "The relation that obtains between an actor and a membership if and only if the actor joins the activities of a group in the context of that membership" ;
-    skos:example "In the case of the membership of France in the European Union, France is the member; " ;
-    skos:note "The group of which an actor is the member is the setting (loze:isSettingIn) in the context of the relevant membership" ;
+    skos:definition "The relation that obtains between an actor and a membership if and only if the actor joins the goals and/or the activities of a group in the context of that membership" ;
+    skos:example "In the membership of France in the European Union, France is the member and the European Union is the setting; in the membership of Toyota in the JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the setting" ;
     rdfs:domain loze:Actor ;
     rdfs:range loze:Group ;
     rdfs:subPropertyOf loze:isParticipantIn .
