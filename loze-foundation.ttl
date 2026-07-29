@@ -78,7 +78,7 @@ loze:Place a owl:Class ;
 
 loze:PeriodOfTime a owl:Class ;
     rdfs:label "Period Of Time" ;
-    skos:definition "A thing that is individuated by its coordinates across the temporal axis" ;
+    skos:definition "A thing that is individuated by its coordinates along the temporal axis" ;
     skos:example "The year 1943, the 6th of May of 2005, any second or minute, the period that goes from the 3rd of May of 1467 to the 22nd of July of 1615" ;
     skos:note "Two period of time can have exactly the same duration and yet be distinct period of time, because they have distinct beginnings and ends; for example, this hour and the next hour are two distinct periods, despite having the exact same duration of 60 minutes" ;
     rdfs:subClassOf loze:Thing .
