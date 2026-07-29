@@ -35,7 +35,8 @@ loze:Plant a owl:Class ;
     skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) derives its nourishment from photosynthesis" ;
     skos:note "Plants typically have a firmer cellular structure than animals and are not able to move" ;
     skos:note "Within the taxonomy of living beings - so-called Tree of Life - plants are the members of the kingdom of Plantae" ;
-    rdfs:subClassOf loze:LivingBeing .
+    rdfs:subClassOf loze:LivingBeing ;
+    owl:disjointWith loze:Animal .
 
 loze:Person a owl:Class ;
     rdfs:label "Person" ;
