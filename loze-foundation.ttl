@@ -254,7 +254,7 @@ loze:isBeneficiaryIn a owl:ObjectProperty ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p benefits from what happens in the context of e" ;
     skos:example "People with cancer are the beneficiaries in a donation to cancer research, a household is the beneficiaty in an allocation of subsidies for energy upgrades work to a company" ;
     skos:note "The beneficiary is often going to be the recipient too, but there are exceptions; consider a case in which a household is awarded a grant for the energy upgrade of their house, and the grant is paid to an energy upgrade company: in that scenario, the company is the recipient of the grant, but the household is the beneficiary" ;
-    skos:note "In some cases, the beneficiary of an eventuality is the same as the affected participant: for example, the beneficiary of successful a medication, therapy, or surgical operation is the affected participant" ;
+    skos:note "In some cases, the beneficiary of an eventuality is the same as the affected participant: for example, the beneficiary of a successful medication, therapy, or surgical operation is the affected participant" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isParticipantIn .
