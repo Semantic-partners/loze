@@ -8,6 +8,7 @@
 <http://loze-upper-level-ontology.org/suggested-social-extension> a owl:Ontology ;
     rdfs:label "Suggested Social Extension" ;
     skos:definition "An extension of loze-foundation.ttl pertaining to the social domain" ;
+    skos:note "Among the other things, this extension includes a minimal taxonomy of living beings, which not even remotely expected to replicate the richness and depth of a full biological taxonomy - the so-called Tree of Life; if needed, the present taxonomy could be dramatically expanded" ;
     owl:imports loze: .
 
 ################
@@ -50,9 +51,9 @@ loze:NonHumanAnimal a owl:Class ;
 
 loze:Group a owl:Class ;
     rdfs:label "Group" ;
-    skos:definition "An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction" ;
+    skos:definition "An object that consists of persons that are associated to each other by some socially significant relations or recurrent interactions" ;
     skos:example "A household, a family, a couple, any organisation" ;
-    skos:note "Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes" ;
+    skos:note "Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; if needed, such collections are best modelled as classes" ;
     rdfs:subClassOf loze:Object .
 
 loze:Organisation a owl:Class ;
