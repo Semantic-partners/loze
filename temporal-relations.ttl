@@ -31,17 +31,35 @@ loze:hasSubperiod a owl:TransitiveProperty ;
 
 loze:isLaterThanPeriod a owl:TransitiveProperty ;
     rdfs:label "is Later Than Period" ;
-    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p is entirely posterior to p' across the temporal axis" ;
+    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p is entirely posterior to p' along the temporal axis" ;
     skos:example "The year 2008 is later than 1972, the early-modern period is later than classical antiquity, the XVI century is later than the XIII century" ;
+    skos:note "This relation does not obtain in those cases in which one period is only partly posterior to another one - for example, it does not obtain between the 1800-1850 period and the 1815-1870 period" ;
     rdfs:domain loze:PeriodOfTime ;
     rdfs:range loze:PeriodOfTime .
 
-loze:hasLaterPeriod a owl:TransitiveProperty ;
-    rdfs:label "has Later Period" ;
-    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p' is entirely poster to p across the temporal axis" ;
+loze:isEarlierThanPeriod a owl:TransitiveProperty ;
+    rdfs:label "is Earlier Than Period" ;
+    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p is entirely anterior to p' along the temporal axis" ;
     rdfs:domain loze:PeriodOfTime ;
     rdfs:range loze:PeriodOfTime ;
     owl:inverseOf loze:isLaterThanPeriod .
+
+loze:isSubsequentPeriodTo a owl:ObjectProperty ;
+    rdfs:label "is Subsequent Period To" ;
+    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p immediately follows the end of p' along the temporal axis" ;
+    skos:example "The XIX century is subsequent to the XVIII century, the 4th of May of 1999 is subsequent to the 3rd of May of 1999, the year 1768 is subsequent to the year 1767" ;
+    skos:note "Since the 4th of May of 1999 starts when the 3rd of May ends, one could argue that there is actually an instant of time that belong to both the 3rd and the 4th; these are complex issues at the interface of metaphysics and mathematics that we cannot address here; however, their practical relevance is nil, since we will never need to refer to instants, but only to extended, non-instantaneous periods of time" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range loze:PeriodOfTime ;
+    rdfs:subPropertyOf loze:isLaterThanPeriod .
+
+loze:hasSubsequentPeriod a owl:ObjectProperty ;
+    rdfs:label "has Subsequent Period" ;
+    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p' immediately follows the end of p along the temporal axis" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range loze:PeriodOfTime ;
+    owl:inverseOf loze:isSubsequentPeriodTo .
+
 
 
 #####################
