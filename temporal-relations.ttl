@@ -1,6 +1,7 @@
 @prefix loze: <http://loze-upper-level-ontology.org/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfd: <> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -11,7 +12,7 @@
     owl:imports loze: .
 
 ######################
-# Temporal relations #
+# Temporal mereology #
 ######################
 
 loze:isSubperiodOf a owl:TransitiveProperty ;
@@ -27,6 +28,11 @@ loze:hasSubperiod a owl:TransitiveProperty ;
     rdfs:domain loze:PeriodOfTime ;
     rdfs:range loze:PeriodOfTime ;
     owl:inverseOf loze:isSubperiodOf .
+
+
+#####################
+# Temporal Location #
+#####################
 
 loze:atTime a owl:ObjectProperty ;
     rdfs:label "at Time" ;
@@ -80,3 +86,22 @@ loze:withinTime a owl:ObjectProperty ;
     skos:example "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime .
+
+
+#####################################
+# Temporal Coordinates and Duration #
+#####################################
+
+loze:hasTemporalCoordinate a owl:DatatypeProperty ;
+    rdfs:label "has Temporal Coordinate" ;
+    skos:definition "The relation that assigns a temporal coordinates representation to a period of time" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range [ a rdfs:Datatype ; 
+                owl:unionOf ( xsd:dateTime xsd:dateTimeStamp xsd:date xsd:time xsd:gYear xsd:gYearMonth xsd:gMonth xsd:gMonthDay xsd:gDay ) ] .
+
+loze:hasDuration a owl:DatatypeProperty ;
+    rdfs:label "has Duration" ;
+    skos:definition "The relation that assigns a duration to an eventuality or a period of time" ;
+    rdfs:domain [ a owl:Class ;
+                owl:unionOf ( loze:Eventuality loze:PeriodOfTime ) ] ;
+    rdfs:range xsd:duration .
