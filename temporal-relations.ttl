@@ -23,6 +23,7 @@ loze:isSubperiodOf a owl:TransitiveProperty ;
 
 loze:hasSubperiod a owl:TransitiveProperty ;
     rdfs:label "has Subperiod" ;
+    skos:definition "The relation that obtains between two periods of time when the former has as part or segment the latter" ;
     rdfs:domain loze:PeriodOfTime ;
     rdfs:range loze:PeriodOfTime ;
     owl:inverseOf loze:isSubperiodOf .
