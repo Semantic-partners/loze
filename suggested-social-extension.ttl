@@ -28,7 +28,7 @@ loze:Animal a owl:Class ;
     skos:note "Animals typically have a more flexible body than plants and fungi and are able to move" ;
     skos:note "Within the taxonomy of living beings - so-called Tree of Life - animals are the members of the kingdom of Animalia" ;
     rdfs:subClassOf loze:LivingBeing ;
-    owl:disjointUnionOf (loze:Person loze:NonHumanAnimal) .
+    owl:disjointUnionOf ( loze:Person loze:NonHumanAnimal ) .
 
 loze:Plant a owl:Class ;
     rdfs:label "Plant" ;

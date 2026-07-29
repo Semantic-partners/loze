@@ -18,15 +18,15 @@ loze:Entity a owl:Class ;
     skos:definition "Anything that exists, is real, or is in the world" ;
     skos:note "It corresponds to owl:Thing" ;
     owl:equivalentClass owl:Thing ;
-    owl:disjointUnionOf (owl:Class loze:Particular) .
+    owl:disjointUnionOf ( owl:Class loze:Particular ) .
 
 loze:Particular a owl:Class ;
     rdfs:label "Particular" ;
     skos:definition "An entity that is not a class or type of entities" ;
     skos:note "Particular entities are to be contrasted with classes; the concept of a particular mostly corresponds to the Semantic Web concept of an individual or instance" ;
     rdfs:subClassOf loze:Entity ;
-    owl:disjointUnionOf (loze:Thing loze:Eventuality) ;
-    owl:disjointUnionOf (loze:SchematicParticular loze:ConcreteParticular) .
+    owl:disjointUnionOf ( loze:Thing loze:Eventuality ) ;
+    owl:disjointUnionOf ( loze:SchematicParticular loze:ConcreteParticular ) .
 
 loze:ConcreteParticular a owl:Class ;
     rdfs:label "Concrete Particular" ;
@@ -51,7 +51,7 @@ loze:Thing a owl:Class ;
     skos:definition "A particular entity that is not a way of being or a modification of other entities" ;
     skos:note "Despite the similar local name, this class is much narrower than owl:Thing, which encompasses all entities" ;
     rdfs:subClassOf loze:Particular ;
-    owl:disjointUnionOf (loze:Object loze:Aggregate loze:Place loze:PeriodOfTime) .
+    owl:disjointUnionOf ( loze:Object loze:Aggregate loze:Place loze:PeriodOfTime ) .
 
 loze:Object a owl:Class ;
     rdfs:label "Object" ;
