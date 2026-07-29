@@ -86,18 +86,18 @@ loze:Actor a owl:Class ;
 
 loze:Membership a owl:Class ;
     rdfs:label "Membership" ;
-    skos:definition "An eventuality that consists in an actor being part of a group by joining its goals and/or activities" ;
+    skos:definition "A composition that consists in an actor joining the goals and/or th activities of a group" ;
     skos:example "A person being a member of a household, a person being a member of a club or charity, a person being an employee of a company, a company being a member of a trade association, France being a member of the European Union" ;
-    skos:note "In a membership, the main participants are a member (loze:isMemberIn) and a setting (loze:isSettingIn): the former is the actor that is the member, and the latter is the group of which they are a member" ;
-    rdfs:subClassOf loze:Eventuality . 
+    skos:note "In a membership, the main participants are a member (loze:isMemberIn) and a composite (loze:isCompositeIn): the former is the actor that is the member, and the latter is the group of which they are a member" ;
+    rdfs:subClassOf loze:Composition . 
 
 loze:isMemberIn a owl:ObjectProperty ;
     rdfs:label "is Member In" ;
     skos:definition "The relation that obtains between an actor and a membership if and only if the actor joins the goals and/or the activities of a group in the context of that membership" ;
-    skos:example "In the membership of France in the European Union, France is the member and the European Union is the setting; in the membership of Toyota in JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the setting" ;
+    skos:example "In the membership of France in the European Union, France is the member and the European Union is the composite; in the membership of Toyota in JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the composite" ;
     rdfs:domain loze:Actor ;
     rdfs:range loze:Group ;
-    rdfs:subPropertyOf loze:isParticipantIn .
+    rdfs:subPropertyOf loze:isComponentIn .
 
 loze:hasMember a owl:ObjectProperty ;
     rdfs:label "has Member" ;

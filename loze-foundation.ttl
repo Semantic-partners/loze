@@ -435,7 +435,7 @@ loze:hasSetting a owl:ObjectProperty ;
 loze:Composition a owl:Class ;
     rdfs:label "Composition" ;
     skos:definition "An eventuality that consists in one entity being made up or incorporating some other entity" ;
-    skos:note "This is a very broad class with various more specific subclasses, such as loze:Parthood and loze:Constitution" ;  
+    skos:note "In Loze Foundation, this class only has two subclasses, namely loze:Parthood and loze:Constitution; however, other subclasses are defined in Loze's extensions, and further subclasses should be freely defined whenever needed" ;  
     rdfs:subClassOf loze:Eventuality .
 
 loze:Parthood a owl:Class ;
