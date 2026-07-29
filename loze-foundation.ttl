@@ -432,6 +432,12 @@ loze:hasSetting a owl:ObjectProperty ;
 # Domain-independent eventuality classes and their specialised thematic relations #
 ###################################################################################
 
+loze:Composition a owl:Class ;
+    rdfs:label "Composition" ;
+    skos:definition "An eventuality that consists in one entity being made up or incorporating some other entity" ;
+    skos:note "This is a very broad class with various more specific subclasses, such as loze:Parthood and loze:Constitution" ;  
+    rdfs:subClassOf loze:Eventuality .
+
 loze:Parthood a owl:Class ;
     rdfs:label "Parthood" ;
     skos:definition "An eventuality that consists in one particular being part of another particular" ;
@@ -447,12 +453,6 @@ loze:Constitution a owl:Class ;
     skos:note "In formal mereology, one particular being 'entirely made up' by repeated occurrences, means that it is identical to the mereological sum of those occurrences: as an approximation, this means that its only parts are those occurrences and the parts of those occurrences; more rigorous definitions can be found in the philosophical literature on formal mereology" ;
     skos:note "In practice, the function of this class of eventualities is to describe the overall composition of a particular without giving an enumeration of its individual parts" ;
     rdfs:subClassOf loze:Composition .
-
-loze:Composition a owl:Class ;
-    rdfs:label "Composition" ;
-    skos:definition "An eventuality that is either a parthood or a constitution" ;
-    rdfs:subClassOf loze:Eventuality ;
-    owl:unionOf ( loze:Parthood loze:Constitution ) .
 
 loze:Containment a owl:Class ;
     rdfs:label "Containment" ;
