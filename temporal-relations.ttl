@@ -1,4 +1,5 @@
 @prefix loze: <http://loze-upper-level-ontology.org/> .
+@prefix lozw: <> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -10,9 +11,9 @@
     skos:definition "An extension of loze-foundation.ttl that consists of relations for modelling temporal location, coordinates, and duration" ;
     owl:imports loze: .
 
-######################
-# Temporal mereology #
-######################
+##########################
+# Temporal mereotopology #
+##########################
 
 loze:isSubperiodOf a owl:TransitiveProperty ;
     rdfs:label "is Subperiod Of" ;
@@ -27,6 +28,20 @@ loze:hasSubperiod a owl:TransitiveProperty ;
     rdfs:domain loze:PeriodOfTime ;
     rdfs:range loze:PeriodOfTime ;
     owl:inverseOf loze:isSubperiodOf .
+
+loze:isLaterThanPeriod a owl:TransitiveProperty ;
+    rdfs:label "is Later Than Period" ;
+    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p is entirely posterior to p' across the temporal axis" ;
+    skos:example "The year 2008 is later than 1972, the early-modern period is later than classical antiquity, the XVI century is later than the XIII century" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range loze:PeriodOfTime .
+
+loze:hasLaterPeriod a owl:TransitiveProperty ;
+    rdfs:label "has Later Period" ;
+    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p' is entirely poster to p across the temporal axis" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range loze:PeriodOfTime ;
+    owl:inverseOf loze:isLaterThanPeriod .
 
 
 #####################
