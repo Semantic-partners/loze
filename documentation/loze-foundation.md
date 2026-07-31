@@ -104,13 +104,36 @@ For a one-by-one illustrations of Loze's thematic relations, we redirect to the 
 
 This apparatus of domain-independent thematic relation should not prevent an organisation from adding more specific sub-relations of `loze:isParticipantIn`, whenever that's required by their use case. For example, an organisation dealing with payments might introduce `:isPayerIn` as a sub-relation of `loze:isAgentIn` and `:isPayeeIn` as a sub-relation of `loze:isRecipientIn`.
 
-### Why Thematic Relations?
+### Positional Roles?
 
-One could argue that there is no need for thematic relations with a rich semantics, because all you need is to specify the order of the participants. In first-order logic, , and the o . . With this in mind, one could use a similar approach for representing the participation into an eventuality: for example, in a slicing the person who slices will be the first participant, and the thing that is sliced will be the second participant; if needed, the tool used for the slicing might be the third participant. .
+One could argue that there is no need for thematic relations with a rich semantics, because all we need is to specify the order of the participants. In fact, this is the approach standardly adopted in first-order logic, which allows for predicates with an arbitrary positive (integer) number of arguments: . For example, the statement "John slices the cake with this knife" would be formalised as follows:
+
+```
+sliceWith(John, cake_1, knife_1)
+```
+The different roles of the three arguments are marked by their position: the first is the entity that slices, the second the entity that is sliced, the third the entity used for slicing. One might think of :
+
+```
+:slicing_1 a :Slicing .
+
+:john :isFirstParticipantIn :slicing_1 .
+
+:cake_1 :isSecondParticipantIn :slicing_1 .
+
+:knife_1 :isThirdParticipantIn :slicing_1 .
+```
+
+and the o . . With this in mind, one could use a similar approach for representing the participation into an eventuality: for example, in a slicing the person who slices will be the first participant, and the thing that is sliced will be the second participant; if needed, the tool used for the slicing might be the third participant. .
 
 The problem with this approach is . Since the order is largely arbitrary, ; consequently, the . Since the order of the participants will be largely arbitrary, it will be difficult for users to memorise, so they will constantly need to consult the ontology's annotation.
 
 Another downside of this approach is its cumbersome scalability: whenever a new subclass of `loze:Eventuality` is introduced, the developers of the ontology will need to consider all the possible participants in its instances, and then to assign them an order; otherwise, the users of the knowledge graph won't be able to model the respective information. For example, suppose that you need to assign an instrument or a to an eventuality of a certain type, but the annotation and the documentation of the ontology don't say anything about what position to use. . By contrast, : if you need to assign an instrument or an origin to an eventuality, you can just use extant, domain-independent relations like `loze:isInstrumentIn` and `loze:isOriginIn`. Domaina-specific thematic relations can be introduced if helpful, but they are not essential for modelling.
+
+### Eventuality-specific Roles?
+
+Another alternative to our proposal might be to only define thematic relations that are specific to this or that subclass of `loze:Eventuality`; for example, `:Purchase` will have its own set of thematic relations, `:Killing` another set of thematic relations, `:Supply` another set again, and so on. As a result, one would have `loze:isParticipantIn` as a maximally general relation and various groups of eventuality-specific sub-relations, like, say, `:isPayerIn` and `:isPayeeIn` for `:Payment`, `:isKillerIn` and `:isVictimIn` for `:Killing`, `:isSuppliedIn` and `:isSupplierIn` for `:Supply`, and so on.
+
+The problem with this is that it would be demanding to scale: whenever a new type of eventualities is introduced, a dedicated analysis of its participants will be needed. Even worse, ontology users would be required to learn a set of specialised participation relations on a case-by-case basis. Finally, there would an obvious embarrassment of redundancies: even if we already have relations like `:isKillingInstrumentIn` or `:isEditingToolIn`, we will still need to define a dedicated relation for modelling the tool used for paying in payments. To avoid this multiplication of efforts, it's more efficient to define a domain-independent, widely reusable relation like `loze:isInstrumentIn`. In other words, there are manifest recurring patterns across eventualities and the participation in them, so it is advantageous to spot and use those patterns whenever possible.
 
 
 ## References
