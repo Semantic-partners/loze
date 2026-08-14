@@ -1,11 +1,11 @@
-@prefix loze: <http://loze-upper-level-ontology.org/> .
+@prefix loze: <https://loze-ontology.org/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://loze-upper-level-ontology.org/suggested-social-extension> a owl:Ontology ;
+<https://loze-ontology.org/suggested-social-extension> a owl:Ontology ;
     rdfs:label "Suggested Social Extension" ;
     skos:definition "An extension of loze.ttl with classes and relations for modelling living beings and social entities such as persons, groups, and organisations" ;
     owl:imports loze: .
