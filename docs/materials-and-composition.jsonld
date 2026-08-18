@@ -1,26 +1,5 @@
 [
   {
-    "@id": "https://loze-ontology.org/materials-and-composition",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Ontology"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "Materials and Composition"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#imports": [
-      {
-        "@id": "https://loze-ontology.org/"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "An extension of loze.ttl with classes and relations for modelling substances and material composition"
-      }
-    ]
-  },
-  {
     "@id": "https://loze-ontology.org/isIngredientIn",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
@@ -62,7 +41,7 @@
     ]
   },
   {
-    "@id": "https://loze-ontology.org/hasIngredient",
+    "@id": "https://loze-ontology.org/hasRepeatedComponent",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
@@ -73,22 +52,22 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "has Ingredient"
+        "@value": "has Repeated Component"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "https://loze-ontology.org/Substance"
+        "@id": "https://loze-ontology.org/SchematicParticular"
       }
     ],
     "http://www.w3.org/2002/07/owl#inverseOf": [
       {
-        "@id": "https://loze-ontology.org/isIngredientIn"
+        "@id": "https://loze-ontology.org/isRepeatedComponentIn"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c"
+        "@value": "The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c"
       }
     ]
   },
@@ -154,37 +133,6 @@
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
         "@value": "The relation that obtains between a containment c and a schematic particular s if and only if s is the repeated content in c"
-      }
-    ]
-  },
-  {
-    "@id": "https://loze-ontology.org/hasRepeatedComponent",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/Composition"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "has Repeated Component"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://loze-ontology.org/SchematicParticular"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "https://loze-ontology.org/isRepeatedComponentIn"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c"
       }
     ]
   },
@@ -309,6 +257,58 @@
       },
       {
         "@value": "A containment with a repeated component is always going to have an associated number of occurrences (loze:hasNumberOfOccurrences)"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/hasIngredient",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/Composition"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has Ingredient"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/Substance"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://loze-ontology.org/isIngredientIn"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/materials-and-composition",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Ontology"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Materials and Composition"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#imports": [
+      {
+        "@id": "https://loze-ontology.org/"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "An extension of loze.ttl with classes and relations for modelling substances and material composition"
       }
     ]
   }

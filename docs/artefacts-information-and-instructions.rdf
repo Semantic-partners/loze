@@ -5,30 +5,6 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="https://loze-ontology.org/artefacts-information-and-instructions">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:label>Artefacts, Information, and Instructions</rdfs:label>
-    <skos:definition>An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions</skos:definition>
-    <owl:imports rdf:resource="https://loze-ontology.org/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasStandard">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Standard</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isStandardIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isRecipeIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>is Recipe In</rdfs:label>
-    <skos:definition>The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features</skos:definition>
-    <skos:example>The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs</skos:example>
-    <skos:note>Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
-  </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isInstructionIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>is Instruction In</rdfs:label>
@@ -38,15 +14,13 @@
     <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isStandardIn"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isStandardIn">
+  <rdf:Description rdf:about="https://loze-ontology.org/hasRecipe">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>is Standard In</rdfs:label>
-    <skos:definition>The sub-relation of loze:isTopicIn that obtains when the topic provides the rules or standard for the performance of the eventuality</skos:definition>
-    <skos:example>Regulations are the standard in a compliant business operation, best practices are the standard in a technical development, the workflow is the standard in the execution of a technical process</skos:example>
-    <skos:note>Only eventualities that have humans as agents (loze:isAgentIn) or are executed by objects designed by humans - like an automated system - can have a standard (loze:isStandardIn), since treating something as a rule or standard for an action requires human-like cognitive faculties</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isTopicIn"/>
+    <rdfs:label>has Recipe</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/InformationArtefact"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRecipeIn"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/InformationArtefact">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -58,6 +32,12 @@
     <skos:note>An information artefact that is concrete is always going to be the concretization of some schematic information artefact</skos:note>
     <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Artefact"/>
   </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/artefacts-information-and-instructions">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>Artefacts, Information, and Instructions</rdfs:label>
+    <skos:definition>An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions</skos:definition>
+    <owl:imports rdf:resource="https://loze-ontology.org/"/>
+  </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/Artefact">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Artefact</rdfs:label>
@@ -66,13 +46,33 @@
     <skos:note>Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact</skos:note>
     <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasRecipe">
+  <rdf:Description rdf:about="https://loze-ontology.org/isStandardIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Recipe</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e</skos:definition>
+    <rdfs:label>is Standard In</rdfs:label>
+    <skos:definition>The sub-relation of loze:isTopicIn that obtains when the topic provides the rules or standard for the performance of the eventuality</skos:definition>
+    <skos:example>Regulations are the standard in a compliant business operation, best practices are the standard in a technical development, the workflow is the standard in the execution of a technical process</skos:example>
+    <skos:note>Only eventualities that have humans as agents (loze:isAgentIn) or are executed by objects designed by humans - like an automated system - can have a standard (loze:isStandardIn), since treating something as a rule or standard for an action requires human-like cognitive faculties</skos:note>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isTopicIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasInstruction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Instruction</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e</skos:definition>
     <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:range rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRecipeIn"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isRecipeIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>is Recipe In</rdfs:label>
+    <skos:definition>The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features</skos:definition>
+    <skos:example>The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs</skos:example>
+    <skos:note>Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular</skos:note>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/InformationArtefact"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/Text">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -83,12 +83,12 @@
     <skos:note>In a software system, a machine code might not be a text, because it's not always meant to convey meaning to humans; on the other hand, the source code is a text, since it's human-readable</skos:note>
     <rdfs:subClassOf rdf:resource="https://loze-ontology.org/InformationArtefact"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasInstruction">
+  <rdf:Description rdf:about="https://loze-ontology.org/hasStandard">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Instruction</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e</skos:definition>
+    <rdfs:label>has Standard</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e</skos:definition>
     <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isStandardIn"/>
   </rdf:Description>
 </rdf:RDF>

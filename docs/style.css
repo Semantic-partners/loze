@@ -240,6 +240,14 @@ ul.tree a { font-weight: 500; }
   fill: hsl(var(--muted-foreground));
 }
 .fig-rule { stroke: hsl(var(--border)); stroke-width: 1; }
+/* The line the figure is about: which side of it the model sits on IS the
+   argument. Drawn stronger than the panel divider for that reason. */
+.fig-band { stroke: hsl(var(--border-emphasis)); stroke-width: 1.5; stroke-dasharray: 6 5; }
+.fig-band-lab { font-family: "DM Mono", monospace; font-size: 11px;
+  letter-spacing: var(--tracking-label); fill: hsl(var(--faint)); }
+/* Groups the particulars so one 'a' arrow can stand for all of them — three
+   separate arrows converging read as more machinery, not less. */
+.grp { fill: none; stroke: hsl(var(--border)); stroke-width: 1; stroke-dasharray: 3 4; }
 .fig-note { font-size: 13px; fill: hsl(var(--muted-foreground)); }
 
 .n-class { fill: hsl(var(--clr-node-class) / 0.10); stroke: hsl(var(--clr-node-class)); stroke-width: 1.5; }
@@ -248,6 +256,7 @@ ul.tree a { font-weight: 500; }
 .n-schem { stroke-width: 3; }
 .n-lab  { font-family: "DM Sans", sans-serif; font-size: 14px; font-weight: 500;
           fill: hsl(var(--foreground)); text-anchor: middle; }
+.n-sm  { font-size: 13px; }
 .n-kind { font-family: "DM Mono", monospace; font-size: 11px;
           fill: hsl(var(--faint)); text-anchor: middle; }
 
