@@ -23,6 +23,7 @@
   /* Application status, kept separate from the node triad above even where hues
      would collide. Only the punning mark uses it. */
   --clr-status-danger: 0 62% 50%;
+  --clr-status-ok: 160 96% 30%;
 
   --background: var(--clr-white);
   --foreground: var(--clr-ink);
@@ -64,6 +65,7 @@ html { font-size: var(--root-step); }
     --border-emphasis: 216 18% 30%;
     /* #059669 fails contrast on ink; the light green is the token for dark. */
     --brand-accent: var(--clr-green-light);
+    --clr-status-ok: 158 65% 52%;
     --tint: 216 29% 18%;
   }
 }
@@ -252,6 +254,12 @@ ul.tree a { font-weight: 500; }
    separate arrows converging read as more machinery, not less. */
 .grp { fill: none; stroke: hsl(var(--border)); stroke-width: 1; stroke-dasharray: 3 4; }
 .fig-note { font-size: 13px; fill: hsl(var(--muted-foreground)); }
+.fig-q { font-family: "DM Mono", monospace; font-size: 12.5px; fill: hsl(var(--foreground)); }
+.fig-ok { fill: hsl(var(--clr-status-ok)); }
+.q-chip { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.2; }
+/* The row that answers the question. */
+.q-hit { fill: hsl(var(--clr-status-ok) / 0.16); stroke: hsl(var(--clr-status-ok)); stroke-width: 2; }
+.q-lab { font-family: "DM Sans", sans-serif; font-size: 12.5px; fill: hsl(var(--foreground)); text-anchor: middle; }
 
 .n-class { fill: hsl(var(--clr-node-class) / 0.10); stroke: hsl(var(--clr-node-class)); stroke-width: 1.5; }
 .n-inst  { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.5; }

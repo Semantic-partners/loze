@@ -107,6 +107,24 @@ features of its units&#8221;</em>, <code>skos:note</code> on
 <a href="/SchematicParticular">Schematic Particular</a>.</figcaption>
 </figure>
 
+<figure class="fig">
+<svg viewBox="0 0 960 356" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="The same two-triple pattern asked on both sides. Where the model is a class, the things that are Cars and the thing that has a kerb weight are different sets, so nothing satisfies both and the query returns no rows. Where the model is a schematic particular it belongs to both sets, and the query returns Toyota Corolla with its kerb weight.">
+  <text class="fig-panel" x="126" y="24">Model as a class</text>
+  <text class="fig-panel" x="546" y="24">Model as a schematic particular</text>
+  <line class="fig-rule" x1="512" y1="40" x2="512" y2="340"/>
+  <text class="fig-band-lab" x="0" y="90">MATCHES</text>
+  <text class="fig-band-lab" x="0" y="292">JOIN</text>
+  <text class="fig-q" x="126" y="78">?m a :Car</text><text class="fig-q" x="546" y="78">?m a :Car</text><rect class="q-chip" x="126" y="90" width="98" height="30"/><text class="q-lab" x="175" y="110">my Corolla</text><rect class="q-chip" x="232" y="90" width="90" height="30"/><text class="q-lab" x="277" y="110">a new one</text><rect class="q-chip" x="546" y="90" width="128" height="30"/><text class="q-lab" x="610" y="110">Toyota Corolla</text><rect class="q-chip" x="682" y="90" width="98" height="30"/><text class="q-lab" x="731" y="110">my Corolla</text><rect class="q-chip" x="788" y="90" width="90" height="30"/><text class="q-lab" x="833" y="110">a new one</text><text class="fig-q" x="126" y="176">?m :kerbWeight ?kg</text><text class="fig-q" x="546" y="176">?m :kerbWeight ?kg</text><rect class="q-chip" x="126" y="188" width="128" height="30"/><text class="q-lab" x="190" y="208">Toyota Corolla</text><rect class="q-chip" x="546" y="188" width="128" height="30"/><text class="q-lab" x="610" y="208">Toyota Corolla</text><line class="fig-rule" x1="126" y1="266" x2="500" y2="266"/><line class="fig-rule" x1="546" y1="266" x2="932" y2="266"/><text class="fig-q" x="126" y="292">both &#8594;</text><text class="fig-q" x="546" y="292">both &#8594;</text><text class="fig-note fig-warn" x="126" y="330">no rows</text><rect class="q-chip q-hit" x="546" y="306" width="128" height="30"/><text class="q-lab" x="610" y="326">Toyota Corolla</text><text class="fig-note fig-ok" x="736" y="330">1205 kg</text>
+</svg>
+<figcaption>Asking about the model, not a car. The pattern is two triples, and the answer turns
+on whether one thing satisfies both. Model it as a class and it cannot: a subclass is not an
+instance, so the set that has a kerb weight and the set that are Cars never meet. As a schematic
+particular the model sits in both, and the general question is answered with the same pattern you
+would use for any individual — no metamodelling, and nothing to tell a reasoner about two entities
+that happen to share a name.</figcaption>
+</figure>
+
   <section><div class="section-head">Note</div><p class="measure">Similarly to classes, schematic particulars are not bounded to one particular location at a time: as a rule, a schematic particular is wholly present wherever one of its concretizations is present; War and Peace is present wherever one of its copies is present; water is present wherever one or more H2O molecules are present; the Toyota Corolla is present wherever one of its units is present</p></section>
 </div></main>
 

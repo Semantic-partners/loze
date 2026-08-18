@@ -122,6 +122,7 @@ CSS = """
   /* Application status, kept separate from the node triad above even where hues
      would collide. Only the punning mark uses it. */
   --clr-status-danger: 0 62% 50%;
+  --clr-status-ok: 160 96% 30%;
 
   --background: var(--clr-white);
   --foreground: var(--clr-ink);
@@ -163,6 +164,7 @@ html { font-size: var(--root-step); }
     --border-emphasis: 216 18% 30%;
     /* #059669 fails contrast on ink; the light green is the token for dark. */
     --brand-accent: var(--clr-green-light);
+    --clr-status-ok: 158 65% 52%;
     --tint: 216 29% 18%;
   }
 }
@@ -351,6 +353,12 @@ ul.tree a { font-weight: 500; }
    separate arrows converging read as more machinery, not less. */
 .grp { fill: none; stroke: hsl(var(--border)); stroke-width: 1; stroke-dasharray: 3 4; }
 .fig-note { font-size: 13px; fill: hsl(var(--muted-foreground)); }
+.fig-q { font-family: "DM Mono", monospace; font-size: 12.5px; fill: hsl(var(--foreground)); }
+.fig-ok { fill: hsl(var(--clr-status-ok)); }
+.q-chip { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.2; }
+/* The row that answers the question. */
+.q-hit { fill: hsl(var(--clr-status-ok) / 0.16); stroke: hsl(var(--clr-status-ok)); stroke-width: 2; }
+.q-lab { font-family: "DM Sans", sans-serif; font-size: 12.5px; fill: hsl(var(--foreground)); text-anchor: middle; }
 
 .n-class { fill: hsl(var(--clr-node-class) / 0.10); stroke: hsl(var(--clr-node-class)); stroke-width: 1.5; }
 .n-inst  { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.5; }
@@ -459,6 +467,75 @@ in step by hand. A schematic particular is what removes the second one. The exam
 ontology&#8217;s own: <em>&#8220;the specifications of the Toyota Corolla are the benchmark for the
 features of its units&#8221;</em>, <code>skos:note</code> on
 <a href="/SchematicParticular">Schematic Particular</a>.</figcaption>
+</figure>
+'''
+
+
+def _chip(x, y, label, cls="q-chip"):
+    w = max(74, int(len(label) * 7.6) + 22)
+    return (f'<rect class="{cls}" x="{x}" y="{y}" width="{w}" height="30"/>'
+            f'<text class="q-lab" x="{x + w // 2}" y="{y + 20}">{label}</text>'), w
+
+
+def _row(x0, y, chips, cls="q-chip"):
+    out, cx = "", x0
+    for c in chips:
+        frag, w = _chip(cx, y, c, cls)
+        out += frag
+        cx += w + 8
+    return out
+
+
+def query_figure() -> str:
+    """Second figure: what the category buys at query time.
+
+    The first figure shows the modelling cost — the model said twice. This shows
+    the consequence, which is where it actually bites: a general question about
+    the model either reaches it or it does not. The pattern is split into its two
+    triples so the join is visible; on the left the two match-sets are disjoint,
+    so nothing satisfies both.
+    """
+    L, R = 126, 546
+    rows = [
+        (78,  "?m a :Car",
+         ["my Corolla", "a new one"],
+         ["Toyota Corolla", "my Corolla", "a new one"]),
+        (176, "?m :kerbWeight ?kg",
+         ["Toyota Corolla"],
+         ["Toyota Corolla"]),
+    ]
+    body = ""
+    for y, pattern, left, right in rows:
+        body += (f'<text class="fig-q" x="{L}" y="{y}">{pattern}</text>'
+                 f'<text class="fig-q" x="{R}" y="{y}">{pattern}</text>')
+        body += _row(L, y + 12, left)
+        body += _row(R, y + 12, right)
+
+    body += (f'<line class="fig-rule" x1="{L}" y1="266" x2="500" y2="266"/>'
+             f'<line class="fig-rule" x1="{R}" y1="266" x2="932" y2="266"/>'
+             f'<text class="fig-q" x="{L}" y="292">both &#8594;</text>'
+             f'<text class="fig-q" x="{R}" y="292">both &#8594;</text>'
+             f'<text class="fig-note fig-warn" x="{L}" y="330">no rows</text>'
+             + _row(R, 306, ["Toyota Corolla"], "q-chip q-hit")
+             + f'<text class="fig-note fig-ok" x="{R + 190}" y="330">1205 kg</text>')
+
+    return f'''
+<figure class="fig">
+<svg viewBox="0 0 960 356" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="The same two-triple pattern asked on both sides. Where the model is a class, the things that are Cars and the thing that has a kerb weight are different sets, so nothing satisfies both and the query returns no rows. Where the model is a schematic particular it belongs to both sets, and the query returns Toyota Corolla with its kerb weight.">
+  <text class="fig-panel" x="126" y="24">Model as a class</text>
+  <text class="fig-panel" x="546" y="24">Model as a schematic particular</text>
+  <line class="fig-rule" x1="512" y1="40" x2="512" y2="340"/>
+  <text class="fig-band-lab" x="0" y="90">MATCHES</text>
+  <text class="fig-band-lab" x="0" y="292">JOIN</text>
+  {body}
+</svg>
+<figcaption>Asking about the model, not a car. The pattern is two triples, and the answer turns
+on whether one thing satisfies both. Model it as a class and it cannot: a subclass is not an
+instance, so the set that has a kerb weight and the set that are Cars never meet. As a schematic
+particular the model sits in both, and the general question is answered with the same pattern you
+would use for any individual — no metamodelling, and nothing to tell a reasoner about two entities
+that happen to share a name.</figcaption>
 </figure>
 '''
 
@@ -709,7 +786,7 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
   {section("Specialised by", subs_html)}
   {"" if is_prop else section("Properties from this", props_where(RDFS.domain))}
   {"" if is_prop else section("Properties onto this", props_where(RDFS.range))}
-  {FIGURE if d['name'] in ("SchematicParticular", "isConcretizationOf", "hasConcretization") else ""}
+  {(FIGURE + query_figure()) if d['name'] == "SchematicParticular" else (FIGURE if d['name'] in ("isConcretizationOf", "hasConcretization") else "")}
   {section("Note", f'<p class="measure">{e(d["note"])}</p>' if d['note'] else "")}
 </div></main>
 """
@@ -773,7 +850,8 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
             for s2, src2 in MODULES if s2)
         modules_nav = section("Modules", f'<div class="grid">{cells}</div>')
 
-    schematic_section = section("Why a schematic particular", FIGURE)
+    schematic_section = (section("Why a schematic particular", FIGURE)
+                         + section("What it buys", query_figure()))
 
     body = f"""
 <header class="top"><div class="wrap">
