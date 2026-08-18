@@ -5,23 +5,13 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="https://loze-ontology.org/hasRepeatedComponent">
+  <rdf:Description rdf:about="https://loze-ontology.org/hasRepeatedContent">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Repeated Component</rdfs:label>
-    <skos:definition>The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
+    <rdfs:label>has Repeated Content</rdfs:label>
+    <skos:definition>The relation that obtains between a containment c and a schematic particular s if and only if s is the repeated content in c</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Containment"/>
     <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedComponentIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isIngredientIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>is Ingredient In</rdfs:label>
-    <skos:definition>The sub-relation of loze:isComponentIn that obtains whenever the component is a substance that occurres in the composite in a given amount</skos:definition>
-    <skos:example>In the case of a cake having as ingredient 200 grams of wheat flour, wheat flour is the ingredient; in the case of a solution having as ingredient 2 litres of water, water is the ingredient</skos:example>
-    <skos:note>Substance repetition is impractical to account for in terms of number of occurrences, since the units are too many to be counted; consequently, instead of using loze:hasNumberOfOccurrences, it is advisable to specify quantities based on units of measure</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Substance"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedContentIn"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isRepeatedComponentIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -34,30 +24,23 @@
     <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
     <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasRepeatedContent">
+  <rdf:Description rdf:about="https://loze-ontology.org/isIngredientIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Repeated Content</rdfs:label>
-    <skos:definition>The relation that obtains between a containment c and a schematic particular s if and only if s is the repeated content in c</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Containment"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedContentIn"/>
+    <rdfs:label>is Ingredient In</rdfs:label>
+    <skos:definition>The sub-relation of loze:isComponentIn that obtains whenever the component is a substance that occurres in the composite in a given amount</skos:definition>
+    <skos:example>In the case of a cake having as ingredient 200 grams of wheat flour, wheat flour is the ingredient; in the case of a solution having as ingredient 2 litres of water, water is the ingredient</skos:example>
+    <skos:note>Substance repetition is impractical to account for in terms of number of occurrences, since the units are too many to be counted; consequently, instead of using loze:hasNumberOfOccurrences, it is advisable to specify quantities based on units of measure</skos:note>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Substance"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasIngredient">
+  <rdf:Description rdf:about="https://loze-ontology.org/hasRepeatedComponent">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Ingredient</rdfs:label>
-    <skos:definition>The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c</skos:definition>
+    <rdfs:label>has Repeated Component</rdfs:label>
+    <skos:definition>The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c</skos:definition>
     <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Substance"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isIngredientIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Substance">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Substance</rdfs:label>
-    <skos:definition>A schematic particular that is highly dissectable</skos:definition>
-    <skos:example>Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint</skos:example>
-    <skos:note>Dissectability consists in concretizations being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold</skos:note>
-    <skos:note>Here the word 'substance' is used in the chemical sense, and not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedComponentIn"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isRepeatedContentIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -70,6 +53,12 @@
     <rdfs:range rdf:resource="https://loze-ontology.org/Containment"/>
     <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isContentIn"/>
   </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/materials-and-composition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>Materials and Composition</rdfs:label>
+    <skos:definition>An extension of loze.ttl with classes and relations for modelling substances and material composition</skos:definition>
+    <owl:imports rdf:resource="https://loze-ontology.org/"/>
+  </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/hasNumberOfOccurrences">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:label>has Number Of Occurrences</rdfs:label>
@@ -79,10 +68,21 @@
     <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/materials-and-composition">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:label>Materials and Composition</rdfs:label>
-    <skos:definition>An extension of loze.ttl with classes and relations for modelling substances and material composition</skos:definition>
-    <owl:imports rdf:resource="https://loze-ontology.org/"/>
+  <rdf:Description rdf:about="https://loze-ontology.org/Substance">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Substance</rdfs:label>
+    <skos:definition>A schematic particular that is highly dissectable</skos:definition>
+    <skos:example>Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint</skos:example>
+    <skos:note>Dissectability consists in concretizations being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold</skos:note>
+    <skos:note>Here the word 'substance' is used in the chemical sense, and not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasIngredient">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Ingredient</rdfs:label>
+    <skos:definition>The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Substance"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isIngredientIn"/>
   </rdf:Description>
 </rdf:RDF>

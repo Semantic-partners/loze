@@ -5,27 +5,6 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="https://loze-ontology.org/Animal">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Animal</rdfs:label>
-    <skos:definition>A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings</skos:definition>
-    <skos:note>Animals typically have a more flexible body than plants and fungi and are able to move</skos:note>
-    <skos:note>Within biological taxonomy - so-called Tree of Life - animals are the members of the kingdom of Animalia</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/LivingBeing"/>
-    <owl:disjointUnionOf rdf:nodeID="nea6536b33df543c69d910c0280ee8ecfb1"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea6536b33df543c69d910c0280ee8ecfb2">
-    <rdf:first rdf:resource="https://loze-ontology.org/NonHumanAnimal"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Group">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Group</rdfs:label>
-    <skos:definition>An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction</skos:definition>
-    <skos:example>A household, a family, a couple, any organisation</skos:example>
-    <skos:note>Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
-  </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/Person">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Person</rdfs:label>
@@ -34,19 +13,13 @@
     <skos:note>Specimens of other species of the genus Homo (such as Homo erectus or Homo Neanderthalensis) would be problematic to categorise, because they are not specimens of Homo sapiens yet they qualify as humans in a broader sense; in practice, this issue is irrelevant, since Homo sapiens is the only extant species of the genus Homo</skos:note>
     <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Animal"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/LivingBeing">
+  <rdf:Description rdf:about="https://loze-ontology.org/OrganisationOrgan">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Living Being</rdfs:label>
-    <skos:definition>An object that displays properties such as responsiveness, growth, metabolism, energy transformation, and reproduction</skos:definition>
-    <skos:note>The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; nevertheless, there are still borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/NonHumanAnimal">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Non-Human Animal</rdfs:label>
-    <skos:definition>An animal that is not a specimen of the species Homo sapiens</skos:definition>
-    <skos:note>In ordinary talk as well as legal talk, non-human animals are usually called just 'animals'</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Animal"/>
+    <rdfs:label>Organisation Organ</rdfs:label>
+    <skos:definition>A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) it not itself an organisation</skos:definition>
+    <skos:example>A government's parliament, a company's committee, a team</skos:example>
+    <skos:note>The difference between an organisation organ and an organisation that is part of another organisation is that the official goals of an organ are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Group"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/suggested-social-extension">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
@@ -63,14 +36,6 @@
     <skos:note>An organisation can have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts</skos:note>
     <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Group"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/OrganisationOrgan">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Organisation Organ</rdfs:label>
-    <skos:definition>A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) it not itself an organisation</skos:definition>
-    <skos:example>A government's parliament, a company's committee, a team</skos:example>
-    <skos:note>The difference between an organisation organ and an organisation that is part of another organisation is that the official goals of an organ are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Group"/>
-  </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/Plant">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Plant</rdfs:label>
@@ -79,8 +44,43 @@
     <skos:note>Within biological taxonomy - so-called Tree of Life - plants are the members of the kingdom of Plantae</skos:note>
     <rdfs:subClassOf rdf:resource="https://loze-ontology.org/LivingBeing"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nea6536b33df543c69d910c0280ee8ecfb1">
+  <rdf:Description rdf:nodeID="n11e79f9ea7f7486dbcf52d98007e7ccbb1">
     <rdf:first rdf:resource="https://loze-ontology.org/Person"/>
-    <rdf:rest rdf:nodeID="nea6536b33df543c69d910c0280ee8ecfb2"/>
+    <rdf:rest rdf:nodeID="n11e79f9ea7f7486dbcf52d98007e7ccbb2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/NonHumanAnimal">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Non-Human Animal</rdfs:label>
+    <skos:definition>An animal that is not a specimen of the species Homo sapiens</skos:definition>
+    <skos:note>In ordinary talk as well as legal talk, non-human animals are usually called just 'animals'</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Animal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/LivingBeing">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Living Being</rdfs:label>
+    <skos:definition>An object that displays properties such as responsiveness, growth, metabolism, energy transformation, and reproduction</skos:definition>
+    <skos:note>The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; nevertheless, there are still borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Group">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Group</rdfs:label>
+    <skos:definition>An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction</skos:definition>
+    <skos:example>A household, a family, a couple, any organisation</skos:example>
+    <skos:note>Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Animal">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Animal</rdfs:label>
+    <skos:definition>A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings</skos:definition>
+    <skos:note>Animals typically have a more flexible body than plants and fungi and are able to move</skos:note>
+    <skos:note>Within biological taxonomy - so-called Tree of Life - animals are the members of the kingdom of Animalia</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/LivingBeing"/>
+    <owl:disjointUnionOf rdf:nodeID="n11e79f9ea7f7486dbcf52d98007e7ccbb1"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n11e79f9ea7f7486dbcf52d98007e7ccbb2">
+    <rdf:first rdf:resource="https://loze-ontology.org/NonHumanAnimal"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
 </rdf:RDF>

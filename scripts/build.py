@@ -738,10 +738,8 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
 
     # Up the tree, as a trail. Where a term sits matters more than its label.
     chain = ancestors(union, s)
-    trail = ""
-    if chain:
-        parts = " / ".join(term_link(union, a) for a in reversed(chain))
-        trail = f'<div class="trail">{parts} / <span>{e(d["label"])}</span></div>'
+    crumbs = ['<a href="/">loze</a>'] + [term_link(union, a) for a in reversed(chain)]
+    trail = f'<div class="trail">{" / ".join(crumbs)} / <span>{e(d["label"])}</span></div>'
 
     rows = []
     for pred, dt in [(RDFS.subClassOf, "specialises"), (RDFS.subPropertyOf, "subproperty of"),
@@ -859,9 +857,13 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
     schematic_section = (section("Why a schematic particular", FIGURE)
                          + section("What it buys", query_figure()))
 
+    trail = ("" if slug == ""
+             else f'<div class="trail"><a href="/">loze</a> / <span>{e(label)}</span></div>')
+
     body = f"""
 <header class="top"><div class="wrap">
   <div class="eyebrow">Semantic Partners &middot; ontology</div>
+  {trail}
   <h1>{e(label)}</h1>
   {f'<p class="lead measure">{e(definition)}</p>' if definition else ''}
   <div class="iri">{e(str(onto) if onto else NS)}</div>

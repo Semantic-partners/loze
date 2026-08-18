@@ -89,6 +89,16 @@ def main() -> None:
     for m in missing[:10]:
         print(f"       {m}")
 
+    print("\nEvery page can reach the root")
+    # Properties have no subClassOf chain, so a trail that only rendered for
+    # classes left them with no way home; a module-defined term could only get
+    # back via its own superclass. Cheap to assert, and invisible when it breaks.
+    stranded = [p.name for p in sorted(DOCS.glob("*.html"))
+                if p.name != "index.html" and 'href="/"' not in p.read_text(encoding="utf-8")]
+    check(not stranded, f"every page links back to / ({len(stranded)} stranded)")
+    for s_ in stranded[:10]:
+        print(f"       {s_}")
+
     print("\nEvery term resolves")
     ontologies = {str(o) for o in source_union.subjects(RDF.type, OWL.Ontology)}
     terms = {s for s in source_union.subjects()
