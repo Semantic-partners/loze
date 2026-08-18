@@ -1,66 +1,66 @@
-<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#note> "An information artefact that is concrete is always going to be the concretization of some schematic information artefact" .
-<https://loze-ontology.org/Artefact> <http://www.w3.org/2004/02/skos/core#definition> "An object that is designed and made by humans for serving certain purposes or functions" .
-<https://loze-ontology.org/Artefact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://loze-ontology.org/hasInstruction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#note> "The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine" .
-<https://loze-ontology.org/hasStandard> <http://www.w3.org/2000/01/rdf-schema#label> "has Standard" .
-<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Particular> .
-<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isTopicIn> .
-<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isTopicIn that obtains when the topic provides the rules or standard for the performance of the eventuality" .
-<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isInstructionIn> .
-<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2004/02/skos/core#example> "Regulations are the standard in a compliant business operation, best practices are the standard in a technical development, the workflow is the standard in the execution of a technical process" .
-<https://loze-ontology.org/Text> <http://www.w3.org/2004/02/skos/core#note> "In a software system, a machine code might not be a text, because it's not always meant to convey meaning to humans; on the other hand, the source code is a text, since it's human-readable" .
-<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/InformationArtefact> .
-<https://loze-ontology.org/Artefact> <http://www.w3.org/2004/02/skos/core#note> "Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact" .
-<https://loze-ontology.org/Text> <http://www.w3.org/2004/02/skos/core#definition> "An information artefact that consists of sentences in some human-readable language and is meant to convey meaning to humans" .
-<https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
-<https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/2000/01/rdf-schema#label> "Artefacts, Information, and Instructions" .
-<https://loze-ontology.org/hasStandard> <http://www.w3.org/2002/07/owl#inverseOf> <https://loze-ontology.org/isStandardIn> .
-<https://loze-ontology.org/hasInstruction> <http://www.w3.org/2000/01/rdf-schema#label> "has Instruction" .
-<https://loze-ontology.org/Artefact> <http://www.w3.org/2000/01/rdf-schema#label> "Artefact" .
-<https://loze-ontology.org/hasStandard> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/hasInstruction> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e" .
-<https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/2004/02/skos/core#definition> "An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions" .
-<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2004/02/skos/core#note> "Only eventualities that have humans as agents (loze:isAgentIn) or are executed by objects designed by humans - like an automated system - can have a standard (loze:isStandardIn), since treating something as a rule or standard for an action requires human-like cognitive faculties" .
-<https://loze-ontology.org/hasStandard> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e" .
 <https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2004/02/skos/core#note> "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular" .
-<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#example> "A book, an article, a note, a document, a digital file, a computer programme or software" .
-<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2004/02/skos/core#example> "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs" .
-<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isStandardIn that obtains when the standard in question is an information artefact consisting of instructions for performing the eventuality" .
-<https://loze-ontology.org/hasRecipe> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
-<https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/2002/07/owl#imports> <https://loze-ontology.org/> .
-<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2000/01/rdf-schema#label> "Information Artefact" .
-<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2000/01/rdf-schema#label> "is Recipe In" .
-<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2000/01/rdf-schema#label> "is Standard In" .
-<https://loze-ontology.org/Text> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://loze-ontology.org/Text> <http://www.w3.org/2000/01/rdf-schema#label> "Text" .
-<https://loze-ontology.org/hasRecipe> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e" .
-<https://loze-ontology.org/Text> <http://www.w3.org/2004/02/skos/core#example> "A book, an article, a physical document, a text or document file, a book chapter, a dish recipe" .
-<https://loze-ontology.org/hasRecipe> <http://www.w3.org/2002/07/owl#inverseOf> <https://loze-ontology.org/isRecipeIn> .
-<https://loze-ontology.org/hasStandard> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Particular> .
-<https://loze-ontology.org/hasInstruction> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
-<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2004/02/skos/core#example> "The assembly manual is the instruction in the assembly of a piece of furniture, the cookbook recipe is the instruction in the preparation of a cake, the workflow documentation is the instruction in the execution of a technical process, a computer programme or software is the instruction in a computational process or programme execution" .
-<https://loze-ontology.org/hasRecipe> <http://www.w3.org/2000/01/rdf-schema#label> "has Recipe" .
-<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Eventuality> .
-<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Eventuality> .
-<https://loze-ontology.org/Artefact> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Object> .
-<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/InformationArtefact> .
 <https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/Artefact> <http://www.w3.org/2004/02/skos/core#definition> "An object that is designed and made by humans for serving certain purposes or functions" .
+<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/hasInstruction> <http://www.w3.org/2000/01/rdf-schema#label> "has Instruction" .
+<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2004/02/skos/core#note> "Only eventualities that have humans as agents (loze:isAgentIn) or are executed by objects designed by humans - like an automated system - can have a standard (loze:isStandardIn), since treating something as a rule or standard for an action requires human-like cognitive faculties" .
+<https://loze-ontology.org/hasRecipe> <http://www.w3.org/2000/01/rdf-schema#label> "has Recipe" .
+<https://loze-ontology.org/hasStandard> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/hasInstruction> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/InformationArtefact> .
+<https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://loze-ontology.org/Artefact> <http://www.w3.org/2004/02/skos/core#example> "A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork" .
+<https://loze-ontology.org/hasInstruction> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#definition> "An artefact that consists of a structured system of symbols' occurrences meant to convey information" .
+<https://loze-ontology.org/hasRecipe> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e" .
+<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2000/01/rdf-schema#label> "is Recipe In" .
+<https://loze-ontology.org/hasStandard> <http://www.w3.org/2000/01/rdf-schema#label> "has Standard" .
+<https://loze-ontology.org/Text> <http://www.w3.org/2004/02/skos/core#example> "A book, an article, a physical document, a text or document file, a book chapter, a dish recipe" .
+<https://loze-ontology.org/Artefact> <http://www.w3.org/2004/02/skos/core#note> "Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact" .
+<https://loze-ontology.org/hasRecipe> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/InformationArtefact> .
+<https://loze-ontology.org/Artefact> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Object> .
+<https://loze-ontology.org/Text> <http://www.w3.org/2004/02/skos/core#definition> "An information artefact that consists of sentences in some human-readable language and is meant to convey meaning to humans" .
+<https://loze-ontology.org/hasRecipe> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/2004/02/skos/core#definition> "An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions" .
+<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2000/01/rdf-schema#label> "is Standard In" .
+<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Particular> .
+<https://loze-ontology.org/hasStandard> <http://www.w3.org/2002/07/owl#inverseOf> <https://loze-ontology.org/isStandardIn> .
+<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/InformationArtefact> .
+<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/InformationArtefact> .
+<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isTopicIn> .
+<https://loze-ontology.org/hasStandard> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Particular> .
+<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isInstructionIn> .
+<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2004/02/skos/core#example> "The assembly manual is the instruction in the assembly of a piece of furniture, the cookbook recipe is the instruction in the preparation of a cake, the workflow documentation is the instruction in the execution of a technical process, a computer programme or software is the instruction in a computational process or programme execution" .
 <https://loze-ontology.org/Text> <http://www.w3.org/2004/02/skos/core#note> "According to the definition, not only plain text files, but also document files are instances of loze:Text" .
 <https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2000/01/rdf-schema#label> "is Instruction In" .
-<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#note> "An information artefact can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete" .
-<https://loze-ontology.org/hasStandard> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
-<https://loze-ontology.org/hasRecipe> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/InformationArtefact> .
-<https://loze-ontology.org/Text> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/InformationArtefact> .
-<https://loze-ontology.org/isStandardIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Artefact> .
-<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/hasInstruction> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/InformationArtefact> .
-<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isStandardIn> .
-<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#definition> "An artefact that consists of a structured system of symbols' occurrences meant to convey information" .
 <https://loze-ontology.org/hasInstruction> <http://www.w3.org/2002/07/owl#inverseOf> <https://loze-ontology.org/isInstructionIn> .
+<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isTopicIn that obtains when the topic provides the rules or standard for the performance of the eventuality" .
+<https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/2000/01/rdf-schema#label> "Artefacts, Information, and Instructions" .
+<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Artefact> .
+<https://loze-ontology.org/hasStandard> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isStandardIn> .
+<https://loze-ontology.org/hasInstruction> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e" .
+<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2004/02/skos/core#example> "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs" .
+<https://loze-ontology.org/hasRecipe> <http://www.w3.org/2002/07/owl#inverseOf> <https://loze-ontology.org/isRecipeIn> .
+<https://loze-ontology.org/hasInstruction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/isStandardIn> <http://www.w3.org/2004/02/skos/core#example> "Regulations are the standard in a compliant business operation, best practices are the standard in a technical development, the workflow is the standard in the execution of a technical process" .
+<https://loze-ontology.org/isStandardIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/Text> <http://www.w3.org/2004/02/skos/core#note> "In a software system, a machine code might not be a text, because it's not always meant to convey meaning to humans; on the other hand, the source code is a text, since it's human-readable" .
 <https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features" .
-<https://loze-ontology.org/Artefact> <http://www.w3.org/2004/02/skos/core#example> "A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork" .
+<https://loze-ontology.org/hasStandard> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e" .
+<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#note> "An information artefact that is concrete is always going to be the concretization of some schematic information artefact" .
 <https://loze-ontology.org/hasRecipe> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2000/01/rdf-schema#label> "Information Artefact" .
+<https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/2002/07/owl#imports> <https://loze-ontology.org/> .
+<https://loze-ontology.org/Text> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/Artefact> <http://www.w3.org/2000/01/rdf-schema#label> "Artefact" .
+<https://loze-ontology.org/Text> <http://www.w3.org/2000/01/rdf-schema#label> "Text" .
+<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#example> "A book, an article, a note, a document, a digital file, a computer programme or software" .
+<https://loze-ontology.org/Text> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/InformationArtefact> .
+<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#note> "The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine" .
+<https://loze-ontology.org/Artefact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/isInstructionIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isStandardIn that obtains when the standard in question is an information artefact consisting of instructions for performing the eventuality" .
+<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#note> "An information artefact can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete" .
