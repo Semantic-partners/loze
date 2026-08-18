@@ -431,6 +431,8 @@ ul.tree a { font-weight: 500; }
 .q-chip { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.2; }
 /* The row that answers the question. */
 .q-hit { fill: hsl(var(--clr-status-ok) / 0.16); stroke: hsl(var(--clr-status-ok)); stroke-width: 2; }
+.n-event { fill: hsl(var(--surface)); stroke: hsl(var(--foreground) / 0.55);
+  stroke-width: 1.5; stroke-dasharray: 2 3; }
 .q-lab { font-family: "DM Sans", sans-serif; font-size: 12.5px; fill: hsl(var(--foreground)); text-anchor: middle; }
 
 .n-class { fill: hsl(var(--clr-node-class) / 0.10); stroke: hsl(var(--clr-node-class)); stroke-width: 1.5; }
@@ -618,6 +620,59 @@ instance, so the set that has a kerb weight and the set that are Cars never meet
 particular the model sits in both, and the general question is answered with the same pattern you
 would use for any individual — no metamodelling, and nothing to tell a reasoner about two entities
 that happen to share a name.</figcaption>
+</figure>
+'''
+
+
+EVENT_FIGURE = '''
+<figure class="fig">
+<svg viewBox="0 0 960 316" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="One eventuality, the production of the Corolla, sits between a schematic participant and concrete products. It has the model as its participant, the individual cars as its products, and carries the dates itself with fromTime and untilTime. Schematic versus concrete and thing versus eventuality are independent axes.">
+  <defs>
+    <marker id="are" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
+    </marker>
+  </defs>
+
+  <text class="fig-band-lab" x="0" y="30">SCHEMATIC</text>
+  <text class="fig-band-lab" x="376" y="30">EVENTUALITY</text>
+  <text class="fig-band-lab" x="760" y="30">CONCRETE</text>
+
+  <rect class="n-inst n-schem" x="0" y="120" width="196" height="52"/>
+  <text class="n-lab n-sm" x="98" y="142">Toyota Corolla</text>
+  <text class="n-kind" x="98" y="160">the model</text>
+
+  <rect class="n-event" x="330" y="104" width="270" height="84"/>
+  <text class="n-lab n-sm" x="465" y="130">the Corolla production</text>
+  <text class="n-kind" x="465" y="150">fromTime 1966</text>
+  <text class="n-kind" x="465" y="168">untilTime 2026</text>
+
+  <rect class="n-inst" x="760" y="96" width="180" height="36"/>
+  <text class="n-lab n-sm" x="850" y="119">my Corolla</text>
+  <rect class="n-inst" x="760" y="160" width="180" height="36"/>
+  <text class="n-lab n-sm" x="850" y="183">a new one</text>
+
+  <line class="e-prop" x1="330" y1="146" x2="200" y2="146" marker-end="url(#are)"/>
+  <text class="e-lab e-lab-prop" x="212" y="132">hasParticipant</text>
+
+  <line class="e-prop" x1="600" y1="132" x2="756" y2="114" marker-end="url(#are)"/>
+  <line class="e-prop" x1="600" y1="160" x2="756" y2="178" marker-end="url(#are)"/>
+  <text class="e-lab e-lab-prop" x="612" y="204">hasProduct</text>
+
+  <text class="fig-note" x="0" y="240">A repeatable thing. It has</text>
+  <text class="fig-note" x="0" y="258">no dates of its own.</text>
+  <text class="fig-note" x="330" y="240">Not a thing but a happening — and the only</text>
+  <text class="fig-note" x="330" y="258">place a production span can sensibly live.</text>
+  <text class="fig-note" x="760" y="240">Cars you could</text>
+  <text class="fig-note" x="760" y="258">put on a ramp.</text>
+</svg>
+<figcaption>Schematic-versus-concrete and thing-versus-eventuality are independent cuts, and this
+is what that buys. One eventuality reaches left to a <em>schematic</em> participant and right to
+<em>concrete</em> products, so the production span attaches to the production rather than being
+forced onto the model or repeated on every car. loze&#8217;s own note on <code>isRecipeIn</code>
+makes the same shape explicit: when an eventuality has a recipe among its participants, its product
+&#8220;will be a concrete particular&#8221;. Model the Corolla as a class instead and this diagram
+cannot be drawn at all — a class cannot be a participant in anything without being punned first.</figcaption>
 </figure>
 '''
 
@@ -866,7 +921,7 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
   {section("Specialised by", subs_html)}
   {"" if is_prop else section("Properties from this", props_where(RDFS.domain))}
   {"" if is_prop else section("Properties onto this", props_where(RDFS.range))}
-  {(FIGURE + query_figure()) if d['name'] == "SchematicParticular" else (FIGURE if d['name'] in ("isConcretizationOf", "hasConcretization") else "")}
+  {(FIGURE + query_figure() + EVENT_FIGURE) if d['name'] == "SchematicParticular" else (EVENT_FIGURE if d['name'] in ("Eventuality", "Thing", "hasParticipant", "hasProduct") else (FIGURE if d['name'] in ("isConcretizationOf", "hasConcretization") else ""))}
   {section("Note", f'<p class="measure">{e(d["note"])}</p>' if d['note'] else "")}
 </div></main>
 """
@@ -931,7 +986,8 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
         modules_nav = section("Modules", f'<div class="grid">{cells}</div>')
 
     schematic_section = (section("Why a schematic particular", FIGURE)
-                         + section("What it buys", query_figure()))
+                         + section("What it buys", query_figure())
+                         + section("Things and happenings are a different cut", EVENT_FIGURE))
 
     trail = ("" if slug == ""
              else f'<div class="trail"><a href="/">loze</a> / <span>{e(label)}</span></div>')

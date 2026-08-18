@@ -127,6 +127,56 @@ particular the model sits in both, and the general question is answered with the
 would use for any individual — no metamodelling, and nothing to tell a reasoner about two entities
 that happen to share a name.</figcaption>
 </figure>
+</section><section><div class="section-head">Things and happenings are a different cut</div>
+<figure class="fig">
+<svg viewBox="0 0 960 316" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="One eventuality, the production of the Corolla, sits between a schematic participant and concrete products. It has the model as its participant, the individual cars as its products, and carries the dates itself with fromTime and untilTime. Schematic versus concrete and thing versus eventuality are independent axes.">
+  <defs>
+    <marker id="are" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
+    </marker>
+  </defs>
+
+  <text class="fig-band-lab" x="0" y="30">SCHEMATIC</text>
+  <text class="fig-band-lab" x="376" y="30">EVENTUALITY</text>
+  <text class="fig-band-lab" x="760" y="30">CONCRETE</text>
+
+  <rect class="n-inst n-schem" x="0" y="120" width="196" height="52"/>
+  <text class="n-lab n-sm" x="98" y="142">Toyota Corolla</text>
+  <text class="n-kind" x="98" y="160">the model</text>
+
+  <rect class="n-event" x="330" y="104" width="270" height="84"/>
+  <text class="n-lab n-sm" x="465" y="130">the Corolla production</text>
+  <text class="n-kind" x="465" y="150">fromTime 1966</text>
+  <text class="n-kind" x="465" y="168">untilTime 2026</text>
+
+  <rect class="n-inst" x="760" y="96" width="180" height="36"/>
+  <text class="n-lab n-sm" x="850" y="119">my Corolla</text>
+  <rect class="n-inst" x="760" y="160" width="180" height="36"/>
+  <text class="n-lab n-sm" x="850" y="183">a new one</text>
+
+  <line class="e-prop" x1="330" y1="146" x2="200" y2="146" marker-end="url(#are)"/>
+  <text class="e-lab e-lab-prop" x="212" y="132">hasParticipant</text>
+
+  <line class="e-prop" x1="600" y1="132" x2="756" y2="114" marker-end="url(#are)"/>
+  <line class="e-prop" x1="600" y1="160" x2="756" y2="178" marker-end="url(#are)"/>
+  <text class="e-lab e-lab-prop" x="612" y="204">hasProduct</text>
+
+  <text class="fig-note" x="0" y="240">A repeatable thing. It has</text>
+  <text class="fig-note" x="0" y="258">no dates of its own.</text>
+  <text class="fig-note" x="330" y="240">Not a thing but a happening — and the only</text>
+  <text class="fig-note" x="330" y="258">place a production span can sensibly live.</text>
+  <text class="fig-note" x="760" y="240">Cars you could</text>
+  <text class="fig-note" x="760" y="258">put on a ramp.</text>
+</svg>
+<figcaption>Schematic-versus-concrete and thing-versus-eventuality are independent cuts, and this
+is what that buys. One eventuality reaches left to a <em>schematic</em> participant and right to
+<em>concrete</em> products, so the production span attaches to the production rather than being
+forced onto the model or repeated on every car. loze&#8217;s own note on <code>isRecipeIn</code>
+makes the same shape explicit: when an eventuality has a recipe among its participants, its product
+&#8220;will be a concrete particular&#8221;. Model the Corolla as a class instead and this diagram
+cannot be drawn at all — a class cannot be a participant in anything without being punned first.</figcaption>
+</figure>
 </section>
   <section><div class="section-head">Modules</div><div class="grid"><div class="cell"><h4><a href="/artefacts-information-and-instructions">artefacts information and instructions</a></h4><p>66 statements</p></div><div class="cell"><h4><a href="/materials-and-composition">materials and composition</a></h4><p>62 statements</p></div><div class="cell"><h4><a href="/temporal-relations">temporal relations</a></h4><p>56 statements</p></div><div class="cell"><h4><a href="/suggested-social-extension">suggested social extension</a></h4><p>56 statements</p></div></div></section>
   <section><div class="section-head">27 classes</div><ul class="tree"><li><a href="/Entity">Entity</a><span class="tree-def">Anything that exists, is real, or is in the world</span><ul><li><a href="/Particular">Particular</a><span class="tree-def">An entity that is not a class or type of entities</span><ul><li><a href="/ConcreteParticular">Concrete Particular</a><span class="tree-def">A particular that is bounded to one spatial location at a time</span></li><li><a href="/Eventuality">Eventuality</a><span class="tree-def">A particular entity that is a way of being or a modification of one or more other entities</span><ul><li><a href="/Composition">Composition</a><span class="tree-def">An eventuality that is either a parthood or a constitution</span><ul><li><a href="/Constitution">Constitution</a><span class="tree-def">An eventuality that consists in one particular being entirely made up by repeated occurren</span></li><li><a href="/Parthood">Parthood</a><span class="tree-def">An eventuality that consists in one particular being part of another particular</span></li></ul></li><li><a href="/Containment">Containment</a><span class="tree-def">An eventuality in which a particular is positioned within and physically constrained by an</span></li><li><a href="/PlaceOccupation">Place Occupation</a><span class="tree-def">An eventuality that consists in one particular entity occupying a place partly or entirely</span></li></ul></li><li><a href="/SchematicParticular">Schematic Particular</a><span class="tree-def">A particular that is not bounded to one spatial location at a time and that can be concret</span><ul><li><a href="/Substance">Substance</a><span class="modtag">materials-and-composition</span><span class="tree-def">A schematic particular that is highly dissectable</span></li></ul></li><li><a href="/Thing">Thing</a><span class="tree-def">A particular entity that is not a way of being or a modification of other entities</span><ul><li><a href="/Aggregate">Aggregate</a><span class="tree-def">A thing that is individuated by some stable material composition or spatial contiguity</span></li><li><a href="/Object">Object</a><span class="tree-def">A thing that is individuated by a certain internal organisation, function, or form</span><ul><li><a href="/Artefact">Artefact</a><span class="modtag">artefacts-information-and-instructions</span><span class="tree-def">An object that is designed and made by humans for serving certain purposes or functions</span><ul><li><a href="/InformationArtefact">Information Artefact</a><span class="modtag">artefacts-information-and-instructions</span><span class="tree-def">An artefact that consists of a structured system of symbols&#x27; occurrences meant to convey i</span><ul><li><a href="/Text">Text</a><span class="modtag">artefacts-information-and-instructions</span><span class="tree-def">An information artefact that consists of sentences in some human-readable language and is </span></li></ul></li></ul></li><li><a href="/Group">Group</a><span class="modtag">suggested-social-extension</span><span class="tree-def">An object that consists of persons that are associated to each other by some socially sign</span><ul><li><a href="/Organisation">Organisation</a><span class="modtag">suggested-social-extension</span><span class="tree-def">A group whose members are acting together in the pursuit of a common goal, based on an agr</span></li><li><a href="/OrganisationOrgan">Organisation Organ</a><span class="modtag">suggested-social-extension</span><span class="tree-def">A group that (i) is part of an organisation, (ii) it serves a specific function in the org</span></li></ul></li><li><a href="/LivingBeing">Living Being</a><span class="modtag">suggested-social-extension</span><span class="tree-def">An object that displays properties such as responsiveness, growth, metabolism, energy tran</span><ul><li><a href="/Animal">Animal</a><span class="modtag">suggested-social-extension</span><span class="tree-def">A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and</span><ul><li><a href="/NonHumanAnimal">Non-Human Animal</a><span class="modtag">suggested-social-extension</span><span class="tree-def">An animal that is not a specimen of the species Homo sapiens</span></li><li><a href="/Person">Person</a><span class="modtag">suggested-social-extension</span><span class="tree-def">An animal that is a specimen of the species Homo sapiens</span></li></ul></li><li><a href="/Plant">Plant</a><span class="modtag">suggested-social-extension</span><span class="tree-def">A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and</span></li></ul></li></ul></li><li><a href="/PeriodOfTime">Period Of Time</a><span class="tree-def">A thing that is individuated by its coordinates across the temporal axis</span></li><li><a href="/Place">Place</a><span class="tree-def">A thing that is individuated by its position relative to other things - such as being encl</span></li></ul></li></ul></li></ul></li></ul></section>

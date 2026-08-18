@@ -259,6 +259,8 @@ ul.tree a { font-weight: 500; }
 .q-chip { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.2; }
 /* The row that answers the question. */
 .q-hit { fill: hsl(var(--clr-status-ok) / 0.16); stroke: hsl(var(--clr-status-ok)); stroke-width: 2; }
+.n-event { fill: hsl(var(--surface)); stroke: hsl(var(--foreground) / 0.55);
+  stroke-width: 1.5; stroke-dasharray: 2 3; }
 .q-lab { font-family: "DM Sans", sans-serif; font-size: 12.5px; fill: hsl(var(--foreground)); text-anchor: middle; }
 
 .n-class { fill: hsl(var(--clr-node-class) / 0.10); stroke: hsl(var(--clr-node-class)); stroke-width: 1.5; }
