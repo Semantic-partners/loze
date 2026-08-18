@@ -221,6 +221,41 @@ ul.tree a { font-weight: 500; }
   white-space: nowrap;
 }
 
+/* ── The one figure ──────────────────────────────────────────────────────────
+   Nodes take their colour from the same triad the chips use, so blue still means
+   class and amber still means property — the page teaches the encoding once and
+   the diagram spends it. Everything structural is currentColor, so the drawing
+   follows the theme instead of carrying a baked palette that only works on one
+   ground. Which is also why mustrd's schema_svg was not lifted: graphviz bakes
+   hex into the output. */
+.fig { margin: 0 0 1rem; }
+.fig svg { width: 100%; height: auto; display: block; }
+.fig figcaption {
+  max-width: var(--measure); margin-top: 1rem;
+  font-size: var(--fs-sm); color: hsl(var(--muted-foreground));
+}
+.fig-panel {
+  font-family: "DM Mono", monospace; font-size: 12px;
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+  fill: hsl(var(--muted-foreground));
+}
+.fig-rule { stroke: hsl(var(--border)); stroke-width: 1; }
+.fig-note { font-size: 13px; fill: hsl(var(--muted-foreground)); }
+
+.n-class { fill: hsl(var(--clr-node-class) / 0.10); stroke: hsl(var(--clr-node-class)); stroke-width: 1.5; }
+.n-inst  { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.5; }
+/* The schematic one is the claim, so it is the only node drawn heavier. */
+.n-schem { stroke-width: 3; }
+.n-lab  { font-family: "DM Sans", sans-serif; font-size: 14px; font-weight: 500;
+          fill: hsl(var(--foreground)); text-anchor: middle; }
+.n-kind { font-family: "DM Mono", monospace; font-size: 11px;
+          fill: hsl(var(--faint)); text-anchor: middle; }
+
+.e-base { stroke: currentColor; stroke-width: 1.4; opacity: 0.55; fill: none; }
+.e-prop { stroke: hsl(var(--clr-node-property)); stroke-width: 2; fill: none; }
+.e-lab  { font-family: "DM Mono", monospace; font-size: 11px; fill: hsl(var(--muted-foreground)); }
+.e-lab-prop { fill: hsl(var(--clr-node-property)); }
+
 footer.bot {
   border-top: 1px solid hsl(var(--border));
   padding: 2.5rem 0 4rem;

@@ -29,6 +29,80 @@
   <section><div class="section-head">Specialised by</div><div class="chips"><a class="chip" href="/Substance">Substance</a></div></section>
   <section><div class="section-head">Properties from this</div><div class="chips"><a class="chip chip-prop" href="/hasConcretization">has Concretization</a><a class="chip chip-prop" href="/hasDetermination">has Determination</a><a class="chip chip-prop" href="/isDeterminationOf">is Determination Of</a><a class="chip chip-prop" href="/isRepeatedComponentIn">is Repeated Component In</a><a class="chip chip-prop" href="/isRepeatedContentIn">is Repeated Content In</a></div></section>
   <section><div class="section-head">Properties onto this</div><div class="chips"><a class="chip chip-prop" href="/hasDetermination">has Determination</a><a class="chip chip-prop" href="/hasRepeatedComponent">has Repeated Component</a><a class="chip chip-prop" href="/hasRepeatedContent">has Repeated Content</a><a class="chip chip-prop" href="/isConcretizationOf">is Concretization Of</a><a class="chip chip-prop" href="/isDeterminationOf">is Determination Of</a></div></section>
+  
+<figure class="fig">
+<svg viewBox="0 0 960 430" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="Without a schematic particular, a repeatable work must be modelled as a class, so it sits in a different layer from its performances. In loze it is a particular, so the work and its performances are all instances of the same class, and the performances point at the work with isConcretizationOf.">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
+    </marker>
+  </defs>
+
+  <text class="fig-panel" x="0" y="18">Without a schematic particular</text>
+  <text class="fig-panel" x="520" y="18">With one</text>
+  <line class="fig-rule" x1="480" y1="34" x2="480" y2="406"/>
+
+  <!-- LEFT: the work is forced up into the class layer -->
+  <rect class="n-class" x="120" y="54" width="200" height="44" rx="0"/>
+  <text class="n-lab" x="220" y="81">Musical Work</text>
+  <text class="n-kind" x="220" y="118">class</text>
+
+  <rect class="n-class" x="120" y="168" width="200" height="44"/>
+  <text class="n-lab" x="220" y="195">Symphony No 9</text>
+  <text class="n-kind" x="220" y="232">class — punned to carry data</text>
+
+  <line class="e-base" x1="220" y1="168" x2="220" y2="102" marker-end="url(#ar)"/>
+  <text class="e-lab" x="230" y="140">subClassOf</text>
+
+  <rect class="n-inst" x="66" y="300" width="150" height="40"/>
+  <text class="n-lab" x="141" y="325">1963 recording</text>
+  <rect class="n-inst" x="240" y="300" width="150" height="40"/>
+  <text class="n-lab" x="315" y="325">tonight</text>
+
+  <line class="e-base" x1="141" y1="300" x2="190" y2="216" marker-end="url(#ar)"/>
+  <line class="e-base" x1="315" y1="300" x2="255" y2="216" marker-end="url(#ar)"/>
+  <text class="e-lab" x="150" y="266">a</text>
+  <text class="e-lab" x="292" y="266">a</text>
+
+  <text class="fig-note" x="0" y="372">The work sits in the class layer. It cannot hold</text>
+  <text class="fig-note" x="0" y="390">what a work has — a duration, a structure —</text>
+  <text class="fig-note" x="0" y="408">without punning it as an individual too.</text>
+
+  <!-- RIGHT: one class, three particulars -->
+  <rect class="n-class" x="620" y="54" width="200" height="44"/>
+  <text class="n-lab" x="720" y="81">Musical Work</text>
+  <text class="n-kind" x="720" y="118">class</text>
+
+  <rect class="n-inst n-schem" x="516" y="196" width="184" height="44"/>
+  <text class="n-lab" x="608" y="223">Symphony No 9</text>
+  <text class="n-kind" x="608" y="260">schematic particular</text>
+
+  <rect class="n-inst" x="790" y="170" width="150" height="40"/>
+  <text class="n-lab" x="865" y="195">1963 recording</text>
+  <rect class="n-inst" x="790" y="248" width="150" height="40"/>
+  <text class="n-lab" x="865" y="273">tonight</text>
+
+  <line class="e-base" x1="608" y1="196" x2="676" y2="102" marker-end="url(#ar)"/>
+  <line class="e-base" x1="865" y1="170" x2="800" y2="102" marker-end="url(#ar)"/>
+  <line class="e-base" x1="880" y1="248" x2="822" y2="102" marker-end="url(#ar)"/>
+  <text class="e-lab" x="628" y="150">a</text>
+  <text class="e-lab" x="836" y="140">a</text>
+  <text class="e-lab" x="866" y="176">a</text>
+
+  <line class="e-prop" x1="790" y1="190" x2="704" y2="212" marker-end="url(#ar)"/>
+  <line class="e-prop" x1="790" y1="266" x2="704" y2="230" marker-end="url(#ar)"/>
+  <text class="e-lab e-lab-prop" x="712" y="300">isConcretizationOf</text>
+
+  <text class="fig-note" x="520" y="372">All three are instances of the same class. The work</text>
+  <text class="fig-note" x="520" y="390">is a particular, so it holds a work&#8217;s own data — and</text>
+  <text class="fig-note" x="520" y="408">still sets the benchmark its performances answer to.</text>
+</svg>
+<figcaption>Three arrows land on one class on the right, and two on the left: that is the
+whole difference. A schematic particular is an individual that behaves like a type without being
+one, so <code>Symphony No 9</code> and a performance of it are the same kind of thing.</figcaption>
+</figure>
+
   <section><div class="section-head">Note</div><p class="measure">Similarly to classes, schematic particulars are not bounded to one particular location at a time: as a rule, a schematic particular is wholly present wherever one of its concretizations is present; War and Peace is present wherever one of its copies is present; water is present wherever one or more H2O molecules are present; the Toyota Corolla is present wherever one of its units is present</p></section>
 </div></main>
 

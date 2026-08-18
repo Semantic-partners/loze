@@ -1,56 +1,56 @@
-<https://loze-ontology.org/atTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/afterTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/afterTime> <http://www.w3.org/2004/02/skos/core#example> "WWII occurred after 1900, the birth of Napoleon occurred after 1700, " .
-<https://loze-ontology.org/atTime> <http://www.w3.org/2000/01/rdf-schema#label> "at Time" .
-<https://loze-ontology.org/fromTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
-<https://loze-ontology.org/atTime> <http://www.w3.org/2004/02/skos/core#note> "This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too" .
-<https://loze-ontology.org/atTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t" .
-<https://loze-ontology.org/afterTime> <http://www.w3.org/2000/01/rdf-schema#label> "after Time" .
-<https://loze-ontology.org/untilTime> <http://www.w3.org/2004/02/skos/core#example> "WWII occurred until 1945, the Thirty Years' War occurred until 1648, Napoleon's life occurred until 1821" .
-<https://loze-ontology.org/untilTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
-<https://loze-ontology.org/beforeTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/afterTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
 <https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/withinTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/atTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
+<https://loze-ontology.org/atTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
+<https://loze-ontology.org/throughoutTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t" .
+<https://loze-ontology.org/withinTime> <http://www.w3.org/2004/02/skos/core#note> "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium" .
+<https://loze-ontology.org/fromTime> <http://www.w3.org/2000/01/rdf-schema#label> "from Time" .
+<https://loze-ontology.org/atTime> <http://www.w3.org/2004/02/skos/core#example> "WWII was happening at 1943, the French Revolution was happening at 1790, the Italian Renaissance was happening at 1513" .
+<https://loze-ontology.org/afterTime> <http://www.w3.org/2004/02/skos/core#note> "The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939" .
+<https://loze-ontology.org/throughoutTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
 <https://loze-ontology.org/beforeTime> <http://www.w3.org/2000/01/rdf-schema#label> "before Time" .
 <https://loze-ontology.org/beforeTime> <http://www.w3.org/2004/02/skos/core#example> "WWII occurred before 1960, the birth of Napoleon occurred before 1800" .
-<https://loze-ontology.org/withinTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
-<https://loze-ontology.org/untilTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between two periods of time of which the former is a part or segment of the latter" .
-<https://loze-ontology.org/fromTime> <http://www.w3.org/2004/02/skos/core#example> "WWII occurred from 1939, the Thirty Years' War occurred from 1618, Napoleon's life occurred from 1769" .
-<https://loze-ontology.org/throughoutTime> <http://www.w3.org/2004/02/skos/core#note> "The function of this relation is to specify the temporal location of an eventuality as a whole" .
 <https://loze-ontology.org/throughoutTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
-<https://loze-ontology.org/withinTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t" .
-<https://loze-ontology.org/temporal-relations> <http://www.w3.org/2004/02/skos/core#definition> "An extension of loze.ttl with relations for locating eventualities relative to periods of time" .
-<https://loze-ontology.org/fromTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
-<https://loze-ontology.org/afterTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
-<https://loze-ontology.org/beforeTime> <http://www.w3.org/2004/02/skos/core#note> "The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1970, even though over two decades passed between the end of WWII and 1970" .
-<https://loze-ontology.org/temporal-relations> <http://www.w3.org/2000/01/rdf-schema#label> "Temporal Relations" .
 <https://loze-ontology.org/temporal-relations> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
-<https://loze-ontology.org/beforeTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
-<https://loze-ontology.org/throughoutTime> <http://www.w3.org/2000/01/rdf-schema#label> "throughout Time" .
-<https://loze-ontology.org/atTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
-<https://loze-ontology.org/afterTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
-<https://loze-ontology.org/throughoutTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t" .
-<https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/2004/02/skos/core#example> "The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816" .
-<https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/2000/01/rdf-schema#label> "is Sub-Period Of" .
-<https://loze-ontology.org/afterTime> <http://www.w3.org/2004/02/skos/core#note> "The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939" .
-<https://loze-ontology.org/fromTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/untilTime> <http://www.w3.org/2000/01/rdf-schema#label> "until Time" .
-<https://loze-ontology.org/throughoutTime> <http://www.w3.org/2004/02/skos/core#example> "WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period" .
-<https://loze-ontology.org/throughoutTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
-<https://loze-ontology.org/withinTime> <http://www.w3.org/2004/02/skos/core#note> "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium" .
-<https://loze-ontology.org/untilTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period of time t if and only if e ends at t" .
-<https://loze-ontology.org/withinTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/temporal-relations> <http://www.w3.org/2002/07/owl#imports> <https://loze-ontology.org/> .
 <https://loze-ontology.org/afterTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely after t" .
-<https://loze-ontology.org/beforeTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/atTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
-<https://loze-ontology.org/beforeTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t" .
-<https://loze-ontology.org/fromTime> <http://www.w3.org/2000/01/rdf-schema#label> "from Time" .
-<https://loze-ontology.org/fromTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period of time t if and only if e starts occurring at t" .
+<https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/2000/01/rdf-schema#label> "is Sub-Period Of" .
 <https://loze-ontology.org/throughoutTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/atTime> <http://www.w3.org/2004/02/skos/core#note> "This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too" .
+<https://loze-ontology.org/beforeTime> <http://www.w3.org/2004/02/skos/core#note> "The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1970, even though over two decades passed between the end of WWII and 1970" .
+<https://loze-ontology.org/throughoutTime> <http://www.w3.org/2004/02/skos/core#note> "The function of this relation is to specify the temporal location of an eventuality as a whole" .
+<https://loze-ontology.org/throughoutTime> <http://www.w3.org/2000/01/rdf-schema#label> "throughout Time" .
+<https://loze-ontology.org/beforeTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
+<https://loze-ontology.org/withinTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t" .
+<https://loze-ontology.org/beforeTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/untilTime> <http://www.w3.org/2000/01/rdf-schema#label> "until Time" .
 <https://loze-ontology.org/withinTime> <http://www.w3.org/2000/01/rdf-schema#label> "within Time" .
-<https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
-<https://loze-ontology.org/atTime> <http://www.w3.org/2004/02/skos/core#example> "WWII was happening at 1943, the French Revolution was happening at 1790, the Italian Renaissance was happening at 1513" .
-<https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/PeriodOfTime> .
+<https://loze-ontology.org/withinTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
+<https://loze-ontology.org/beforeTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/withinTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/afterTime> <http://www.w3.org/2000/01/rdf-schema#label> "after Time" .
+<https://loze-ontology.org/withinTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://loze-ontology.org/untilTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/fromTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/atTime> <http://www.w3.org/2000/01/rdf-schema#label> "at Time" .
+<https://loze-ontology.org/fromTime> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/temporal-relations> <http://www.w3.org/2004/02/skos/core#definition> "An extension of loze.ttl with relations for locating eventualities relative to periods of time" .
+<https://loze-ontology.org/atTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t" .
+<https://loze-ontology.org/fromTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period of time t if and only if e starts occurring at t" .
+<https://loze-ontology.org/untilTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/untilTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
+<https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between two periods of time of which the former is a part or segment of the latter" .
+<https://loze-ontology.org/fromTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
+<https://loze-ontology.org/untilTime> <http://www.w3.org/2004/02/skos/core#example> "WWII occurred until 1945, the Thirty Years' War occurred until 1648, Napoleon's life occurred until 1821" .
+<https://loze-ontology.org/temporal-relations> <http://www.w3.org/2002/07/owl#imports> <https://loze-ontology.org/> .
+<https://loze-ontology.org/throughoutTime> <http://www.w3.org/2004/02/skos/core#example> "WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period" .
+<https://loze-ontology.org/fromTime> <http://www.w3.org/2004/02/skos/core#example> "WWII occurred from 1939, the Thirty Years' War occurred from 1618, Napoleon's life occurred from 1769" .
+<https://loze-ontology.org/temporal-relations> <http://www.w3.org/2000/01/rdf-schema#label> "Temporal Relations" .
+<https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/2004/02/skos/core#example> "The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816" .
+<https://loze-ontology.org/untilTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period of time t if and only if e ends at t" .
+<https://loze-ontology.org/isSubPeriodOf> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/PeriodOfTime> .
+<https://loze-ontology.org/afterTime> <http://www.w3.org/2004/02/skos/core#example> "WWII occurred after 1900, the birth of Napoleon occurred after 1700, " .
+<https://loze-ontology.org/afterTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/beforeTime> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t" .
+<https://loze-ontology.org/afterTime> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/PeriodOfTime> .
+<https://loze-ontology.org/atTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .

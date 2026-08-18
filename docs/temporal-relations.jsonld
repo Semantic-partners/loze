@@ -1,42 +1,27 @@
 [
   {
-    "@id": "https://loze-ontology.org/beforeTime",
+    "@id": "https://loze-ontology.org/temporal-relations",
     "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/Eventuality"
-      }
+      "http://www.w3.org/2002/07/owl#Ontology"
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "before Time"
+        "@value": "Temporal Relations"
       }
     ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
+    "http://www.w3.org/2002/07/owl#imports": [
       {
-        "@id": "https://loze-ontology.org/PeriodOfTime"
+        "@id": "https://loze-ontology.org/"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#example": [
-      {
-        "@value": "WWII occurred before 1960, the birth of Napoleon occurred before 1800"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#note": [
-      {
-        "@value": "The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1970, even though over two decades passed between the end of WWII and 1970"
+        "@value": "An extension of loze.ttl with relations for locating eventualities relative to periods of time"
       }
     ]
   },
   {
-    "@id": "https://loze-ontology.org/atTime",
+    "@id": "https://loze-ontology.org/throughoutTime",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
@@ -47,7 +32,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "at Time"
+        "@value": "throughout Time"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
@@ -57,17 +42,17 @@
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t"
+        "@value": "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
       {
-        "@value": "WWII was happening at 1943, the French Revolution was happening at 1790, the Italian Renaissance was happening at 1513"
+        "@value": "WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#note": [
       {
-        "@value": "This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too"
+        "@value": "The function of this relation is to specify the temporal location of an eventuality as a whole"
       }
     ]
   },
@@ -139,7 +124,7 @@
     ]
   },
   {
-    "@id": "https://loze-ontology.org/throughoutTime",
+    "@id": "https://loze-ontology.org/atTime",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
@@ -150,7 +135,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "throughout Time"
+        "@value": "at Time"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
@@ -160,38 +145,84 @@
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t"
+        "@value": "The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
       {
-        "@value": "WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period"
+        "@value": "WWII was happening at 1943, the French Revolution was happening at 1790, the Italian Renaissance was happening at 1513"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#note": [
       {
-        "@value": "The function of this relation is to specify the temporal location of an eventuality as a whole"
+        "@value": "This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too"
       }
     ]
   },
   {
-    "@id": "https://loze-ontology.org/temporal-relations",
+    "@id": "https://loze-ontology.org/untilTime",
     "@type": [
-      "http://www.w3.org/2002/07/owl#Ontology"
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/Eventuality"
+      }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "Temporal Relations"
+        "@value": "until Time"
       }
     ],
-    "http://www.w3.org/2002/07/owl#imports": [
+    "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "https://loze-ontology.org/"
+        "@id": "https://loze-ontology.org/PeriodOfTime"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "An extension of loze.ttl with relations for locating eventualities relative to periods of time"
+        "@value": "The relation that obtains between an eventuality e and a period of time t if and only if e ends at t"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#example": [
+      {
+        "@value": "WWII occurred until 1945, the Thirty Years' War occurred until 1648, Napoleon's life occurred until 1821"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/beforeTime",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/Eventuality"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "before Time"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#example": [
+      {
+        "@value": "WWII occurred before 1960, the birth of Napoleon occurred before 1800"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#note": [
+      {
+        "@value": "The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1970, even though over two decades passed between the end of WWII and 1970"
       }
     ]
   },
@@ -254,37 +285,6 @@
     "http://www.w3.org/2004/02/skos/core#note": [
       {
         "@value": "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium"
-      }
-    ]
-  },
-  {
-    "@id": "https://loze-ontology.org/untilTime",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/Eventuality"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "until Time"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://loze-ontology.org/PeriodOfTime"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The relation that obtains between an eventuality e and a period of time t if and only if e ends at t"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#example": [
-      {
-        "@value": "WWII occurred until 1945, the Thirty Years' War occurred until 1648, Napoleon's life occurred until 1821"
       }
     ]
   }

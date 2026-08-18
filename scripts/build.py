@@ -320,6 +320,41 @@ ul.tree a { font-weight: 500; }
   white-space: nowrap;
 }
 
+/* ── The one figure ──────────────────────────────────────────────────────────
+   Nodes take their colour from the same triad the chips use, so blue still means
+   class and amber still means property — the page teaches the encoding once and
+   the diagram spends it. Everything structural is currentColor, so the drawing
+   follows the theme instead of carrying a baked palette that only works on one
+   ground. Which is also why mustrd's schema_svg was not lifted: graphviz bakes
+   hex into the output. */
+.fig { margin: 0 0 1rem; }
+.fig svg { width: 100%; height: auto; display: block; }
+.fig figcaption {
+  max-width: var(--measure); margin-top: 1rem;
+  font-size: var(--fs-sm); color: hsl(var(--muted-foreground));
+}
+.fig-panel {
+  font-family: "DM Mono", monospace; font-size: 12px;
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+  fill: hsl(var(--muted-foreground));
+}
+.fig-rule { stroke: hsl(var(--border)); stroke-width: 1; }
+.fig-note { font-size: 13px; fill: hsl(var(--muted-foreground)); }
+
+.n-class { fill: hsl(var(--clr-node-class) / 0.10); stroke: hsl(var(--clr-node-class)); stroke-width: 1.5; }
+.n-inst  { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.5; }
+/* The schematic one is the claim, so it is the only node drawn heavier. */
+.n-schem { stroke-width: 3; }
+.n-lab  { font-family: "DM Sans", sans-serif; font-size: 14px; font-weight: 500;
+          fill: hsl(var(--foreground)); text-anchor: middle; }
+.n-kind { font-family: "DM Mono", monospace; font-size: 11px;
+          fill: hsl(var(--faint)); text-anchor: middle; }
+
+.e-base { stroke: currentColor; stroke-width: 1.4; opacity: 0.55; fill: none; }
+.e-prop { stroke: hsl(var(--clr-node-property)); stroke-width: 2; fill: none; }
+.e-lab  { font-family: "DM Mono", monospace; font-size: 11px; fill: hsl(var(--muted-foreground)); }
+.e-lab-prop { fill: hsl(var(--clr-node-property)); }
+
 footer.bot {
   border-top: 1px solid hsl(var(--border));
   padding: 2.5rem 0 4rem;
@@ -328,6 +363,82 @@ footer.bot {
 }
 footer.bot .measure p { margin: 0 0 0.75rem; }
 """
+
+
+FIGURE = '''
+<figure class="fig">
+<svg viewBox="0 0 960 430" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="Without a schematic particular, a repeatable work must be modelled as a class, so it sits in a different layer from its performances. In loze it is a particular, so the work and its performances are all instances of the same class, and the performances point at the work with isConcretizationOf.">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
+    </marker>
+  </defs>
+
+  <text class="fig-panel" x="0" y="18">Without a schematic particular</text>
+  <text class="fig-panel" x="520" y="18">With one</text>
+  <line class="fig-rule" x1="480" y1="34" x2="480" y2="406"/>
+
+  <!-- LEFT: the work is forced up into the class layer -->
+  <rect class="n-class" x="120" y="54" width="200" height="44" rx="0"/>
+  <text class="n-lab" x="220" y="81">Musical Work</text>
+  <text class="n-kind" x="220" y="118">class</text>
+
+  <rect class="n-class" x="120" y="168" width="200" height="44"/>
+  <text class="n-lab" x="220" y="195">Symphony No 9</text>
+  <text class="n-kind" x="220" y="232">class — punned to carry data</text>
+
+  <line class="e-base" x1="220" y1="168" x2="220" y2="102" marker-end="url(#ar)"/>
+  <text class="e-lab" x="230" y="140">subClassOf</text>
+
+  <rect class="n-inst" x="66" y="300" width="150" height="40"/>
+  <text class="n-lab" x="141" y="325">1963 recording</text>
+  <rect class="n-inst" x="240" y="300" width="150" height="40"/>
+  <text class="n-lab" x="315" y="325">tonight</text>
+
+  <line class="e-base" x1="141" y1="300" x2="190" y2="216" marker-end="url(#ar)"/>
+  <line class="e-base" x1="315" y1="300" x2="255" y2="216" marker-end="url(#ar)"/>
+  <text class="e-lab" x="150" y="266">a</text>
+  <text class="e-lab" x="292" y="266">a</text>
+
+  <text class="fig-note" x="0" y="372">The work sits in the class layer. It cannot hold</text>
+  <text class="fig-note" x="0" y="390">what a work has — a duration, a structure —</text>
+  <text class="fig-note" x="0" y="408">without punning it as an individual too.</text>
+
+  <!-- RIGHT: one class, three particulars -->
+  <rect class="n-class" x="620" y="54" width="200" height="44"/>
+  <text class="n-lab" x="720" y="81">Musical Work</text>
+  <text class="n-kind" x="720" y="118">class</text>
+
+  <rect class="n-inst n-schem" x="516" y="196" width="184" height="44"/>
+  <text class="n-lab" x="608" y="223">Symphony No 9</text>
+  <text class="n-kind" x="608" y="260">schematic particular</text>
+
+  <rect class="n-inst" x="790" y="170" width="150" height="40"/>
+  <text class="n-lab" x="865" y="195">1963 recording</text>
+  <rect class="n-inst" x="790" y="248" width="150" height="40"/>
+  <text class="n-lab" x="865" y="273">tonight</text>
+
+  <line class="e-base" x1="608" y1="196" x2="676" y2="102" marker-end="url(#ar)"/>
+  <line class="e-base" x1="865" y1="170" x2="800" y2="102" marker-end="url(#ar)"/>
+  <line class="e-base" x1="880" y1="248" x2="822" y2="102" marker-end="url(#ar)"/>
+  <text class="e-lab" x="628" y="150">a</text>
+  <text class="e-lab" x="836" y="140">a</text>
+  <text class="e-lab" x="866" y="176">a</text>
+
+  <line class="e-prop" x1="790" y1="190" x2="704" y2="212" marker-end="url(#ar)"/>
+  <line class="e-prop" x1="790" y1="266" x2="704" y2="230" marker-end="url(#ar)"/>
+  <text class="e-lab e-lab-prop" x="712" y="300">isConcretizationOf</text>
+
+  <text class="fig-note" x="520" y="372">All three are instances of the same class. The work</text>
+  <text class="fig-note" x="520" y="390">is a particular, so it holds a work&#8217;s own data — and</text>
+  <text class="fig-note" x="520" y="408">still sets the benchmark its performances answer to.</text>
+</svg>
+<figcaption>Three arrows land on one class on the right, and two on the left: that is the
+whole difference. A schematic particular is an individual that behaves like a type without being
+one, so <code>Symphony No 9</code> and a performance of it are the same kind of thing.</figcaption>
+</figure>
+'''
 
 
 FONTS = (
@@ -576,6 +687,7 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
   {section("Specialised by", subs_html)}
   {"" if is_prop else section("Properties from this", props_where(RDFS.domain))}
   {"" if is_prop else section("Properties onto this", props_where(RDFS.range))}
+  {FIGURE if d['name'] in ("SchematicParticular", "isConcretizationOf", "hasConcretization") else ""}
   {section("Note", f'<p class="measure">{e(d["note"])}</p>' if d['note'] else "")}
 </div></main>
 """
@@ -639,6 +751,8 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
             for s2, src2 in MODULES if s2)
         modules_nav = section("Modules", f'<div class="grid">{cells}</div>')
 
+    schematic_section = section("Why a schematic particular", FIGURE)
+
     body = f"""
 <header class="top"><div class="wrap">
   <div class="eyebrow">Semantic Partners &middot; ontology</div>
@@ -648,6 +762,7 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
   {formats_for(slug, quads=(slug == ''))}
 </div></header>
 <main><div class="wrap">
+  {schematic_section if slug == "" else ""}
   {modules_nav}
   {section(f"{len(tree_classes)} classes", tree)}
   {section(f"{len(own_props)} properties", prop_html)}
