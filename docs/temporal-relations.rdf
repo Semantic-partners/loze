@@ -5,21 +5,12 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="https://loze-ontology.org/atTime">
+  <rdf:Description rdf:about="https://loze-ontology.org/throughoutTime">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>at Time</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t</skos:definition>
-    <skos:example>WWII was happening at 1943, the French Revolution was happening at 1790, the Italian Renaissance was happening at 1513</skos:example>
-    <skos:note>This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/beforeTime">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>before Time</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t</skos:definition>
-    <skos:example>WWII occurred before 1960, the birth of Napoleon occurred before 1800</skos:example>
-    <skos:note>The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1970, even though over two decades passed between the end of WWII and 1970</skos:note>
+    <rdfs:label>throughout Time</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t</skos:definition>
+    <skos:example>WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period</skos:example>
+    <skos:note>The function of this relation is to specify the temporal location of an eventuality as a whole</skos:note>
     <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
   </rdf:Description>
@@ -30,6 +21,12 @@
     <skos:example>WWII occurred until 1945, the Thirty Years' War occurred until 1648, Napoleon's life occurred until 1821</skos:example>
     <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/temporal-relations">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>Temporal Relations</rdfs:label>
+    <skos:definition>An extension of loze.ttl with relations for locating eventualities relative to periods of time</skos:definition>
+    <owl:imports rdf:resource="https://loze-ontology.org/"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/withinTime">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -48,18 +45,29 @@
     <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/temporal-relations">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:label>Temporal Relations</rdfs:label>
-    <skos:definition>An extension of loze.ttl with relations for locating eventualities relative to periods of time</skos:definition>
-    <owl:imports rdf:resource="https://loze-ontology.org/"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/throughoutTime">
+  <rdf:Description rdf:about="https://loze-ontology.org/fromTime">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>throughout Time</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t</skos:definition>
-    <skos:example>WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period</skos:example>
-    <skos:note>The function of this relation is to specify the temporal location of an eventuality as a whole</skos:note>
+    <rdfs:label>from Time</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e starts occurring at t</skos:definition>
+    <skos:example>WWII occurred from 1939, the Thirty Years' War occurred from 1618, Napoleon's life occurred from 1769</skos:example>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/beforeTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>before Time</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t</skos:definition>
+    <skos:example>WWII occurred before 1960, the birth of Napoleon occurred before 1800</skos:example>
+    <skos:note>The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1970, even though over two decades passed between the end of WWII and 1970</skos:note>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/atTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>at Time</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t</skos:definition>
+    <skos:example>WWII was happening at 1943, the French Revolution was happening at 1790, the Italian Renaissance was happening at 1513</skos:example>
+    <skos:note>This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too</skos:note>
     <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
   </rdf:Description>
@@ -69,14 +77,6 @@
     <skos:definition>The relation that obtains between two periods of time of which the former is a part or segment of the latter</skos:definition>
     <skos:example>The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816</skos:example>
     <rdfs:domain rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/fromTime">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>from Time</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e starts occurring at t</skos:definition>
-    <skos:example>WWII occurred from 1939, the Thirty Years' War occurred from 1618, Napoleon's life occurred from 1769</skos:example>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
   </rdf:Description>
 </rdf:RDF>

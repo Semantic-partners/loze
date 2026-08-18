@@ -1,93 +1,5 @@
 [
   {
-    "@id": "https://loze-ontology.org/withinTime",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/Eventuality"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "within Time"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://loze-ontology.org/PeriodOfTime"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#note": [
-      {
-        "@value": "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium"
-      }
-    ]
-  },
-  {
-    "@id": "https://loze-ontology.org/afterTime",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/Eventuality"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "after Time"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://loze-ontology.org/PeriodOfTime"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely after t"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#example": [
-      {
-        "@value": "WWII occurred after 1900, the birth of Napoleon occurred after 1700, "
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#note": [
-      {
-        "@value": "The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939"
-      }
-    ]
-  },
-  {
-    "@id": "https://loze-ontology.org/temporal-relations",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#Ontology"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "Temporal Relations"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#imports": [
-      {
-        "@id": "https://loze-ontology.org/"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "An extension of loze.ttl with relations for locating eventualities relative to periods of time"
-      }
-    ]
-  },
-  {
     "@id": "https://loze-ontology.org/throughoutTime",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
@@ -120,6 +32,37 @@
     "http://www.w3.org/2004/02/skos/core#note": [
       {
         "@value": "The function of this relation is to specify the temporal location of an eventuality as a whole"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/withinTime",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/Eventuality"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "within Time"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#note": [
+      {
+        "@value": "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium"
       }
     ]
   },
@@ -186,37 +129,6 @@
     ]
   },
   {
-    "@id": "https://loze-ontology.org/isSubPeriodOf",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/PeriodOfTime"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "is Sub-Period Of"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://loze-ontology.org/PeriodOfTime"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The relation that obtains between two periods of time of which the former is a part or segment of the latter"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#example": [
-      {
-        "@value": "The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816"
-      }
-    ]
-  },
-  {
     "@id": "https://loze-ontology.org/atTime",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
@@ -249,6 +161,94 @@
     "http://www.w3.org/2004/02/skos/core#note": [
       {
         "@value": "This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/afterTime",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/Eventuality"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "after Time"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely after t"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#example": [
+      {
+        "@value": "WWII occurred after 1900, the birth of Napoleon occurred after 1700, "
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#note": [
+      {
+        "@value": "The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/isSubPeriodOf",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "is Sub-Period Of"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between two periods of time of which the former is a part or segment of the latter"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#example": [
+      {
+        "@value": "The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/temporal-relations",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Ontology"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Temporal Relations"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#imports": [
+      {
+        "@id": "https://loze-ontology.org/"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "An extension of loze.ttl with relations for locating eventualities relative to periods of time"
       }
     ]
   },

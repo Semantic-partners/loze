@@ -20,6 +20,9 @@
   --clr-node-class: 199 89% 48%;
   --clr-node-instance: 158 65% 52%;
   --clr-node-property: 45 93% 47%;
+  /* Application status, kept separate from the node triad above even where hues
+     would collide. Only the punning mark uses it. */
+  --clr-status-danger: 0 62% 50%;
 
   --background: var(--clr-white);
   --foreground: var(--clr-ink);
@@ -264,6 +267,12 @@ ul.tree a { font-weight: 500; }
 .e-prop { stroke: hsl(var(--clr-node-property)); stroke-width: 2; fill: none; }
 .e-lab  { font-family: "DM Mono", monospace; font-size: 11px; fill: hsl(var(--muted-foreground)); }
 .e-lab-prop { fill: hsl(var(--clr-node-property)); }
+/* The pun is the cost the figure exists to show, so it is the one mark drawn as a
+   problem: dashed, and in the danger colour rather than the node triad. */
+.e-pun { stroke: hsl(var(--clr-status-danger)); stroke-width: 1.6; stroke-dasharray: 5 4; fill: none; }
+.e-lab-warn { fill: hsl(var(--clr-status-danger)); }
+.n-pun { stroke-dasharray: 5 4; }
+.fig-warn { fill: hsl(var(--clr-status-danger)); }
 
 footer.bot {
   border-top: 1px solid hsl(var(--border));

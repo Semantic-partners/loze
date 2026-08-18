@@ -24,72 +24,80 @@
 <main><div class="wrap">
   <section><div class="section-head">Why a schematic particular</div>
 <figure class="fig">
-<svg viewBox="0 0 960 380" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="A line divides classes above from particulars below. Without a schematic particular, the work Toyota Corolla sits above the line with the classes, separated from its own performances. With one, the work sits below the line among the particulars, alongside the performances that concretize it.">
+<svg viewBox="0 0 960 440" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="A line divides classes above from particulars below. Without a schematic particular, Toyota Corolla must appear twice, once as a class so units can be instances of it and once as an individual so it can carry a kerb weight, with the two kept in sync by hand. With one, it appears once, below the line, carrying its data and acting as the benchmark its units concretize.">
   <defs>
     <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
     </marker>
   </defs>
 
-  <!-- The one line the whole figure is about -->
-  <line class="fig-band" x1="0" y1="196" x2="960" y2="196"/>
-  <text class="fig-band-lab" x="0" y="72">CLASSES</text>
-  <text class="fig-band-lab" x="0" y="240">PARTICULARS</text>
+  <line class="fig-band" x1="0" y1="206" x2="960" y2="206"/>
+  <text class="fig-band-lab" x="0" y="76">CLASSES</text>
+  <text class="fig-band-lab" x="0" y="250">PARTICULARS</text>
 
   <text class="fig-panel" x="150" y="24">Without a schematic particular</text>
   <text class="fig-panel" x="590" y="24">With one</text>
-  <line class="fig-rule" x1="510" y1="44" x2="510" y2="356"/>
+  <line class="fig-rule" x1="512" y1="44" x2="512" y2="404"/>
 
-  <!-- LEFT: the work is stranded above the line -->
-  <rect class="n-class" x="150" y="52" width="170" height="40"/>
-  <text class="n-lab" x="235" y="77">Car</text>
+  <!-- LEFT: the same name has to appear on both sides of the line -->
+  <rect class="n-class" x="150" y="56" width="150" height="38"/>
+  <text class="n-lab n-sm" x="225" y="80">Car</text>
 
-  <rect class="n-class" x="150" y="128" width="170" height="40"/>
-  <text class="n-lab" x="235" y="153">Toyota Corolla</text>
+  <rect class="n-class" x="150" y="128" width="150" height="38"/>
+  <text class="n-lab n-sm" x="225" y="152">Toyota Corolla</text>
+  <line class="e-base" x1="225" y1="128" x2="225" y2="98" marker-end="url(#ar)"/>
+  <text class="e-lab" x="234" y="120">subClassOf</text>
 
-  <line class="e-base" x1="235" y1="128" x2="235" y2="96" marker-end="url(#ar)"/>
-  <text class="e-lab" x="246" y="118">subClassOf</text>
+  <rect class="n-inst n-pun" x="330" y="226" width="150" height="38"/>
+  <text class="n-lab n-sm" x="405" y="250">Toyota Corolla</text>
+  <text class="n-kind" x="405" y="280">kerbWeight 1205 kg</text>
 
-  <rect class="grp" x="120" y="266" width="246" height="62"/>
-  <rect class="n-inst" x="132" y="278" width="102" height="38"/>
-  <text class="n-lab n-sm" x="183" y="302">my Corolla</text>
-  <rect class="n-inst" x="242" y="278" width="112" height="38"/>
-  <text class="n-lab n-sm" x="298" y="302">a new one</text>
+  <line class="e-pun" x1="300" y1="156" x2="336" y2="226"/>
+  <text class="e-lab e-lab-warn" x="332" y="186">punned</text>
 
-  <line class="e-base" x1="243" y1="266" x2="243" y2="172" marker-end="url(#ar)"/>
-  <text class="e-lab" x="253" y="222">a</text>
+  <rect class="grp" x="126" y="326" width="230" height="58"/>
+  <rect class="n-inst" x="138" y="338" width="98" height="34"/>
+  <text class="n-lab n-sm" x="187" y="360">my Corolla</text>
+  <rect class="n-inst" x="246" y="338" width="98" height="34"/>
+  <text class="n-lab n-sm" x="295" y="360">a new one</text>
 
-  <!-- RIGHT: the work has crossed the line -->
-  <rect class="n-class" x="700" y="52" width="170" height="40"/>
-  <text class="n-lab" x="785" y="77">Car</text>
+  <line class="e-base" x1="225" y1="326" x2="225" y2="172" marker-end="url(#ar)"/>
+  <text class="e-lab" x="234" y="300">a</text>
 
-  <rect class="grp" x="546" y="252" width="384" height="90"/>
-  <rect class="n-inst n-schem" x="562" y="272" width="150" height="50"/>
-  <text class="n-lab n-sm" x="637" y="295">Toyota Corolla</text>
-  <text class="n-kind" x="637" y="312">schematic</text>
+  <text class="fig-note fig-warn" x="126" y="410">Two entities, one name. Nothing keeps them in step.</text>
 
-  <rect class="n-inst" x="762" y="266" width="150" height="30"/>
-  <text class="n-lab n-sm" x="837" y="286">my Corolla</text>
-  <rect class="n-inst" x="762" y="304" width="150" height="30"/>
-  <text class="n-lab n-sm" x="837" y="324">a new one</text>
+  <!-- RIGHT: it appears once -->
+  <rect class="n-class" x="700" y="56" width="150" height="38"/>
+  <text class="n-lab n-sm" x="775" y="80">Car</text>
 
-  <line class="e-prop" x1="762" y1="281" x2="716" y2="291" marker-end="url(#ar)"/>
-  <line class="e-prop" x1="762" y1="319" x2="716" y2="305" marker-end="url(#ar)"/>
+  <rect class="grp" x="546" y="256" width="386" height="104"/>
 
-  <line class="e-base" x1="738" y1="252" x2="785" y2="96" marker-end="url(#ar)"/>
-  <text class="e-lab" x="752" y="180">a</text>
+  <rect class="n-inst n-schem" x="562" y="278" width="158" height="52"/>
+  <text class="n-lab n-sm" x="641" y="300">Toyota Corolla</text>
+  <text class="n-kind" x="641" y="318">kerbWeight 1205 kg</text>
 
-  <text class="fig-note" x="150" y="360">The model is a class, so it cannot carry a wheelbase or a</text>
-  <text class="fig-note" x="150" y="376">kerb weight without being punned as an individual too.</text>
-  <text class="fig-note" x="590" y="360">The model is a particular. It carries its own specification,</text>
-  <text class="fig-note" x="590" y="376">and sets the benchmark its units are measured against.</text>
+  <rect class="n-inst" x="768" y="274" width="148" height="30"/>
+  <text class="n-lab n-sm" x="842" y="294">my Corolla</text>
+  <rect class="n-inst" x="768" y="316" width="148" height="30"/>
+  <text class="n-lab n-sm" x="842" y="336">a new one</text>
+
+  <line class="e-prop" x1="768" y1="289" x2="724" y2="298" marker-end="url(#ar)"/>
+  <line class="e-prop" x1="768" y1="331" x2="724" y2="312" marker-end="url(#ar)"/>
+
+  <line class="e-base" x1="739" y1="256" x2="775" y2="98" marker-end="url(#ar)"/>
+  <text class="e-lab" x="748" y="180">a</text>
+
+  <text class="fig-note" x="546" y="410">One entity. It holds the model&#8217;s own data, and it is</text>
+  <text class="fig-note" x="546" y="426">what the units are measured against.</text>
 </svg>
-<figcaption>One line, two layers. On the left the work is stuck above it, a different kind of
-thing from the performances it governs. On the right it has crossed: <code>Toyota Corolla</code>
-and a performance of it are both particulars, both <code>a Car</code>, differing only in
-that one is repeatable and the others are not. The amber arrows are
-<code>isConcretizationOf</code>.</figcaption>
+<figcaption>The line divides classes from particulars, and the question is how many times
+<code>Toyota Corolla</code> has to appear. On the left, twice: as a class so units can be instances
+of it, and again as an individual so it can hold a kerb weight — two entities sharing a name, kept
+in step by hand. A schematic particular is what removes the second one. The example is the
+ontology&#8217;s own: <em>&#8220;the specifications of the Toyota Corolla are the benchmark for the
+features of its units&#8221;</em>, <code>skos:note</code> on
+<a href="/SchematicParticular">Schematic Particular</a>.</figcaption>
 </figure>
 </section>
   <section><div class="section-head">Modules</div><div class="grid"><div class="cell"><h4><a href="/artefacts-information-and-instructions">artefacts information and instructions</a></h4><p>66 statements</p></div><div class="cell"><h4><a href="/materials-and-composition">materials and composition</a></h4><p>62 statements</p></div><div class="cell"><h4><a href="/temporal-relations">temporal relations</a></h4><p>56 statements</p></div><div class="cell"><h4><a href="/suggested-social-extension">suggested social extension</a></h4><p>56 statements</p></div></div></section>
