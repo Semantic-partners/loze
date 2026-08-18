@@ -1,5 +1,103 @@
 [
   {
+    "@id": "https://loze-ontology.org/isInstructionIn",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/InformationArtefact"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "is Instruction In"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/Eventuality"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+      {
+        "@id": "https://loze-ontology.org/isStandardIn"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The sub-relation of loze:isStandardIn that obtains when the standard in question is an information artefact consisting of instructions for performing the eventuality"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#example": [
+      {
+        "@value": "The assembly manual is the instruction in the assembly of a piece of furniture, the cookbook recipe is the instruction in the preparation of a cake, the workflow documentation is the instruction in the execution of a technical process, a computer programme or software is the instruction in a computational process or programme execution"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/hasInstruction",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/Eventuality"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has Instruction"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/InformationArtefact"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://loze-ontology.org/isInstructionIn"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/Artefact",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Artefact"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://loze-ontology.org/Object"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "An object that is designed and made by humans for serving certain purposes or functions"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#example": [
+      {
+        "@value": "A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#note": [
+      {
+        "@value": "Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact"
+      }
+    ]
+  },
+  {
     "@id": "https://loze-ontology.org/InformationArtefact",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
@@ -37,33 +135,105 @@
     ]
   },
   {
-    "@id": "https://loze-ontology.org/Artefact",
+    "@id": "https://loze-ontology.org/hasStandard",
     "@type": [
-      "http://www.w3.org/2002/07/owl#Class"
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/Eventuality"
+      }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "Artefact"
+        "@value": "has Standard"
       }
     ],
-    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+    "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "https://loze-ontology.org/Object"
+        "@id": "https://loze-ontology.org/Particular"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://loze-ontology.org/isStandardIn"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "An object that is designed and made by humans for serving certain purposes or functions"
+        "@value": "The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/isRecipeIn",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/InformationArtefact"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "is Recipe In"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/Eventuality"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+      {
+        "@id": "https://loze-ontology.org/isInstructionIn"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
       {
-        "@value": "A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork"
+        "@value": "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#note": [
       {
-        "@value": "Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact"
+        "@value": "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/hasRecipe",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/Eventuality"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has Recipe"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/InformationArtefact"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://loze-ontology.org/isRecipeIn"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e"
       }
     ]
   },
@@ -123,83 +293,6 @@
     ]
   },
   {
-    "@id": "https://loze-ontology.org/isInstructionIn",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/InformationArtefact"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "is Instruction In"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://loze-ontology.org/Eventuality"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
-      {
-        "@id": "https://loze-ontology.org/isStandardIn"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The sub-relation of loze:isStandardIn that obtains when the standard in question is an information artefact consisting of instructions for performing the eventuality"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#example": [
-      {
-        "@value": "The assembly manual is the instruction in the assembly of a piece of furniture, the cookbook recipe is the instruction in the preparation of a cake, the workflow documentation is the instruction in the execution of a technical process, a computer programme or software is the instruction in a computational process or programme execution"
-      }
-    ]
-  },
-  {
-    "@id": "https://loze-ontology.org/isRecipeIn",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/InformationArtefact"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "is Recipe In"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://loze-ontology.org/Eventuality"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
-      {
-        "@id": "https://loze-ontology.org/isInstructionIn"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#example": [
-      {
-        "@value": "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#note": [
-      {
-        "@value": "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular"
-      }
-    ]
-  },
-  {
     "@id": "https://loze-ontology.org/isStandardIn",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
@@ -237,99 +330,6 @@
     "http://www.w3.org/2004/02/skos/core#note": [
       {
         "@value": "Only eventualities that have humans as agents (loze:isAgentIn) or are executed by objects designed by humans - like an automated system - can have a standard (loze:isStandardIn), since treating something as a rule or standard for an action requires human-like cognitive faculties"
-      }
-    ]
-  },
-  {
-    "@id": "https://loze-ontology.org/hasRecipe",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/Eventuality"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "has Recipe"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://loze-ontology.org/InformationArtefact"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "https://loze-ontology.org/isRecipeIn"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e"
-      }
-    ]
-  },
-  {
-    "@id": "https://loze-ontology.org/hasInstruction",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/Eventuality"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "has Instruction"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://loze-ontology.org/InformationArtefact"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "https://loze-ontology.org/isInstructionIn"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e"
-      }
-    ]
-  },
-  {
-    "@id": "https://loze-ontology.org/hasStandard",
-    "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#domain": [
-      {
-        "@id": "https://loze-ontology.org/Eventuality"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "has Standard"
-      }
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#range": [
-      {
-        "@id": "https://loze-ontology.org/Particular"
-      }
-    ],
-    "http://www.w3.org/2002/07/owl#inverseOf": [
-      {
-        "@id": "https://loze-ontology.org/isStandardIn"
-      }
-    ],
-    "http://www.w3.org/2004/02/skos/core#definition": [
-      {
-        "@value": "The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e"
       }
     ]
   }
