@@ -1,0 +1,71 @@
+@prefix loze: <https://loze-ontology.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://loze-ontology.org/suggested-social-extension> a owl:Ontology ;
+    rdfs:label "Suggested Social Extension" ;
+    skos:definition "An extension of loze.ttl with classes and relations for modelling living beings and social entities such as persons, groups, and organisations" ;
+    owl:imports loze: .
+
+################
+# Core classes #
+################
+
+loze:LivingBeing a owl:Class ;
+    rdfs:label "Living Being" ;
+    skos:definition "An object that displays properties such as responsiveness, growth, metabolism, energy transformation, and reproduction" ;
+    skos:note "The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; nevertheless, there are still borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)" ;
+    rdfs:subClassOf loze:Object .
+
+loze:Animal a owl:Class ;
+    rdfs:label "Animal" ;
+    skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings" ; 
+    skos:note "Animals typically have a more flexible body than plants and fungi and are able to move" ;
+    skos:note "Within biological taxonomy - so-called Tree of Life - animals are the members of the kingdom of Animalia" ;
+    rdfs:subClassOf loze:LivingBeing ;
+    owl:disjointUnionOf (loze:Person loze:NonHumanAnimal) .
+
+loze:Plant a owl:Class ;
+    rdfs:label "Plant" ;
+    skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) derives its nourishment from photosynthesis" ;
+    skos:note "Plants typically have a firmer cellular structure than animals and are not able to move" ;
+    skos:note "Within biological taxonomy - so-called Tree of Life - plants are the members of the kingdom of Plantae" ;
+    rdfs:subClassOf loze:LivingBeing .
+
+loze:Person a owl:Class ;
+    rdfs:label "Person" ;
+    skos:definition "An animal that is a specimen of the species Homo sapiens" ;
+    skos:note "It does not encompass those entities that in the legal jargon are called 'legal persons' or 'non-physical persons' " ;
+    skos:note "Specimens of other species of the genus Homo (such as Homo erectus or Homo Neanderthalensis) would be problematic to categorise, because they are not specimens of Homo sapiens yet they qualify as humans in a broader sense; in practice, this issue is irrelevant, since Homo sapiens is the only extant species of the genus Homo" ;
+    rdfs:subClassOf loze:Animal .
+
+loze:NonHumanAnimal a owl:Class ;
+    rdfs:label "Non-Human Animal" ;
+    skos:definition "An animal that is not a specimen of the species Homo sapiens" ;
+    skos:note "In ordinary talk as well as legal talk, non-human animals are usually called just 'animals'" ;
+    rdfs:subClassOf loze:Animal .
+
+loze:Group a owl:Class ;
+    rdfs:label "Group" ;
+    skos:definition "An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction" ;
+    skos:example "A household, a family, a couple, any organisation" ;
+    skos:note "Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes" ;
+    rdfs:subClassOf loze:Object .
+
+loze:Organisation a owl:Class ;
+    rdfs:label "Organisation" ;
+    skos:definition "A group whose members are acting together in the pursuit of a common goal, based on an agreed upon system of rules and commitments" ;
+    skos:example "A company, a charity or foundation, a political party, a club, a state or government, an international organisation, a criminal gang, a terrorist organisation" ;
+    skos:note "A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are inherently illegal, such as criminal gangs and terrorist organisations" ;
+    skos:note "An organisation can have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts" ;
+    rdfs:subClassOf loze:Group .
+
+loze:OrganisationOrgan a owl:Class ;
+    rdfs:label "Organisation Organ" ;
+    skos:definition "A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) it not itself an organisation" ;
+    skos:example "A government's parliament, a company's committee, a team" ;
+    skos:note "The difference between an organisation organ and an organisation that is part of another organisation is that the official goals of an organ are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation" ;
+    rdfs:subClassOf loze:Group .
