@@ -5,940 +5,940 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
+  <rdf:Description rdf:about="https://loze-ontology.org/hasConcretization">
+    <rdfs:label>has Concretization</rdfs:label>
+    <rdfs:range rdf:resource="https://loze-ontology.org/ConcreteParticular"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isConcretizationOf"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between a schematic particular s and a concrete particular c if and only if c is a concretization of s</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isParticipantIn">
+    <rdfs:label>is Participant In</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Entity"/>
+    <skos:note>There are various ways in which an entity can participate in an eventuality, which are expressed by means of various sub-relations of loze:isParticipantIn</skos:note>
+    <skos:note>Intuitively, the participants in an eventuality can be viewed as the entities that are involved in it or play some role in it</skos:note>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:example>A red apple participates in its redness; Socrates participates in his wisdom; two spouses participate in their marriage; a killer, the victim, and the gun all participate in a killing; Italy, Austria and Germany all participates in Austria being located between Italy and Germany</skos:example>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between an entity e and an eventuality e' if and only if e' determines, modifies or qualifies e</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isHostIn">
+    <skos:note>This relation does not apply to a person who is 'hosting' a party or to the 'host' of a game - who are rather agents in the respective eventualities</skos:note>
+    <skos:example>The house is the host in a residency or occupation, the tank is the host in the containment of a liquid, the duct is the host in the flow of a fluid, the place is the host in a position or location</skos:example>
+    <rdfs:label>is Host In</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p encloses, accommodates or contains some other particular in the context of e</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/artefacts-information-and-instructions">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:imports rdf:resource="https://loze-ontology.org/"/>
+    <rdfs:label>Artefacts, Information, and Instructions</rdfs:label>
+    <skos:definition>An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/OrganisationOrgan">
+    <skos:note>The difference between an organisation organ and an organisation that is part of another organisation is that the official goals of an organ are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation</skos:note>
+    <skos:definition>A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) it not itself an organisation</skos:definition>
+    <skos:example>A government's parliament, a company's committee, a team</skos:example>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Group"/>
+    <rdfs:label>Organisation Organ</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b10">
+    <rdf:first rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isInstructionIn">
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:example>The assembly manual is the instruction in the assembly of a piece of furniture, the cookbook recipe is the instruction in the preparation of a cake, the workflow documentation is the instruction in the execution of a technical process, a computer programme or software is the instruction in a computational process or programme execution</skos:example>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isStandardIn"/>
+    <skos:definition>The sub-relation of loze:isStandardIn that obtains when the standard in question is an information artefact consisting of instructions for performing the eventuality</skos:definition>
+    <rdfs:label>is Instruction In</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/InformationArtefact"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isContentIn">
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isThemeIn"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:label>is Content In</rdfs:label>
+    <skos:example>The liquid is the content in its containment by a tank, the fluid is the content when flowing in a duct</skos:example>
+    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only p is enclosed or contained by some other particular in the context of e</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Animal">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/LivingBeing"/>
+    <skos:note>Within biological taxonomy - so-called Tree of Life - animals are the members of the kingdom of Animalia</skos:note>
+    <skos:note>Animals typically have a more flexible body than plants and fungi and are able to move</skos:note>
+    <rdfs:label>Animal</rdfs:label>
+    <owl:disjointUnionOf rdf:nodeID="n8464c751de3c4442956d9fed0c0d1c0cb1"/>
+    <skos:definition>A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasHeld">
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Entity"/>
+    <rdfs:label>has Held</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e' and an entity e if and only if e is held in e'</skos:definition>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isHeldIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Parthood">
+    <skos:example>An arm being part of a person, a wall being part of a house, a compressor being part of a refrigerator, a wood board being part of a table, a nucleus being part of an atom, Mars being part of the solar system, the lithosphere being part of the Earth, a movement being part of symphony, hydrogen atom being part of water molecule</skos:example>
+    <skos:definition>An eventuality that consists in one particular being part of another particular</skos:definition>
+    <skos:note>The core participants in a parthood are the part (loze:isComponentIn) and the composite (loze:isCompositeIn)</skos:note>
+    <rdfs:label>Parthood</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Composition"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasComponent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between a composition c and a particular p if and only if p is a component in c</skos:definition>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isComponentIn"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
+    <rdfs:label>has Component</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasDetermination">
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isDeterminationOf"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Determination</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <skos:definition>The relation that obtains between a schematic particular x and a schematic particular y if and only if y is a determination of x</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/atTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:note>This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too</skos:note>
+    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t</skos:definition>
+    <skos:example>WWII was happening at 1943, the French Revolution was happening at 1790, the Italian Renaissance was happening at 1513</skos:example>
+    <rdfs:label>at Time</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Composition">
+    <skos:definition>An eventuality that is either a parthood or a constitution</skos:definition>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="nde624e0723634d0ea9652eefd486a545b11"/>
+    <rdfs:label>Composition</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasInstrument">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isInstrumentIn"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:label>has Instrument</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is an instrument in e</skos:definition>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isCompositeIn">
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
+    <skos:example>In my arm being part of my body, my arm is the component and my arm is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component</skos:example>
+    <rdfs:label>is Composite In</rdfs:label>
+    <skos:definition>The relation that obtains between a particular p and a composition c if and only if p has as component some other particular in the context of c</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/untilTime">
+    <rdfs:label>until Time</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:example>WWII occurred until 1945, the Thirty Years' War occurred until 1648, Napoleon's life occurred until 1821</skos:example>
+    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e ends at t</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Place">
+    <skos:note>There is an obvious sense in which even objects can host other particulars: for example, a house can host people and artefacts; likewise, a tank can host amounts of liquid; however, places host things by being occupied by them, whereas objects host things by having them within themselves - that is, by having them occupying the place that they enclose</skos:note>
+    <skos:note>The matter that is hosted in a place makes no difference for the individuation of that place: a room remains in existence irrespective of whether it hosts an absolute vacuum, a few pieces of furniture and regular air, or a giant load of cotton wool</skos:note>
+    <skos:example>A room, the interior of a refrigerator, a tunnel, the left ventricle of your heart</skos:example>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Thing"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Place</rdfs:label>
+    <skos:definition>A thing that is individuated by its position relative to other things - such as being enclosed by an object, being to the left side of an object, or being immediately North of another place</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasRepeatedContent">
+    <rdfs:label>has Repeated Content</rdfs:label>
+    <skos:definition>The relation that obtains between a containment c and a schematic particular s if and only if s is the repeated content in c</skos:definition>
+    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedContentIn"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Containment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isStandardIn">
+    <skos:note>Only eventualities that have humans as agents (loze:isAgentIn) or are executed by objects designed by humans - like an automated system - can have a standard (loze:isStandardIn), since treating something as a rule or standard for an action requires human-like cognitive faculties</skos:note>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:example>Regulations are the standard in a compliant business operation, best practices are the standard in a technical development, the workflow is the standard in the execution of a technical process</skos:example>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isTopicIn"/>
+    <skos:definition>The sub-relation of loze:isTopicIn that obtains when the topic provides the rules or standard for the performance of the eventuality</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:label>is Standard In</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isThemeIn">
+    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p is in a certain state or occupies a position in the context of e</skos:definition>
+    <skos:example>In a marriage, both spouses are themes; in the case of a glass lying on a table, the glass is the theme; in the case of an amount of liquid contained in a tank, the amount of liquid is the theme; in the case of somebody owning a real estate, the real estate is theme</skos:example>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <rdfs:label>is Theme In</rdfs:label>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <skos:note>That of the theme is a broad thematic relations that can be useful whenever no other thematic relation applies; that being said, more specific sub-relations should be defined whenever needed</skos:note>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasContent">
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Content</rdfs:label>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isContentIn"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the content in e</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isDeterminationOf">
+    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <rdfs:label>is Determination Of</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <skos:definition>The relation that obtains between a schematic particular x and another schematic particular y if and only if x has all the essential properties of y together with further essential properties that y lacks</skos:definition>
+    <skos:note>If x is a concretization of y and y is a determination of z, then x is also a concretization of z; one unit of the Toyota Corolla hatchback is also a unit of the Toyota Corolla; a heavy water molecule is a water molecule; and so on</skos:note>
+    <skos:note>Informally, determination consists in the gradual increase in detailing and specificity of a schematic particular; it can be viewed as the schematic particulars' counterpart of subclasshood</skos:note>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <skos:example>The Toyota Corolla Hatchback is a determination of the Toyota Corolla; the 1869 version of War and Peace is a determination of War and Peace; Apocalypse Now Redux is a determination of Apocalypse Now; heavy water is a determination of water; anthracite is a determination of coal; carbon-14 is a determination of carbon</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isIngredientIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
+    <skos:note>Substance repetition is impractical to account for in terms of number of occurrences, since the units are too many to be counted; consequently, instead of using loze:hasNumberOfOccurrences, it is advisable to specify quantities based on units of measure</skos:note>
+    <rdfs:label>is Ingredient In</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Substance"/>
+    <skos:example>In the case of a cake having as ingredient 200 grams of wheat flour, wheat flour is the ingredient; in the case of a solution having as ingredient 2 litres of water, water is the ingredient</skos:example>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn"/>
+    <skos:definition>The sub-relation of loze:isComponentIn that obtains whenever the component is a substance that occurres in the composite in a given amount</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isOriginIn">
+    <skos:note>The origin does not need to be a place, but it can be a thing or a period of time too</skos:note>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:example>The starting point in a journey, the supply point in a utility supply, the seller in a property conveyance, the seed in a plant growth</skos:example>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <skos:definition>The relation that obtains between a particular entity p and an eventuality e if and only if p is the initial point of a movement or change in the context of e</skos:definition>
+    <rdfs:label>is Origin In</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/suggested-social-extension">
+    <skos:definition>An extension of loze.ttl with classes and relations for modelling living beings and social entities such as persons, groups, and organisations</skos:definition>
+    <rdfs:label>Suggested Social Extension</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:imports rdf:resource="https://loze-ontology.org/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/fromTime">
+    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:example>WWII occurred from 1939, the Thirty Years' War occurred from 1618, Napoleon's life occurred from 1769</skos:example>
+    <rdfs:label>from Time</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e starts occurring at t</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Constitution">
+    <skos:note>In a constitution, the core participants are the composite (loze:isCompositeIn) and the schematic particular that is repeated in it (loze:isComponentIn)</skos:note>
+    <skos:note>In formal mereology, one particular being 'entirely made up' by repeated occurrences, means that it is identical to the mereological sum of those occurrences: as an approximation, this means that its only parts are those occurrences and the parts of those occurrences; more rigorous definitions can be found in the philosophical literature on formal mereology</skos:note>
+    <skos:note>In practice, the function of this class of eventualities is to describe the overall composition of a particular without giving an enumeration of its individual parts</skos:note>
+    <rdfs:label>Constitution</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Composition"/>
+    <skos:definition>An eventuality that consists in one particular being entirely made up by repeated occurrences of a given schematic particular</skos:definition>
+    <skos:example>A polymerous sequence being made up by repetitions of a given monomer; an aggregate of tablets being made up by one tablet (construed as a schematic object) repeated in 10 occurrences</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isHolderIn">
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Entity"/>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <rdfs:label>is Holder In</rdfs:label>
+    <skos:example>the person or organisation is the holder in a possession or ownership; the manager is the holder in a management relationship with the managed employee</skos:example>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between an entity e and an eventuality e' if and only if e controls or is super-ordinated to some other entity in the context of e' </skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/beforeTime">
+    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t</skos:definition>
+    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+    <skos:note>The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1970, even though over two decades passed between the end of WWII and 1970</skos:note>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>before Time</rdfs:label>
+    <skos:example>WWII occurred before 1960, the birth of Napoleon occurred before 1800</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Thing">
+    <owl:disjointUnionOf rdf:nodeID="nde624e0723634d0ea9652eefd486a545b7"/>
+    <rdfs:label>Thing</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:definition>A particular entity that is not a way of being or a modification of other entities</skos:definition>
+    <skos:note>Despite the similar local name, this class is much narrower than owl:Thing, which encompasses all entities</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Particular"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Group">
+    <skos:example>A household, a family, a couple, any organisation</skos:example>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:definition>An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction</skos:definition>
+    <rdfs:label>Group</rdfs:label>
+    <skos:note>Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasIngredient">
+    <rdfs:label>has Ingredient</rdfs:label>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Substance"/>
+    <skos:definition>The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isIngredientIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasDestination">
+    <rdfs:label>has Destination</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isDestinationIn"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the destination in e</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/throughoutTime">
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:note>The function of this relation is to specify the temporal location of an eventuality as a whole</skos:note>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+    <skos:example>WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period</skos:example>
+    <skos:definition>The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t</skos:definition>
+    <rdfs:label>throughout Time</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isAgentIn">
+    <skos:note>A given thing can be both agent and patient in the same eventuality: for example, a person washing themselves is both agent and patient in a washing; in a handshake greeting, both persons are both agents (since they are shaking the other person's hand) and patient (since their own hand is being shaken)</skos:note>
+    <skos:note>An agent doesn't need to be a person, a living being or some other object that we would intuitively consider 'animated' </skos:note>
+    <skos:note>An eventuality can have an agent without having patients or products: for example, Joe's walking has Joe has agent, but no patient or product</skos:note>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <skos:example>The killer is the agent in a killing, the mechanic is the agent in the repair of the car, Joe is the agent in Joe's walking, the baker is the agent in the making of the bread</skos:example>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Thing"/>
+    <skos:definition>The relation that obtains between a thing t and an eventuality e if and only if t acts or causes changes in some thing in the context of e</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:label>is Agent In</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasTheme">
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is a theme in e</skos:definition>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Theme</rdfs:label>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isThemeIn"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isReferencePointIn">
+    <skos:note>The possibility of absolute motion is controversial in theoretical physics and philosophy; however, this matter is operationally irrelevant, because in practice motion can only be assessed relative to a reference framework</skos:note>
+    <skos:note>In ordinary talk, the reference point of a movement is often not mentioned because it's identified by default with the Earth - or some Earth-based reference framework</skos:note>
+    <skos:note>The scope of this thematic relation is not limited to motion, but also encompasses other types of changes as well as comparisons: for example, if an eventuality consists in an object being larger than another one, the larger object will be the theme and the other will be the reference point</skos:note>
+    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p is the term of reference point or the reference framework for a movement, change, or comparison in the context of e</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:example>In the case of John being taller than Dan, Dan is the reference point; in the case of an object falling down from the top of a tower, the top of the tower is the reference point; in the case of a vehicle moving on the surface of Earth, Earth - or some Earth-based geolocation framework - is the reference point</skos:example>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <rdfs:label>is Reference Point In</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isRecipientIn">
+    <skos:note>Compared to an affected thing, the recipient is impacted or controlled less directly in the context of the eventuality</skos:note>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if some other particular is transferred or put under the hold of p in the context of e</skos:definition>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:label>is Recipient In</rdfs:label>
+    <skos:example>The payee is the recipient in a payment, the buyer is the recipient in a property conveyance, the addressee is the recipient in a shipping, the donee is the recipient in a donation</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isRepeatedContentIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:note>A containment with a repeated component is always going to have an associated number of occurrences (loze:hasNumberOfOccurrences)</skos:note>
+    <skos:note>While the repeated content is always going to be a schematic particular, the host can be either a schematic particular or a concrete particular</skos:note>
+    <skos:definition>The sub-relation of loze:isContentIn that obtains whenever the content is a schematic particular that is repeated in the host in multiple occurrences</skos:definition>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Containment"/>
+    <rdfs:label>is Repeated Content In</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isContentIn"/>
+    <skos:example>In the case of a blister pack containing 10 standardised 5 mg paracetamol tablets, the 5 mg paracetamol tablet - construed as a schematic particular - is the repeated content</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Containment">
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:label>Containment</rdfs:label>
+    <skos:example>A box containing eggs, a glass containing a portion of water, a dwelling containing pieces of furniture</skos:example>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment>An eventuality in which a particular is positioned within and physically constrained by another object</rdfs:comment>
+    <skos:note>In a containment, the core participants are the container (loze:isHostIn) and the content (loze:isContentIn)</skos:note>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Object">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Thing"/>
+    <skos:note>An object persists over time as long as it preserves the internal organisation, function, or form that individuates it; as long as that is preserved, the parts of the objects and their types can change without causing the object to go out of existence</skos:note>
+    <skos:example>A human, a horse, a molecule, a table, a computer, a planet, a paracetamol tablet</skos:example>
+    <rdfs:label>Object</rdfs:label>
+    <skos:definition>A thing that is individuated by a certain internal organisation, function, or form</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasTopic">
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between an eventuality e' and an entity e if and only if e is a topic in e'</skos:definition>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Entity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Topic</rdfs:label>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isTopicIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/PeriodOfTime">
+    <skos:note>Two period of time can have exactly the same duration and yet be distinct period of time, because they have distinct beginnings and ends; for example, this hour and the next hour are two distinct periods, despite having the exact same duration of 60 minutes</skos:note>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Thing"/>
+    <skos:definition>A thing that is individuated by its coordinates across the temporal axis</skos:definition>
+    <skos:example>The year 1943, the 6th of May of 2005, any second or minute, the period that goes from the 3rd of May of 1467 to the 22nd of July of 1615</skos:example>
+    <rdfs:label>Period Of Time</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isProductIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p is brought into existence by some other particular in the context of e</skos:definition>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:example>The house is the product in a construction work, the cake is the product in the context of baking, molecules are the products in a chemical synthesis, the zygote is the product in the fertilization of a female gamete from a male gamete</skos:example>
+    <skos:note>Every eventuality that has a product also has some agent</skos:note>
+    <skos:note>A product does not need to be a concrete particular, but it can also be a schematic particular: for example, a document or a book (in abstraction from its copies) is the product of a writing endeavour</skos:note>
+    <rdfs:label>is Product In</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/afterTime">
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:example>WWII occurred after 1900, the birth of Napoleon occurred after 1700, </skos:example>
+    <skos:note>The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939</skos:note>
+    <rdfs:label>after Time</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely after t</skos:definition>
+    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isComponentIn">
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <skos:example>In my arm being part of my body, my arm is the component and my body is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component</skos:example>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between a particular p and a composition c if and only if p composes some other particular in the context of c</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:label>is Component In</rdfs:label>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isRepeatedComponentIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
+    <skos:example>In the case of a monomer making up a polymerous sequence, the monomer is the repeated component; in the case of water having two atoms of hydrogen, hydrogen atom is the repeated component; in the case of an engine having pistons of a certain type, the piston - construed as a schematic object - is the repeated component</skos:example>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <skos:note>While the repeated component is always going to be a schematic particular, the composite can be either a schematic particular or a concrete particular</skos:note>
+    <skos:note>The number of repetitions is going to be specified by the associated number of occurrences (loze:hasNumberOfOccurrences)</skos:note>
+    <skos:definition>The sub-relation of loze:isComponentIn that obtains whenever the component is a schematic particular that is repeated in the composite in multiple occurrences</skos:definition>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn"/>
+    <rdfs:label>is Repeated Component In</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isStageOf">
+    <rdfs:label>is Stage Of</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between two eventualities e and e' if and only if e is a stage or phase in the occurrence of e' </skos:definition>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:note>In other upper-level ontologies, relations like this are considered special cases of parthood, since the stages of an eventuality can be viewed as its 'temporal slices'; however, we prefer to suspend the judgment about whether the stages of an eventuality are to be considered among its parts</skos:note>
+    <skos:note>Given an eventuality e and a period of time t, e can have at the most one stage that occurs from the start to the end of t</skos:note>
+    <skos:example>The construction of the foundations of a house is a stage of the construction of the whole house, the preparation of the dough is a stage in the making of a pizza, the positioning of the explosive is a stage in the demolition of a building, the fermentation of the must is a stage in the production of wine</skos:example>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasStage">
+    <rdfs:label>has Stage</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between an eventuality e and an eventuality e' if and only if e' is a stage of e</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isStageOf"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasInstruction">
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
+    <rdfs:label>has Instruction</rdfs:label>
+    <rdfs:range rdf:resource="https://loze-ontology.org/InformationArtefact"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b3">
+    <rdf:rest rdf:nodeID="nde624e0723634d0ea9652eefd486a545b4"/>
+    <rdf:first rdf:resource="https://loze-ontology.org/Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Organisation">
+    <skos:note>A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are inherently illegal, such as criminal gangs and terrorist organisations</skos:note>
+    <skos:note>An organisation can have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Group"/>
+    <skos:definition>A group whose members are acting together in the pursuit of a common goal, based on an agreed upon system of rules and commitments</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Organisation</rdfs:label>
+    <skos:example>A company, a charity or foundation, a political party, a club, a state or government, an international organisation, a criminal gang, a terrorist organisation</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isHeldIn">
+    <rdfs:label>is Held In</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between an entity e and an eventuality e' if and only if e is controlled by or subordinated to some other entity in the context of e' </skos:definition>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isThemeIn"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Entity"/>
+    <skos:example>The possessed thing is the held in a possession or ownership; the managed employee is the held in a management relationship</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasComposite">
+    <skos:definition>The relation that obtains between a composition c and a particular p if and only if p is the composite in c</skos:definition>
+    <rdfs:label>has Composite</rdfs:label>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isCompositeIn"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasReferencePoint">
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the reference point in e</skos:definition>
+    <rdfs:label>has Reference Point</rdfs:label>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isReferencePointIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Eventuality">
+    <skos:note>An eventuality is not general, but is linked to its participants - that is, the entities that bear it or are involved in it; the wisdom of Socrates is numerically distinct from the wisdom of Diogenes, and they existed at different times; the redness of this apple is distinct from the redness of that other apple, and so on</skos:note>
+    <skos:note>This is intended as a broad, comprehensive category that encompasses the entities that in other ontologies and category systems are variously called 'qualities', 'attributes', 'relations, 'events', 'processes', 'facts', 'specifically dependent continuants' etc...</skos:note>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Particular"/>
+    <skos:example>The redness of this apple, the wisdom of Socrates, the marriage between Napoleon and Josephine, the stabbing of Caesar from Brutus, my walk from my house to a grocery shop, the Earth being positioned between Venus and Mars, an engine being fuelled with an amount of gasoline</skos:example>
+    <skos:definition>A particular entity that is a way of being or a modification of one or more other entities - qualifying them or making them be or go in a certain way - and is individuated by those entities</skos:definition>
+    <rdfs:label>Eventuality</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasHolder">
+    <rdfs:label>has Holder</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isHolderIn"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Entity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between an eventuality e' and an entity e if and only if e is the holder in e'</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Substance">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Substance</rdfs:label>
+    <skos:note>Here the word 'substance' is used in the chemical sense, and not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics</skos:note>
+    <skos:note>Dissectability consists in concretizations being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold</skos:note>
+    <skos:example>Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint</skos:example>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <skos:definition>A schematic particular that is highly dissectable</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasStandard">
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e</skos:definition>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Standard</rdfs:label>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isStandardIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasSetting">
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isSettingIn"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Object"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between an eventuality e and an object o if and only if o is the setting in e</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:label>has Setting</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/temporal-relations">
+    <skos:definition>An extension of loze.ttl with relations for locating eventualities relative to periods of time</skos:definition>
+    <rdfs:label>Temporal Relations</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:imports rdf:resource="https://loze-ontology.org/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <skos:definition>A top-level ontology largely inspired - with a few deviations and additions - by the four-category ontology outlined by the philosopher E. J. Lowe (2006), supplemented with the concept of a schematic particular explored by Eddy Zemach (1970)</skos:definition>
+    <rdfs:label>Loze Upper-Level Ontology</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasWaypoint">
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:label>has Waypoint</rdfs:label>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isWaypointIn"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is a waypoint in e</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/SchematicParticular">
+    <skos:note>An schematic particular has the force of a determinant with regard to its concretizations: the structure of Beethoven's Symphony No 9 dictates the structure of its performances; the specifications of the Toyota Corolla are the benchmark for the features of its units; the chemical properties of water determine the behaviour of concrete portions of water</skos:note>
+    <skos:note>The division between concrete particulars and schematic particulars cuts across the further sub-divisions of particulars: there are concrete objects and schematic objects, concrete eventualities and schematic eventualities, concrete aggregates and schematic aggregates, and so on</skos:note>
+    <skos:note>Similarly to classes, schematic particulars are not bounded to one particular location at a time: as a rule, a schematic particular is wholly present wherever one of its concretizations is present; War and Peace is present wherever one of its copies is present; water is present wherever one or more H2O molecules are present; the Toyota Corolla is present wherever one of its units is present</skos:note>
+    <skos:note>Differently from classes, schematic particulars share their main features with their instances; for example, a book has chapters just like its copies, a piece of music has the same harmonic structure as its performances, an alphabetic character has the same shape as its inscriptions, a car model has similar features as its units</skos:note>
+    <skos:example>A document (as opposed to its particular copies), a work of music (as opposed to its performances), an alphabetic character (as opposed to its inscriptions), a software (as opposed to its installed copies), a substance or material like water or gold (as opposed to their circumscribed portions), a car model (as opposed to its units)</skos:example>
+    <skos:definition>A particular that is not bounded to one spatial location at a time and that can be concretized by concrete particulars</skos:definition>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:label>Schematic Particular</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Entity">
+    <owl:disjointUnionOf rdf:nodeID="nde624e0723634d0ea9652eefd486a545b1"/>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:note>It corresponds to owl:Thing</skos:note>
+    <rdfs:label>Entity</rdfs:label>
+    <skos:definition>Anything that exists, is real, or is in the world</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasRecipient">
+    <rdfs:label>has Recipient</rdfs:label>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is a recipient in e</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRecipientIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasHost">
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isHostIn"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Host</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the host in e</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasParticipant">
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:label>has Participant</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e' and an entity e if and only if e is a participant in e'</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Entity"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isAffectedIn">
+    <skos:definition>The relation that obtains between a thing t and an eventuality e if and only t is affected by a thing - the agent - in the context of e</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Thing"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:note>Every eventuality that has an affected thing also has some agent</skos:note>
+    <skos:note>A given thing can be both agent and affected in the same eventuality: for example, a person washing themselves is both agent and the affected thing in a washing; in a handshake greeting, both persons are both agents (since they are shaking the other person's hand) and affected (since their own hand is being shaken)</skos:note>
+    <skos:example>The victim is affected in a killing, the cake is affected in an eating, the car is affected in the repair, the house is affected in an alteration</skos:example>
+    <rdfs:label>is Affected In</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasRecipe">
+    <rdfs:range rdf:resource="https://loze-ontology.org/InformationArtefact"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRecipeIn"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Recipe</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isWaypointIn">
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <skos:example>An intermediate stop in a travel, the ducts linking the supply point to a distribution point</skos:example>
+    <rdfs:label>is Waypoint In</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:note>The destination does not need to be a place, but it can be a thing or a period of time too</skos:note>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p is an intermediate point of movement or change in the context of e</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Text">
+    <skos:example>A book, an article, a physical document, a text or document file, a book chapter, a dish recipe</skos:example>
+    <rdfs:label>Text</rdfs:label>
+    <skos:note>According to the definition, not only plain text files, but also document files are instances of loze:Text</skos:note>
+    <skos:note>In a software system, a machine code might not be a text, because it's not always meant to convey meaning to humans; on the other hand, the source code is a text, since it's human-readable</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/InformationArtefact"/>
+    <skos:definition>An information artefact that consists of sentences in some human-readable language and is meant to convey meaning to humans</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isTopicIn">
+    <skos:example>Joe is the topic in an identity check, an electrical system is the topic of an electrical safety report, cancer (as a schematic particular or a class of eventualities) is the topic in a cancer research, liberty is the topic of John Stuart Mill's essay 'On Liberty', a book (in abstraction from its copies) is the topic of a review</skos:example>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <rdfs:label>is Topic In</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between an entity e and an eventuality e' if and only if e is a subject matter of cognition or meaning in the context of e' </skos:definition>
+    <skos:note>Since a cognition can be about abstractions, the topic of an eventuality can also be a class or a schematic particular</skos:note>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Entity"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b4">
+    <rdf:first rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Particular">
+    <rdfs:label>Particular</rdfs:label>
+    <skos:note>Particular entities are to be contrasted with classes; the concept of a particular mostly corresponds to the Semantic Web concept of an individual or instance</skos:note>
+    <owl:disjointUnionOf rdf:nodeID="nde624e0723634d0ea9652eefd486a545b5"/>
+    <owl:disjointUnionOf rdf:nodeID="nde624e0723634d0ea9652eefd486a545b3"/>
+    <skos:definition>An entity that is not a class or type of entities</skos:definition>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Entity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasAffected">
+    <rdfs:label>has Affected</rdfs:label>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isAffectedIn"/>
+    <skos:definition>The relation that obtains between an eventuality e and a thing t if and only if t is affected in e</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Thing"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isInstrumentIn">
+    <skos:example>The gun is the instrument in a killing, the hammer is the instrument in the driving of a nail, the vehicle is the instrument in a journey, a debit or credit card is the instrument in a payment</skos:example>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p enables an agent to affects some thing in the context of e</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:note>The instrument in an eventuality can also be a person: for example, the messenger is the instrument in the sending of a message</skos:note>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:label>is Instrument In</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/ConcreteParticular">
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:label>Concrete Particular</rdfs:label>
+    <skos:note>The distinction between concrete particulars and schematic particulars cuts across all the other divisions of the class :Particular: there are concrete objects and schematic objects, concrete eventualities and schematic eventualities, concrete aggregates and schematic aggregates, and so on</skos:note>
+    <skos:note>Differently from Schematic particulars, a concrete particular only occupies one place or location at a time: my copy of War and Peace occupies one slot in my bookcase right now; I can only occupy one place at a time; a unit of Toyota Corolla is in one place at a time; a particular performance of Beethoven's Symphony No 9 takes place in one and only one venue</skos:note>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:definition>A particular that is bounded to one spatial location at a time</skos:definition>
+    <skos:example>Your arm, one Toyota Corolla unit, the computer in front of you, the portion of water in a given glass, a piece of gold, one performance of Beethoven's Symphony No 9, the stabbing of Caesar from Brutus, a heap of sand, your bedroom, the last hour</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/withinTime">
+    <rdfs:label>within Time</rdfs:label>
+    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+    <skos:note>WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium</skos:note>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b1">
+    <rdf:rest rdf:nodeID="nde624e0723634d0ea9652eefd486a545b2"/>
+    <rdf:first rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isRecipeIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:note>Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular</skos:note>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:example>The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs</skos:example>
+    <skos:definition>The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/InformationArtefact"/>
+    <rdfs:label>is Recipe In</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isAgentIn"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Thing"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:label>has Agent</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a thing t if and only if t is an agent in e</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isConcretizationOf">
+    <rdfs:label>is Concretization Of</rdfs:label>
+    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/ConcreteParticular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:note>Concretization enables schematic particulars to be located vicariously, by being located where their concretizations are; in general, a schematic particular is wholly present wherever one of its concretizations is present; since it can have multiple concretizations at the same time, a schematic particular can be located in multiple places at the same time</skos:note>
+    <skos:note>The concretizations of a schematic particular can deviate from it in various respects: for example, most performances of Beethoven's Symphony No 9 typically lasts between 65 and 75 minutes, but the 2018 performance from the Philarmonia Orchestra conducted by Benjamin Zander only lasts 58 minutes; in some cases, the deviation is merely an anomaly, but in other cases it entails that the concretization is defective, faulty, or bad, like a poorly made Sachertorte, or a faulty Toyota Corolla unit</skos:note>
+    <skos:definition>The relation that obtains between a concrete particular c and a schematic particular s if and only if (1) c exemplifies or has the main features of s, and (2) s provides the benchmark or the norm for the properties and the behaviour of c</skos:definition>
+    <skos:example>The concretizations of War and Peace are its copies, the concretizations of Beethoven's Symphony No 9 are its performances, the concretizations of Sachertorte are the individual Sachertorte, the concretizations of a software are its installed copies, the concretizations of the Toyota Corolla (as a car model) are its manufactured units</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasProduct">
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is a product in e</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isProductIn"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:label>has Product</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasCause">
+    <skos:definition>The relation that obtains between an eventuality e and an eventuality e' if and only if e' is a cause of e</skos:definition>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isCauseOf"/>
+    <rdfs:label>has Cause</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Aggregate">
+    <skos:note>An aggregate can also be scattered across space - such as the total water reserve of England or the amount of methane used for heating my house over the last year - in which case its individuation is based on a combination of material composition and practical interests</skos:note>
+    <skos:note>Objects are also typically material, but aggregates differ from objects because they are not unified by an internal organisation, function or form</skos:note>
+    <skos:definition>A thing that is individuated by some stable material composition or spatial contiguity</skos:definition>
+    <rdfs:label>Aggregate</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Thing"/>
+    <skos:example>A chunk of wood, a waterbody, the liquid contained in a tank, a heap of sand, the global petrol supply</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isBeneficiaryIn">
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p benefits from what happens in the context of e</skos:definition>
+    <skos:note>The beneficiary is often going to be the recipient too, but there are exceptions; consider a case in which a household is awarded a grant for the energy upgrade of their house, and the grant is paid to an energy upgrade company: in that scenario, the company is the recipient of the grant, but the household is the beneficiary</skos:note>
+    <skos:note>In some cases, the beneficiary of an eventuality is the same as the patient: for example, the beneficiary of successful a medication, therapy, or surgical operation is the patient</skos:note>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>is Beneficiary In</rdfs:label>
+    <skos:example>People with cancer are the beneficiaries in a donation to cancer research, a household is the beneficiaty in an allocation of subsidies for energy upgrades work to a company</skos:example>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b11">
+    <rdf:first rdf:resource="https://loze-ontology.org/Parthood"/>
+    <rdf:rest rdf:nodeID="nde624e0723634d0ea9652eefd486a545b12"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isCauseOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:note>Multiple eventualities can entertain the relation :isCauseOf with a given eventuality, since an eventuality can have more than one cause</skos:note>
+    <skos:note>A simple, informal test for assessing whether an eventuality e is cause of another eventuality e' is to ask whether e'occurs (also) because of e, or whether the occurrence of e' is explained (among the other things) by the occurrence of e; if the answer is affirmative, then e entertains loze:isCauseOf with e' </skos:note>
+    <rdfs:label>is Cause Of</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between two eventualities e and e' if and only if the occurrence of e contributes to make e' occur</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasRepeatedComponent">
+    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <rdfs:label>has Repeated Component</rdfs:label>
+    <skos:definition>The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedComponentIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b12">
+    <rdf:first rdf:resource="https://loze-ontology.org/Constitution"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isSettingIn">
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <skos:note>This thematic relation is intended for those eventualities that consist in roles, positions, or functions within a setting or an organised system; the participant that occupies the role is a theme in the eventuality</skos:note>
+    <skos:note>Only objects can be settings, since they are the only particulars that have the sort of hierarchical structure in which something can occupy a role or function</skos:note>
+    <rdfs:label>is Setting In</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Object"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between an object o and an eventuality e if and only if o is the setting or context in which e is the case</skos:definition>
+    <skos:example>The organisation is the setting of a presidency, a living being is the setting in which an organ is vital, a wall is a partition in a house</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isDestinationIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p is the terminal point of movement or change in the context of e</skos:definition>
+    <skos:note>The destination does not need to be a place, but it can be a thing or a period of time too</skos:note>
+    <skos:note>The change in question does not need to be a movement, but it can be a qualitative or quantitative change too: for example, if an eventuality consists in one object becoming more similar to another one, the latter will be the destination</skos:note>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdfs:label>is Destination In</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
+    <skos:example>The arrival point in a travel, the distribution point in a utility supply, the buyer in a property conveyance</skos:example>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b2">
+    <rdf:first rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/materials-and-composition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <skos:definition>An extension of loze.ttl with classes and relations for modelling substances and material composition</skos:definition>
+    <owl:imports rdf:resource="https://loze-ontology.org/"/>
+    <rdfs:label>Materials and Composition</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasOrigin">
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the origin in e</skos:definition>
+    <rdfs:label>has Origin</rdfs:label>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isOriginIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isSubPeriodOf">
+    <rdfs:domain rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
+    <skos:example>The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816</skos:example>
+    <rdfs:label>is Sub-Period Of</rdfs:label>
+    <skos:definition>The relation that obtains between two periods of time of which the former is a part or segment of the latter</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/NonHumanAnimal">
+    <skos:note>In ordinary talk as well as legal talk, non-human animals are usually called just 'animals'</skos:note>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:definition>An animal that is not a specimen of the species Homo sapiens</skos:definition>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Animal"/>
+    <rdfs:label>Non-Human Animal</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Artefact">
+    <skos:example>A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork</skos:example>
+    <rdfs:label>Artefact</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
+    <skos:definition>An object that is designed and made by humans for serving certain purposes or functions</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:note>Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact</skos:note>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b7">
+    <rdf:rest rdf:nodeID="nde624e0723634d0ea9652eefd486a545b8"/>
+    <rdf:first rdf:resource="https://loze-ontology.org/Object"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasBeneficiary">
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is a beneficiary in e</skos:definition>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isBeneficiaryIn"/>
+    <rdfs:label>has Beneficiary</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Person">
+    <rdfs:label>Person</rdfs:label>
+    <skos:note>Specimens of other species of the genus Homo (such as Homo erectus or Homo Neanderthalensis) would be problematic to categorise, because they are not specimens of Homo sapiens yet they qualify as humans in a broader sense; in practice, this issue is irrelevant, since Homo sapiens is the only extant species of the genus Homo</skos:note>
+    <skos:note>It does not encompass those entities that in the legal jargon are called 'legal persons' or 'non-physical persons' </skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Animal"/>
+    <skos:definition>An animal that is a specimen of the species Homo sapiens</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/LivingBeing">
+    <rdfs:label>Living Being</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:definition>An object that displays properties such as responsiveness, growth, metabolism, energy transformation, and reproduction</skos:definition>
+    <skos:note>The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; nevertheless, there are still borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Plant">
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/LivingBeing"/>
+    <skos:note>Plants typically have a firmer cellular structure than animals and are not able to move</skos:note>
+    <skos:note>Within biological taxonomy - so-called Tree of Life - plants are the members of the kingdom of Plantae</skos:note>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:definition>A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) derives its nourishment from photosynthesis</skos:definition>
+    <rdfs:label>Plant</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/PlaceOccupation">
+    <rdfs:label>Place Occupation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:definition>An eventuality that consists in one particular entity occupying a place partly or entirely</skos:definition>
+    <skos:note>In a place occupation, the host is always a place, rather the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself</skos:note>
+    <skos:note>The core participants in a place occupation are the place (:isHostIn) and the particular entity that occupies it (:isHostedIn)</skos:note>
+    <skos:example>A carrot occupying the interior of a refrigerator, a sofa occupying a living room, an amount of liquid occupying the interior of a tank</skos:example>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Eventuality"/>
+  </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/InformationArtefact">
     <skos:example>A book, an article, a note, a document, a digital file, a computer programme or software</skos:example>
     <skos:note>An information artefact that is concrete is always going to be the concretization of some schematic information artefact</skos:note>
     <skos:note>An information artefact can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete</skos:note>
     <skos:note>The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine</skos:note>
     <rdfs:label>Information Artefact</rdfs:label>
-    <skos:definition>An artefact that consists of a structured system of symbols' occurrences meant to convey information</skos:definition>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Artefact"/>
+    <skos:definition>An artefact that consists of a structured system of symbols' occurrences meant to convey information</skos:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/hasNumberOfOccurrences">
-    <skos:note>This relation is mostly intended to be used in the context of compositions (loze:Composition) and containments (loze:Containment); that being said, its application to other eventualities should not be excluded in principle</skos:note>
-    <rdfs:label>has Number Of Occurrences</rdfs:label>
-    <skos:definition>The relation that assignes to an eventuality the number of occurrences in which a certain schematic particular is repeated in the context of that eventuality</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <skos:example>In a composition in which a polymerous sequence has a monomer repeated 3000 times, the number of occurrences is 3000; in the composition of the water molecule out of hydrogen, the number of occurrences is 2; in a containment in which a tablet is repeated 10 times in a blister pack, the number of occurrences is 10</skos:example>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasProduct">
-    <rdfs:label>has Product</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>has Number Of Occurrences</rdfs:label>
     <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isProductIn"/>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is a product in e</skos:definition>
+    <skos:note>This relation is mostly intended to be used in the context of compositions (loze:Composition) and containments (loze:Containment); that being said, its application to other eventualities should not be excluded in principle</skos:note>
+    <skos:definition>The relation that assignes to an eventuality the number of occurrences in which a certain schematic particular is repeated in the context of that eventuality</skos:definition>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/PlaceOccupation">
-    <rdfs:label>Place Occupation</rdfs:label>
-    <skos:note>The core participants in a place occupation are the place (:isHostIn) and the particular entity that occupies it (:isHostedIn)</skos:note>
-    <skos:note>In a place occupation, the host is always a place, rather the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself</skos:note>
-    <skos:definition>An eventuality that consists in one particular entity occupying a place partly or entirely</skos:definition>
-    <skos:example>A carrot occupying the interior of a refrigerator, a sofa occupying a living room, an amount of liquid occupying the interior of a tank</skos:example>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Eventuality"/>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b8">
+    <rdf:rest rdf:nodeID="nde624e0723634d0ea9652eefd486a545b9"/>
+    <rdf:first rdf:resource="https://loze-ontology.org/Aggregate"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isAgentIn">
-    <skos:example>The killer is the agent in a killing, the mechanic is the agent in the repair of the car, Joe is the agent in Joe's walking, the baker is the agent in the making of the bread</skos:example>
-    <skos:note>An eventuality can have an agent without having patients or products: for example, Joe's walking has Joe has agent, but no patient or product</skos:note>
-    <skos:note>An agent doesn't need to be a person, a living being or some other object that we would intuitively consider 'animated' </skos:note>
-    <skos:note>A given thing can be both agent and patient in the same eventuality: for example, a person washing themselves is both agent and patient in a washing; in a handshake greeting, both persons are both agents (since they are shaking the other person's hand) and patient (since their own hand is being shaken)</skos:note>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:label>is Agent In</rdfs:label>
-    <skos:definition>The relation that obtains between a thing t and an eventuality e if and only if t acts or causes changes in some thing in the context of e</skos:definition>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Thing"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isInstructionIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:example>The assembly manual is the instruction in the assembly of a piece of furniture, the cookbook recipe is the instruction in the preparation of a cake, the workflow documentation is the instruction in the execution of a technical process, a computer programme or software is the instruction in a computational process or programme execution</skos:example>
-    <skos:definition>The sub-relation of loze:isStandardIn that obtains when the standard in question is an information artefact consisting of instructions for performing the eventuality</skos:definition>
-    <rdfs:label>is Instruction In</rdfs:label>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isStandardIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Place">
-    <skos:note>The matter that is hosted in a place makes no difference for the individuation of that place: a room remains in existence irrespective of whether it hosts an absolute vacuum, a few pieces of furniture and regular air, or a giant load of cotton wool</skos:note>
-    <skos:note>There is an obvious sense in which even objects can host other particulars: for example, a house can host people and artefacts; likewise, a tank can host amounts of liquid; however, places host things by being occupied by them, whereas objects host things by having them within themselves - that is, by having them occupying the place that they enclose</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Thing"/>
-    <skos:definition>A thing that is individuated by its position relative to other things - such as being enclosed by an object, being to the left side of an object, or being immediately North of another place</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:example>A room, the interior of a refrigerator, a tunnel, the left ventricle of your heart</skos:example>
-    <rdfs:label>Place</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isOriginIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>is Origin In</rdfs:label>
-    <skos:example>The starting point in a journey, the supply point in a utility supply, the seller in a property conveyance, the seed in a plant growth</skos:example>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:note>The origin does not need to be a place, but it can be a thing or a period of time too</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <skos:definition>The relation that obtains between a particular entity p and an eventuality e if and only if p is the initial point of a movement or change in the context of e</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b2">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="https://loze-ontology.org/Particular"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isContentIn">
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isThemeIn"/>
-    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only p is enclosed or contained by some other particular in the context of e</skos:definition>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdfs:label>is Content In</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:example>The liquid is the content in its containment by a tank, the fluid is the content when flowing in a duct</skos:example>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isCauseOf">
-    <skos:definition>The relation that obtains between two eventualities e and e' if and only if the occurrence of e contributes to make e' occur</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:label>is Cause Of</rdfs:label>
-    <skos:note>A simple, informal test for assessing whether an eventuality e is cause of another eventuality e' is to ask whether e'occurs (also) because of e, or whether the occurrence of e' is explained (among the other things) by the occurrence of e; if the answer is affirmative, then e entertains loze:isCauseOf with e' </skos:note>
-    <skos:note>Multiple eventualities can entertain the relation :isCauseOf with a given eventuality, since an eventuality can have more than one cause</skos:note>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasDetermination">
-    <skos:definition>The relation that obtains between a schematic particular x and a schematic particular y if and only if y is a determination of x</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isDeterminationOf"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-    <rdfs:label>has Determination</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Object">
-    <skos:note>An object persists over time as long as it preserves the internal organisation, function, or form that individuates it; as long as that is preserved, the parts of the objects and their types can change without causing the object to go out of existence</skos:note>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Object</rdfs:label>
-    <skos:definition>A thing that is individuated by a certain internal organisation, function, or form</skos:definition>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Thing"/>
-    <skos:example>A human, a horse, a molecule, a table, a computer, a planet, a paracetamol tablet</skos:example>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isRecipeIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-    <skos:definition>The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features</skos:definition>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:example>The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs</skos:example>
-    <skos:note>Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular</skos:note>
-    <rdfs:label>is Recipe In</rdfs:label>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasReferencePoint">
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isReferencePointIn"/>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the reference point in e</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:label>has Reference Point</rdfs:label>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Substance">
-    <skos:note>Here the word 'substance' is used in the chemical sense, and not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics</skos:note>
-    <skos:note>Dissectability consists in concretizations being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold</skos:note>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:definition>A schematic particular that is highly dissectable</skos:definition>
-    <rdfs:label>Substance</rdfs:label>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-    <skos:example>Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint</skos:example>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasHolder">
-    <skos:definition>The relation that obtains between an eventuality e' and an entity e if and only if e is the holder in e'</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Holder</rdfs:label>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isHolderIn"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Entity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isSettingIn">
-    <skos:definition>The relation that obtains between an object o and an eventuality e if and only if o is the setting or context in which e is the case</skos:definition>
-    <skos:example>The organisation is the setting of a presidency, a living being is the setting in which an organ is vital, a wall is a partition in a house</skos:example>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:label>is Setting In</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Object"/>
-    <skos:note>This thematic relation is intended for those eventualities that consist in roles, positions, or functions within a setting or an organised system; the participant that occupies the role is a theme in the eventuality</skos:note>
-    <skos:note>Only objects can be settings, since they are the only particulars that have the sort of hierarchical structure in which something can occupy a role or function</skos:note>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isParticipantIn">
-    <skos:definition>The relation that obtains between an entity e and an eventuality e' if and only if e' determines, modifies or qualifies e</skos:definition>
-    <skos:note>There are various ways in which an entity can participate in an eventuality, which are expressed by means of various sub-relations of loze:isParticipantIn</skos:note>
-    <skos:note>Intuitively, the participants in an eventuality can be viewed as the entities that are involved in it or play some role in it</skos:note>
-    <rdfs:label>is Participant In</rdfs:label>
-    <skos:example>A red apple participates in its redness; Socrates participates in his wisdom; two spouses participate in their marriage; a killer, the victim, and the gun all participate in a killing; Italy, Austria and Germany all participates in Austria being located between Italy and Germany</skos:example>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Entity"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isAffectedIn">
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Thing"/>
-    <skos:note>A given thing can be both agent and affected in the same eventuality: for example, a person washing themselves is both agent and the affected thing in a washing; in a handshake greeting, both persons are both agents (since they are shaking the other person's hand) and affected (since their own hand is being shaken)</skos:note>
-    <skos:note>Every eventuality that has an affected thing also has some agent</skos:note>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:definition>The relation that obtains between a thing t and an eventuality e if and only t is affected by a thing - the agent - in the context of e</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:label>is Affected In</rdfs:label>
-    <skos:example>The victim is affected in a killing, the cake is affected in an eating, the car is affected in the repair, the house is affected in an alteration</skos:example>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isConcretizationOf">
-    <skos:example>The concretizations of War and Peace are its copies, the concretizations of Beethoven's Symphony No 9 are its performances, the concretizations of Sachertorte are the individual Sachertorte, the concretizations of a software are its installed copies, the concretizations of the Toyota Corolla (as a car model) are its manufactured units</skos:example>
-    <skos:note>The concretizations of a schematic particular can deviate from it in various respects: for example, most performances of Beethoven's Symphony No 9 typically lasts between 65 and 75 minutes, but the 2018 performance from the Philarmonia Orchestra conducted by Benjamin Zander only lasts 58 minutes; in some cases, the deviation is merely an anomaly, but in other cases it entails that the concretization is defective, faulty, or bad, like a poorly made Sachertorte, or a faulty Toyota Corolla unit</skos:note>
-    <skos:note>Concretization enables schematic particulars to be located vicariously, by being located where their concretizations are; in general, a schematic particular is wholly present wherever one of its concretizations is present; since it can have multiple concretizations at the same time, a schematic particular can be located in multiple places at the same time</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/ConcreteParticular"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-    <rdfs:label>is Concretization Of</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:definition>The relation that obtains between a concrete particular c and a schematic particular s if and only if (1) c exemplifies or has the main features of s, and (2) s provides the benchmark or the norm for the properties and the behaviour of c</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/fromTime">
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:example>WWII occurred from 1939, the Thirty Years' War occurred from 1618, Napoleon's life occurred from 1769</skos:example>
-    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>from Time</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e starts occurring at t</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasParticipant">
-    <skos:definition>The relation that obtains between an eventuality e' and an entity e if and only if e is a participant in e'</skos:definition>
-    <rdfs:label>has Participant</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Entity"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasStage">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isStageOf"/>
-    <rdfs:label>has Stage</rdfs:label>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:definition>The relation that obtains between an eventuality e and an eventuality e' if and only if e' is a stage of e</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasConcretization">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/ConcreteParticular"/>
-    <rdfs:label>has Concretization</rdfs:label>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isConcretizationOf"/>
-    <skos:definition>The relation that obtains between a schematic particular s and a concrete particular c if and only if c is a concretization of s</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Containment">
-    <rdfs:label>Containment</rdfs:label>
-    <skos:note>In a containment, the core participants are the container (loze:isHostIn) and the content (loze:isContentIn)</skos:note>
-    <skos:example>A box containing eggs, a glass containing a portion of water, a dwelling containing pieces of furniture</skos:example>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:comment>An eventuality in which a particular is positioned within and physically constrained by another object</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isStageOf">
-    <skos:note>Given an eventuality e and a period of time t, e can have at the most one stage that occurs from the start to the end of t</skos:note>
-    <skos:note>In other upper-level ontologies, relations like this are considered special cases of parthood, since the stages of an eventuality can be viewed as its 'temporal slices'; however, we prefer to suspend the judgment about whether the stages of an eventuality are to be considered among its parts</skos:note>
-    <skos:example>The construction of the foundations of a house is a stage of the construction of the whole house, the preparation of the dough is a stage in the making of a pizza, the positioning of the explosive is a stage in the demolition of a building, the fermentation of the must is a stage in the production of wine</skos:example>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:definition>The relation that obtains between two eventualities e and e' if and only if e is a stage or phase in the occurrence of e' </skos:definition>
-    <rdfs:label>is Stage Of</rdfs:label>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/suggested-social-extension">
-    <owl:imports rdf:resource="https://loze-ontology.org/"/>
-    <rdfs:label>Suggested Social Extension</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <skos:definition>An extension of loze.ttl with classes and relations for modelling living beings and social entities such as persons, groups, and organisations</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Organisation">
-    <skos:example>A company, a charity or foundation, a political party, a club, a state or government, an international organisation, a criminal gang, a terrorist organisation</skos:example>
-    <skos:note>A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are inherently illegal, such as criminal gangs and terrorist organisations</skos:note>
-    <skos:note>An organisation can have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts</skos:note>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:definition>A group whose members are acting together in the pursuit of a common goal, based on an agreed upon system of rules and commitments</skos:definition>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Group"/>
-    <rdfs:label>Organisation</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Entity">
-    <skos:definition>Anything that exists, is real, or is in the world</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:note>It corresponds to owl:Thing</skos:note>
-    <owl:disjointUnionOf rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b1"/>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:label>Entity</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Text">
-    <skos:definition>An information artefact that consists of sentences in some human-readable language and is meant to convey meaning to humans</skos:definition>
-    <skos:note>According to the definition, not only plain text files, but also document files are instances of loze:Text</skos:note>
-    <skos:note>In a software system, a machine code might not be a text, because it's not always meant to convey meaning to humans; on the other hand, the source code is a text, since it's human-readable</skos:note>
-    <rdfs:label>Text</rdfs:label>
-    <skos:example>A book, an article, a physical document, a text or document file, a book chapter, a dish recipe</skos:example>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isThemeIn">
-    <skos:example>In a marriage, both spouses are themes; in the case of a glass lying on a table, the glass is the theme; in the case of an amount of liquid contained in a tank, the amount of liquid is the theme; in the case of somebody owning a real estate, the real estate is theme</skos:example>
-    <skos:note>That of the theme is a broad thematic relations that can be useful whenever no other thematic relation applies; that being said, more specific sub-relations should be defined whenever needed</skos:note>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p is in a certain state or occupies a position in the context of e</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdfs:label>is Theme In</rdfs:label>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isProductIn">
-    <skos:note>A product does not need to be a concrete particular, but it can also be a schematic particular: for example, a document or a book (in abstraction from its copies) is the product of a writing endeavour</skos:note>
-    <skos:note>Every eventuality that has a product also has some agent</skos:note>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:label>is Product In</rdfs:label>
-    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p is brought into existence by some other particular in the context of e</skos:definition>
-    <skos:example>The house is the product in a construction work, the cake is the product in the context of baking, molecules are the products in a chemical synthesis, the zygote is the product in the fertilization of a female gamete from a male gamete</skos:example>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b5">
-    <rdf:rest rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b6"/>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b5">
     <rdf:first rdf:resource="https://loze-ontology.org/SchematicParticular"/>
+    <rdf:rest rdf:nodeID="nde624e0723634d0ea9652eefd486a545b6"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/untilTime">
-    <rdfs:label>until Time</rdfs:label>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-    <skos:example>WWII occurred until 1945, the Thirty Years' War occurred until 1648, Napoleon's life occurred until 1821</skos:example>
-    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e ends at t</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/LivingBeing">
-    <skos:note>The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; nevertheless, there are still borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)</skos:note>
-    <skos:definition>An object that displays properties such as responsiveness, growth, metabolism, energy transformation, and reproduction</skos:definition>
-    <rdfs:label>Living Being</rdfs:label>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Particular">
-    <owl:disjointUnionOf rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b3"/>
-    <owl:disjointUnionOf rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b5"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Particular</rdfs:label>
-    <skos:note>Particular entities are to be contrasted with classes; the concept of a particular mostly corresponds to the Semantic Web concept of an individual or instance</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Entity"/>
-    <skos:definition>An entity that is not a class or type of entities</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="n59c67f2702b74d8b8b42f0d7100cc463b2">
+  <rdf:Description rdf:nodeID="n8464c751de3c4442956d9fed0c0d1c0cb2">
     <rdf:first rdf:resource="https://loze-ontology.org/NonHumanAnimal"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasStandard">
-    <rdfs:label>has Standard</rdfs:label>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isStandardIn"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e</skos:definition>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasContent">
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdfs:label>has Content</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isContentIn"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the content in e</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasDestination">
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdfs:label>has Destination</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the destination in e</skos:definition>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isDestinationIn"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isHeldIn">
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Entity"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isThemeIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:definition>The relation that obtains between an entity e and an eventuality e' if and only if e is controlled by or subordinated to some other entity in the context of e' </skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:example>The possessed thing is the held in a possession or ownership; the managed employee is the held in a management relationship</skos:example>
-    <rdfs:label>is Held In</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b3">
-    <rdf:first rdf:resource="https://loze-ontology.org/Thing"/>
-    <rdf:rest rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b4"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isHolderIn">
-    <skos:definition>The relation that obtains between an entity e and an eventuality e' if and only if e controls or is super-ordinated to some other entity in the context of e' </skos:definition>
-    <skos:example>the person or organisation is the holder in a possession or ownership; the manager is the holder in a management relationship with the managed employee</skos:example>
-    <rdfs:label>is Holder In</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Entity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isReferencePointIn">
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:note>The scope of this thematic relation is not limited to motion, but also encompasses other types of changes as well as comparisons: for example, if an eventuality consists in an object being larger than another one, the larger object will be the theme and the other will be the reference point</skos:note>
-    <skos:note>The possibility of absolute motion is controversial in theoretical physics and philosophy; however, this matter is operationally irrelevant, because in practice motion can only be assessed relative to a reference framework</skos:note>
-    <skos:note>In ordinary talk, the reference point of a movement is often not mentioned because it's identified by default with the Earth - or some Earth-based reference framework</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <skos:example>In the case of John being taller than Dan, Dan is the reference point; in the case of an object falling down from the top of a tower, the top of the tower is the reference point; in the case of a vehicle moving on the surface of Earth, Earth - or some Earth-based geolocation framework - is the reference point</skos:example>
-    <rdfs:label>is Reference Point In</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p is the term of reference point or the reference framework for a movement, change, or comparison in the context of e</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/OrganisationOrgan">
-    <rdfs:label>Organisation Organ</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:note>The difference between an organisation organ and an organisation that is part of another organisation is that the official goals of an organ are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Group"/>
-    <skos:example>A government's parliament, a company's committee, a team</skos:example>
-    <skos:definition>A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) it not itself an organisation</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isCompositeIn">
-    <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <skos:definition>The relation that obtains between a particular p and a composition c if and only if p has as component some other particular in the context of c</skos:definition>
-    <skos:example>In my arm being part of my body, my arm is the component and my arm is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component</skos:example>
-    <rdfs:label>is Composite In</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasRepeatedContent">
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedContentIn"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Containment"/>
-    <rdfs:label>has Repeated Content</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:definition>The relation that obtains between a containment c and a schematic particular s if and only if s is the repeated content in c</skos:definition>
-    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/NonHumanAnimal">
-    <skos:note>In ordinary talk as well as legal talk, non-human animals are usually called just 'animals'</skos:note>
-    <skos:definition>An animal that is not a specimen of the species Homo sapiens</skos:definition>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Animal"/>
-    <rdfs:label>Non-Human Animal</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasHost">
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isHostIn"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Host</rdfs:label>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the host in e</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Constitution">
-    <skos:definition>An eventuality that consists in one particular being entirely made up by repeated occurrences of a given schematic particular</skos:definition>
-    <skos:note>In practice, the function of this class of eventualities is to describe the overall composition of a particular without giving an enumeration of its individual parts</skos:note>
-    <skos:note>In formal mereology, one particular being 'entirely made up' by repeated occurrences, means that it is identical to the mereological sum of those occurrences: as an approximation, this means that its only parts are those occurrences and the parts of those occurrences; more rigorous definitions can be found in the philosophical literature on formal mereology</skos:note>
-    <skos:note>In a constitution, the core participants are the composite (loze:isCompositeIn) and the schematic particular that is repeated in it (loze:isComponentIn)</skos:note>
-    <rdfs:label>Constitution</rdfs:label>
-    <skos:example>A polymerous sequence being made up by repetitions of a given monomer; an aggregate of tablets being made up by one tablet (construed as a schematic object) repeated in 10 occurrences</skos:example>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Composition"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/afterTime">
-    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely after t</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:example>WWII occurred after 1900, the birth of Napoleon occurred after 1700, </skos:example>
-    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-    <rdfs:label>after Time</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:note>The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939</skos:note>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasSetting">
-    <rdfs:label>has Setting</rdfs:label>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Object"/>
-    <skos:definition>The relation that obtains between an eventuality e and an object o if and only if o is the setting in e</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isSettingIn"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isBeneficiaryIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:note>In some cases, the beneficiary of an eventuality is the same as the patient: for example, the beneficiary of successful a medication, therapy, or surgical operation is the patient</skos:note>
-    <skos:note>The beneficiary is often going to be the recipient too, but there are exceptions; consider a case in which a household is awarded a grant for the energy upgrade of their house, and the grant is paid to an energy upgrade company: in that scenario, the company is the recipient of the grant, but the household is the beneficiary</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <skos:example>People with cancer are the beneficiaries in a donation to cancer research, a household is the beneficiaty in an allocation of subsidies for energy upgrades work to a company</skos:example>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:label>is Beneficiary In</rdfs:label>
-    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p benefits from what happens in the context of e</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isIngredientIn">
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Substance"/>
-    <rdfs:label>is Ingredient In</rdfs:label>
-    <skos:example>In the case of a cake having as ingredient 200 grams of wheat flour, wheat flour is the ingredient; in the case of a solution having as ingredient 2 litres of water, water is the ingredient</skos:example>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
-    <skos:definition>The sub-relation of loze:isComponentIn that obtains whenever the component is a substance that occurres in the composite in a given amount</skos:definition>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:note>Substance repetition is impractical to account for in terms of number of occurrences, since the units are too many to be counted; consequently, instead of using loze:hasNumberOfOccurrences, it is advisable to specify quantities based on units of measure</skos:note>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasRepeatedComponent">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedComponentIn"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
-    <skos:definition>The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c</skos:definition>
-    <rdfs:label>has Repeated Component</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasComposite">
-    <rdfs:label>has Composite</rdfs:label>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <skos:definition>The relation that obtains between a composition c and a particular p if and only if p is the composite in c</skos:definition>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isCompositeIn"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isInstrumentIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:example>The gun is the instrument in a killing, the hammer is the instrument in the driving of a nail, the vehicle is the instrument in a journey, a debit or credit card is the instrument in a payment</skos:example>
-    <skos:note>The instrument in an eventuality can also be a person: for example, the messenger is the instrument in the sending of a message</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdfs:label>is Instrument In</rdfs:label>
-    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p enables an agent to affects some thing in the context of e</skos:definition>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isHostIn">
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <skos:example>The house is the host in a residency or occupation, the tank is the host in the containment of a liquid, the duct is the host in the flow of a fluid, the place is the host in a position or location</skos:example>
-    <skos:note>This relation does not apply to a person who is 'hosting' a party or to the 'host' of a game - who are rather agents in the respective eventualities</skos:note>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:label>is Host In</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p encloses, accommodates or contains some other particular in the context of e</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasAffected">
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isAffectedIn"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:label>has Affected</rdfs:label>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Thing"/>
-    <skos:definition>The relation that obtains between an eventuality e and a thing t if and only if t is affected in e</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasCause">
-    <skos:definition>The relation that obtains between an eventuality e and an eventuality e' if and only if e' is a cause of e</skos:definition>
-    <rdfs:label>has Cause</rdfs:label>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isCauseOf"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasBeneficiary">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isBeneficiaryIn"/>
-    <rdfs:label>has Beneficiary</rdfs:label>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is a beneficiary in e</skos:definition>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasTheme">
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isThemeIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Theme</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is a theme in e</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/materials-and-composition">
-    <rdfs:label>Materials and Composition</rdfs:label>
-    <skos:definition>An extension of loze.ttl with classes and relations for modelling substances and material composition</skos:definition>
-    <owl:imports rdf:resource="https://loze-ontology.org/"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/SchematicParticular">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdfs:label>Schematic Particular</rdfs:label>
-    <skos:example>A document (as opposed to its particular copies), a work of music (as opposed to its performances), an alphabetic character (as opposed to its inscriptions), a software (as opposed to its installed copies), a substance or material like water or gold (as opposed to their circumscribed portions), a car model (as opposed to its units)</skos:example>
-    <skos:note>Differently from classes, schematic particulars share their main features with their instances; for example, a book has chapters just like its copies, a piece of music has the same harmonic structure as its performances, an alphabetic character has the same shape as its inscriptions, a car model has similar features as its units</skos:note>
-    <skos:note>An schematic particular has the force of a determinant with regard to its concretizations: the structure of Beethoven's Symphony No 9 dictates the structure of its performances; the specifications of the Toyota Corolla are the benchmark for the features of its units; the chemical properties of water determine the behaviour of concrete portions of water</skos:note>
-    <skos:note>Similarly to classes, schematic particulars are not bounded to one particular location at a time: as a rule, a schematic particular is wholly present wherever one of its concretizations is present; War and Peace is present wherever one of its copies is present; water is present wherever one or more H2O molecules are present; the Toyota Corolla is present wherever one of its units is present</skos:note>
-    <skos:note>The division between concrete particulars and schematic particulars cuts across the further sub-divisions of particulars: there are concrete objects and schematic objects, concrete eventualities and schematic eventualities, concrete aggregates and schematic aggregates, and so on</skos:note>
-    <skos:definition>A particular that is not bounded to one spatial location at a time and that can be concretized by concrete particulars</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/withinTime">
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:definition>The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t</skos:definition>
-    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>within Time</rdfs:label>
-    <skos:note>WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium</skos:note>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Parthood">
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Composition"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:note>The core participants in a parthood are the part (loze:isComponentIn) and the composite (loze:isCompositeIn)</skos:note>
-    <rdfs:label>Parthood</rdfs:label>
-    <skos:definition>An eventuality that consists in one particular being part of another particular</skos:definition>
-    <skos:example>An arm being part of a person, a wall being part of a house, a compressor being part of a refrigerator, a wood board being part of a table, a nucleus being part of an atom, Mars being part of the solar system, the lithosphere being part of the Earth, a movement being part of symphony, hydrogen atom being part of water molecule</skos:example>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Animal">
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/LivingBeing"/>
-    <rdfs:label>Animal</rdfs:label>
-    <skos:note>Within biological taxonomy - so-called Tree of Life - animals are the members of the kingdom of Animalia</skos:note>
-    <skos:note>Animals typically have a more flexible body than plants and fungi and are able to move</skos:note>
-    <owl:disjointUnionOf rdf:nodeID="n59c67f2702b74d8b8b42f0d7100cc463b1"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:definition>A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasIngredient">
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isIngredientIn"/>
-    <rdfs:label>has Ingredient</rdfs:label>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
-    <skos:definition>The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c</skos:definition>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Substance"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b8">
-    <rdf:rest rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b9"/>
-    <rdf:first rdf:resource="https://loze-ontology.org/Aggregate"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasInstruction">
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
-    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-    <rdfs:label>has Instruction</rdfs:label>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/beforeTime">
-    <skos:note>The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1970, even though over two decades passed between the end of WWII and 1970</skos:note>
-    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t</skos:definition>
-    <rdfs:label>before Time</rdfs:label>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:example>WWII occurred before 1960, the birth of Napoleon occurred before 1800</skos:example>
-    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Plant">
-    <skos:definition>A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) derives its nourishment from photosynthesis</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:note>Within biological taxonomy - so-called Tree of Life - plants are the members of the kingdom of Plantae</skos:note>
-    <skos:note>Plants typically have a firmer cellular structure than animals and are not able to move</skos:note>
-    <rdfs:label>Plant</rdfs:label>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/LivingBeing"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Thing">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:disjointUnionOf rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b7"/>
-    <rdfs:label>Thing</rdfs:label>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Particular"/>
-    <skos:note>Despite the similar local name, this class is much narrower than owl:Thing, which encompasses all entities</skos:note>
-    <skos:definition>A particular entity that is not a way of being or a modification of other entities</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasInstrument">
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is an instrument in e</skos:definition>
-    <rdfs:label>has Instrument</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isInstrumentIn"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/temporal-relations">
-    <rdfs:label>Temporal Relations</rdfs:label>
-    <owl:imports rdf:resource="https://loze-ontology.org/"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <skos:definition>An extension of loze.ttl with relations for locating eventualities relative to periods of time</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b4">
-    <rdf:first rdf:resource="https://loze-ontology.org/Eventuality"/>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b6">
+    <rdf:first rdf:resource="https://loze-ontology.org/ConcreteParticular"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Composition">
-    <rdfs:label>Composition</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <owl:unionOf rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b11"/>
-    <skos:definition>An eventuality that is either a parthood or a constitution</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/ConcreteParticular">
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Particular"/>
-    <skos:note>The distinction between concrete particulars and schematic particulars cuts across all the other divisions of the class :Particular: there are concrete objects and schematic objects, concrete eventualities and schematic eventualities, concrete aggregates and schematic aggregates, and so on</skos:note>
-    <skos:note>Differently from Schematic particulars, a concrete particular only occupies one place or location at a time: my copy of War and Peace occupies one slot in my bookcase right now; I can only occupy one place at a time; a unit of Toyota Corolla is in one place at a time; a particular performance of Beethoven's Symphony No 9 takes place in one and only one venue</skos:note>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Concrete Particular</rdfs:label>
-    <skos:example>Your arm, one Toyota Corolla unit, the computer in front of you, the portion of water in a given glass, a piece of gold, one performance of Beethoven's Symphony No 9, the stabbing of Caesar from Brutus, a heap of sand, your bedroom, the last hour</skos:example>
-    <skos:definition>A particular that is bounded to one spatial location at a time</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isDeterminationOf">
-    <skos:example>The Toyota Corolla Hatchback is a determination of the Toyota Corolla; the 1869 version of War and Peace is a determination of War and Peace; Apocalypse Now Redux is a determination of Apocalypse Now; heavy water is a determination of water; anthracite is a determination of coal; carbon-14 is a determination of carbon</skos:example>
-    <skos:definition>The relation that obtains between a schematic particular x and another schematic particular y if and only if x has all the essential properties of y together with further essential properties that y lacks</skos:definition>
-    <skos:note>If x is a concretization of y and y is a determination of z, then x is also a concretization of z; one unit of the Toyota Corolla hatchback is also a unit of the Toyota Corolla; a heavy water molecule is a water molecule; and so on</skos:note>
-    <skos:note>Informally, determination consists in the gradual increase in detailing and specificity of a schematic particular; it can be viewed as the schematic particulars' counterpart of subclasshood</skos:note>
-    <rdfs:range rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:label>is Determination Of</rdfs:label>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Artefact">
-    <skos:definition>An object that is designed and made by humans for serving certain purposes or functions</skos:definition>
-    <skos:example>A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork</skos:example>
-    <skos:note>Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact</skos:note>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Artefact</rdfs:label>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="n59c67f2702b74d8b8b42f0d7100cc463b1">
-    <rdf:rest rdf:nodeID="n59c67f2702b74d8b8b42f0d7100cc463b2"/>
+  <rdf:Description rdf:nodeID="n8464c751de3c4442956d9fed0c0d1c0cb1">
+    <rdf:rest rdf:nodeID="n8464c751de3c4442956d9fed0c0d1c0cb2"/>
     <rdf:first rdf:resource="https://loze-ontology.org/Person"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/throughoutTime">
-    <skos:definition>The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t</skos:definition>
-    <skos:note>The function of this relation is to specify the temporal location of an eventuality as a whole</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:label>throughout Time</rdfs:label>
-    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:example>WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period</skos:example>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isComponentIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:definition>The relation that obtains between a particular p and a composition c if and only if p composes some other particular in the context of c</skos:definition>
-    <rdfs:label>is Component In</rdfs:label>
-    <skos:example>In my arm being part of my body, my arm is the component and my body is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component</skos:example>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/atTime">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:example>WWII was happening at 1943, the French Revolution was happening at 1790, the Italian Renaissance was happening at 1513</skos:example>
-    <skos:definition>The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t</skos:definition>
-    <rdfs:label>at Time</rdfs:label>
-    <skos:note>This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isStandardIn">
-    <rdfs:label>is Standard In</rdfs:label>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isTopicIn"/>
-    <skos:note>Only eventualities that have humans as agents (loze:isAgentIn) or are executed by objects designed by humans - like an automated system - can have a standard (loze:isStandardIn), since treating something as a rule or standard for an action requires human-like cognitive faculties</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:definition>The sub-relation of loze:isTopicIn that obtains when the topic provides the rules or standard for the performance of the eventuality</skos:definition>
-    <skos:example>Regulations are the standard in a compliant business operation, best practices are the standard in a technical development, the workflow is the standard in the execution of a technical process</skos:example>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isRepeatedContentIn">
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isContentIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Containment"/>
-    <skos:example>In the case of a blister pack containing 10 standardised 5 mg paracetamol tablets, the 5 mg paracetamol tablet - construed as a schematic particular - is the repeated content</skos:example>
-    <skos:note>While the repeated content is always going to be a schematic particular, the host can be either a schematic particular or a concrete particular</skos:note>
-    <skos:note>A containment with a repeated component is always going to have an associated number of occurrences (loze:hasNumberOfOccurrences)</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>is Repeated Content In</rdfs:label>
-    <skos:definition>The sub-relation of loze:isContentIn that obtains whenever the content is a schematic particular that is repeated in the host in multiple occurrences</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Group">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:example>A household, a family, a couple, any organisation</skos:example>
-    <skos:note>Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes</skos:note>
-    <rdfs:label>Group</rdfs:label>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
-    <skos:definition>An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasRecipient">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Recipient</rdfs:label>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is a recipient in e</skos:definition>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRecipientIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isWaypointIn">
-    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p is an intermediate point of movement or change in the context of e</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:example>An intermediate stop in a travel, the ducts linking the supply point to a distribution point</skos:example>
-    <rdfs:label>is Waypoint In</rdfs:label>
-    <skos:note>The destination does not need to be a place, but it can be a thing or a period of time too</skos:note>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasHeld">
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isHeldIn"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Entity"/>
-    <rdfs:label>has Held</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:definition>The relation that obtains between an eventuality e' and an entity e if and only if e is held in e'</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasWaypoint">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:label>has Waypoint</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is a waypoint in e</skos:definition>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isWaypointIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Aggregate">
-    <skos:definition>A thing that is individuated by some stable material composition or spatial contiguity</skos:definition>
-    <skos:note>Objects are also typically material, but aggregates differ from objects because they are not unified by an internal organisation, function or form</skos:note>
-    <skos:note>An aggregate can also be scattered across space - such as the total water reserve of England or the amount of methane used for heating my house over the last year - in which case its individuation is based on a combination of material composition and practical interests</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Thing"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Aggregate</rdfs:label>
-    <skos:example>A chunk of wood, a waterbody, the liquid contained in a tank, a heap of sand, the global petrol supply</skos:example>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b7">
-    <rdf:first rdf:resource="https://loze-ontology.org/Object"/>
-    <rdf:rest rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b8"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Eventuality">
-    <skos:note>An eventuality is not general, but is linked to its participants - that is, the entities that bear it or are involved in it; the wisdom of Socrates is numerically distinct from the wisdom of Diogenes, and they existed at different times; the redness of this apple is distinct from the redness of that other apple, and so on</skos:note>
-    <skos:note>This is intended as a broad, comprehensive category that encompasses the entities that in other ontologies and category systems are variously called 'qualities', 'attributes', 'relations, 'events', 'processes', 'facts', 'specifically dependent continuants' etc...</skos:note>
-    <rdfs:label>Eventuality</rdfs:label>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:example>The redness of this apple, the wisdom of Socrates, the marriage between Napoleon and Josephine, the stabbing of Caesar from Brutus, my walk from my house to a grocery shop, the Earth being positioned between Venus and Mars, an engine being fuelled with an amount of gasoline</skos:example>
-    <skos:definition>A particular entity that is a way of being or a modification of one or more other entities - qualifying them or making them be or go in a certain way - and is individuated by those entities</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isTopicIn">
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <skos:example>Joe is the topic in an identity check, an electrical system is the topic of an electrical safety report, cancer (as a schematic particular or a class of eventualities) is the topic in a cancer research, liberty is the topic of John Stuart Mill's essay 'On Liberty', a book (in abstraction from its copies) is the topic of a review</skos:example>
-    <skos:definition>The relation that obtains between an entity e and an eventuality e' if and only if e is a subject matter of cognition or meaning in the context of e' </skos:definition>
-    <skos:note>Since a cognition can be about abstractions, the topic of an eventuality can also be a class or a schematic particular</skos:note>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Entity"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:label>is Topic In</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasOrigin">
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Origin</rdfs:label>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isOriginIn"/>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the origin in e</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasRecipe">
-    <rdfs:label>has Recipe</rdfs:label>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRecipeIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/PeriodOfTime">
-    <skos:definition>A thing that is individuated by its coordinates across the temporal axis</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Thing"/>
-    <skos:note>Two period of time can have exactly the same duration and yet be distinct period of time, because they have distinct beginnings and ends; for example, this hour and the next hour are two distinct periods, despite having the exact same duration of 60 minutes</skos:note>
-    <rdfs:label>Period Of Time</rdfs:label>
-    <skos:example>The year 1943, the 6th of May of 2005, any second or minute, the period that goes from the 3rd of May of 1467 to the 22nd of July of 1615</skos:example>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b10">
-    <rdf:first rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasComponent">
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Composition"/>
-    <skos:definition>The relation that obtains between a composition c and a particular p if and only if p is a component in c</skos:definition>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isComponentIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Component</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/">
-    <skos:definition>A top-level ontology largely inspired - with a few deviations and additions - by the four-category ontology outlined by the philosopher E. J. Lowe (2006), supplemented with the concept of a schematic particular explored by Eddy Zemach (1970)</skos:definition>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:label>Loze Upper-Level Ontology</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isRepeatedComponentIn">
-    <skos:definition>The sub-relation of loze:isComponentIn that obtains whenever the component is a schematic particular that is repeated in the composite in multiple occurrences</skos:definition>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn"/>
-    <skos:example>In the case of a monomer making up a polymerous sequence, the monomer is the repeated component; in the case of water having two atoms of hydrogen, hydrogen atom is the repeated component; in the case of an engine having pistons of a certain type, the piston - construed as a schematic object - is the repeated component</skos:example>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Composition"/>
-    <rdfs:label>is Repeated Component In</rdfs:label>
-    <skos:note>The number of repetitions is going to be specified by the associated number of occurrences (loze:hasNumberOfOccurrences)</skos:note>
-    <skos:note>While the repeated component is always going to be a schematic particular, the composite can be either a schematic particular or a concrete particular</skos:note>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/SchematicParticular"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b9">
-    <rdf:rest rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b10"/>
+  <rdf:Description rdf:nodeID="nde624e0723634d0ea9652eefd486a545b9">
+    <rdf:rest rdf:nodeID="nde624e0723634d0ea9652eefd486a545b10"/>
     <rdf:first rdf:resource="https://loze-ontology.org/Place"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b11">
-    <rdf:first rdf:resource="https://loze-ontology.org/Parthood"/>
-    <rdf:rest rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b12"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isRecipientIn">
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if some other particular is transferred or put under the hold of p in the context of e</skos:definition>
-    <skos:note>Compared to an affected thing, the recipient is impacted or controlled less directly in the context of the eventuality</skos:note>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:label>is Recipient In</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:example>The payee is the recipient in a payment, the buyer is the recipient in a property conveyance, the addressee is the recipient in a shipping, the donee is the recipient in a donation</skos:example>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isSubPeriodOf">
-    <skos:definition>The relation that obtains between two periods of time of which the former is a part or segment of the latter</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-    <skos:example>The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816</skos:example>
-    <rdfs:range rdf:resource="https://loze-ontology.org/PeriodOfTime"/>
-    <rdfs:label>is Sub-Period Of</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isDestinationIn">
-    <rdfs:label>is Destination In</rdfs:label>
-    <skos:note>The change in question does not need to be a movement, but it can be a qualitative or quantitative change too: for example, if an eventuality consists in one object becoming more similar to another one, the latter will be the destination</skos:note>
-    <skos:note>The destination does not need to be a place, but it can be a thing or a period of time too</skos:note>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Particular"/>
-    <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn"/>
-    <skos:definition>The relation that obtains between a particular p and an eventuality e if and only if p is the terminal point of movement or change in the context of e</skos:definition>
-    <skos:example>The arrival point in a travel, the distribution point in a utility supply, the buyer in a property conveyance</skos:example>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Person">
-    <skos:note>It does not encompass those entities that in the legal jargon are called 'legal persons' or 'non-physical persons' </skos:note>
-    <skos:note>Specimens of other species of the genus Homo (such as Homo erectus or Homo Neanderthalensis) would be problematic to categorise, because they are not specimens of Homo sapiens yet they qualify as humans in a broader sense; in practice, this issue is irrelevant, since Homo sapiens is the only extant species of the genus Homo</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Animal"/>
-    <rdfs:label>Person</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:definition>An animal that is a specimen of the species Homo sapiens</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasAgent">
-    <rdfs:range rdf:resource="https://loze-ontology.org/Thing"/>
-    <rdfs:label>has Agent</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and a thing t if and only if t is an agent in e</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isAgentIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasTopic">
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Entity"/>
-    <rdfs:label>has Topic</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <skos:definition>The relation that obtains between an eventuality e' and an entity e if and only if e is a topic in e'</skos:definition>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isTopicIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b1">
-    <rdf:rest rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b2"/>
-    <rdf:first rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b6">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="https://loze-ontology.org/ConcreteParticular"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/artefacts-information-and-instructions">
-    <rdfs:label>Artefacts, Information, and Instructions</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <skos:definition>An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions</skos:definition>
-    <owl:imports rdf:resource="https://loze-ontology.org/"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nec645298a70e49cf93c8c5862f4ae854b12">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="https://loze-ontology.org/Constitution"/>
   </rdf:Description>
 </rdf:RDF>

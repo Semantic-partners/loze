@@ -15,23 +15,21 @@
 <body>
 
 <header class="top"><div class="wrap">
-  <div class="eyebrow">loze</div>
-  <h1>Place Occupation</h1>
-  <p style="margin:.75rem 0 0"><span class="kind kind-class">Class</span></p>
+  <div class="trail"><a href="/Entity">Entity</a> / <a href="/Particular">Particular</a> / <a href="/Eventuality">Eventuality</a> / <span>Place Occupation</span></div>
+  <div class="titleline">
+    <h1>Place Occupation</h1>
+    <span class="kind kind-class">Class</span>
+  </div>
   <p class="lead measure">An eventuality that consists in one particular entity occupying a place partly or entirely</p>
   <div class="iri">https://loze-ontology.org/PlaceOccupation</div>
   <div class="formats"><a href="/loze.ttl">ttl</a><a href="/loze.rdf">rdf</a><a href="/loze.jsonld">jsonld</a><a href="/loze.nt">nt</a></div>
 </div></header>
 <main><div class="wrap">
-  <section>
-    <div class="section-head">In the model</div>
-    <dl class="props"><dt>subclass of</dt><dd><a href="/Eventuality"><code>Eventuality</code></a></dd><dt>defined in</dt><dd><a href="/">foundation</a></dd></dl>
-  </section>
-  <section><div class="section-head">Note</div><p class="measure">The core participants in a place occupation are the place (:isHostIn) and the particular entity that occupies it (:isHostedIn)</p></section>
-  <section>
-    <div class="section-head">Elsewhere</div>
-    <p class="measure"><a href="/">All of loze</a></p>
-  </section>
+  <section><div class="section-head">In the model</div><dl class="props"><dt>specialises</dt><dd><a href="/Eventuality">Eventuality</a></dd><dt>type</dt><dd><code>owl:Class</code></dd><dt>defined in</dt><dd><a href="/">foundation</a></dd></dl></section>
+  
+  
+  
+  <section><div class="section-head">Note</div><p class="measure">In a place occupation, the host is always a place, rather the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself</p></section>
 </div></main>
 
 <footer class="bot"><div class="wrap measure">

@@ -259,6 +259,61 @@ dl.props { display: grid; grid-template-columns: minmax(9rem, auto) 1fr; gap: 0.
 dl.props dt { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-xs); letter-spacing: 0.04em; color: hsl(var(--muted-foreground)); }
 dl.props dd { margin: 0; }
 
+/* The class tree. Rules rather than bullets: the indent is the information, and
+   a disc at every level competes with it. */
+ul.tree, ul.tree ul { list-style: none; margin: 0; padding: 0; }
+ul.tree ul { margin-left: 0.75rem; padding-left: 1rem; border-left: 1px solid hsl(var(--border)); }
+ul.tree li { padding: 0.3rem 0; }
+ul.tree a { font-weight: 500; }
+.tree-def {
+  display: inline; margin-left: 0.6rem;
+  font-size: var(--fs-sm); color: hsl(var(--faint));
+}
+@media (max-width: 40rem) { .tree-def { display: none; } }
+
+/* Where a term sits, above its name. */
+.trail {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-xs);
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 0.75rem;
+}
+.trail span { color: hsl(var(--foreground)); }
+.titleline { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip {
+  font-size: var(--fs-sm);
+  border: 1px solid hsl(var(--border-emphasis));
+  border-radius: var(--radius);
+  padding: 0.3rem 0.6rem;
+  color: hsl(var(--foreground));
+  transition: border-color 150ms var(--ease-brand), color 150ms var(--ease-brand);
+}
+.chip:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-accent)); text-decoration: none; }
+/* Properties keep the amber of the node triad, quietly — a left edge, not a fill. */
+.chip-prop { border-left: 3px solid hsl(var(--clr-node-property) / 0.7); font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-xs); }
+
+.domgroup { margin-bottom: 1.5rem; }
+.domhead {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 0.5rem;
+}
+
+.modtag {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.04em;
+  color: hsl(var(--muted-foreground));
+  border: 1px solid hsl(var(--border));
+  padding: 0.05rem 0.35rem;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
 footer.bot {
   border-top: 1px solid hsl(var(--border));
   padding: 2.5rem 0 4rem;
@@ -396,60 +451,182 @@ def shorten(iri: str) -> str:
     return iri
 
 
+PROP_TYPES = {OWL.ObjectProperty, OWL.DatatypeProperty, OWL.AnnotationProperty,
+              RDF.Property, OWL.TransitiveProperty, OWL.SymmetricProperty}
+
+
+def term_link(g: Graph, o) -> str:
+    if isinstance(o, URIRef) and str(o).startswith(NS):
+        lbl = g.value(o, RDFS.label)
+        return f'<a href="/{e(local(o))}">{e(str(lbl) if lbl else local(o))}</a>'
+    if isinstance(o, URIRef):
+        return f'<code>{e(shorten(str(o)))}</code>'
+    return e(str(o))
+
+
+def ancestors(g: Graph, s: URIRef) -> list[URIRef]:
+    """Superclass chain to the root, nearest first. Cycles cannot loop it."""
+    out, seen, cur = [], {s}, s
+    while True:
+        nxt = None
+        for o in g.objects(cur, RDFS.subClassOf):
+            if isinstance(o, URIRef) and str(o).startswith(NS) and o not in seen:
+                nxt = o
+                break
+        if nxt is None:
+            return out
+        out.append(nxt); seen.add(nxt); cur = nxt
+
+
+def class_tree(g: Graph, root: URIRef, classes: set, depth: int = 0, seen=None, tags=None) -> str:
+    """The four-category structure, which is the reason to read this ontology at
+    all. A flat alphabetical list of 27 classes hides exactly what makes loze
+    different from a vocabulary."""
+    seen = seen if seen is not None else set()
+    if root in seen or depth > 8:
+        return ""
+    seen.add(root)
+    d = describe(g, root)
+    kids = sorted([c for c in g.subjects(RDFS.subClassOf, root) if c in classes],
+                  key=lambda x: local(x).lower())
+    inner = "".join(class_tree(g, k, classes, depth + 1, seen, tags) for k in kids)
+    tag = ""
+    if tags:
+        mod = tags.get(str(root))
+        if mod:
+            tag = f'<span class="modtag">{e(mod)}</span>'
+    return (f'<li><a href="/{e(d["name"])}">{e(d["label"])}</a>{tag}'
+            f'<span class="tree-def">{e(d["definition"][:90])}</span>'
+            + (f"<ul>{inner}</ul>" if inner else "") + "</li>")
+
+
+def section(head: str, inner: str) -> str:
+    return f'<section><div class="section-head">{e(head)}</div>{inner}</section>' if inner else ""
+
+
 def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
     d = describe(union, s)
+    classes = {c for c in union.subjects(RDF.type, OWL.Class) if str(c).startswith(NS)}
+    is_prop = bool(set(union.objects(s, RDF.type)) & PROP_TYPES)
+
+    # Up the tree, as a trail. Where a term sits matters more than its label.
+    chain = ancestors(union, s)
+    trail = ""
+    if chain:
+        parts = " / ".join(term_link(union, a) for a in reversed(chain))
+        trail = f'<div class="trail">{parts} / <span>{e(d["label"])}</span></div>'
+
+    rows = []
+    for pred, dt in [(RDFS.subClassOf, "specialises"), (RDFS.subPropertyOf, "subproperty of"),
+                     (RDFS.domain, "domain"), (RDFS.range, "range"),
+                     (OWL.equivalentClass, "equivalent to"), (OWL.inverseOf, "inverse of"),
+                     (OWL.disjointWith, "disjoint with")]:
+        vals = [term_link(union, o) for o in union.objects(s, pred)]
+        if vals:
+            rows.append(f"<dt>{dt}</dt><dd>{', '.join(vals)}</dd>")
+    types = [shorten(str(t)) for t in union.objects(s, RDF.type)]
+    if types:
+        rows.append(f"<dt>type</dt><dd><code>{e(', '.join(sorted(types)))}</code></dd>")
+    if defined_in is not None:
+        href = "/" if defined_in == "" else f"/{defined_in}"
+        name = "foundation" if defined_in == "" else defined_in
+        rows.append(f'<dt>defined in</dt><dd><a href="{href}">{e(name)}</a></dd>')
+    props_dl = f'<dl class="props">{"".join(rows)}</dl>' if rows else ""
+
+    # Down the tree, and the properties that reach this class. Without these a
+    # term page is a dead end: you can climb but never explore.
+    subs = sorted([c for c in union.subjects(RDFS.subClassOf, s) if c in classes],
+                  key=lambda x: local(x).lower())
+    subs_html = ('<div class="chips">' + "".join(
+        f'<a class="chip" href="/{e(local(c))}">{e(str(union.value(c, RDFS.label) or local(c)))}</a>'
+        for c in subs) + "</div>") if subs else ""
+
+    def props_where(pred):
+        got = sorted({p for p in union.subjects(pred, s)
+                      if set(union.objects(p, RDF.type)) & PROP_TYPES},
+                     key=lambda x: local(x).lower())
+        return ('<div class="chips">' + "".join(
+            f'<a class="chip chip-prop" href="/{e(local(p))}">{e(str(union.value(p, RDFS.label) or local(p)))}</a>'
+            for p in got) + "</div>") if got else ""
+
     body = f"""
 <header class="top"><div class="wrap">
-  <div class="eyebrow">loze</div>
-  <h1>{e(d['label'])}</h1>
-  <p style="margin:.75rem 0 0"><span class="kind {d['css']}">{e(d['kind'])}</span></p>
+  {trail}
+  <div class="titleline">
+    <h1>{e(d['label'])}</h1>
+    <span class="kind {d['css']}">{e(d['kind'])}</span>
+  </div>
   {f'<p class="lead measure">{e(d["definition"])}</p>' if d['definition'] else ''}
   <div class="iri">{e(d['iri'])}</div>
   {formats_for('')}
 </div></header>
 <main><div class="wrap">
-  <section>
-    <div class="section-head">In the model</div>
-    {rel_rows(union, s, defined_in)}
-  </section>
-  {f'<section><div class="section-head">Note</div><p class="measure">{e(d["note"])}</p></section>' if d['note'] else ''}
-  <section>
-    <div class="section-head">Elsewhere</div>
-    <p class="measure"><a href="/">All of loze</a></p>
-  </section>
+  {section("In the model", props_dl)}
+  {section("Specialised by", subs_html)}
+  {"" if is_prop else section("Properties from this", props_where(RDFS.domain))}
+  {"" if is_prop else section("Properties onto this", props_where(RDFS.range))}
+  {section("Note", f'<p class="measure">{e(d["note"])}</p>' if d['note'] else "")}
 </div></main>
 """
     return shell(f"{d['label']} — loze", alternates_for(""), body)
 
 
-def render_module(slug: str, g: Graph, union: Graph) -> str:
-    onto = None
-    for s in g.subjects(RDF.type, OWL.Ontology):
-        onto = s
-        break
+def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = None) -> str:
+    onto = next(iter(g.subjects(RDF.type, OWL.Ontology)), None)
     label = str(g.value(onto, RDFS.label) or (slug or "loze")) if onto else (slug or "loze")
     definition = str(g.value(onto, SKOS.definition) or "") if onto else ""
 
-    terms = sorted({s for s in g.subjects() if isinstance(s, URIRef)
-                    and str(s).startswith(NS) and str(s) != str(onto)},
-                   key=lambda x: local(x).lower())
-    cells = []
-    for t in terms:
-        d = describe(g, t)
-        cells.append(
-            f'<div class="cell"><span class="kind {d["css"]}">{e(d["kind"])}</span>'
-            f'<h4><a href="/{e(d["name"])}">{e(d["label"])}</a></h4>'
-            f'<p>{e(d["definition"][:150])}</p></div>')
+    own = sorted({s for s in g.subjects() if isinstance(s, URIRef)
+                  and str(s).startswith(NS) and s != onto},
+                 key=lambda x: local(x).lower())
+    classes_all = {c for c in union.subjects(RDF.type, OWL.Class) if str(c).startswith(NS)}
+    own_classes = [t for t in own if t in classes_all]
+    own_props = [t for t in own if set(union.objects(t, RDF.type)) & PROP_TYPES]
+
+    # The hierarchy. On the root page show ALL of it, not just the foundation's
+    # own 15 of 27: every extension class is a subclass of a foundation one, so
+    # the tree from Entity reaches them naturally, and hiding them behind module
+    # links makes the front page a worse map of the ontology than the ontology is.
+    # The serialisations stay exactly this module — only the HTML view is wider,
+    # and each borrowed class is tagged with where it is actually defined.
+    tree_classes = classes_all if slug == "" else set(own_classes)
+    tags = None
+    if slug == "" and defined_in:
+        tags = {k: v for k, v in defined_in.items() if v}
+    roots = [c for c in tree_classes
+             if not any(o in tree_classes for o in union.objects(c, RDFS.subClassOf))]
+    tree = ""
+    if tree_classes:
+        tree = ('<ul class="tree">' +
+                "".join(class_tree(union, r, tree_classes, tags=tags)
+                        for r in sorted(roots, key=lambda x: local(x).lower())) +
+                "</ul>")
+
+    # Properties read best grouped by what they start from.
+    by_domain: dict[str, list] = {}
+    for p in own_props:
+        doms = [o for o in union.objects(p, RDFS.domain) if isinstance(o, URIRef)]
+        key = local(doms[0]) if doms else "—"
+        by_domain.setdefault(key, []).append(p)
+    prop_html = ""
+    if by_domain:
+        blocks = []
+        for dom in sorted(by_domain):
+            chips = "".join(
+                f'<a class="chip chip-prop" href="/{e(local(p))}">{e(str(union.value(p, RDFS.label) or local(p)))}</a>'
+                for p in sorted(by_domain[dom], key=lambda x: local(x).lower()))
+            head = (f'<a href="/{e(dom)}">{e(dom)}</a>' if dom != "—" else "no declared domain")
+            blocks.append(f'<div class="domgroup"><div class="domhead">from {head}</div>'
+                          f'<div class="chips">{chips}</div></div>')
+        prop_html = "".join(blocks)
 
     modules_nav = ""
     if slug == "":
-        links = []
-        for s2, _ in MODULES:
-            if s2 == "":
-                continue
-            links.append(f'<div class="cell"><h4><a href="/{e(s2)}">{e(s2)}</a></h4></div>')
-        modules_nav = (f'<section><div class="section-head">Modules</div>'
-                       f'<div class="grid">{"".join(links)}</div></section>')
+        cells = "".join(
+            f'<div class="cell"><h4><a href="/{e(s2)}">{e(s2.replace("-", " "))}</a></h4>'
+            f'<p>{len([x for x in Graph().parse(ROOT / src2, format="turtle").subjects()])} statements</p></div>'
+            for s2, src2 in MODULES if s2)
+        modules_nav = section("Modules", f'<div class="grid">{cells}</div>')
 
     body = f"""
 <header class="top"><div class="wrap">
@@ -461,10 +638,8 @@ def render_module(slug: str, g: Graph, union: Graph) -> str:
 </div></header>
 <main><div class="wrap">
   {modules_nav}
-  <section>
-    <div class="section-head">{len(terms)} terms</div>
-    <div class="grid">{"".join(cells)}</div>
-  </section>
+  {section(f"{len(tree_classes)} classes", tree)}
+  {section(f"{len(own_props)} properties", prop_html)}
 </div></main>
 """
     return shell(f"{label} — loze", alternates_for(slug), body)
@@ -520,13 +695,19 @@ def main() -> None:
 
     # Per module: serialisations + a page. The foundation is the namespace root,
     # so its page is index.html and it is served at /.
+    defined_in: dict[str, str] = {}
+    for slug_, _src in MODULES:
+        for subj in per_module[slug_].subjects():
+            if isinstance(subj, URIRef) and str(subj).startswith(NS):
+                defined_in.setdefault(str(subj), slug_)
+
     for slug, src in MODULES:
         g = per_module[slug]
         base = slug or "loze-foundation"
         for ext, fmt in SERIALISATIONS:
             g.serialize(destination=str(OUT / f"{base}.{ext}"), format=fmt)
         shutil.copy(ROOT / src, OUT / Path(src).name)
-        page = render_module(slug, g, union)
+        page = render_module(slug, g, union, defined_in)
         (OUT / ("index.html" if slug == "" else f"{slug}.html")).write_text(page, encoding="utf-8")
 
     # One document per term, because /Entity has to resolve to something.
@@ -535,13 +716,6 @@ def main() -> None:
                     if isinstance(s, URIRef) and str(s).startswith(NS)
                     and str(s) != NS and str(s) not in ontologies},
                    key=lambda x: local(x))
-    # term IRI -> the slug of the module that introduces it. First module wins,
-    # in MODULES order, so the foundation takes precedence over an extension.
-    defined_in: dict[str, str] = {}
-    for slug, _ in MODULES:
-        for subj in per_module[slug].subjects():
-            if isinstance(subj, URIRef) and str(subj).startswith(NS):
-                defined_in.setdefault(str(subj), slug)
     for t in terms:
         (OUT / f"{local(t)}.html").write_text(
             render_term(union, t, defined_in.get(str(t))), encoding="utf-8")

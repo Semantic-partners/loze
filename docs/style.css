@@ -166,6 +166,61 @@ dl.props { display: grid; grid-template-columns: minmax(9rem, auto) 1fr; gap: 0.
 dl.props dt { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-xs); letter-spacing: 0.04em; color: hsl(var(--muted-foreground)); }
 dl.props dd { margin: 0; }
 
+/* The class tree. Rules rather than bullets: the indent is the information, and
+   a disc at every level competes with it. */
+ul.tree, ul.tree ul { list-style: none; margin: 0; padding: 0; }
+ul.tree ul { margin-left: 0.75rem; padding-left: 1rem; border-left: 1px solid hsl(var(--border)); }
+ul.tree li { padding: 0.3rem 0; }
+ul.tree a { font-weight: 500; }
+.tree-def {
+  display: inline; margin-left: 0.6rem;
+  font-size: var(--fs-sm); color: hsl(var(--faint));
+}
+@media (max-width: 40rem) { .tree-def { display: none; } }
+
+/* Where a term sits, above its name. */
+.trail {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-xs);
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 0.75rem;
+}
+.trail span { color: hsl(var(--foreground)); }
+.titleline { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip {
+  font-size: var(--fs-sm);
+  border: 1px solid hsl(var(--border-emphasis));
+  border-radius: var(--radius);
+  padding: 0.3rem 0.6rem;
+  color: hsl(var(--foreground));
+  transition: border-color 150ms var(--ease-brand), color 150ms var(--ease-brand);
+}
+.chip:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-accent)); text-decoration: none; }
+/* Properties keep the amber of the node triad, quietly — a left edge, not a fill. */
+.chip-prop { border-left: 3px solid hsl(var(--clr-node-property) / 0.7); font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-xs); }
+
+.domgroup { margin-bottom: 1.5rem; }
+.domhead {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 0.5rem;
+}
+
+.modtag {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.04em;
+  color: hsl(var(--muted-foreground));
+  border: 1px solid hsl(var(--border));
+  padding: 0.05rem 0.35rem;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
 footer.bot {
   border-top: 1px solid hsl(var(--border));
   padding: 2.5rem 0 4rem;

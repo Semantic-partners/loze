@@ -5,15 +5,13 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="https://loze-ontology.org/InformationArtefact">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Information Artefact</rdfs:label>
-    <skos:definition>An artefact that consists of a structured system of symbols' occurrences meant to convey information</skos:definition>
-    <skos:example>A book, an article, a note, a document, a digital file, a computer programme or software</skos:example>
-    <skos:note>The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine</skos:note>
-    <skos:note>An information artefact can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete</skos:note>
-    <skos:note>An information artefact that is concrete is always going to be the concretization of some schematic information artefact</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Artefact"/>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasInstruction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Instruction</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/InformationArtefact"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/Artefact">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -22,6 +20,29 @@
     <skos:example>A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork</skos:example>
     <skos:note>Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact</skos:note>
     <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Object"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/artefacts-information-and-instructions">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>Artefacts, Information, and Instructions</rdfs:label>
+    <skos:definition>An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions</skos:definition>
+    <owl:imports rdf:resource="https://loze-ontology.org/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasStandard">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has Standard</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e</skos:definition>
+    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
+    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isStandardIn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/Text">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Text</rdfs:label>
+    <skos:definition>An information artefact that consists of sentences in some human-readable language and is meant to convey meaning to humans</skos:definition>
+    <skos:example>A book, an article, a physical document, a text or document file, a book chapter, a dish recipe</skos:example>
+    <skos:note>According to the definition, not only plain text files, but also document files are instances of loze:Text</skos:note>
+    <skos:note>In a software system, a machine code might not be a text, because it's not always meant to convey meaning to humans; on the other hand, the source code is a text, since it's human-readable</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/InformationArtefact"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isInstructionIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -32,13 +53,13 @@
     <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isStandardIn"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasInstruction">
+  <rdf:Description rdf:about="https://loze-ontology.org/hasRecipe">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Instruction</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the instruction in e</skos:definition>
+    <rdfs:label>has Recipe</rdfs:label>
+    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e</skos:definition>
     <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:range rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
+    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRecipeIn"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isStandardIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -60,35 +81,14 @@
     <rdfs:range rdf:resource="https://loze-ontology.org/Eventuality"/>
     <rdfs:subPropertyOf rdf:resource="https://loze-ontology.org/isInstructionIn"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/Text">
+  <rdf:Description rdf:about="https://loze-ontology.org/InformationArtefact">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Text</rdfs:label>
-    <skos:definition>An information artefact that consists of sentences in some human-readable language and is meant to convey meaning to humans</skos:definition>
-    <skos:example>A book, an article, a physical document, a text or document file, a book chapter, a dish recipe</skos:example>
-    <skos:note>According to the definition, not only plain text files, but also document files are instances of loze:Text</skos:note>
-    <skos:note>In a software system, a machine code might not be a text, because it's not always meant to convey meaning to humans; on the other hand, the source code is a text, since it's human-readable</skos:note>
-    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasStandard">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Standard</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/Particular"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isStandardIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/hasRecipe">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has Recipe</rdfs:label>
-    <skos:definition>The relation that obtains between an eventuality e and an information artefact i if and only if i is the recipe in e</skos:definition>
-    <rdfs:domain rdf:resource="https://loze-ontology.org/Eventuality"/>
-    <rdfs:range rdf:resource="https://loze-ontology.org/InformationArtefact"/>
-    <owl:inverseOf rdf:resource="https://loze-ontology.org/isRecipeIn"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/artefacts-information-and-instructions">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:label>Artefacts, Information, and Instructions</rdfs:label>
-    <skos:definition>An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions</skos:definition>
-    <owl:imports rdf:resource="https://loze-ontology.org/"/>
+    <rdfs:label>Information Artefact</rdfs:label>
+    <skos:definition>An artefact that consists of a structured system of symbols' occurrences meant to convey information</skos:definition>
+    <skos:example>A book, an article, a note, a document, a digital file, a computer programme or software</skos:example>
+    <skos:note>The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine</skos:note>
+    <skos:note>An information artefact can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete</skos:note>
+    <skos:note>An information artefact that is concrete is always going to be the concretization of some schematic information artefact</skos:note>
+    <rdfs:subClassOf rdf:resource="https://loze-ontology.org/Artefact"/>
   </rdf:Description>
 </rdf:RDF>
