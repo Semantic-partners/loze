@@ -13,3 +13,9 @@
 
 /*.jsonld
   Content-Type: application/ld+json; charset=utf-8
+
+/*.trig
+  Content-Type: application/trig; charset=utf-8
+
+/*.nq
+  Content-Type: application/n-quads; charset=utf-8

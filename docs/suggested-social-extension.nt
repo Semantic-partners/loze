@@ -1,56 +1,56 @@
-<https://loze-ontology.org/Person> <http://www.w3.org/2000/01/rdf-schema#label> "Person" .
-<https://loze-ontology.org/Person> <http://www.w3.org/2004/02/skos/core#note> "Specimens of other species of the genus Homo (such as Homo erectus or Homo Neanderthalensis) would be problematic to categorise, because they are not specimens of Homo sapiens yet they qualify as humans in a broader sense; in practice, this issue is irrelevant, since Homo sapiens is the only extant species of the genus Homo" .
-<https://loze-ontology.org/LivingBeing> <http://www.w3.org/2000/01/rdf-schema#label> "Living Being" .
-<https://loze-ontology.org/NonHumanAnimal> <http://www.w3.org/2004/02/skos/core#note> "In ordinary talk as well as legal talk, non-human animals are usually called just 'animals'" .
-<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/2004/02/skos/core#note> "The difference between an organisation organ and an organisation that is part of another organisation is that the official goals of an organ are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation" .
 <https://loze-ontology.org/Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Animal> .
-<https://loze-ontology.org/Group> <http://www.w3.org/2004/02/skos/core#example> "A household, a family, a couple, any organisation" .
-<https://loze-ontology.org/Organisation> <http://www.w3.org/2004/02/skos/core#note> "A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are inherently illegal, such as criminal gangs and terrorist organisations" .
-<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/2004/02/skos/core#definition> "A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) it not itself an organisation" .
-<https://loze-ontology.org/LivingBeing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://loze-ontology.org/LivingBeing> <http://www.w3.org/2004/02/skos/core#definition> "An object that displays properties such as responsiveness, growth, metabolism, energy transformation, and reproduction" .
-<https://loze-ontology.org/Animal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://loze-ontology.org/Organisation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Group> .
-<https://loze-ontology.org/Animal> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/LivingBeing> .
-<https://loze-ontology.org/NonHumanAnimal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://loze-ontology.org/Animal> <http://www.w3.org/2004/02/skos/core#note> "Within biological taxonomy - so-called Tree of Life - animals are the members of the kingdom of Animalia" .
-<https://loze-ontology.org/Organisation> <http://www.w3.org/2004/02/skos/core#definition> "A group whose members are acting together in the pursuit of a common goal, based on an agreed upon system of rules and commitments" .
-<https://loze-ontology.org/Plant> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/LivingBeing> .
-<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/2004/02/skos/core#example> "A government's parliament, a company's committee, a team" .
-<https://loze-ontology.org/Group> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Group> .
-_:n8464c751de3c4442956d9fed0c0d1c0cb2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://loze-ontology.org/NonHumanAnimal> .
-<https://loze-ontology.org/NonHumanAnimal> <http://www.w3.org/2004/02/skos/core#definition> "An animal that is not a specimen of the species Homo sapiens" .
-<https://loze-ontology.org/Plant> <http://www.w3.org/2004/02/skos/core#note> "Plants typically have a firmer cellular structure than animals and are not able to move" .
-<https://loze-ontology.org/suggested-social-extension> <http://www.w3.org/2004/02/skos/core#definition> "An extension of loze.ttl with classes and relations for modelling living beings and social entities such as persons, groups, and organisations" .
 <https://loze-ontology.org/Animal> <http://www.w3.org/2000/01/rdf-schema#label> "Animal" .
+<https://loze-ontology.org/Organisation> <http://www.w3.org/2004/02/skos/core#definition> "A group whose members are acting together in the pursuit of a common goal, based on an agreed upon system of rules and commitments" .
+<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/2004/02/skos/core#note> "The difference between an organisation organ and an organisation that is part of another organisation is that the official goals of an organ are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation" .
+<https://loze-ontology.org/Group> <http://www.w3.org/2000/01/rdf-schema#label> "Group" .
+_:ndb001492e4954089a77cca817c5ae65cb1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:ndb001492e4954089a77cca817c5ae65cb2 .
+<https://loze-ontology.org/Animal> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:ndb001492e4954089a77cca817c5ae65cb1 .
+<https://loze-ontology.org/Plant> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/LivingBeing> .
+<https://loze-ontology.org/Group> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/2000/01/rdf-schema#label> "Organisation Organ" .
+<https://loze-ontology.org/LivingBeing> <http://www.w3.org/2000/01/rdf-schema#label> "Living Being" .
+<https://loze-ontology.org/Organisation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/2004/02/skos/core#example> "A government's parliament, a company's committee, a team" .
+<https://loze-ontology.org/suggested-social-extension> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://loze-ontology.org/Person> <http://www.w3.org/2004/02/skos/core#note> "Specimens of other species of the genus Homo (such as Homo erectus or Homo Neanderthalensis) would be problematic to categorise, because they are not specimens of Homo sapiens yet they qualify as humans in a broader sense; in practice, this issue is irrelevant, since Homo sapiens is the only extant species of the genus Homo" .
 <https://loze-ontology.org/Plant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/Person> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/Animal> <http://www.w3.org/2004/02/skos/core#note> "Within biological taxonomy - so-called Tree of Life - animals are the members of the kingdom of Animalia" .
+<https://loze-ontology.org/NonHumanAnimal> <http://www.w3.org/2004/02/skos/core#definition> "An animal that is not a specimen of the species Homo sapiens" .
+<https://loze-ontology.org/Organisation> <http://www.w3.org/2000/01/rdf-schema#label> "Organisation" .
+<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/2004/02/skos/core#definition> "A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) it not itself an organisation" .
+_:ndb001492e4954089a77cca817c5ae65cb2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<https://loze-ontology.org/Group> <http://www.w3.org/2004/02/skos/core#note> "Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes" .
+<https://loze-ontology.org/Group> <http://www.w3.org/2004/02/skos/core#example> "A household, a family, a couple, any organisation" .
+<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Group> .
+<https://loze-ontology.org/Organisation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Group> .
+<https://loze-ontology.org/LivingBeing> <http://www.w3.org/2004/02/skos/core#note> "The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; nevertheless, there are still borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)" .
+<https://loze-ontology.org/Plant> <http://www.w3.org/2004/02/skos/core#definition> "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) derives its nourishment from photosynthesis" .
+<https://loze-ontology.org/Person> <http://www.w3.org/2004/02/skos/core#note> "It does not encompass those entities that in the legal jargon are called 'legal persons' or 'non-physical persons' " .
+<https://loze-ontology.org/suggested-social-extension> <http://www.w3.org/2004/02/skos/core#definition> "An extension of loze.ttl with classes and relations for modelling living beings and social entities such as persons, groups, and organisations" .
+<https://loze-ontology.org/suggested-social-extension> <http://www.w3.org/2002/07/owl#imports> <https://loze-ontology.org/> .
+<https://loze-ontology.org/Animal> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/LivingBeing> .
+<https://loze-ontology.org/Animal> <http://www.w3.org/2004/02/skos/core#definition> "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings" .
 <https://loze-ontology.org/Plant> <http://www.w3.org/2004/02/skos/core#note> "Within biological taxonomy - so-called Tree of Life - plants are the members of the kingdom of Plantae" .
 <https://loze-ontology.org/NonHumanAnimal> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Animal> .
-_:n8464c751de3c4442956d9fed0c0d1c0cb1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:n8464c751de3c4442956d9fed0c0d1c0cb2 .
-<https://loze-ontology.org/Person> <http://www.w3.org/2004/02/skos/core#note> "It does not encompass those entities that in the legal jargon are called 'legal persons' or 'non-physical persons' " .
-<https://loze-ontology.org/Organisation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://loze-ontology.org/Organisation> <http://www.w3.org/2004/02/skos/core#note> "An organisation can have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts" .
-<https://loze-ontology.org/Organisation> <http://www.w3.org/2000/01/rdf-schema#label> "Organisation" .
-<https://loze-ontology.org/LivingBeing> <http://www.w3.org/2004/02/skos/core#note> "The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; nevertheless, there are still borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)" .
-<https://loze-ontology.org/suggested-social-extension> <http://www.w3.org/2000/01/rdf-schema#label> "Suggested Social Extension" .
-<https://loze-ontology.org/Animal> <http://www.w3.org/2004/02/skos/core#note> "Animals typically have a more flexible body than plants and fungi and are able to move" .
-<https://loze-ontology.org/Group> <http://www.w3.org/2004/02/skos/core#definition> "An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction" .
-<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/2000/01/rdf-schema#label> "Organisation Organ" .
-<https://loze-ontology.org/Person> <http://www.w3.org/2004/02/skos/core#definition> "An animal that is a specimen of the species Homo sapiens" .
-<https://loze-ontology.org/Organisation> <http://www.w3.org/2004/02/skos/core#example> "A company, a charity or foundation, a political party, a club, a state or government, an international organisation, a criminal gang, a terrorist organisation" .
-<https://loze-ontology.org/Animal> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:n8464c751de3c4442956d9fed0c0d1c0cb1 .
-<https://loze-ontology.org/OrganisationOrgan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://loze-ontology.org/suggested-social-extension> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
-<https://loze-ontology.org/Group> <http://www.w3.org/2000/01/rdf-schema#label> "Group" .
-<https://loze-ontology.org/NonHumanAnimal> <http://www.w3.org/2000/01/rdf-schema#label> "Non-Human Animal" .
 <https://loze-ontology.org/LivingBeing> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Object> .
-<https://loze-ontology.org/Animal> <http://www.w3.org/2004/02/skos/core#definition> "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings" .
-<https://loze-ontology.org/suggested-social-extension> <http://www.w3.org/2002/07/owl#imports> <https://loze-ontology.org/> .
-<https://loze-ontology.org/Plant> <http://www.w3.org/2004/02/skos/core#definition> "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) derives its nourishment from photosynthesis" .
-<https://loze-ontology.org/Plant> <http://www.w3.org/2000/01/rdf-schema#label> "Plant" .
-<https://loze-ontology.org/Group> <http://www.w3.org/2004/02/skos/core#note> "Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes" .
-_:n8464c751de3c4442956d9fed0c0d1c0cb1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://loze-ontology.org/Person> .
-<https://loze-ontology.org/Person> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+_:ndb001492e4954089a77cca817c5ae65cb2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://loze-ontology.org/NonHumanAnimal> .
+<https://loze-ontology.org/Person> <http://www.w3.org/2000/01/rdf-schema#label> "Person" .
+<https://loze-ontology.org/Person> <http://www.w3.org/2004/02/skos/core#definition> "An animal that is a specimen of the species Homo sapiens" .
+<https://loze-ontology.org/LivingBeing> <http://www.w3.org/2004/02/skos/core#definition> "An object that displays properties such as responsiveness, growth, metabolism, energy transformation, and reproduction" .
+<https://loze-ontology.org/Group> <http://www.w3.org/2004/02/skos/core#definition> "An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction" .
+<https://loze-ontology.org/Animal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/Organisation> <http://www.w3.org/2004/02/skos/core#note> "An organisation can have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts" .
+<https://loze-ontology.org/suggested-social-extension> <http://www.w3.org/2000/01/rdf-schema#label> "Suggested Social Extension" .
+<https://loze-ontology.org/NonHumanAnimal> <http://www.w3.org/2000/01/rdf-schema#label> "Non-Human Animal" .
+<https://loze-ontology.org/Organisation> <http://www.w3.org/2004/02/skos/core#note> "A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are inherently illegal, such as criminal gangs and terrorist organisations" .
+_:ndb001492e4954089a77cca817c5ae65cb1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://loze-ontology.org/Person> .
+<https://loze-ontology.org/Plant> <http://www.w3.org/2004/02/skos/core#note> "Plants typically have a firmer cellular structure than animals and are not able to move" .
 <https://loze-ontology.org/Group> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Object> .
-_:n8464c751de3c4442956d9fed0c0d1c0cb2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<https://loze-ontology.org/NonHumanAnimal> <http://www.w3.org/2004/02/skos/core#note> "In ordinary talk as well as legal talk, non-human animals are usually called just 'animals'" .
+<https://loze-ontology.org/Organisation> <http://www.w3.org/2004/02/skos/core#example> "A company, a charity or foundation, a political party, a club, a state or government, an international organisation, a criminal gang, a terrorist organisation" .
+<https://loze-ontology.org/Plant> <http://www.w3.org/2000/01/rdf-schema#label> "Plant" .
+<https://loze-ontology.org/NonHumanAnimal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/Animal> <http://www.w3.org/2004/02/skos/core#note> "Animals typically have a more flexible body than plants and fungi and are able to move" .
+<https://loze-ontology.org/LivingBeing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .

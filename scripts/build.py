@@ -49,7 +49,7 @@ import html as html_mod
 import shutil
 from pathlib import Path
 
-from rdflib import Graph, URIRef
+from rdflib import Dataset, Graph, URIRef
 from rdflib.namespace import OWL, RDF, RDFS, SKOS
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -66,6 +66,12 @@ MODULES: list[tuple[str, str]] = [
 ]
 
 SERIALISATIONS = [("ttl", "turtle"), ("rdf", "xml"), ("jsonld", "json-ld"), ("nt", "nt")]
+
+# Quad formats, for the union only. Turtle cannot say WHICH module asserts a
+# triple; TriG and N-Quads can, and that is the one fact a consumer of the merged
+# file otherwise has to guess. Each module is a named graph identified by its own
+# ontology IRI, so the graph name is also the document you can go and fetch.
+QUAD_SERIALISATIONS = [("trig", "trig"), ("nq", "nquads")]
 
 e = html_mod.escape
 
@@ -378,11 +384,16 @@ def alternates_for(slug: str) -> str:
     )
 
 
-def formats_for(slug: str) -> str:
+def formats_for(slug: str, quads: bool = False) -> str:
+    """Quads are offered only where they say something: the union, where the graph
+    name records which module asserts each statement. For a single module they
+    would be Turtle in a wrapper."""
     base = slug or "loze"
-    return '<div class="formats">' + "".join(
-        f'<a href="/{base}.{ext}">{ext}</a>' for ext, _ in SERIALISATIONS
-    ) + "</div>"
+    items = [f'<a href="/{base}.{ext}">{ext}</a>' for ext, _ in SERIALISATIONS]
+    if quads:
+        items += [f'<a href="/loze.{ext}" title="quads — keeps the module each '
+                  f'statement came from">{ext}</a>' for ext, _ in QUAD_SERIALISATIONS]
+    return '<div class="formats">' + "".join(items) + "</div>"
 
 
 def kind_of(g: Graph, s: URIRef) -> tuple[str, str]:
@@ -634,7 +645,7 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
   <h1>{e(label)}</h1>
   {f'<p class="lead measure">{e(definition)}</p>' if definition else ''}
   <div class="iri">{e(str(onto) if onto else NS)}</div>
-  {formats_for(slug)}
+  {formats_for(slug, quads=(slug == ''))}
 </div></header>
 <main><div class="wrap">
   {modules_nav}
@@ -680,26 +691,63 @@ def main() -> None:
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
 
-    union = Graph()
+    # One named graph per source file, named by that module's ontology IRI. Two
+    # things follow, and both were previously reconstructed by hand:
+    #   - "which module says this" is a quad lookup, not a re-parse of five files
+    #     followed by a first-wins guess;
+    #   - the merged download can be published as quads, keeping that provenance
+    #     instead of flattening it away.
+    # default_union=True so the dataset reads as the whole graph when nothing
+    # names a context, which is what every renderer wants.
+    ds = Dataset(default_union=True)
     per_module: dict[str, Graph] = {}
     for slug, src in MODULES:
-        g = Graph(); g.parse(ROOT / src, format="turtle")
+        g = ds.graph(URIRef(NS + slug))
+        g.parse(ROOT / src, format="turtle")
         per_module[slug] = g
-        union += g
 
+    # Assert the graph name and the ontology IRI agree. They are the same string
+    # by construction here, but a module whose owl:Ontology said something else
+    # would publish a graph named for a document that does not describe it.
+    for slug, src in MODULES:
+        declared = {str(o) for o in per_module[slug].subjects(RDF.type, OWL.Ontology)}
+        if declared and NS + slug not in declared:
+            raise SystemExit(
+                f"REFUSING TO BUILD — {src} declares {declared} but its graph is "
+                f"named <{NS + slug}>. Make the owl:Ontology IRI match the slug."
+            )
+
+    union = ds
     check_no_collisions(union)
 
-    # The union, under /loze.*, so one fetch gets the whole ontology.
+    # The union, under /loze.*, so one fetch gets the whole ontology. Flattened to
+    # a single Graph first: Turtle and friends have no way to express a quad, and
+    # serialising a Dataset to them drops everything but the default graph.
+    merged = Graph()
+    for s_, p_, o_, _c in union.quads((None, None, None, None)):
+        merged.add((s_, p_, o_))
+    for pfx, ns in union.namespaces():
+        merged.bind(pfx, ns, override=False)
     for ext, fmt in SERIALISATIONS:
+        merged.serialize(destination=str(OUT / f"loze.{ext}"), format=fmt)
+
+    # And as quads, which keep the module each statement came from — the one thing
+    # the flattened download cannot tell you.
+    for ext, fmt in QUAD_SERIALISATIONS:
         union.serialize(destination=str(OUT / f"loze.{ext}"), format=fmt)
 
     # Per module: serialisations + a page. The foundation is the namespace root,
     # so its page is index.html and it is served at /.
+    # Straight out of the quads. Ordered by MODULES so the foundation wins when a
+    # term is mentioned in more than one graph — mentioned is not defined.
+    order = [NS + slug for slug, _ in MODULES]
     defined_in: dict[str, str] = {}
-    for slug_, _src in MODULES:
-        for subj in per_module[slug_].subjects():
-            if isinstance(subj, URIRef) and str(subj).startswith(NS):
-                defined_in.setdefault(str(subj), slug_)
+    for subj, _p, _o, ctx in union.quads((None, RDF.type, None, None)):
+        if not (isinstance(subj, URIRef) and str(subj).startswith(NS)):
+            continue
+        cur = defined_in.get(str(subj))
+        if cur is None or order.index(str(ctx)) < order.index(NS + cur):
+            defined_in[str(subj)] = str(ctx)[len(NS):]
 
     for slug, src in MODULES:
         g = per_module[slug]
@@ -737,12 +785,15 @@ def main() -> None:
         "/*.ttl\n  Content-Type: text/turtle; charset=utf-8\n"
         "\n/*.nt\n  Content-Type: application/n-triples; charset=utf-8\n"
         "\n/*.rdf\n  Content-Type: application/rdf+xml; charset=utf-8\n"
-        "\n/*.jsonld\n  Content-Type: application/ld+json; charset=utf-8\n",
+        "\n/*.jsonld\n  Content-Type: application/ld+json; charset=utf-8\n"
+        "\n/*.trig\n  Content-Type: application/trig; charset=utf-8\n"
+        "\n/*.nq\n  Content-Type: application/n-quads; charset=utf-8\n",
         encoding="utf-8")
 
     n_terms = len(terms)
     print(f"docs/ — {len(union)} triples, {len(MODULES)} modules, {n_terms} term pages")
-    print(f"  union:   /loze.{{{','.join(x for x, _ in SERIALISATIONS)}}}")
+    print(f"  union:   /loze.{{{','.join(x for x, _ in SERIALISATIONS)}}}"
+          f"  + quads /loze.{{{','.join(x for x, _ in QUAD_SERIALISATIONS)}}}")
     print(f"  root:    /            ({len(per_module['']):>3} triples)")
     for slug, _ in MODULES:
         if slug:
