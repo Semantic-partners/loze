@@ -1,62 +1,62 @@
+<https://loze-ontology.org/Substance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://loze-ontology.org/Substance> <http://www.w3.org/2000/01/rdf-schema#label> "Substance" .
+<https://loze-ontology.org/Substance> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/SchematicParticular> .
+<https://loze-ontology.org/Substance> <http://www.w3.org/2004/02/skos/core#definition> "A schematic particular that is highly dissectable" .
+<https://loze-ontology.org/Substance> <http://www.w3.org/2004/02/skos/core#example> "Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint" .
+<https://loze-ontology.org/Substance> <http://www.w3.org/2004/02/skos/core#note> "Dissectability consists in concretizations being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold" .
+<https://loze-ontology.org/Substance> <http://www.w3.org/2004/02/skos/core#note> "Here the word 'substance' is used in the chemical sense, and not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics" .
+<https://loze-ontology.org/hasIngredient> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/hasIngredient> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Composition> .
+<https://loze-ontology.org/hasIngredient> <http://www.w3.org/2000/01/rdf-schema#label> "has Ingredient" .
+<https://loze-ontology.org/hasIngredient> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Substance> .
+<https://loze-ontology.org/hasIngredient> <http://www.w3.org/2002/07/owl#inverseOf> <https://loze-ontology.org/isIngredientIn> .
+<https://loze-ontology.org/hasIngredient> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c" .
+<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
+<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2000/01/rdf-schema#label> "has Number Of Occurrences" .
+<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2004/02/skos/core#definition> "The relation that assignes to an eventuality the number of occurrences in which a certain schematic particular is repeated in the context of that eventuality" .
+<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2004/02/skos/core#example> "In a composition in which a polymerous sequence has a monomer repeated 3000 times, the number of occurrences is 3000; in the composition of the water molecule out of hydrogen, the number of occurrences is 2; in a containment in which a tablet is repeated 10 times in a blister pack, the number of occurrences is 10" .
+<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2004/02/skos/core#note> "This relation is mostly intended to be used in the context of compositions (loze:Composition) and containments (loze:Containment); that being said, its application to other eventualities should not be excluded in principle" .
+<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Composition> .
+<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/2000/01/rdf-schema#label> "has Repeated Component" .
+<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/SchematicParticular> .
+<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/2002/07/owl#inverseOf> <https://loze-ontology.org/isRepeatedComponentIn> .
+<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c" .
+<https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Containment> .
+<https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/2000/01/rdf-schema#label> "has Repeated Content" .
+<https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/SchematicParticular> .
 <https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/2002/07/owl#inverseOf> <https://loze-ontology.org/isRepeatedContentIn> .
+<https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between a containment c and a schematic particular s if and only if s is the repeated content in c" .
+<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Substance> .
+<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2000/01/rdf-schema#label> "is Ingredient In" .
+<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Composition> .
+<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isComponentIn> .
+<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isComponentIn that obtains whenever the component is a substance that occurres in the composite in a given amount" .
+<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2004/02/skos/core#example> "In the case of a cake having as ingredient 200 grams of wheat flour, wheat flour is the ingredient; in the case of a solution having as ingredient 2 litres of water, water is the ingredient" .
+<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2004/02/skos/core#note> "Substance repetition is impractical to account for in terms of number of occurrences, since the units are too many to be counted; consequently, instead of using loze:hasNumberOfOccurrences, it is advisable to specify quantities based on units of measure" .
 <https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/SchematicParticular> .
-<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2004/02/skos/core#example> "In the case of a cake having as ingredient 200 grams of wheat flour, wheat flour is the ingredient; in the case of a solution having as ingredient 2 litres of water, water is the ingredient" .
-<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/SchematicParticular> .
-<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Containment> .
-<https://loze-ontology.org/materials-and-composition> <http://www.w3.org/2004/02/skos/core#definition> "An extension of loze.ttl with classes and relations for modelling substances and material composition" .
-<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2004/02/skos/core#note> "A containment with a repeated component is always going to have an associated number of occurrences (loze:hasNumberOfOccurrences)" .
-<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
-<https://loze-ontology.org/materials-and-composition> <http://www.w3.org/2002/07/owl#imports> <https://loze-ontology.org/> .
-<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2004/02/skos/core#example> "In a composition in which a polymerous sequence has a monomer repeated 3000 times, the number of occurrences is 3000; in the composition of the water molecule out of hydrogen, the number of occurrences is 2; in a containment in which a tablet is repeated 10 times in a blister pack, the number of occurrences is 10" .
-<https://loze-ontology.org/materials-and-composition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
-<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
-<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c" .
-<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2004/02/skos/core#example> "In the case of a blister pack containing 10 standardised 5 mg paracetamol tablets, the 5 mg paracetamol tablet - construed as a schematic particular - is the repeated content" .
-<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2000/01/rdf-schema#label> "has Number Of Occurrences" .
-<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isComponentIn that obtains whenever the component is a substance that occurres in the composite in a given amount" .
-<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2000/01/rdf-schema#label> "is Repeated Content In" .
-<https://loze-ontology.org/Substance> <http://www.w3.org/2000/01/rdf-schema#label> "Substance" .
-<https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Containment> .
-<https://loze-ontology.org/hasIngredient> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Substance> .
-<https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/SchematicParticular> .
-<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isComponentIn> .
-<https://loze-ontology.org/Substance> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/SchematicParticular> .
-<https://loze-ontology.org/hasIngredient> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c" .
 <https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2000/01/rdf-schema#label> "is Repeated Component In" .
+<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Composition> .
+<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isComponentIn> .
+<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isComponentIn that obtains whenever the component is a schematic particular that is repeated in the composite in multiple occurrences" .
+<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2004/02/skos/core#example> "In the case of a monomer making up a polymerous sequence, the monomer is the repeated component; in the case of water having two atoms of hydrogen, hydrogen atom is the repeated component; in the case of an engine having pistons of a certain type, the piston - construed as a schematic object - is the repeated component" .
+<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2004/02/skos/core#note> "The number of repetitions is going to be specified by the associated number of occurrences (loze:hasNumberOfOccurrences)" .
+<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2004/02/skos/core#note> "While the repeated component is always going to be a schematic particular, the composite can be either a schematic particular or a concrete particular" .
 <https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/SchematicParticular> .
-<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2004/02/skos/core#definition> "The relation that assignes to an eventuality the number of occurrences in which a certain schematic particular is repeated in the context of that eventuality" .
-<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Composition> .
-<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Substance> .
-<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Composition> .
-<https://loze-ontology.org/Substance> <http://www.w3.org/2004/02/skos/core#definition> "A schematic particular that is highly dissectable" .
-<https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/2000/01/rdf-schema#label> "has Repeated Content" .
-<https://loze-ontology.org/Substance> <http://www.w3.org/2004/02/skos/core#note> "Here the word 'substance' is used in the chemical sense, and not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics" .
-<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isComponentIn> .
-<https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2004/02/skos/core#note> "Substance repetition is impractical to account for in terms of number of occurrences, since the units are too many to be counted; consequently, instead of using loze:hasNumberOfOccurrences, it is advisable to specify quantities based on units of measure" .
-<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isComponentIn that obtains whenever the component is a schematic particular that is repeated in the composite in multiple occurrences" .
-<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2004/02/skos/core#note> "The number of repetitions is going to be specified by the associated number of occurrences (loze:hasNumberOfOccurrences)" .
-<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2004/02/skos/core#note> "While the repeated content is always going to be a schematic particular, the host can be either a schematic particular or a concrete particular" .
-<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/2000/01/rdf-schema#label> "has Repeated Component" .
-<https://loze-ontology.org/hasRepeatedComponent> <http://www.w3.org/2002/07/owl#inverseOf> <https://loze-ontology.org/isRepeatedComponentIn> .
-<https://loze-ontology.org/hasIngredient> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Composition> .
-<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2004/02/skos/core#example> "In the case of a monomer making up a polymerous sequence, the monomer is the repeated component; in the case of water having two atoms of hydrogen, hydrogen atom is the repeated component; in the case of an engine having pistons of a certain type, the piston - construed as a schematic object - is the repeated component" .
-<https://loze-ontology.org/materials-and-composition> <http://www.w3.org/2000/01/rdf-schema#label> "Materials and Composition" .
-<https://loze-ontology.org/hasIngredient> <http://www.w3.org/2000/01/rdf-schema#label> "has Ingredient" .
-<https://loze-ontology.org/hasIngredient> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2004/02/skos/core#note> "While the repeated component is always going to be a schematic particular, the composite can be either a schematic particular or a concrete particular" .
-<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-<https://loze-ontology.org/Substance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://loze-ontology.org/Substance> <http://www.w3.org/2004/02/skos/core#note> "Dissectability consists in concretizations being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold" .
-<https://loze-ontology.org/Substance> <http://www.w3.org/2004/02/skos/core#example> "Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint" .
-<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isContentIn that obtains whenever the content is a schematic particular that is repeated in the host in multiple occurrences" .
+<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2000/01/rdf-schema#label> "is Repeated Content In" .
+<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Containment> .
 <https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isContentIn> .
-<https://loze-ontology.org/isRepeatedComponentIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Composition> .
-<https://loze-ontology.org/hasRepeatedContent> <http://www.w3.org/2004/02/skos/core#definition> "The relation that obtains between a containment c and a schematic particular s if and only if s is the repeated content in c" .
-<https://loze-ontology.org/hasIngredient> <http://www.w3.org/2002/07/owl#inverseOf> <https://loze-ontology.org/isIngredientIn> .
-<https://loze-ontology.org/isIngredientIn> <http://www.w3.org/2000/01/rdf-schema#label> "is Ingredient In" .
-<https://loze-ontology.org/hasNumberOfOccurrences> <http://www.w3.org/2004/02/skos/core#note> "This relation is mostly intended to be used in the context of compositions (loze:Composition) and containments (loze:Containment); that being said, its application to other eventualities should not be excluded in principle" .
+<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isContentIn that obtains whenever the content is a schematic particular that is repeated in the host in multiple occurrences" .
+<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2004/02/skos/core#example> "In the case of a blister pack containing 10 standardised 5 mg paracetamol tablets, the 5 mg paracetamol tablet - construed as a schematic particular - is the repeated content" .
+<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2004/02/skos/core#note> "A containment with a repeated component is always going to have an associated number of occurrences (loze:hasNumberOfOccurrences)" .
+<https://loze-ontology.org/isRepeatedContentIn> <http://www.w3.org/2004/02/skos/core#note> "While the repeated content is always going to be a schematic particular, the host can be either a schematic particular or a concrete particular" .
+<https://loze-ontology.org/materials-and-composition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://loze-ontology.org/materials-and-composition> <http://www.w3.org/2000/01/rdf-schema#label> "Materials and Composition" .
+<https://loze-ontology.org/materials-and-composition> <http://www.w3.org/2002/07/owl#imports> <https://loze-ontology.org/> .
+<https://loze-ontology.org/materials-and-composition> <http://www.w3.org/2004/02/skos/core#definition> "An extension of loze.ttl with classes and relations for modelling substances and material composition" .

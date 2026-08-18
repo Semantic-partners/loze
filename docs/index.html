@@ -52,7 +52,7 @@
 
   <rect class="n-inst n-pun" x="330" y="226" width="150" height="38"/>
   <text class="n-lab n-sm" x="405" y="250">Toyota Corolla</text>
-  <text class="n-kind" x="405" y="280">kerbWeight 1205 kg</text>
+  <text class="n-kind" x="405" y="280">advertised 1205 kg</text>
 
   <line class="e-pun" x1="300" y1="156" x2="336" y2="226"/>
   <text class="e-lab e-lab-warn" x="332" y="186">punned</text>
@@ -76,11 +76,11 @@
 
   <rect class="n-inst n-schem" x="536" y="272" width="156" height="46"/>
   <text class="n-lab n-sm" x="614" y="292">Toyota Corolla</text>
-  <text class="n-kind" x="614" y="309">kerbWeight 1205 kg</text>
+  <text class="n-kind" x="614" y="309">the model</text>
 
   <rect class="n-inst n-schem" x="760" y="272" width="166" height="46"/>
   <text class="n-lab n-sm" x="843" y="292">Corolla Hatchback</text>
-  <text class="n-kind" x="843" y="309">still schematic</text>
+  <text class="n-kind" x="843" y="309">advertised 1205 kg</text>
 
   <line class="e-base" x1="760" y1="295" x2="696" y2="295" marker-end="url(#ar)"/>
   <text class="e-lab" x="700" y="262">isDeterminationOf</text>
@@ -115,10 +115,13 @@ features of its units&#8221;</em>, <code>skos:note</code> on
   <line class="fig-rule" x1="512" y1="40" x2="512" y2="340"/>
   <text class="fig-band-lab" x="0" y="90">MATCHES</text>
   <text class="fig-band-lab" x="0" y="292">JOIN</text>
-  <text class="fig-q" x="126" y="78">?m a :Car</text><text class="fig-q" x="546" y="78">?m a :Car</text><rect class="q-chip" x="126" y="90" width="98" height="30"/><text class="q-lab" x="175" y="110">my Corolla</text><rect class="q-chip" x="232" y="90" width="90" height="30"/><text class="q-lab" x="277" y="110">a new one</text><rect class="q-chip" x="546" y="90" width="128" height="30"/><text class="q-lab" x="610" y="110">Toyota Corolla</text><rect class="q-chip" x="682" y="90" width="98" height="30"/><text class="q-lab" x="731" y="110">my Corolla</text><rect class="q-chip" x="788" y="90" width="90" height="30"/><text class="q-lab" x="833" y="110">a new one</text><text class="fig-q" x="126" y="176">?m :kerbWeight ?kg</text><text class="fig-q" x="546" y="176">?m :kerbWeight ?kg</text><rect class="q-chip" x="126" y="188" width="128" height="30"/><text class="q-lab" x="190" y="208">Toyota Corolla</text><rect class="q-chip" x="546" y="188" width="128" height="30"/><text class="q-lab" x="610" y="208">Toyota Corolla</text><line class="fig-rule" x1="126" y1="266" x2="500" y2="266"/><line class="fig-rule" x1="546" y1="266" x2="932" y2="266"/><text class="fig-q" x="126" y="292">both &#8594;</text><text class="fig-q" x="546" y="292">both &#8594;</text><text class="fig-note fig-warn" x="126" y="330">no rows</text><rect class="q-chip q-hit" x="546" y="306" width="128" height="30"/><text class="q-lab" x="610" y="326">Toyota Corolla</text><text class="fig-note fig-ok" x="736" y="330">1205 kg</text>
+  <text class="fig-q" x="126" y="78">?m a :Car</text><text class="fig-q" x="546" y="78">?m a :Car</text><rect class="q-chip" x="126" y="90" width="98" height="30"/><text class="q-lab" x="175" y="110">my Corolla</text><rect class="q-chip" x="232" y="90" width="90" height="30"/><text class="q-lab" x="277" y="110">a new one</text><rect class="q-chip" x="546" y="90" width="151" height="30"/><text class="q-lab" x="621" y="110">Corolla Hatchback</text><rect class="q-chip" x="705" y="90" width="98" height="30"/><text class="q-lab" x="754" y="110">my Corolla</text><rect class="q-chip" x="811" y="90" width="90" height="30"/><text class="q-lab" x="856" y="110">a new one</text><text class="fig-q" x="126" y="176">?m :advertisedWeight ?kg</text><text class="fig-q" x="546" y="176">?m :advertisedWeight ?kg</text><rect class="q-chip" x="126" y="188" width="151" height="30"/><text class="q-lab" x="201" y="208">Corolla Hatchback</text><rect class="q-chip" x="546" y="188" width="151" height="30"/><text class="q-lab" x="621" y="208">Corolla Hatchback</text><line class="fig-rule" x1="126" y1="266" x2="500" y2="266"/><line class="fig-rule" x1="546" y1="266" x2="932" y2="266"/><text class="fig-q" x="126" y="292">both &#8594;</text><text class="fig-q" x="546" y="292">both &#8594;</text><text class="fig-note fig-warn" x="126" y="330">no rows</text><rect class="q-chip q-hit" x="546" y="306" width="151" height="30"/><text class="q-lab" x="621" y="326">Corolla Hatchback</text><text class="fig-note fig-ok" x="736" y="330">1205 kg</text>
 </svg>
-<figcaption>Asking about the model, not a car. The pattern is two triples, and the answer turns
-on whether one thing satisfies both. Model it as a class and it cannot: a subclass is not an
+<figcaption>Asking about the model, not a car. Note whose weight it is: a car has a mass you
+could put it on a weighbridge to find, while an <em>advertised</em> weight belongs to the variant
+and holds for every unit of it. That is a fact about a repeatable thing, which is exactly what loze
+gives you somewhere to put. The pattern is two triples, and the
+answer turns on whether one thing satisfies both. Model it as a class and it cannot: a subclass is not an
 instance, so the set that has a kerb weight and the set that are Cars never meet. As a schematic
 particular the model sits in both, and the general question is answered with the same pattern you
 would use for any individual — no metamodelling, and nothing to tell a reasoner about two entities

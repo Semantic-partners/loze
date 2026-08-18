@@ -46,10 +46,22 @@ which is the one place a colour here carries meaning rather than decoration.
 from __future__ import annotations
 
 import html as html_mod
+import os
+import sys as _sys
+
+# rdflib's canonicalisation has to break ties between structurally similar blank
+# nodes — loze has them inside the owl:unionOf collections — and the tie-break
+# follows Python's randomised string hashing, so two runs produce different
+# canonical labels. Everything else here is already byte-stable; this is the last
+# source of churn, and it has to be fixed before the interpreter starts.
+if os.environ.get("PYTHONHASHSEED") != "0":
+    os.environ["PYTHONHASHSEED"] = "0"
+    os.execv(_sys.executable, [_sys.executable, *_sys.argv])
 import shutil
 from pathlib import Path
 
 from rdflib import Dataset, Graph, URIRef
+from rdflib.compare import to_canonical_graph
 from rdflib.namespace import OWL, RDF, RDFS, SKOS
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -64,6 +76,67 @@ MODULES: list[tuple[str, str]] = [
     ("temporal-relations", "temporal-relations.ttl"),
     ("suggested-social-extension", "suggested-social-extension.ttl"),
 ]
+
+def canonical(g: Graph) -> Graph:
+    """A graph that serialises to the same bytes every run.
+
+    Two sources of churn. rdflib mints fresh blank node labels on every parse, and
+    it does not sort statements — so .rdf, .jsonld, .nt, .trig and .nq all came out
+    reordered each build, ~5,500 lines of diff that meant nothing. Turtle happened
+    to be stable, which made it easy to miss.
+
+    to_canonical_graph relabels blank nodes from their structure rather than from
+    parse order, and inserting the triples sorted pins the serialiser's iteration,
+    since rdflib's memory store iterates in insertion order.
+
+    It matters beyond tidiness: without it there is no way to ask "is the published
+    output stale?", because a rebuild always differs.
+    """
+    out = Graph()
+    for t in sorted(to_canonical_graph(g), key=lambda x: (str(x[0]), str(x[1]), str(x[2]))):
+        out.add(t)
+    for pfx, ns in g.namespaces():
+        out.bind(pfx, ns, override=False)
+    return out
+
+
+def write_graph(g: Graph, base, ext: str, fmt: str) -> None:
+    data = g.serialize(format=fmt)
+    # Line-based formats get sorted too: cheap, and it removes any residual
+    # ordering the serialiser introduces on its own.
+    if ext in ("nt", "nq"):
+        data = "".join(sorted(l + "\n" for l in data.splitlines() if l.strip()))
+    elif ext == "rdf":
+        # RDF/XML emits its subject blocks in store order and their children in
+        # set order. Sort both on the parsed tree, which is safe because the
+        # document is a flat list of subject descriptions.
+        import xml.etree.ElementTree as _ET
+        RDFNS = "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}"
+        _ET.register_namespace("rdf", RDFNS[1:-1])
+        root = _ET.fromstring(data)
+        def key(el):
+            return (el.tag, el.get(RDFNS + "about", ""), el.get(RDFNS + "resource", ""),
+                    (el.text or ""))
+        for child in root:
+            child[:] = sorted(child, key=key)
+        root[:] = sorted(root, key=key)
+        _ET.indent(root, space="  ")
+        data = _ET.tostring(root, encoding="unicode", xml_declaration=True)
+    elif ext == "jsonld":
+        # rdflib's JSON-LD serialiser does not order its node array, and object
+        # lists inside a node come out in set order. Sort both.
+        import json as _json
+        doc = _json.loads(data)
+        nodes = doc if isinstance(doc, list) else doc.get("@graph", doc)
+        if isinstance(nodes, list):
+            for n in nodes:
+                for k, v in list(n.items()):
+                    if isinstance(v, list):
+                        n[k] = sorted(v, key=lambda x: _json.dumps(x, sort_keys=True))
+            nodes.sort(key=lambda n: str(n.get("@id", "")))
+        data = _json.dumps(doc, sort_keys=True, indent=2, ensure_ascii=False)
+    Path(f"{base}.{ext}").write_text(data, encoding="utf-8")
+
 
 SERIALISATIONS = [("ttl", "turtle"), ("rdf", "xml"), ("jsonld", "json-ld"), ("nt", "nt")]
 
@@ -420,7 +493,7 @@ FIGURE = '''
 
   <rect class="n-inst n-pun" x="330" y="226" width="150" height="38"/>
   <text class="n-lab n-sm" x="405" y="250">Toyota Corolla</text>
-  <text class="n-kind" x="405" y="280">kerbWeight 1205 kg</text>
+  <text class="n-kind" x="405" y="280">advertised 1205 kg</text>
 
   <line class="e-pun" x1="300" y1="156" x2="336" y2="226"/>
   <text class="e-lab e-lab-warn" x="332" y="186">punned</text>
@@ -444,11 +517,11 @@ FIGURE = '''
 
   <rect class="n-inst n-schem" x="536" y="272" width="156" height="46"/>
   <text class="n-lab n-sm" x="614" y="292">Toyota Corolla</text>
-  <text class="n-kind" x="614" y="309">kerbWeight 1205 kg</text>
+  <text class="n-kind" x="614" y="309">the model</text>
 
   <rect class="n-inst n-schem" x="760" y="272" width="166" height="46"/>
   <text class="n-lab n-sm" x="843" y="292">Corolla Hatchback</text>
-  <text class="n-kind" x="843" y="309">still schematic</text>
+  <text class="n-kind" x="843" y="309">advertised 1205 kg</text>
 
   <line class="e-base" x1="760" y1="295" x2="696" y2="295" marker-end="url(#ar)"/>
   <text class="e-lab" x="700" y="262">isDeterminationOf</text>
@@ -505,10 +578,10 @@ def query_figure() -> str:
     rows = [
         (78,  "?m a :Car",
          ["my Corolla", "a new one"],
-         ["Toyota Corolla", "my Corolla", "a new one"]),
-        (176, "?m :kerbWeight ?kg",
-         ["Toyota Corolla"],
-         ["Toyota Corolla"]),
+         ["Corolla Hatchback", "my Corolla", "a new one"]),
+        (176, "?m :advertisedWeight ?kg",
+         ["Corolla Hatchback"],
+         ["Corolla Hatchback"]),
     ]
     body = ""
     for y, pattern, left, right in rows:
@@ -522,7 +595,7 @@ def query_figure() -> str:
              f'<text class="fig-q" x="{L}" y="292">both &#8594;</text>'
              f'<text class="fig-q" x="{R}" y="292">both &#8594;</text>'
              f'<text class="fig-note fig-warn" x="{L}" y="330">no rows</text>'
-             + _row(R, 306, ["Toyota Corolla"], "q-chip q-hit")
+             + _row(R, 306, ["Corolla Hatchback"], "q-chip q-hit")
              + f'<text class="fig-note fig-ok" x="{R + 190}" y="330">1205 kg</text>')
 
     return f'''
@@ -536,8 +609,11 @@ def query_figure() -> str:
   <text class="fig-band-lab" x="0" y="292">JOIN</text>
   {body}
 </svg>
-<figcaption>Asking about the model, not a car. The pattern is two triples, and the answer turns
-on whether one thing satisfies both. Model it as a class and it cannot: a subclass is not an
+<figcaption>Asking about the model, not a car. Note whose weight it is: a car has a mass you
+could put it on a weighbridge to find, while an <em>advertised</em> weight belongs to the variant
+and holds for every unit of it. That is a fact about a repeatable thing, which is exactly what loze
+gives you somewhere to put. The pattern is two triples, and the
+answer turns on whether one thing satisfies both. Model it as a class and it cannot: a subclass is not an
 instance, so the set that has a kerb weight and the set that are Cars never meet. As a schematic
 particular the model sits in both, and the general question is answered with the same pattern you
 would use for any individual — no metamodelling, and nothing to tell a reasoner about two entities
@@ -951,13 +1027,33 @@ def main() -> None:
         merged.add((s_, p_, o_))
     for pfx, ns in union.namespaces():
         merged.bind(pfx, ns, override=False)
+    merged = canonical(merged)
     for ext, fmt in SERIALISATIONS:
-        merged.serialize(destination=str(OUT / f"loze.{ext}"), format=fmt)
+        write_graph(merged, OUT / "loze", ext, fmt)
 
     # And as quads, which keep the module each statement came from — the one thing
     # the flattened download cannot tell you.
+    canon_ds = Dataset()
+    for slug_, _s in MODULES:
+        cg_ = canonical(per_module[slug_])
+        tgt = canon_ds.graph(URIRef(NS + slug_))
+        for t in sorted(cg_, key=lambda x: (str(x[0]), str(x[1]), str(x[2]))):
+            tgt.add(t)
+        for pfx, ns_ in cg_.namespaces():
+            tgt.bind(pfx, ns_, override=False)
     for ext, fmt in QUAD_SERIALISATIONS:
-        union.serialize(destination=str(OUT / f"loze.{ext}"), format=fmt)
+        data = canon_ds.serialize(format=fmt)
+        if ext == "nq":
+            data = "".join(sorted(l + "\n" for l in data.splitlines() if l.strip()))
+        elif ext == "trig":
+            import re as _re
+            blocks = _re.findall(r"(?m)^(\S+)\s*\{\n(.*?)\n\}\n", data, _re.S)
+            if blocks:
+                head = data[:data.index(blocks[0][0] + " {")] if blocks[0][0] + " {" in data else ""
+                body = "".join(f"{name} {{\n{inner}\n}}\n\n"
+                               for name, inner in sorted(blocks, key=lambda b: b[0]))
+                data = head.rstrip("\n") + "\n\n" + body
+        (OUT / f"loze.{ext}").write_text(data, encoding="utf-8")
 
     # Per module: serialisations + a page. The foundation is the namespace root,
     # so its page is index.html and it is served at /.
@@ -975,8 +1071,9 @@ def main() -> None:
     for slug, src in MODULES:
         g = per_module[slug]
         base = slug or "loze-foundation"
+        cg = canonical(g)
         for ext, fmt in SERIALISATIONS:
-            g.serialize(destination=str(OUT / f"{base}.{ext}"), format=fmt)
+            write_graph(cg, OUT / base, ext, fmt)
         shutil.copy(ROOT / src, OUT / Path(src).name)
         page = render_module(slug, g, union, defined_in)
         (OUT / ("index.html" if slug == "" else f"{slug}.html")).write_text(page, encoding="utf-8")
