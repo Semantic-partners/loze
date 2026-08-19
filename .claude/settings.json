@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk find *)",
+      "Bash(command rtk find /Users/pelolson-sp/loze -iname \"build.py\")",
+      "Bash(command rtk find /Users/pelolson-sp/loze -maxdepth 2 -iname \"README*\" -o -maxdepth 2 -iname \"*.md\")",
+      "Bash(command rtk find /Users/pelolson-sp/loze -maxdepth 2 \\\\\\( -iname \"README*\" -o -iname \"*.md\" \\\\\\))",
+      "Bash(/usr/bin/find /Users/pelolson-sp/loze -maxdepth 2 \\\\\\( -iname \"README*\" -o -iname \"*.md\" \\\\\\))",
+      "Bash(/usr/bin/find /Users/pelolson-sp/loze -maxdepth 2 -iname \"wrangler*\" -o -maxdepth 2 -iname \"package.json\")",
+      "Bash(python3 -c \"import rdflib; print\\(rdflib.__version__\\)\")",
+      "Bash(rtk grep *)"
+    ]
+  }
+}

@@ -75,14 +75,14 @@ body {
   margin: 0;
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-family: "Archivo", ui-sans-serif, system-ui, -apple-system, sans-serif;
   font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3, h4 {
-  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  font-weight: 700;
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
   line-height: 1.1;
   margin: 0;
 }
@@ -110,7 +110,11 @@ header.top {
   color: hsl(var(--muted-foreground));
   margin-bottom: 0.75rem;
 }
-.lead { font-size: var(--fs-body-lg); font-weight: 300; color: hsl(var(--foreground)); margin: 1rem 0 0; }
+.lead {
+  font-family: "Newsreader", ui-serif, Georgia, serif;
+  font-size: var(--fs-body-lg); font-weight: 300; font-style: normal;
+  color: hsl(var(--foreground)); margin: 1rem 0 0;
+}
 .iri {
   font-family: "DM Mono", ui-monospace, monospace;
   font-size: var(--fs-sm);
@@ -236,6 +240,7 @@ ul.tree a { font-weight: 500; }
 .fig { margin: 0 0 1rem; }
 .fig svg { width: 100%; height: auto; display: block; }
 .fig figcaption {
+  font-family: "Newsreader", ui-serif, Georgia, serif;
   max-width: var(--measure); margin-top: 1rem;
   font-size: var(--fs-sm); color: hsl(var(--muted-foreground));
 }
@@ -262,13 +267,13 @@ ul.tree a { font-weight: 500; }
 .n-schem-e { stroke-width: 3; stroke-dasharray: 3 3; }
 .n-event { fill: hsl(var(--surface)); stroke: hsl(var(--foreground) / 0.55);
   stroke-width: 1.5; stroke-dasharray: 2 3; }
-.q-lab { font-family: "DM Sans", sans-serif; font-size: 12.5px; fill: hsl(var(--foreground)); text-anchor: middle; }
+.q-lab { font-family: "Archivo", sans-serif; font-size: 12.5px; fill: hsl(var(--foreground)); text-anchor: middle; }
 
 .n-class { fill: hsl(var(--clr-node-class) / 0.10); stroke: hsl(var(--clr-node-class)); stroke-width: 1.5; }
 .n-inst  { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.5; }
 /* The schematic one is the claim, so it is the only node drawn heavier. */
 .n-schem { stroke-width: 3; }
-.n-lab  { font-family: "DM Sans", sans-serif; font-size: 14px; font-weight: 500;
+.n-lab  { font-family: "Archivo", sans-serif; font-size: 14px; font-weight: 500;
           fill: hsl(var(--foreground)); text-anchor: middle; }
 .n-sm  { font-size: 13px; }
 .n-kind { font-family: "DM Mono", monospace; font-size: 11px;
