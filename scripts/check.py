@@ -89,6 +89,19 @@ def main() -> None:
     for m in missing[:10]:
         print(f"       {m}")
 
+    print("\nNo blank node labels on the page")
+    # rdflib mints these per parse, so one leaking into the HTML is both
+    # meaningless to a reader and a source of churn: three pages changed on every
+    # build until anonymous class expressions were rendered from their members.
+    leaked = []
+    for pg in sorted(DOCS.glob("*.html")):
+        for m in re.findall(r"\bn[0-9a-f]{24,}\b", pg.read_text(encoding="utf-8")):
+            leaked.append(f"{pg.name}: {m[:20]}…")
+            break
+    check(not leaked, f"no raw blank node labels rendered ({len(leaked)} page(s))")
+    for l in leaked[:8]:
+        print(f"       {l}")
+
     print("\nEvery page can reach the root")
     # Properties have no subClassOf chain, so a trail that only rendered for
     # classes left them with no way home; a module-defined term could only get

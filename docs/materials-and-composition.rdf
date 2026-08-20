@@ -1,83 +1,96 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rdf:RDF xmlns:ns1="http://www.w3.org/2000/01/rdf-schema#" xmlns:ns2="http://www.w3.org/2004/02/skos/core#" xmlns:ns3="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:ns1="http://www.w3.org/2002/07/owl#" xmlns:ns2="http://www.w3.org/2000/01/rdf-schema#" xmlns:ns3="http://www.w3.org/2004/02/skos/core#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:nodeID="cb68067f2b743e19efb21ee5d853c3161b0666d622a2f0455c63f429b69f182231">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <ns1:unionOf rdf:nodeID="cb0" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cb0">
+    <rdf:first rdf:resource="https://loze-ontology.org/Object" />
+    <rdf:rest rdf:nodeID="cbd7c96744b860be374134b6eeace4a6009e3d5947219e59b3c009836ad1012775" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cbd7c96744b860be374134b6eeace4a6009e3d5947219e59b3c009836ad1012775">
+    <rdf:first rdf:resource="https://loze-ontology.org/Aggregate" />
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/Substance">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
-    <ns1:label>Substance</ns1:label>
-    <ns1:subClassOf rdf:resource="https://loze-ontology.org/SchematicParticular" />
-    <ns2:definition>A schematic particular that is highly dissectable</ns2:definition>
-    <ns2:example>Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint</ns2:example>
-    <ns2:note>Dissectability consists in concretizations being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold</ns2:note>
-    <ns2:note>Here the word 'substance' is used in the chemical sense, and not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics</ns2:note>
+    <ns2:label>Substance</ns2:label>
+    <ns2:subClassOf rdf:nodeID="cb68067f2b743e19efb21ee5d853c3161b0666d622a2f0455c63f429b69f182231" />
+    <ns2:subClassOf rdf:resource="https://loze-ontology.org/SchematicParticular" />
+    <ns3:definition>A schematic particular that (i) is either an object or an aggregate and (ii) is highly dissectable</ns3:definition>
+    <ns3:example>Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint</ns3:example>
+    <ns3:note>Dissectability consists in the concretizations of a schematic particular being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold</ns3:note>
+    <ns3:note>Here the word 'substance' is used in the chemical sense, not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics</ns3:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/hasIngredient">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Composition" />
-    <ns1:label>has Ingredient</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/Substance" />
-    <ns3:inverseOf rdf:resource="https://loze-ontology.org/isIngredientIn" />
-    <ns2:definition>The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c</ns2:definition>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Composition" />
+    <ns2:label>has Ingredient</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/Substance" />
+    <ns1:inverseOf rdf:resource="https://loze-ontology.org/isIngredientIn" />
+    <ns3:definition>The relation that obtains between a composition c and a substance s if and only if s is the ingredient in c</ns3:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/hasNumberOfOccurrences">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Eventuality" />
-    <ns1:label>has Number Of Occurrences</ns1:label>
-    <ns1:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger" />
-    <ns2:definition>The relation that assignes to an eventuality the number of occurrences in which a certain schematic particular is repeated in the context of that eventuality</ns2:definition>
-    <ns2:example>In a composition in which a polymerous sequence has a monomer repeated 3000 times, the number of occurrences is 3000; in the composition of the water molecule out of hydrogen, the number of occurrences is 2; in a containment in which a tablet is repeated 10 times in a blister pack, the number of occurrences is 10</ns2:example>
-    <ns2:note>This relation is mostly intended to be used in the context of compositions (loze:Composition) and containments (loze:Containment); that being said, its application to other eventualities should not be excluded in principle</ns2:note>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Eventuality" />
+    <ns2:label>has Number Of Occurrences</ns2:label>
+    <ns2:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger" />
+    <ns3:definition>The relation that assignes to an eventuality the number of occurrences in which a certain schematic particular is repeated in the context of that eventuality</ns3:definition>
+    <ns3:example>In a composition in which a polymerous sequence has a monomer repeated 3000 times, the number of occurrences is 3000; in the composition of the water molecule out of hydrogen, the number of occurrences is 2; in a containment in which a tablet is repeated 10 times in a blister pack, the number of occurrences is 10</ns3:example>
+    <ns3:note>This relation is mostly intended to be used in the context of compositions (loze:Composition) and containments (loze:Containment); that being said, its application to other eventualities should not be excluded in principle</ns3:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/hasRepeatedComponent">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Composition" />
-    <ns1:label>has Repeated Component</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/SchematicParticular" />
-    <ns3:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedComponentIn" />
-    <ns2:definition>The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c</ns2:definition>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Composition" />
+    <ns2:label>has Repeated Component</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/SchematicParticular" />
+    <ns1:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedComponentIn" />
+    <ns3:definition>The relation that obtains between a composition c and a schematic particular s if and only if s is the repeated component in c</ns3:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/hasRepeatedContent">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Containment" />
-    <ns1:label>has Repeated Content</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/SchematicParticular" />
-    <ns3:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedContentIn" />
-    <ns2:definition>The relation that obtains between a containment c and a schematic particular s if and only if s is the repeated content in c</ns2:definition>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Containment" />
+    <ns2:label>has Repeated Content</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/SchematicParticular" />
+    <ns1:inverseOf rdf:resource="https://loze-ontology.org/isRepeatedContentIn" />
+    <ns3:definition>The relation that obtains between a containment c and a schematic particular s if and only if s is the repeated content in c</ns3:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isIngredientIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Substance" />
-    <ns1:label>is Ingredient In</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/Composition" />
-    <ns1:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn" />
-    <ns2:definition>The sub-relation of loze:isComponentIn that obtains whenever the component is a substance that occurres in the composite in a given amount</ns2:definition>
-    <ns2:example>In the case of a cake having as ingredient 200 grams of wheat flour, wheat flour is the ingredient; in the case of a solution having as ingredient 2 litres of water, water is the ingredient</ns2:example>
-    <ns2:note>Substance repetition is impractical to account for in terms of number of occurrences, since the units are too many to be counted; consequently, instead of using loze:hasNumberOfOccurrences, it is advisable to specify quantities based on units of measure</ns2:note>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Substance" />
+    <ns2:label>is Ingredient In</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/Composition" />
+    <ns2:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn" />
+    <ns3:definition>The sub-relation of loze:isComponentIn that obtains whenever the component is a substance that occurres in the composite in a given amount</ns3:definition>
+    <ns3:example>In the case of a cake having as ingredient 200 grams of wheat flour, wheat flour is the ingredient; in the case of a solution having as ingredient 2 litres of water, water is the ingredient</ns3:example>
+    <ns3:note>Substance repetition is impractical to account for in terms of number of occurrences, since the units are too many to be counted; consequently, instead of using loze:hasNumberOfOccurrences, it is advisable to specify quantities based on units of measure</ns3:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isRepeatedComponentIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/SchematicParticular" />
-    <ns1:label>is Repeated Component In</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/Composition" />
-    <ns1:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn" />
-    <ns2:definition>The sub-relation of loze:isComponentIn that obtains whenever the component is a schematic particular that is repeated in the composite in multiple occurrences</ns2:definition>
-    <ns2:example>In the case of a monomer making up a polymerous sequence, the monomer is the repeated component; in the case of water having two atoms of hydrogen, hydrogen atom is the repeated component; in the case of an engine having pistons of a certain type, the piston - construed as a schematic object - is the repeated component</ns2:example>
-    <ns2:note>The number of repetitions is going to be specified by the associated number of occurrences (loze:hasNumberOfOccurrences)</ns2:note>
-    <ns2:note>While the repeated component is always going to be a schematic particular, the composite can be either a schematic particular or a concrete particular</ns2:note>
+    <ns2:domain rdf:resource="https://loze-ontology.org/SchematicParticular" />
+    <ns2:label>is Repeated Component In</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/Composition" />
+    <ns2:subPropertyOf rdf:resource="https://loze-ontology.org/isComponentIn" />
+    <ns3:definition>The sub-relation of loze:isComponentIn that obtains whenever the component is a schematic particular that is repeated in the composite in multiple occurrences</ns3:definition>
+    <ns3:example>In the case of a monomer making up a polymerous sequence, the monomer is the repeated component; in the case of water having two atoms of hydrogen, hydrogen atom is the repeated component; in the case of an engine having pistons of a certain type, the piston - construed as a schematic object - is the repeated component</ns3:example>
+    <ns3:note>The number of repetitions is going to be specified by the associated number of occurrences (loze:hasNumberOfOccurrences)</ns3:note>
+    <ns3:note>While the repeated component is always going to be a schematic particular, the composite can be either a schematic particular or a concrete particular</ns3:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isRepeatedContentIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/SchematicParticular" />
-    <ns1:label>is Repeated Content In</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/Containment" />
-    <ns1:subPropertyOf rdf:resource="https://loze-ontology.org/isContentIn" />
-    <ns2:definition>The sub-relation of loze:isContentIn that obtains whenever the content is a schematic particular that is repeated in the host in multiple occurrences</ns2:definition>
-    <ns2:example>In the case of a blister pack containing 10 standardised 5 mg paracetamol tablets, the 5 mg paracetamol tablet - construed as a schematic particular - is the repeated content</ns2:example>
-    <ns2:note>A containment with a repeated component is always going to have an associated number of occurrences (loze:hasNumberOfOccurrences)</ns2:note>
-    <ns2:note>While the repeated content is always going to be a schematic particular, the host can be either a schematic particular or a concrete particular</ns2:note>
+    <ns2:domain rdf:resource="https://loze-ontology.org/SchematicParticular" />
+    <ns2:label>is Repeated Content In</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/Containment" />
+    <ns2:subPropertyOf rdf:resource="https://loze-ontology.org/isContentIn" />
+    <ns3:definition>The sub-relation of loze:isContentIn that obtains whenever the content is a schematic particular that is repeated in the host in multiple occurrences</ns3:definition>
+    <ns3:example>In the case of a blister pack containing 10 standardised 5 mg paracetamol tablets, the 5 mg paracetamol tablet - construed as a schematic particular - is the repeated content</ns3:example>
+    <ns3:note>A containment with a repeated component is always going to have an associated number of occurrences (loze:hasNumberOfOccurrences)</ns3:note>
+    <ns3:note>While the repeated content is always going to be a schematic particular, the host can be either a schematic particular or a concrete particular</ns3:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/materials-and-composition">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology" />
-    <ns1:label>Materials and Composition</ns1:label>
-    <ns3:imports rdf:resource="https://loze-ontology.org/" />
-    <ns2:definition>An extension of loze.ttl with classes and relations for modelling substances and material composition</ns2:definition>
+    <ns2:label>Materials and Composition</ns2:label>
+    <ns1:imports rdf:resource="https://loze-ontology.org/" />
+    <ns3:definition>An extension of loze-foundation.ttl that consists of classes and relations intended for the modelling substances and material composition</ns3:definition>
   </rdf:Description>
 </rdf:RDF>

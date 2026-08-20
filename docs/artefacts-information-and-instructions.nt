@@ -3,7 +3,7 @@
 <https://loze-ontology.org/Artefact> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Object> .
 <https://loze-ontology.org/Artefact> <http://www.w3.org/2004/02/skos/core#definition> "An object that is designed and made by humans for serving certain purposes or functions" .
 <https://loze-ontology.org/Artefact> <http://www.w3.org/2004/02/skos/core#example> "A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork" .
-<https://loze-ontology.org/Artefact> <http://www.w3.org/2004/02/skos/core#note> "Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact" .
+<https://loze-ontology.org/Artefact> <http://www.w3.org/2004/02/skos/core#note> "Artefact can be either schematic or concrete: a software - in abstraction from its installed copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact" .
 <https://loze-ontology.org/InformationArtefact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2000/01/rdf-schema#label> "Information Artefact" .
 <https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/Artefact> .
@@ -11,7 +11,7 @@
 <https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#example> "A book, an article, a note, a document, a digital file, a computer programme or software" .
 <https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#note> "An information artefact can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete" .
 <https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#note> "An information artefact that is concrete is always going to be the concretization of some schematic information artefact" .
-<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#note> "The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine" .
+<https://loze-ontology.org/InformationArtefact> <http://www.w3.org/2004/02/skos/core#note> "The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry information that is only meant to be executed by a machine" .
 <https://loze-ontology.org/Text> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://loze-ontology.org/Text> <http://www.w3.org/2000/01/rdf-schema#label> "Text" .
 <https://loze-ontology.org/Text> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://loze-ontology.org/InformationArtefact> .
@@ -22,7 +22,7 @@
 <https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/2000/01/rdf-schema#label> "Artefacts, Information, and Instructions" .
 <https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/2002/07/owl#imports> <https://loze-ontology.org/> .
-<https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/2004/02/skos/core#definition> "An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions" .
+<https://loze-ontology.org/artefacts-information-and-instructions> <http://www.w3.org/2004/02/skos/core#definition> "An extension of loze-foundation.ttl pertaining to artefacts, information, and instructions" .
 <https://loze-ontology.org/hasInstruction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://loze-ontology.org/hasInstruction> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Eventuality> .
 <https://loze-ontology.org/hasInstruction> <http://www.w3.org/2000/01/rdf-schema#label> "has Instruction" .
@@ -54,7 +54,7 @@
 <https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://loze-ontology.org/Eventuality> .
 <https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://loze-ontology.org/isInstructionIn> .
 <https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2004/02/skos/core#definition> "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features" .
-<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2004/02/skos/core#example> "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs" .
+<https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2004/02/skos/core#example> "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula together with the alloying instructions are the recipe in the manufacturing of steel slabs" .
 <https://loze-ontology.org/isRecipeIn> <http://www.w3.org/2004/02/skos/core#note> "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular" .
 <https://loze-ontology.org/isStandardIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://loze-ontology.org/isStandardIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://loze-ontology.org/Particular> .

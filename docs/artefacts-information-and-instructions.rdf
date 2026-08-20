@@ -6,7 +6,7 @@
     <ns1:subClassOf rdf:resource="https://loze-ontology.org/Object" />
     <ns2:definition>An object that is designed and made by humans for serving certain purposes or functions</ns2:definition>
     <ns2:example>A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork</ns2:example>
-    <ns2:note>Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact</ns2:note>
+    <ns2:note>Artefact can be either schematic or concrete: a software - in abstraction from its installed copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact</ns2:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/InformationArtefact">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -16,7 +16,7 @@
     <ns2:example>A book, an article, a note, a document, a digital file, a computer programme or software</ns2:example>
     <ns2:note>An information artefact can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete</ns2:note>
     <ns2:note>An information artefact that is concrete is always going to be the concretization of some schematic information artefact</ns2:note>
-    <ns2:note>The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine</ns2:note>
+    <ns2:note>The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry information that is only meant to be executed by a machine</ns2:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/Text">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -31,7 +31,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology" />
     <ns1:label>Artefacts, Information, and Instructions</ns1:label>
     <ns3:imports rdf:resource="https://loze-ontology.org/" />
-    <ns2:definition>An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions</ns2:definition>
+    <ns2:definition>An extension of loze-foundation.ttl pertaining to artefacts, information, and instructions</ns2:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/hasInstruction">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -73,7 +73,7 @@
     <ns1:range rdf:resource="https://loze-ontology.org/Eventuality" />
     <ns1:subPropertyOf rdf:resource="https://loze-ontology.org/isInstructionIn" />
     <ns2:definition>The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features</ns2:definition>
-    <ns2:example>The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs</ns2:example>
+    <ns2:example>The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula together with the alloying instructions are the recipe in the manufacturing of steel slabs</ns2:example>
     <ns2:note>Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular</ns2:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isStandardIn">

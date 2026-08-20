@@ -31,6 +31,32 @@
   <section><div class="section-head">Properties onto this</div><div class="chips"><a class="chip chip-prop" href="/hasDetermination">has Determination</a><a class="chip chip-prop" href="/hasRepeatedComponent">has Repeated Component</a><a class="chip chip-prop" href="/hasRepeatedContent">has Repeated Content</a><a class="chip chip-prop" href="/isConcretizationOf">is Concretization Of</a><a class="chip chip-prop" href="/isDeterminationOf">is Determination Of</a></div></section>
   
 <figure class="fig">
+<svg viewBox="0 0 960 500" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="Zemach's four ontologies as a two by two. Columns are bound in time and continuous in time; rows are bound in space and continuous in space. Event, Thing, Process and Type. The Type quadrant, wholly present in every token, is highlighted: water, the letter A, Beethoven's Fifth. That is the cell loze keeps as a particular rather than a universal.">
+  <text class="z-axis" x="170" y="34">BOUND IN TIME</text>
+  <text class="z-sub" x="170" y="52">has temporal parts; over when done</text>
+  <text class="z-axis" x="560" y="34">CONTINUOUS IN TIME</text>
+  <text class="z-sub" x="560" y="52">wholly present at each time</text>
+  <text class="z-axis" x="0" y="150">BOUND IN</text>
+  <text class="z-axis" x="0" y="168">SPACE</text>
+  <text class="z-sub" x="0" y="188">has spatial parts</text>
+  <text class="z-axis" x="0" y="328">CONTINUOUS</text>
+  <text class="z-axis" x="0" y="346">IN SPACE</text>
+  <text class="z-sub" x="0" y="366">wholly present</text>
+  <text class="z-sub" x="0" y="382">at each place</text>
+  <rect class="z-cell" x="170" y="96" width="360" height="152"/><text class="z-title" x="190" y="126">Event</text><text class="z-code" x="510" y="126">NC</text><text class="z-gloss" x="190" y="148">a filled chunk of spacetime</text><text class="z-item" x="190" y="178">&#8594; the moon landing</text><text class="z-item" x="190" y="202">&#8594; a handshake</text><text class="z-item" x="190" y="226">&#8594; yesterday&#8217;s sunset</text><rect class="z-cell" x="560" y="96" width="360" height="152"/><text class="z-title" x="580" y="126">Thing</text><text class="z-code" x="900" y="126">CT</text><text class="z-gloss" x="580" y="148">the desk you see again today</text><text class="z-item" x="580" y="178">&#8594; Fido the dog</text><text class="z-item" x="580" y="202">&#8594; the Eiffel Tower</text><text class="z-item" x="580" y="226">&#8594; my pencil</text><rect class="z-cell" x="170" y="274" width="360" height="152"/><text class="z-title" x="190" y="304">Process</text><text class="z-code" x="510" y="304">CS</text><text class="z-gloss" x="190" y="326">everywhere at once, then over</text><text class="z-item" x="190" y="356">&#8594; the French Revolution</text><text class="z-item" x="190" y="380">&#8594; this rain</text><text class="z-item" x="190" y="404">&#8594; the current inflation</text><rect class="z-cell z-hit" x="560" y="274" width="360" height="152"/><text class="z-title z-hit" x="580" y="304">Type</text><text class="z-code" x="900" y="304">PC</text><text class="z-gloss" x="580" y="326">wholly present in every token</text><text class="z-item" x="580" y="356">&#8594; water, gold, wheat</text><text class="z-item" x="580" y="380">&#8594; the letter A</text><text class="z-item" x="580" y="404">&#8594; Beethoven&#8217;s Fifth</text>
+  <text class="fig-note" x="170" y="482">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
+</svg>
+<figcaption>Two axes, and neither is the class/instance one. Zemach cuts by whether a thing is
+wholly present at each <em>time</em> and at each <em>place</em>, which puts water, the letter A and
+a symphony together in a quadrant of their own — repeatable, but not obviously classes. loze&#8217;s
+<a href="/SchematicParticular">Schematic Particular</a> is that cell, and its own examples are
+Zemach&#8217;s: a work of music, an alphabetic character, a substance like water or gold. The
+deviation is that loze keeps them <em>particulars</em>, so they can carry data and be pointed at,
+rather than promoting them to universals.</figcaption>
+</figure>
+
+<figure class="fig">
 <svg xmlns="http://www.w3.org/2000/svg" width="1720" height="900" viewBox="0 0 1720 900">
     <defs>
       <marker id="ah-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -150,72 +176,127 @@ Corollas, achieving the same semantic content without the need to resort to punn
 </figure>
 
 <figure class="fig">
-<svg viewBox="0 0 960 356" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="The same two-triple pattern asked on both sides. Where the model is a class, the things that are Cars and the thing that has a kerb weight are different sets, so nothing satisfies both and the query returns no rows. Where the model is a schematic particular it belongs to both sets, and the query returns Toyota Corolla with its kerb weight.">
-  <text class="fig-panel" x="126" y="24">Model as a class</text>
-  <text class="fig-panel" x="546" y="24">Model as a schematic particular</text>
-  <line class="fig-rule" x1="512" y1="40" x2="512" y2="340"/>
-  <text class="fig-band-lab" x="0" y="90">MATCHES</text>
-  <text class="fig-band-lab" x="0" y="292">JOIN</text>
-  <text class="fig-q" x="126" y="78">?m a :Car</text><text class="fig-q" x="546" y="78">?m a :Car</text><rect class="q-chip" x="126" y="90" width="98" height="30"/><text class="q-lab" x="175" y="110">my Corolla</text><rect class="q-chip" x="232" y="90" width="90" height="30"/><text class="q-lab" x="277" y="110">a new one</text><rect class="q-chip" x="546" y="90" width="151" height="30"/><text class="q-lab" x="621" y="110">Corolla Hatchback</text><rect class="q-chip" x="705" y="90" width="98" height="30"/><text class="q-lab" x="754" y="110">my Corolla</text><rect class="q-chip" x="811" y="90" width="90" height="30"/><text class="q-lab" x="856" y="110">a new one</text><text class="fig-q" x="126" y="176">?m :advertisedWeight ?kg</text><text class="fig-q" x="546" y="176">?m :advertisedWeight ?kg</text><rect class="q-chip" x="126" y="188" width="151" height="30"/><text class="q-lab" x="201" y="208">Corolla Hatchback</text><rect class="q-chip" x="546" y="188" width="151" height="30"/><text class="q-lab" x="621" y="208">Corolla Hatchback</text><line class="fig-rule" x1="126" y1="266" x2="500" y2="266"/><line class="fig-rule" x1="546" y1="266" x2="932" y2="266"/><text class="fig-q" x="126" y="292">both &#8594;</text><text class="fig-q" x="546" y="292">both &#8594;</text><text class="fig-note fig-warn" x="126" y="330">no rows</text><rect class="q-chip q-hit" x="546" y="306" width="151" height="30"/><text class="q-lab" x="621" y="326">Corolla Hatchback</text><text class="fig-note fig-ok" x="736" y="330">1205 kg</text>
-</svg>
-<figcaption>Asking about the model, not a car. Note whose weight it is: a car has a mass you
-could put it on a weighbridge to find, while an <em>advertised</em> weight belongs to the variant
-and holds for every unit of it. That is a fact about a repeatable thing, which is exactly what loze
-gives you somewhere to put. The pattern is two triples, and the
-answer turns on whether one thing satisfies both. Model it as a class and it cannot: a subclass is not an
-instance, so the set that has a kerb weight and the set that are Cars never meet. As a schematic
-particular the model sits in both, and the general question is answered with the same pattern you
-would use for any individual — no metamodelling, and nothing to tell a reasoner about two entities
-that happen to share a name.</figcaption>
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="880" viewBox="0 0 1300 880">
+  <rect x="0" y="0" width="1300" height="880" fill="#FFFFFF"/>
+  <line x1="667" y1="90" x2="667" y2="860" stroke="#0D1117" stroke-width="2"/>
+  <line x1="190" y1="563" x2="1300" y2="563" stroke="#0D1117" stroke-width="2"/>
+  <text x="248" y="75" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="1.8" fill="#0D1117">CLASS</text>
+  <text x="700" y="75" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="1.8" fill="#0D1117">SCHEMATIC PARTICULAR</text>
+  <text x="200" y="323" transform="rotate(-90 200 323)" text-anchor="middle" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="1.8" fill="#5A6260">INDIVIDUAL LEVEL</text>
+  <text x="200" y="714" transform="rotate(-90 200 714)" text-anchor="middle" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="1.8" fill="#5A6260">CONCEPT LEVEL</text>
+  <rect x="248" y="110" width="260" height="120" fill="#F6F7F5" stroke="#E4E6E2" stroke-width="1"/>
+  <text x="264" y="141" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">SELECT ?car</text>
+  <text x="264" y="163" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">WHERE{</text>
+  <text x="264" y="185" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">?car a :Car</text>
+  <text x="264" y="207" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">}</text>
+  <rect x="248" y="250" width="150" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="249.5" y1="250" x2="249.5" y2="294" stroke="#059669" stroke-width="3"/>
+  <text x="323" y="277" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_AlicesCorolla</text>
+  <rect x="418" y="250" width="150" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="419.5" y1="250" x2="419.5" y2="294" stroke="#059669" stroke-width="3"/>
+  <text x="493" y="277" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_BobsCorolla</text>
+  <rect x="248" y="314" width="384" height="120" fill="#F6F7F5" stroke="#E4E6E2" stroke-width="1"/>
+  <text x="264" y="345" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">SELECT ?car ?weight</text>
+  <text x="264" y="367" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">WHERE{</text>
+  <text x="264" y="389" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">?car :advertisedWeight ?weight</text>
+  <text x="264" y="411" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">}</text>
+  <rect x="248" y="454" width="172" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="249.5" y1="454" x2="249.5" y2="498" stroke="#059669" stroke-width="3"/>
+  <text x="334" y="481" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_ToyotaCorolla</text>
+  <rect x="248" y="498" width="172" height="30" fill="#FFFFFF" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="334" y="517" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="11" fill="#5A6260">:advertisedWeight 1205kg</text>
+  <rect x="700" y="314" width="260" height="120" fill="#F6F7F5" stroke="#E4E6E2" stroke-width="1"/>
+  <text x="716" y="345" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">SELECT ?car ?weight</text>
+  <text x="716" y="367" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">WHERE{</text>
+  <text x="716" y="389" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">?car a :Car</text>
+  <text x="716" y="411" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">}</text>
+  <rect x="700" y="454" width="150" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="701.5" y1="454" x2="701.5" y2="498" stroke="#059669" stroke-width="3"/>
+  <text x="775" y="481" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_AlicesCorolla</text>
+  <rect x="866" y="454" width="150" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="867.5" y1="454" x2="867.5" y2="498" stroke="#059669" stroke-width="3"/>
+  <text x="941" y="481" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_BobsCorolla</text>
+  <rect x="1032" y="454" width="172" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="1033.5" y1="454" x2="1033.5" y2="498" stroke="#059669" stroke-width="3"/>
+  <text x="1118" y="481" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_ToyotaCorolla</text>
+  <rect x="1032" y="498" width="172" height="30" fill="#FFFFFF" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="1118" y="517" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="11" fill="#5A6260">:advertisedWeight 1205kg</text>
+  <rect x="248" y="592" width="384" height="142" fill="#F6F7F5" stroke="#E4E6E2" stroke-width="1"/>
+  <text x="264" y="623" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">SELECT ?car ?weight</text>
+  <text x="264" y="645" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">WHERE{</text>
+  <text x="264" y="667" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">?car a :Car ;</text>
+  <text x="264" y="689" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">     :advertisedWeight ?weight</text>
+  <text x="264" y="711" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">}</text>
+  <rect x="700" y="592" width="384" height="142" fill="#F6F7F5" stroke="#E4E6E2" stroke-width="1"/>
+  <text x="716" y="623" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">SELECT ?car ?weight</text>
+  <text x="716" y="645" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">WHERE{</text>
+  <text x="716" y="667" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">?car a :Car ;</text>
+  <text x="716" y="689" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">     :advertisedWeight ?weight</text>
+  <text x="716" y="711" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">}</text>
+  <rect x="700" y="754" width="172" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="701.5" y1="754" x2="701.5" y2="798" stroke="#059669" stroke-width="3"/>
+  <text x="786" y="781" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_ToyotaCorolla</text>
+  <rect x="700" y="798" width="172" height="30" fill="#FFFFFF" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="786" y="817" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="11" fill="#5A6260">:advertisedWeight 1205kg</text>
+
+  <rect x="248" y="754" width="172" height="44" fill="#F49F99" stroke="#FF1500" stroke-width="1"/>
+    <line x1="249.5" y1="754" x2="249.5" y2="798" stroke="#EB5045" stroke-width="3"/>
+    <text x="332.5" y="781" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">None</text>
+    
+  </svg>
+  <figcaption>
+  </figcaption>
 </figure>
 
 <figure class="fig">
-<svg viewBox="0 0 960 372" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="A two by two. Columns are thing and eventuality, rows are schematic and concrete. The Toyota Corolla and a Corolla service sit in the schematic row; my Corolla and its service on 3 March sit in the concrete row. The same hasConcretization relation runs down both columns, because it is declared on the schematic to concrete axis and says nothing about things or happenings.">
+<svg viewBox="0 0 960 420" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="A two by two. Columns are Thing and Eventuality, rows are SchematicParticular and ConcreteParticular. Each quadrant names the two loze classes it is the intersection of. Toyota Corolla is a schematic thing, the 30,000-mile service a schematic eventuality, my Corolla a concrete thing, and its service on 3 March a concrete eventuality. The same hasConcretization relation runs down both columns.">
   <defs>
     <marker id="are" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
     </marker>
   </defs>
 
-  <text class="fig-band-lab" x="196" y="28">A THING</text>
-  <text class="fig-band-lab" x="560" y="28">A HAPPENING</text>
-  <text class="fig-band-lab" x="0" y="112">SCHEMATIC</text>
-  <text class="fig-band-lab" x="0" y="286">CONCRETE</text>
-  <line class="fig-rule" x1="530" y1="44" x2="530" y2="330"/>
-  <line class="fig-rule" x1="180" y1="196" x2="930" y2="196"/>
+  <text class="fig-band-lab" x="196" y="26">A THING</text>
+  <text class="fig-band-lab" x="560" y="26">A HAPPENING</text>
+  <text class="fig-band-lab" x="0" y="118">SCHEMATIC</text>
+  <text class="fig-band-lab" x="0" y="310">CONCRETE</text>
+  <line class="fig-rule" x1="530" y1="42" x2="530" y2="380"/>
+  <line class="fig-rule" x1="180" y1="216" x2="930" y2="216"/>
 
-  <rect class="n-inst n-schem" x="196" y="80" width="290" height="52"/>
-  <text class="n-lab n-sm" x="341" y="102">Toyota Corolla</text>
-  <text class="n-kind" x="341" y="120">the model, not a car</text>
+  <text class="q-tag" x="196" y="62">SchematicParticular &#215; Thing</text>
+  <rect class="n-inst n-schem" x="196" y="74" width="290" height="66"/>
+  <text class="n-lab n-sm" x="341" y="100">Toyota Corolla</text>
+  <text class="n-kind" x="341" y="118">the model, not a car</text>
 
-  <rect class="n-event n-schem-e" x="560" y="80" width="330" height="52"/>
-  <text class="n-lab n-sm" x="725" y="102">the 30,000-mile service</text>
-  <text class="n-kind" x="725" y="120">the procedure, not a visit</text>
+  <text class="q-tag" x="560" y="62">SchematicParticular &#215; Eventuality</text>
+  <rect class="n-event n-schem-e" x="560" y="74" width="330" height="66"/>
+  <text class="n-lab n-sm" x="725" y="100">the 30,000-mile service</text>
+  <text class="n-kind" x="725" y="118">the procedure, not a visit</text>
 
-  <rect class="n-inst" x="196" y="254" width="290" height="52"/>
-  <text class="n-lab n-sm" x="341" y="276">my Corolla</text>
-  <text class="n-kind" x="341" y="294">on the drive</text>
+  <text class="q-tag" x="196" y="256">ConcreteParticular &#215; Thing</text>
+  <rect class="n-inst" x="196" y="268" width="290" height="66"/>
+  <text class="n-lab n-sm" x="341" y="294">my Corolla</text>
+  <text class="n-kind" x="341" y="312">on the drive</text>
 
-  <rect class="n-event" x="560" y="254" width="330" height="52"/>
-  <text class="n-lab n-sm" x="725" y="276">its service, 3 March</text>
-  <text class="n-kind" x="725" y="294">two hours, one garage</text>
+  <text class="q-tag" x="560" y="256">ConcreteParticular &#215; Eventuality</text>
+  <rect class="n-event" x="560" y="268" width="330" height="66"/>
+  <text class="n-lab n-sm" x="725" y="294">its service, 3 March</text>
+  <text class="n-kind" x="725" y="312">two hours, one garage</text>
 
-  <line class="e-prop" x1="341" y1="132" x2="341" y2="250" marker-end="url(#are)"/>
-  <line class="e-prop" x1="725" y1="132" x2="725" y2="250" marker-end="url(#are)"/>
-  <text class="e-lab e-lab-prop" x="352" y="184">hasConcretization</text>
-  <text class="e-lab e-lab-prop" x="736" y="184">hasConcretization</text>
+  <line class="e-prop" x1="341" y1="140" x2="341" y2="264" marker-end="url(#are)"/>
+  <line class="e-prop" x1="725" y1="140" x2="725" y2="264" marker-end="url(#are)"/>
+  <text class="e-lab e-lab-prop" x="352" y="200">hasConcretization</text>
+  <text class="e-lab e-lab-prop" x="736" y="200">hasConcretization</text>
 
-  <text class="fig-note" x="0" y="356">One relation, both columns: it is declared SchematicParticular to ConcreteParticular and says nothing about things or happenings.</text>
+  <text class="fig-note" x="0" y="404">Four classes, two independent cuts. Every quadrant is populated, and the same relation carries the vertical one.</text>
 </svg>
-<figcaption>The repeatable/particular cut and the thing/happening cut are independent, so there
-are four cells and not three. A service procedure is repeatable in exactly the way a car model is:
-every actual service concretizes it, and the specification is the benchmark the visit answers to.
-The right-hand column is the one most ontologies cannot hold — it is where a process type has to
-become a class, and stops being able to carry its own data. That loze keeps it as a particular is
-the whole of Zemach&#8217;s addition to Lowe&#8217;s four categories, which
-<a href="/">the ontology</a> names as its two sources.</figcaption>
+<figcaption>The quadrant labels are the classes themselves: each cell is the intersection of one
+row class and one column class, and loze declares no disjointness between any of them, so all four
+are inhabitable. The right-hand column is the one most modelling cannot hold — it is where a
+process type is forced to become a class and stops being able to carry its own data. That loze
+keeps it a particular is Zemach&#8217;s addition to Lowe&#8217;s four categories, the two sources
+<a href="/">the ontology</a> names.</figcaption>
 </figure>
 
   <section><div class="section-head">Note</div><p class="measure">Similarly to classes, schematic particulars are not bounded to one particular location at a time: as a rule, a schematic particular is wholly present wherever one of its concretizations is present; War and Peace is present wherever one of its copies is present; water is present wherever one or more H2O molecules are present; the Toyota Corolla is present wherever one of its units is present</p></section>

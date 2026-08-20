@@ -24,10 +24,6 @@
     <rdf:first rdf:resource="https://loze-ontology.org/Eventuality" />
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" />
   </rdf:Description>
-  <rdf:Description rdf:nodeID="cb1af81e0e8654600f635c047e76e4db68ef627b950dbb7cab928cd4cf1903019e3">
-    <rdf:first rdf:resource="https://loze-ontology.org/Parthood" />
-    <rdf:rest rdf:nodeID="cb1006a4431df6a00fffd2d4d88b363953b9df3f901a6fa32824773d2972dc733bd" />
-  </rdf:Description>
   <rdf:Description rdf:nodeID="cb51b60a82aba4c62426128768cba68d8d6e8446a2b7c55308d832b1c68127c811">
     <rdf:first rdf:resource="https://loze-ontology.org/Object" />
     <rdf:rest rdf:nodeID="cb937745d7f92c733f714b92aab81c55b243f2d1a780cfba52d2f53013a9f2f16f" />
@@ -44,14 +40,10 @@
     <rdf:first rdf:resource="https://loze-ontology.org/Aggregate" />
     <rdf:rest rdf:nodeID="cbf7483d92c1d3d3d674879f0a312630df2c0ffba1a5e73f8c5acb5d81498218c1" />
   </rdf:Description>
-  <rdf:Description rdf:nodeID="cb1006a4431df6a00fffd2d4d88b363953b9df3f901a6fa32824773d2972dc733bd">
-    <rdf:first rdf:resource="https://loze-ontology.org/Constitution" />
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" />
-  </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology" />
-    <ns1:label>Loze Upper-Level Ontology</ns1:label>
-    <ns2:definition>A top-level ontology largely inspired - with a few deviations and additions - by the four-category ontology outlined by the philosopher E. J. Lowe (2006), supplemented with the concept of a schematic particular explored by Eddy Zemach (1970)</ns2:definition>
+    <ns1:label>Loze Foundation</ns1:label>
+    <ns2:definition>An upper-level ontology largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe, supplemented with the concept of a schematic particular explored by Eddy Zemach</ns2:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/Aggregate">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -66,8 +58,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <ns1:label>Composition</ns1:label>
     <ns1:subClassOf rdf:resource="https://loze-ontology.org/Eventuality" />
-    <ns3:unionOf rdf:nodeID="cb1af81e0e8654600f635c047e76e4db68ef627b950dbb7cab928cd4cf1903019e3" />
-    <ns2:definition>An eventuality that is either a parthood or a constitution</ns2:definition>
+    <ns2:definition>An eventuality that consists in one entity being made up or incorporating some other entity</ns2:definition>
+    <ns2:note>In Loze Foundation, this class only has two subclasses, namely loze:Parthood and loze:Constitution; however, other subclasses are defined in Loze's extensions, and further subclasses should be freely defined whenever needed</ns2:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/ConcreteParticular">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -82,7 +74,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <ns1:label>Constitution</ns1:label>
     <ns1:subClassOf rdf:resource="https://loze-ontology.org/Composition" />
-    <ns2:definition>An eventuality that consists in one particular being entirely made up by repeated occurrences of a given schematic particular</ns2:definition>
+    <ns2:definition>A composition that consists in one particular being entirely made up by repeated occurrences of a given schematic particular</ns2:definition>
     <ns2:example>A polymerous sequence being made up by repetitions of a given monomer; an aggregate of tablets being made up by one tablet (construed as a schematic object) repeated in 10 occurrences</ns2:example>
     <ns2:note>In a constitution, the core participants are the composite (loze:isCompositeIn) and the schematic particular that is repeated in it (loze:isComponentIn)</ns2:note>
     <ns2:note>In formal mereology, one particular being 'entirely made up' by repeated occurrences, means that it is identical to the mereological sum of those occurrences: as an approximation, this means that its only parts are those occurrences and the parts of those occurrences; more rigorous definitions can be found in the philosophical literature on formal mereology</ns2:note>
@@ -90,9 +82,9 @@
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/Containment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
-    <ns1:comment>An eventuality in which a particular is positioned within and physically constrained by another object</ns1:comment>
     <ns1:label>Containment</ns1:label>
     <ns1:subClassOf rdf:resource="https://loze-ontology.org/Eventuality" />
+    <ns2:definition>An eventuality in which a particular is positioned within and physically constrained by another object</ns2:definition>
     <ns2:example>A box containing eggs, a glass containing a portion of water, a dwelling containing pieces of furniture</ns2:example>
     <ns2:note>In a containment, the core participants are the container (loze:isHostIn) and the content (loze:isContentIn)</ns2:note>
   </rdf:Description>
@@ -125,7 +117,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <ns1:label>Parthood</ns1:label>
     <ns1:subClassOf rdf:resource="https://loze-ontology.org/Composition" />
-    <ns2:definition>An eventuality that consists in one particular being part of another particular</ns2:definition>
+    <ns2:definition>A composition that consists in one particular being part of another particular</ns2:definition>
     <ns2:example>An arm being part of a person, a wall being part of a house, a compressor being part of a refrigerator, a wood board being part of a table, a nucleus being part of an atom, Mars being part of the solar system, the lithosphere being part of the Earth, a movement being part of symphony, hydrogen atom being part of water molecule</ns2:example>
     <ns2:note>The core participants in a parthood are the part (loze:isComponentIn) and the composite (loze:isCompositeIn)</ns2:note>
   </rdf:Description>
@@ -142,7 +134,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <ns1:label>Period Of Time</ns1:label>
     <ns1:subClassOf rdf:resource="https://loze-ontology.org/Thing" />
-    <ns2:definition>A thing that is individuated by its coordinates across the temporal axis</ns2:definition>
+    <ns2:definition>A thing that is individuated by its coordinates along the temporal axis</ns2:definition>
     <ns2:example>The year 1943, the 6th of May of 2005, any second or minute, the period that goes from the 3rd of May of 1467 to the 22nd of July of 1615</ns2:example>
     <ns2:note>Two period of time can have exactly the same duration and yet be distinct period of time, because they have distinct beginnings and ends; for example, this hour and the next hour are two distinct periods, despite having the exact same duration of 60 minutes</ns2:note>
   </rdf:Description>
@@ -161,8 +153,8 @@
     <ns1:subClassOf rdf:resource="https://loze-ontology.org/Eventuality" />
     <ns2:definition>An eventuality that consists in one particular entity occupying a place partly or entirely</ns2:definition>
     <ns2:example>A carrot occupying the interior of a refrigerator, a sofa occupying a living room, an amount of liquid occupying the interior of a tank</ns2:example>
-    <ns2:note>In a place occupation, the host is always a place, rather the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself</ns2:note>
-    <ns2:note>The core participants in a place occupation are the place (:isHostIn) and the particular entity that occupies it (:isHostedIn)</ns2:note>
+    <ns2:note>In a place occupation, the host is always a place, rather than the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself</ns2:note>
+    <ns2:note>The core participants in a place occupation are the place (loze:isHostIn) and the particular entity that occupies it (loze:isContentIn)</ns2:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/SchematicParticular">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -256,7 +248,7 @@
     <ns2:definition>The relation that obtains between an eventuality e and a particular p if and only if p is the destination in e</ns2:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/hasDetermination">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty" />
     <ns1:domain rdf:resource="https://loze-ontology.org/SchematicParticular" />
     <ns1:label>has Determination</ns1:label>
     <ns1:range rdf:resource="https://loze-ontology.org/SchematicParticular" />
@@ -344,7 +336,7 @@
     <ns2:definition>The relation that obtains between an eventuality e and an object o if and only if o is the setting in e</ns2:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/hasStage">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty" />
     <ns1:domain rdf:resource="https://loze-ontology.org/Eventuality" />
     <ns1:label>has Stage</ns1:label>
     <ns1:range rdf:resource="https://loze-ontology.org/Eventuality" />
@@ -406,7 +398,7 @@
     <ns1:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn" />
     <ns2:definition>The relation that obtains between a particular p and an eventuality e if and only if p benefits from what happens in the context of e</ns2:definition>
     <ns2:example>People with cancer are the beneficiaries in a donation to cancer research, a household is the beneficiaty in an allocation of subsidies for energy upgrades work to a company</ns2:example>
-    <ns2:note>In some cases, the beneficiary of an eventuality is the same as the patient: for example, the beneficiary of successful a medication, therapy, or surgical operation is the patient</ns2:note>
+    <ns2:note>In some cases, the beneficiary of an eventuality is the same as the affected participant: for example, the beneficiary of a successful medication, therapy, or surgical operation is the affected participant</ns2:note>
     <ns2:note>The beneficiary is often going to be the recipient too, but there are exceptions; consider a case in which a household is awarded a grant for the energy upgrade of their house, and the grant is paid to an energy upgrade company: in that scenario, the company is the recipient of the grant, but the household is the beneficiary</ns2:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isCauseOf">
@@ -416,7 +408,7 @@
     <ns1:range rdf:resource="https://loze-ontology.org/Eventuality" />
     <ns2:definition>The relation that obtains between two eventualities e and e' if and only if the occurrence of e contributes to make e' occur</ns2:definition>
     <ns2:note>A simple, informal test for assessing whether an eventuality e is cause of another eventuality e' is to ask whether e'occurs (also) because of e, or whether the occurrence of e' is explained (among the other things) by the occurrence of e; if the answer is affirmative, then e entertains loze:isCauseOf with e' </ns2:note>
-    <ns2:note>Multiple eventualities can entertain the relation :isCauseOf with a given eventuality, since an eventuality can have more than one cause</ns2:note>
+    <ns2:note>Multiple eventualities can entertain the relation loze:isCauseOf with a given eventuality, since an eventuality can have more than one cause</ns2:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isComponentIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -434,7 +426,7 @@
     <ns1:range rdf:resource="https://loze-ontology.org/Composition" />
     <ns1:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn" />
     <ns2:definition>The relation that obtains between a particular p and a composition c if and only if p has as component some other particular in the context of c</ns2:definition>
-    <ns2:example>In my arm being part of my body, my arm is the component and my arm is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component</ns2:example>
+    <ns2:example>In my arm being part of my body, my arm is the component and my body is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component</ns2:example>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isConcretizationOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -579,7 +571,7 @@
     <ns2:note>This thematic relation is intended for those eventualities that consist in roles, positions, or functions within a setting or an organised system; the participant that occupies the role is a theme in the eventuality</ns2:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isStageOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty" />
     <ns1:domain rdf:resource="https://loze-ontology.org/Eventuality" />
     <ns1:label>is Stage Of</ns1:label>
     <ns1:range rdf:resource="https://loze-ontology.org/Eventuality" />
@@ -590,7 +582,7 @@
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/isThemeIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Particular" />
+    <ns1:domain rdf:resource="https://loze-ontology.org/Entity" />
     <ns1:label>is Theme In</ns1:label>
     <ns1:range rdf:resource="https://loze-ontology.org/Eventuality" />
     <ns1:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn" />
@@ -616,6 +608,6 @@
     <ns1:subPropertyOf rdf:resource="https://loze-ontology.org/isParticipantIn" />
     <ns2:definition>The relation that obtains between a particular p and an eventuality e if and only if p is an intermediate point of movement or change in the context of e</ns2:definition>
     <ns2:example>An intermediate stop in a travel, the ducts linking the supply point to a distribution point</ns2:example>
-    <ns2:note>The destination does not need to be a place, but it can be a thing or a period of time too</ns2:note>
+    <ns2:note>The waypoint does not need to be a place, but it can be a thing or a period of time too</ns2:note>
   </rdf:Description>
 </rdf:RDF>

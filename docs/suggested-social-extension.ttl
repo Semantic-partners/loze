@@ -7,7 +7,8 @@
 
 <https://loze-ontology.org/suggested-social-extension> a owl:Ontology ;
     rdfs:label "Suggested Social Extension" ;
-    skos:definition "An extension of loze.ttl with classes and relations for modelling living beings and social entities such as persons, groups, and organisations" ;
+    skos:definition "An extension of loze-foundation.ttl pertaining to the social domain" ;
+    skos:note "Among the other things, this extension includes a minimal taxonomy of living beings, which not even remotely expected to replicate the richness and depth of a full biological taxonomy - the so-called Tree of Life; if needed, the present taxonomy could be dramatically expanded" ;
     owl:imports loze: .
 
 ################
@@ -17,23 +18,24 @@
 loze:LivingBeing a owl:Class ;
     rdfs:label "Living Being" ;
     skos:definition "An object that displays properties such as responsiveness, growth, metabolism, energy transformation, and reproduction" ;
-    skos:note "The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; nevertheless, there are still borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)" ;
+    skos:note "The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; that being said, there are a few borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)" ;
     rdfs:subClassOf loze:Object .
 
 loze:Animal a owl:Class ;
     rdfs:label "Animal" ;
-    skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings" ; 
+    skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterotrophic - that is, derives its nourishment from the consumption of other living beings" ; 
     skos:note "Animals typically have a more flexible body than plants and fungi and are able to move" ;
-    skos:note "Within biological taxonomy - so-called Tree of Life - animals are the members of the kingdom of Animalia" ;
+    skos:note "Within the taxonomy of living beings - so-called Tree of Life - animals are the members of the kingdom of Animalia" ;
     rdfs:subClassOf loze:LivingBeing ;
-    owl:disjointUnionOf (loze:Person loze:NonHumanAnimal) .
+    owl:disjointUnionOf ( loze:Person loze:NonHumanAnimal ) .
 
 loze:Plant a owl:Class ;
     rdfs:label "Plant" ;
     skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) derives its nourishment from photosynthesis" ;
     skos:note "Plants typically have a firmer cellular structure than animals and are not able to move" ;
-    skos:note "Within biological taxonomy - so-called Tree of Life - plants are the members of the kingdom of Plantae" ;
-    rdfs:subClassOf loze:LivingBeing .
+    skos:note "Within the taxonomy of living beings - so-called Tree of Life - plants are the members of the kingdom of Plantae" ;
+    rdfs:subClassOf loze:LivingBeing ;
+    owl:disjointWith loze:Animal .
 
 loze:Person a owl:Class ;
     rdfs:label "Person" ;
@@ -50,22 +52,72 @@ loze:NonHumanAnimal a owl:Class ;
 
 loze:Group a owl:Class ;
     rdfs:label "Group" ;
-    skos:definition "An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction" ;
+    skos:definition "An object that consists of persons that are associated to each other by some socially significant relations or recurrent interactions" ;
     skos:example "A household, a family, a couple, any organisation" ;
-    skos:note "Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes" ;
+    skos:note "Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; if needed, such collections are best modelled as classes" ;
     rdfs:subClassOf loze:Object .
 
 loze:Organisation a owl:Class ;
     rdfs:label "Organisation" ;
-    skos:definition "A group whose members are acting together in the pursuit of a common goal, based on an agreed upon system of rules and commitments" ;
+    skos:definition "A group whose members are acting together in the pursuit of one or more common goals, based on an agreed upon system of commitments and rules" ;
     skos:example "A company, a charity or foundation, a political party, a club, a state or government, an international organisation, a criminal gang, a terrorist organisation" ;
-    skos:note "A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are inherently illegal, such as criminal gangs and terrorist organisations" ;
-    skos:note "An organisation can have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts" ;
+    skos:note "A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are illegal by definition, such as criminal gangs and terrorist organisations" ;
+    skos:note "An organisation can also have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts, and an international organisation can have governments as parts" ;
     rdfs:subClassOf loze:Group .
 
-loze:OrganisationOrgan a owl:Class ;
-    rdfs:label "Organisation Organ" ;
+loze:OrganisationSubdivision a owl:Class ;
+    rdfs:label "Organisation Subdivision" ;
     skos:definition "A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) it not itself an organisation" ;
     skos:example "A government's parliament, a company's committee, a team" ;
-    skos:note "The difference between an organisation organ and an organisation that is part of another organisation is that the official goals of an organ are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation" ;
-    rdfs:subClassOf loze:Group .
+    skos:note "The difference between an organisation subdivision and an organisation that is part of another organisation is that the official goals of a subdivision are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation" ;
+    rdfs:subClassOf loze:Group ;
+    owl:disjointWith loze:Organisation .
+
+loze:Actor a owl:Class ;
+    rdfs:label "Actor" ;
+    skos:definition "An object that is either a person or an organisation" ;
+    skos:note "This class is meant to encompass all the objects that can deliberate, make decisions, and bear responsibility" ;
+    skos:note "It roughly corresponds to the legal concept of a legal person" ;
+    owl:disjointUnionOf ( loze:Person loze:Organisation ) .
+
+
+##############
+# Membership #
+##############
+
+loze:Membership a owl:Class ;
+    rdfs:label "Membership" ;
+    skos:definition "A composition that consists in an actor joining the goals and/or th activities of a group" ;
+    skos:example "A person being a member of a household, a person being a member of a club or charity, a person being an employee of a company, a company being a member of a trade association, France being a member of the European Union" ;
+    skos:note "In a membership, the main participants are a member (loze:isMemberIn) and a composite (loze:isCompositeIn): the former is the actor that is the member, and the latter is the group of which they are a member" ;
+    rdfs:subClassOf loze:Composition . 
+
+loze:isMemberIn a owl:ObjectProperty ;
+    rdfs:label "is Member In" ;
+    skos:definition "The relation that obtains between an actor a and a membership m if and only if a joins the goals and/or the activities of a group in the context of that m" ;
+    skos:example "In the membership of France in the European Union, France is the member and the European Union is the composite group; in the membership of Toyota in JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the composite group" ;
+    rdfs:domain loze:Actor ;
+    rdfs:range loze:Group ;
+    rdfs:subPropertyOf loze:isComponentIn .
+
+loze:hasMember a owl:ObjectProperty ;
+    rdfs:label "has Member" ;
+    skos:definition "The relation that obtains between a membership m and an actor a if and only if a joins the activities of a group in the context of m" ;
+    rdfs:domain loze:Group ;
+    rdfs:range loze:Actor ;
+    owl:inverseOf loze:isMemberIn .
+
+loze:isCompositeGroupIn a owl:ObjectProperty ;
+    rdfs:label "is Composite Group In" ;
+    skos:definition "The relation that obtains between a group g and a membership m if and only if g has some member in the context of m" ;
+    skos:example "In the membership of France in the European Union, France is the member and the European Union is the composite group; in the membership of Toyota in JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the composite group" ;
+    rdfs:domain loze:Group ;
+    rdfs:range loze:Membership ;
+    rdfs:subPropertyOf loze:isCompositeIn .
+
+loze:hasCompositeGroup a owl:ObjectProperty ;
+    rdfs:label "has Composite Group" ;
+    skos:definition "The relation that obtains between a membership m and the group g if and only if g has some member in the context of m" ;
+    rdfs:domain loze:Membership ;
+    rdfs:range loze:Group ;
+    owl:inverseOf loze:isCompositeGroupIn .

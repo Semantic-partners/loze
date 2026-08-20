@@ -70,7 +70,7 @@ if os.environ.get("PYTHONHASHSEED") != "0":
 import shutil
 from pathlib import Path
 
-from rdflib import Dataset, Graph, URIRef
+from rdflib import BNode, Dataset, Graph, URIRef
 from rdflib.compare import to_canonical_graph
 from rdflib.namespace import OWL, RDF, RDFS, SKOS
 
@@ -441,6 +441,22 @@ ul.tree a { font-weight: 500; }
    separate arrows converging read as more machinery, not less. */
 .grp { fill: none; stroke: hsl(var(--border)); stroke-width: 1; stroke-dasharray: 3 4; }
 .fig-note { font-size: 13px; fill: hsl(var(--muted-foreground)); }
+/* Zemach's quadrants. Three are background and one carries the emphasis: the
+   Type cell is the one loze is built on, so it is the only coloured thing here. */
+.z-cell { fill: hsl(var(--surface)); stroke: hsl(var(--border)); stroke-width: 1.5; }
+.z-hit  { fill: hsl(var(--tint)); stroke: hsl(var(--brand-accent)); stroke-width: 2.5; }
+.z-title { font-family: "Plus Jakarta Sans", sans-serif; font-size: 17px; font-weight: 700;
+  fill: hsl(var(--foreground)); }
+.z-title.z-hit { fill: hsl(var(--brand-accent)); stroke: none; }
+.z-code { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.1em;
+  fill: hsl(var(--faint)); text-anchor: end; }
+.z-gloss { font-family: "DM Sans", sans-serif; font-size: 13px; fill: hsl(var(--muted-foreground)); }
+.z-item { font-family: "DM Sans", sans-serif; font-size: 13.5px; fill: hsl(var(--foreground)); }
+.z-axis { font-family: "DM Mono", monospace; font-size: 12px; letter-spacing: var(--tracking-label);
+  fill: hsl(var(--foreground)); }
+.z-sub { font-family: "DM Sans", sans-serif; font-size: 12px; fill: hsl(var(--faint)); }
+.q-tag { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.04em;
+  fill: hsl(var(--faint)); }
 .fig-q { font-family: "DM Mono", monospace; font-size: 12.5px; fill: hsl(var(--foreground)); }
 .fig-ok { fill: hsl(var(--clr-status-ok)); }
 .q-chip { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.2; }
@@ -678,125 +694,111 @@ QUERY_FIGURE = '''
 </figure>
 '''
 
-def _chip(x, y, label, cls="q-chip"):
-    w = max(74, int(len(label) * 7.6) + 22)
-    return (f'<rect class="{cls}" x="{x}" y="{y}" width="{w}" height="30"/>'
-            f'<text class="q-lab" x="{x + w // 2}" y="{y + 20}">{label}</text>'), w
-
-
-def _row(x0, y, chips, cls="q-chip"):
-    out, cx = "", x0
-    for c in chips:
-        frag, w = _chip(cx, y, c, cls)
-        out += frag
-        cx += w + 8
-    return out
-
-
-def query_figure() -> str:
-    """Second figure: what the category buys at query time.
-
-    The first figure shows the modelling cost — the model said twice. This shows
-    the consequence, which is where it actually bites: a general question about
-    the model either reaches it or it does not. The pattern is split into its two
-    triples so the join is visible; on the left the two match-sets are disjoint,
-    so nothing satisfies both.
-    """
-    L, R = 126, 546
-    rows = [
-        (78,  "?m a :Car",
-         ["my Corolla", "a new one"],
-         ["Corolla Hatchback", "my Corolla", "a new one"]),
-        (176, "?m :advertisedWeight ?kg",
-         ["Corolla Hatchback"],
-         ["Corolla Hatchback"]),
-    ]
-    body = ""
-    for y, pattern, left, right in rows:
-        body += (f'<text class="fig-q" x="{L}" y="{y}">{pattern}</text>'
-                 f'<text class="fig-q" x="{R}" y="{y}">{pattern}</text>')
-        body += _row(L, y + 12, left)
-        body += _row(R, y + 12, right)
-
-    body += (f'<line class="fig-rule" x1="{L}" y1="266" x2="500" y2="266"/>'
-             f'<line class="fig-rule" x1="{R}" y1="266" x2="932" y2="266"/>'
-             f'<text class="fig-q" x="{L}" y="292">both &#8594;</text>'
-             f'<text class="fig-q" x="{R}" y="292">both &#8594;</text>'
-             f'<text class="fig-note fig-warn" x="{L}" y="330">no rows</text>'
-             + _row(R, 306, ["Corolla Hatchback"], "q-chip q-hit")
-             + f'<text class="fig-note fig-ok" x="{R + 190}" y="330">1205 kg</text>')
-
-    return f'''
-<figure class="fig">
-<svg viewBox="0 0 960 356" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="The same two-triple pattern asked on both sides. Where the model is a class, the things that are Cars and the thing that has a kerb weight are different sets, so nothing satisfies both and the query returns no rows. Where the model is a schematic particular it belongs to both sets, and the query returns Toyota Corolla with its kerb weight.">
-  <text class="fig-panel" x="126" y="24">Model as a class</text>
-  <text class="fig-panel" x="546" y="24">Model as a schematic particular</text>
-  <line class="fig-rule" x1="512" y1="40" x2="512" y2="340"/>
-  <text class="fig-band-lab" x="0" y="90">MATCHES</text>
-  <text class="fig-band-lab" x="0" y="292">JOIN</text>
-  {body}
-</svg>
-<figcaption>Asking about the model, not a car. Note whose weight it is: a car has a mass you
-could put it on a weighbridge to find, while an <em>advertised</em> weight belongs to the variant
-and holds for every unit of it. That is a fact about a repeatable thing, which is exactly what loze
-gives you somewhere to put. The pattern is two triples, and the
-answer turns on whether one thing satisfies both. Model it as a class and it cannot: a subclass is not an
-instance, so the set that has a kerb weight and the set that are Cars never meet. As a schematic
-particular the model sits in both, and the general question is answered with the same pattern you
-would use for any individual — no metamodelling, and nothing to tell a reasoner about two entities
-that happen to share a name.</figcaption>
-</figure>
-'''
-
-
 EVENT_FIGURE = '''
 <figure class="fig">
-<svg viewBox="0 0 960 372" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="A two by two. Columns are thing and eventuality, rows are schematic and concrete. The Toyota Corolla and a Corolla service sit in the schematic row; my Corolla and its service on 3 March sit in the concrete row. The same hasConcretization relation runs down both columns, because it is declared on the schematic to concrete axis and says nothing about things or happenings.">
+<svg viewBox="0 0 960 420" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="A two by two. Columns are Thing and Eventuality, rows are SchematicParticular and ConcreteParticular. Each quadrant names the two loze classes it is the intersection of. Toyota Corolla is a schematic thing, the 30,000-mile service a schematic eventuality, my Corolla a concrete thing, and its service on 3 March a concrete eventuality. The same hasConcretization relation runs down both columns.">
   <defs>
     <marker id="are" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
     </marker>
   </defs>
 
-  <text class="fig-band-lab" x="196" y="28">A THING</text>
-  <text class="fig-band-lab" x="560" y="28">A HAPPENING</text>
-  <text class="fig-band-lab" x="0" y="112">SCHEMATIC</text>
-  <text class="fig-band-lab" x="0" y="286">CONCRETE</text>
-  <line class="fig-rule" x1="530" y1="44" x2="530" y2="330"/>
-  <line class="fig-rule" x1="180" y1="196" x2="930" y2="196"/>
+  <text class="fig-band-lab" x="196" y="26">A THING</text>
+  <text class="fig-band-lab" x="560" y="26">A HAPPENING</text>
+  <text class="fig-band-lab" x="0" y="118">SCHEMATIC</text>
+  <text class="fig-band-lab" x="0" y="310">CONCRETE</text>
+  <line class="fig-rule" x1="530" y1="42" x2="530" y2="380"/>
+  <line class="fig-rule" x1="180" y1="216" x2="930" y2="216"/>
 
-  <rect class="n-inst n-schem" x="196" y="80" width="290" height="52"/>
-  <text class="n-lab n-sm" x="341" y="102">Toyota Corolla</text>
-  <text class="n-kind" x="341" y="120">the model, not a car</text>
+  <text class="q-tag" x="196" y="62">SchematicParticular &#215; Thing</text>
+  <rect class="n-inst n-schem" x="196" y="74" width="290" height="66"/>
+  <text class="n-lab n-sm" x="341" y="100">Toyota Corolla</text>
+  <text class="n-kind" x="341" y="118">the model, not a car</text>
 
-  <rect class="n-event n-schem-e" x="560" y="80" width="330" height="52"/>
-  <text class="n-lab n-sm" x="725" y="102">the 30,000-mile service</text>
-  <text class="n-kind" x="725" y="120">the procedure, not a visit</text>
+  <text class="q-tag" x="560" y="62">SchematicParticular &#215; Eventuality</text>
+  <rect class="n-event n-schem-e" x="560" y="74" width="330" height="66"/>
+  <text class="n-lab n-sm" x="725" y="100">the 30,000-mile service</text>
+  <text class="n-kind" x="725" y="118">the procedure, not a visit</text>
 
-  <rect class="n-inst" x="196" y="254" width="290" height="52"/>
-  <text class="n-lab n-sm" x="341" y="276">my Corolla</text>
-  <text class="n-kind" x="341" y="294">on the drive</text>
+  <text class="q-tag" x="196" y="256">ConcreteParticular &#215; Thing</text>
+  <rect class="n-inst" x="196" y="268" width="290" height="66"/>
+  <text class="n-lab n-sm" x="341" y="294">my Corolla</text>
+  <text class="n-kind" x="341" y="312">on the drive</text>
 
-  <rect class="n-event" x="560" y="254" width="330" height="52"/>
-  <text class="n-lab n-sm" x="725" y="276">its service, 3 March</text>
-  <text class="n-kind" x="725" y="294">two hours, one garage</text>
+  <text class="q-tag" x="560" y="256">ConcreteParticular &#215; Eventuality</text>
+  <rect class="n-event" x="560" y="268" width="330" height="66"/>
+  <text class="n-lab n-sm" x="725" y="294">its service, 3 March</text>
+  <text class="n-kind" x="725" y="312">two hours, one garage</text>
 
-  <line class="e-prop" x1="341" y1="132" x2="341" y2="250" marker-end="url(#are)"/>
-  <line class="e-prop" x1="725" y1="132" x2="725" y2="250" marker-end="url(#are)"/>
-  <text class="e-lab e-lab-prop" x="352" y="184">hasConcretization</text>
-  <text class="e-lab e-lab-prop" x="736" y="184">hasConcretization</text>
+  <line class="e-prop" x1="341" y1="140" x2="341" y2="264" marker-end="url(#are)"/>
+  <line class="e-prop" x1="725" y1="140" x2="725" y2="264" marker-end="url(#are)"/>
+  <text class="e-lab e-lab-prop" x="352" y="200">hasConcretization</text>
+  <text class="e-lab e-lab-prop" x="736" y="200">hasConcretization</text>
 
-  <text class="fig-note" x="0" y="356">One relation, both columns: it is declared SchematicParticular to ConcreteParticular and says nothing about things or happenings.</text>
+  <text class="fig-note" x="0" y="404">Four classes, two independent cuts. Every quadrant is populated, and the same relation carries the vertical one.</text>
 </svg>
-<figcaption>The repeatable/particular cut and the thing/happening cut are independent, so there
-are four cells and not three. A service procedure is repeatable in exactly the way a car model is:
-every actual service concretizes it, and the specification is the benchmark the visit answers to.
-The right-hand column is the one most ontologies cannot hold — it is where a process type has to
-become a class, and stops being able to carry its own data. That loze keeps it as a particular is
-the whole of Zemach&#8217;s addition to Lowe&#8217;s four categories, which
-<a href="/">the ontology</a> names as its two sources.</figcaption>
+<figcaption>The quadrant labels are the classes themselves: each cell is the intersection of one
+row class and one column class, and loze declares no disjointness between any of them, so all four
+are inhabitable. The right-hand column is the one most modelling cannot hold — it is where a
+process type is forced to become a class and stops being able to carry its own data. That loze
+keeps it a particular is Zemach&#8217;s addition to Lowe&#8217;s four categories, the two sources
+<a href="/">the ontology</a> names.</figcaption>
+</figure>
+'''
+
+
+def zemach_figure() -> str:
+    """Zemach's four ontologies, redrawn in the page's own system.
+
+    Redrawn rather than embedded. The original is a raster on a white ground, which
+    would invert badly in dark mode and could not take the site's type or palette.
+    Redrawing also lets the emphasis go where it belongs: three quadrants are
+    background, and the fourth is the one loze is built on.
+    """
+    CELLS = [
+        (170, 96,  "Event", "NC", "a filled chunk of spacetime",
+         ["the moon landing", "a handshake", "yesterday&#8217;s sunset"], ""),
+        (560, 96,  "Thing", "CT", "the desk you see again today",
+         ["Fido the dog", "the Eiffel Tower", "my pencil"], ""),
+        (170, 274, "Process", "CS", "everywhere at once, then over",
+         ["the French Revolution", "this rain", "the current inflation"], ""),
+        (560, 274, "Type", "PC", "wholly present in every token",
+         ["water, gold, wheat", "the letter A", "Beethoven&#8217;s Fifth"], " z-hit"),
+    ]
+    out = ""
+    for x, y, title, code, gloss, items, hit in CELLS:
+        out += (f'<rect class="z-cell{hit}" x="{x}" y="{y}" width="360" height="152"/>'
+                f'<text class="z-title{hit}" x="{x+20}" y="{y+30}">{title}</text>'
+                f'<text class="z-code" x="{x+340}" y="{y+30}">{code}</text>'
+                f'<text class="z-gloss" x="{x+20}" y="{y+52}">{gloss}</text>')
+        for i, it in enumerate(items):
+            out += f'<text class="z-item" x="{x+20}" y="{y+82 + i*24}">&#8594; {it}</text>'
+    return f'''
+<figure class="fig">
+<svg viewBox="0 0 960 500" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="Zemach's four ontologies as a two by two. Columns are bound in time and continuous in time; rows are bound in space and continuous in space. Event, Thing, Process and Type. The Type quadrant, wholly present in every token, is highlighted: water, the letter A, Beethoven's Fifth. That is the cell loze keeps as a particular rather than a universal.">
+  <text class="z-axis" x="170" y="34">BOUND IN TIME</text>
+  <text class="z-sub" x="170" y="52">has temporal parts; over when done</text>
+  <text class="z-axis" x="560" y="34">CONTINUOUS IN TIME</text>
+  <text class="z-sub" x="560" y="52">wholly present at each time</text>
+  <text class="z-axis" x="0" y="150">BOUND IN</text>
+  <text class="z-axis" x="0" y="168">SPACE</text>
+  <text class="z-sub" x="0" y="188">has spatial parts</text>
+  <text class="z-axis" x="0" y="328">CONTINUOUS</text>
+  <text class="z-axis" x="0" y="346">IN SPACE</text>
+  <text class="z-sub" x="0" y="366">wholly present</text>
+  <text class="z-sub" x="0" y="382">at each place</text>
+  {out}
+  <text class="fig-note" x="170" y="482">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
+</svg>
+<figcaption>Two axes, and neither is the class/instance one. Zemach cuts by whether a thing is
+wholly present at each <em>time</em> and at each <em>place</em>, which puts water, the letter A and
+a symphony together in a quadrant of their own — repeatable, but not obviously classes. loze&#8217;s
+<a href="/SchematicParticular">Schematic Particular</a> is that cell, and its own examples are
+Zemach&#8217;s: a work of music, an alphabetic character, a substance like water or gold. The
+deviation is that loze keeps them <em>particulars</em>, so they can carry data and be pointed at,
+rather than promoting them to universals.</figcaption>
 </figure>
 '''
 
@@ -937,12 +939,47 @@ PROP_TYPES = {OWL.ObjectProperty, OWL.DatatypeProperty, OWL.AnnotationProperty,
               RDF.Property, OWL.TransitiveProperty, OWL.SymmetricProperty}
 
 
+def rdf_list(g: Graph, head) -> list:
+    """Members of an RDF collection, in order."""
+    out = []
+    while head is not None and head != RDF.nil:
+        first = g.value(head, RDF.first)
+        if first is None:
+            break
+        out.append(first)
+        head = g.value(head, RDF.rest)
+    return out
+
+
+def anon_expr(g: Graph, node) -> str:
+    """Render an anonymous class expression from its content.
+
+    Matteo's axioms introduced owl:unionOf expressions, and these were being
+    printed as their blank node label — 'n8289a058adf34293a1ef6d409b38da73b1'.
+    Meaningless to a reader, and not even stable: rdflib mints those labels per
+    parse, so three pages changed on every build. Describing the expression fixes
+    both, because the description comes from the members rather than the label.
+    """
+    for pred, joiner in ((OWL.unionOf, " or "), (OWL.intersectionOf, " and ")):
+        head = g.value(node, pred)
+        if head is not None:
+            members = rdf_list(g, head)
+            if members:
+                return joiner.join(term_link(g, m) for m in members)
+    on = g.value(node, OWL.onProperty)
+    if on is not None:
+        return f"a restriction on {term_link(g, on)}"
+    return "an anonymous class"
+
+
 def term_link(g: Graph, o) -> str:
     if isinstance(o, URIRef) and str(o).startswith(NS):
         lbl = g.value(o, RDFS.label)
         return f'<a href="/{e(local(o))}">{e(str(lbl) if lbl else local(o))}</a>'
     if isinstance(o, URIRef):
         return f'<code>{e(shorten(str(o)))}</code>'
+    if isinstance(o, BNode):
+        return anon_expr(g, o)
     return e(str(o))
 
 
@@ -1045,7 +1082,7 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
   {section("Specialised by", subs_html)}
   {"" if is_prop else section("Properties from this", props_where(RDFS.domain))}
   {"" if is_prop else section("Properties onto this", props_where(RDFS.range))}
-  {(FIGURE + query_figure() + EVENT_FIGURE) if d['name'] == "SchematicParticular" else (EVENT_FIGURE if d['name'] in ("Eventuality", "Thing", "hasParticipant", "hasProduct") else (FIGURE if d['name'] in ("isConcretizationOf", "hasConcretization") else ""))}
+  {(zemach_figure() + FIGURE + QUERY_FIGURE + EVENT_FIGURE) if d['name'] == "SchematicParticular" else (EVENT_FIGURE if d['name'] in ("Eventuality", "Thing", "hasParticipant", "hasProduct") else (FIGURE if d['name'] in ("isConcretizationOf", "hasConcretization") else ""))}
   {section("Note", f'<p class="measure">{e(d["note"])}</p>' if d['note'] else "")}
 </div></main>
 """
@@ -1109,7 +1146,8 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
             for s2, src2 in MODULES if s2)
         modules_nav = section("Modules", f'<div class="grid">{cells}</div>')
 
-    schematic_section = (section("Why a schematic particular", FIGURE)
+    schematic_section = (section("Where the idea comes from", zemach_figure())
+                         + section("Why a schematic particular", FIGURE)
                          + section("What it buys", QUERY_FIGURE)
                          + section("Things and happenings are a different cut", EVENT_FIGURE))
 
@@ -1217,8 +1255,16 @@ def main() -> None:
     for slug_, _s in MODULES:
         cg_ = canonical(per_module[slug_])
         tgt = canon_ds.graph(URIRef(NS + slug_))
+        # Canonical blank node labels are derived from structure, so two modules
+        # containing the same shape get the SAME label — three of them do here.
+        # Harmless while each graph stands alone, but in one dataset they merge,
+        # and flattening the quads then loses the triples that collided. Namespace
+        # them by graph. Still deterministic: the prefix is the slug.
+        pfx = slug_ or "root"
+        def rename(t, _p=pfx):
+            return tuple(BNode(f"{_p}_{x}") if isinstance(x, BNode) else x for x in t)
         for t in sorted(cg_, key=lambda x: (str(x[0]), str(x[1]), str(x[2]))):
-            tgt.add(t)
+            tgt.add(rename(t))
         for pfx, ns_ in cg_.namespaces():
             tgt.bind(pfx, ns_, override=False)
     for ext, fmt in QUAD_SERIALISATIONS:

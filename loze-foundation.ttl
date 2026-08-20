@@ -6,8 +6,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 loze: a owl:Ontology ;
-    rdfs:label "Loze Upper-Level Ontology" ;
-    skos:definition "A top-level ontology largely inspired - with a few deviations and additions - by the four-category ontology outlined by the philosopher E. J. Lowe (2006), supplemented with the concept of a schematic particular explored by Eddy Zemach (1970)" .
+    rdfs:label "Loze Foundation" ;
+    skos:definition "An upper-level ontology largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe, supplemented with the concept of a schematic particular explored by Eddy Zemach" .
 
 #####################
 # Top-level classes #
@@ -18,15 +18,15 @@ loze:Entity a owl:Class ;
     skos:definition "Anything that exists, is real, or is in the world" ;
     skos:note "It corresponds to owl:Thing" ;
     owl:equivalentClass owl:Thing ;
-    owl:disjointUnionOf (owl:Class loze:Particular) .
+    owl:disjointUnionOf ( owl:Class loze:Particular ) .
 
 loze:Particular a owl:Class ;
     rdfs:label "Particular" ;
     skos:definition "An entity that is not a class or type of entities" ;
     skos:note "Particular entities are to be contrasted with classes; the concept of a particular mostly corresponds to the Semantic Web concept of an individual or instance" ;
     rdfs:subClassOf loze:Entity ;
-    owl:disjointUnionOf (loze:Thing loze:Eventuality) ;
-    owl:disjointUnionOf (loze:SchematicParticular loze:ConcreteParticular) .
+    owl:disjointUnionOf ( loze:Thing loze:Eventuality ) ;
+    owl:disjointUnionOf ( loze:SchematicParticular loze:ConcreteParticular ) .
 
 loze:ConcreteParticular a owl:Class ;
     rdfs:label "Concrete Particular" ;
@@ -51,7 +51,7 @@ loze:Thing a owl:Class ;
     skos:definition "A particular entity that is not a way of being or a modification of other entities" ;
     skos:note "Despite the similar local name, this class is much narrower than owl:Thing, which encompasses all entities" ;
     rdfs:subClassOf loze:Particular ;
-    owl:disjointUnionOf (loze:Object loze:Aggregate loze:Place loze:PeriodOfTime) .
+    owl:disjointUnionOf ( loze:Object loze:Aggregate loze:Place loze:PeriodOfTime ) .
 
 loze:Object a owl:Class ;
     rdfs:label "Object" ;
@@ -78,7 +78,7 @@ loze:Place a owl:Class ;
 
 loze:PeriodOfTime a owl:Class ;
     rdfs:label "Period Of Time" ;
-    skos:definition "A thing that is individuated by its coordinates across the temporal axis" ;
+    skos:definition "A thing that is individuated by its coordinates along the temporal axis" ;
     skos:example "The year 1943, the 6th of May of 2005, any second or minute, the period that goes from the 3rd of May of 1467 to the 22nd of July of 1615" ;
     skos:note "Two period of time can have exactly the same duration and yet be distinct period of time, because they have distinct beginnings and ends; for example, this hour and the next hour are two distinct periods, despite having the exact same duration of 60 minutes" ;
     rdfs:subClassOf loze:Thing .
@@ -121,7 +121,7 @@ loze:isDeterminationOf a owl:TransitiveProperty ;
     rdfs:domain loze:SchematicParticular ;
     rdfs:range loze:SchematicParticular .
 
-loze:hasDetermination a owl:ObjectProperty ;
+loze:hasDetermination a owl:TransitiveProperty ;
     rdfs:label "has Determination" ;
     skos:definition "The relation that obtains between a schematic particular x and a schematic particular y if and only if y is a determination of x" ;
     rdfs:domain loze:SchematicParticular ;
@@ -154,7 +154,7 @@ loze:isThemeIn a owl:ObjectProperty ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is in a certain state or occupies a position in the context of e" ;
     skos:example "In a marriage, both spouses are themes; in the case of a glass lying on a table, the glass is the theme; in the case of an amount of liquid contained in a tank, the amount of liquid is the theme; in the case of somebody owning a real estate, the real estate is theme" ;
     skos:note "That of the theme is a broad thematic relations that can be useful whenever no other thematic relation applies; that being said, more specific sub-relations should be defined whenever needed" ;
-    rdfs:domain loze:Particular ;
+    rdfs:domain loze:Entity ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isParticipantIn .
 
@@ -254,7 +254,7 @@ loze:isBeneficiaryIn a owl:ObjectProperty ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p benefits from what happens in the context of e" ;
     skos:example "People with cancer are the beneficiaries in a donation to cancer research, a household is the beneficiaty in an allocation of subsidies for energy upgrades work to a company" ;
     skos:note "The beneficiary is often going to be the recipient too, but there are exceptions; consider a case in which a household is awarded a grant for the energy upgrade of their house, and the grant is paid to an energy upgrade company: in that scenario, the company is the recipient of the grant, but the household is the beneficiary" ;
-    skos:note "In some cases, the beneficiary of an eventuality is the same as the patient: for example, the beneficiary of successful a medication, therapy, or surgical operation is the patient" ;
+    skos:note "In some cases, the beneficiary of an eventuality is the same as the affected participant: for example, the beneficiary of a successful medication, therapy, or surgical operation is the affected participant" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isParticipantIn .
@@ -319,7 +319,7 @@ loze:isWaypointIn a owl:ObjectProperty ;
     rdfs:label "is Waypoint In" ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is an intermediate point of movement or change in the context of e" ;
     skos:example "An intermediate stop in a travel, the ducts linking the supply point to a distribution point" ;
-    skos:note "The destination does not need to be a place, but it can be a thing or a period of time too" ;
+    skos:note "The waypoint does not need to be a place, but it can be a thing or a period of time too" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isParticipantIn .
@@ -432,31 +432,31 @@ loze:hasSetting a owl:ObjectProperty ;
 # Domain-independent eventuality classes and their specialised thematic relations #
 ###################################################################################
 
+loze:Composition a owl:Class ;
+    rdfs:label "Composition" ;
+    skos:definition "An eventuality that consists in one entity being made up or incorporating some other entity" ;
+    skos:note "In Loze Foundation, this class only has two subclasses, namely loze:Parthood and loze:Constitution; however, other subclasses are defined in Loze's extensions, and further subclasses should be freely defined whenever needed" ;  
+    rdfs:subClassOf loze:Eventuality .
+
 loze:Parthood a owl:Class ;
     rdfs:label "Parthood" ;
-    skos:definition "An eventuality that consists in one particular being part of another particular" ;
+    skos:definition "A composition that consists in one particular being part of another particular" ;
     skos:example "An arm being part of a person, a wall being part of a house, a compressor being part of a refrigerator, a wood board being part of a table, a nucleus being part of an atom, Mars being part of the solar system, the lithosphere being part of the Earth, a movement being part of symphony, hydrogen atom being part of water molecule" ;
     skos:note "The core participants in a parthood are the part (loze:isComponentIn) and the composite (loze:isCompositeIn)" ;
     rdfs:subClassOf loze:Composition .
 
 loze:Constitution a owl:Class ;
     rdfs:label "Constitution" ;
-    skos:definition "An eventuality that consists in one particular being entirely made up by repeated occurrences of a given schematic particular" ;
+    skos:definition "A composition that consists in one particular being entirely made up by repeated occurrences of a given schematic particular" ;
     skos:example "A polymerous sequence being made up by repetitions of a given monomer; an aggregate of tablets being made up by one tablet (construed as a schematic object) repeated in 10 occurrences" ;
     skos:note "In a constitution, the core participants are the composite (loze:isCompositeIn) and the schematic particular that is repeated in it (loze:isComponentIn)" ;
     skos:note "In formal mereology, one particular being 'entirely made up' by repeated occurrences, means that it is identical to the mereological sum of those occurrences: as an approximation, this means that its only parts are those occurrences and the parts of those occurrences; more rigorous definitions can be found in the philosophical literature on formal mereology" ;
     skos:note "In practice, the function of this class of eventualities is to describe the overall composition of a particular without giving an enumeration of its individual parts" ;
     rdfs:subClassOf loze:Composition .
 
-loze:Composition a owl:Class ;
-    rdfs:label "Composition" ;
-    skos:definition "An eventuality that is either a parthood or a constitution" ;
-    rdfs:subClassOf loze:Eventuality ;
-    owl:unionOf (loze:Parthood loze:Constitution) .
-
 loze:Containment a owl:Class ;
     rdfs:label "Containment" ;
-    rdfs:comment "An eventuality in which a particular is positioned within and physically constrained by another object" ;
+    skos:definition "An eventuality in which a particular is positioned within and physically constrained by another object" ;
     skos:example "A box containing eggs, a glass containing a portion of water, a dwelling containing pieces of furniture" ;
     skos:note "In a containment, the core participants are the container (loze:isHostIn) and the content (loze:isContentIn)" ;
     rdfs:subClassOf loze:Eventuality .
@@ -465,8 +465,8 @@ loze:PlaceOccupation a owl:Class ;
     rdfs:label "Place Occupation" ;
     skos:definition "An eventuality that consists in one particular entity occupying a place partly or entirely" ;
     skos:example "A carrot occupying the interior of a refrigerator, a sofa occupying a living room, an amount of liquid occupying the interior of a tank" ;
-    skos:note "The core participants in a place occupation are the place (:isHostIn) and the particular entity that occupies it (:isHostedIn)" ;
-    skos:note "In a place occupation, the host is always a place, rather the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself" ;
+    skos:note "The core participants in a place occupation are the place (loze:isHostIn) and the particular entity that occupies it (loze:isContentIn)" ;
+    skos:note "In a place occupation, the host is always a place, rather than the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself" ;
     rdfs:subClassOf loze:Eventuality .
 
 loze:isComponentIn a owl:ObjectProperty ;
@@ -487,7 +487,7 @@ loze:hasComponent a owl:ObjectProperty ;
 loze:isCompositeIn a owl:ObjectProperty ;
     rdfs:label "is Composite In" ;
     skos:definition "The relation that obtains between a particular p and a composition c if and only if p has as component some other particular in the context of c" ;
-    skos:example "In my arm being part of my body, my arm is the component and my arm is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component" ;
+    skos:example "In my arm being part of my body, my arm is the component and my body is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component" ;
     rdfs:domain loze:Particular ;
     rdfs:range loze:Composition ;
     rdfs:subPropertyOf loze:isParticipantIn .
@@ -507,7 +507,7 @@ loze:hasComposite a owl:ObjectProperty ;
 loze:isCauseOf a owl:ObjectProperty ;
     rdfs:label "is Cause Of" ;
     skos:definition "The relation that obtains between two eventualities e and e' if and only if the occurrence of e contributes to make e' occur" ;
-    skos:note "Multiple eventualities can entertain the relation :isCauseOf with a given eventuality, since an eventuality can have more than one cause" ;
+    skos:note "Multiple eventualities can entertain the relation loze:isCauseOf with a given eventuality, since an eventuality can have more than one cause" ;
     skos:note "A simple, informal test for assessing whether an eventuality e is cause of another eventuality e' is to ask whether e'occurs (also) because of e, or whether the occurrence of e' is explained (among the other things) by the occurrence of e; if the answer is affirmative, then e entertains loze:isCauseOf with e' " ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:Eventuality .
@@ -519,7 +519,7 @@ loze:hasCause a owl:ObjectProperty ;
     rdfs:range loze:Eventuality ;
     owl:inverseOf loze:isCauseOf .
 
-loze:isStageOf a owl:ObjectProperty ;
+loze:isStageOf a owl:TransitiveProperty ;
     rdfs:label "is Stage Of" ;
     skos:definition "The relation that obtains between two eventualities e and e' if and only if e is a stage or phase in the occurrence of e' " ;
     skos:example "The construction of the foundations of a house is a stage of the construction of the whole house, the preparation of the dough is a stage in the making of a pizza, the positioning of the explosive is a stage in the demolition of a building, the fermentation of the must is a stage in the production of wine" ;
@@ -528,7 +528,7 @@ loze:isStageOf a owl:ObjectProperty ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:Eventuality .
 
-loze:hasStage a owl:ObjectProperty ;
+loze:hasStage a owl:TransitiveProperty ;
     rdfs:label "has Stage" ;
     skos:definition "The relation that obtains between an eventuality e and an eventuality e' if and only if e' is a stage of e" ;
     rdfs:domain loze:Eventuality ;
