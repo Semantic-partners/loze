@@ -1,12 +1,12 @@
 @prefix : <workspace:///suggested-social-extension.ttl#> .
-@prefix loze: <http://loze-upper-level-ontology.org/> .
+@prefix loze: <https://loze-ontology.org/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://loze-upper-level-ontology.org/suggested-social-extension> a owl:Ontology ;
+<https://loze-ontology.org/suggested-social-extension> a owl:Ontology ;
     rdfs:label "Suggested Social Extension" ;
     skos:definition "An extension of loze-foundation.ttl pertaining to the social domain" ;
     skos:note "Among the other things, this extension includes a minimal taxonomy of living beings, which not even remotely expected to replicate the richness and depth of a full biological taxonomy - the so-called Tree of Life; if needed, the present taxonomy could be dramatically expanded" ;
