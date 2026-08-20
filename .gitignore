@@ -1,3 +1,11 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# Per-machine editor and agent config. These carried one developer's home paths
+# into a shared repo — the same problem as an ontology file picking up a
+# workspace:/// prefix, or a stylesheet naming a local skills folder as its
+# source of truth. Nothing here is portable, so nothing here is shared.
+.claude/
+.vscode/
+.idea/
