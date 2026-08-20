@@ -5,35 +5,45 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-loze:Organisation a owl:Class ;
-    rdfs:label "Organisation" ;
-    rdfs:subClassOf loze:Group ;
-    skos:definition "A group whose members are acting together in the pursuit of a common goal, based on an agreed upon system of rules and commitments" ;
-    skos:example "A company, a charity or foundation, a political party, a club, a state or government, an international organisation, a criminal gang, a terrorist organisation" ;
-    skos:note "A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are inherently illegal, such as criminal gangs and terrorist organisations",
-        "An organisation can have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts" .
+loze:Constitution a owl:Class ;
+    rdfs:label "Constitution" ;
+    rdfs:subClassOf loze:Composition ;
+    skos:definition "A composition that consists in one particular being entirely made up by repeated occurrences of a given schematic particular" ;
+    skos:example "A polymerous sequence being made up by repetitions of a given monomer; an aggregate of tablets being made up by one tablet (construed as a schematic object) repeated in 10 occurrences" ;
+    skos:note "In a constitution, the core participants are the composite (loze:isCompositeIn) and the schematic particular that is repeated in it (loze:isComponentIn)",
+        "In formal mereology, one particular being 'entirely made up' by repeated occurrences, means that it is identical to the mereological sum of those occurrences: as an approximation, this means that its only parts are those occurrences and the parts of those occurrences; more rigorous definitions can be found in the philosophical literature on formal mereology",
+        "In practice, the function of this class of eventualities is to describe the overall composition of a particular without giving an enumeration of its individual parts" .
 
-loze:OrganisationOrgan a owl:Class ;
-    rdfs:label "Organisation Organ" ;
+loze:OrganisationSubdivision a owl:Class ;
+    rdfs:label "Organisation Subdivision" ;
     rdfs:subClassOf loze:Group ;
+    owl:disjointWith loze:Organisation ;
     skos:definition "A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) it not itself an organisation" ;
     skos:example "A government's parliament, a company's committee, a team" ;
-    skos:note "The difference between an organisation organ and an organisation that is part of another organisation is that the official goals of an organ are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation" .
+    skos:note "The difference between an organisation subdivision and an organisation that is part of another organisation is that the official goals of a subdivision are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation" .
+
+loze:Parthood a owl:Class ;
+    rdfs:label "Parthood" ;
+    rdfs:subClassOf loze:Composition ;
+    skos:definition "A composition that consists in one particular being part of another particular" ;
+    skos:example "An arm being part of a person, a wall being part of a house, a compressor being part of a refrigerator, a wood board being part of a table, a nucleus being part of an atom, Mars being part of the solar system, the lithosphere being part of the Earth, a movement being part of symphony, hydrogen atom being part of water molecule" ;
+    skos:note "The core participants in a parthood are the part (loze:isComponentIn) and the composite (loze:isCompositeIn)" .
 
 loze:PlaceOccupation a owl:Class ;
     rdfs:label "Place Occupation" ;
     rdfs:subClassOf loze:Eventuality ;
     skos:definition "An eventuality that consists in one particular entity occupying a place partly or entirely" ;
     skos:example "A carrot occupying the interior of a refrigerator, a sofa occupying a living room, an amount of liquid occupying the interior of a tank" ;
-    skos:note "In a place occupation, the host is always a place, rather the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself",
-        "The core participants in a place occupation are the place (:isHostIn) and the particular entity that occupies it (:isHostedIn)" .
+    skos:note "In a place occupation, the host is always a place, rather than the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself",
+        "The core participants in a place occupation are the place (loze:isHostIn) and the particular entity that occupies it (loze:isContentIn)" .
 
 loze:Plant a owl:Class ;
     rdfs:label "Plant" ;
     rdfs:subClassOf loze:LivingBeing ;
+    owl:disjointWith loze:Animal ;
     skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) derives its nourishment from photosynthesis" ;
     skos:note "Plants typically have a firmer cellular structure than animals and are not able to move",
-        "Within biological taxonomy - so-called Tree of Life - plants are the members of the kingdom of Plantae" .
+        "Within the taxonomy of living beings - so-called Tree of Life - plants are the members of the kingdom of Plantae" .
 
 loze:Text a owl:Class ;
     rdfs:label "Text" ;
@@ -48,13 +58,13 @@ loze:afterTime a owl:ObjectProperty ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime ;
     skos:definition "The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely after t" ;
-    skos:example "WWII occurred after 1900, the birth of Napoleon occurred after 1700, " ;
+    skos:example "WWII occurred after 1900, the birth of Napoleon occurred after 1700" ;
     skos:note "The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939" .
 
 loze:artefacts-information-and-instructions a owl:Ontology ;
     rdfs:label "Artefacts, Information, and Instructions" ;
     owl:imports loze: ;
-    skos:definition "An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions" .
+    skos:definition "An extension of loze-foundation.ttl pertaining to artefacts, information, and instructions" .
 
 loze:atTime a owl:ObjectProperty ;
     rdfs:label "at Time" ;
@@ -121,6 +131,13 @@ loze:hasComposite a owl:ObjectProperty ;
     owl:inverseOf loze:isCompositeIn ;
     skos:definition "The relation that obtains between a composition c and a particular p if and only if p is the composite in c" .
 
+loze:hasCompositeGroup a owl:ObjectProperty ;
+    rdfs:label "has Composite Group" ;
+    rdfs:domain loze:Membership ;
+    rdfs:range loze:Group ;
+    owl:inverseOf loze:isCompositeGroupIn ;
+    skos:definition "The relation that obtains between a membership m and the group g if and only if g has some member in the context of m" .
+
 loze:hasConcretization a owl:ObjectProperty ;
     rdfs:label "has Concretization" ;
     rdfs:domain loze:SchematicParticular ;
@@ -142,12 +159,19 @@ loze:hasDestination a owl:ObjectProperty ;
     owl:inverseOf loze:isDestinationIn ;
     skos:definition "The relation that obtains between an eventuality e and a particular p if and only if p is the destination in e" .
 
-loze:hasDetermination a owl:ObjectProperty ;
+loze:hasDetermination a owl:TransitiveProperty ;
     rdfs:label "has Determination" ;
     rdfs:domain loze:SchematicParticular ;
     rdfs:range loze:SchematicParticular ;
     owl:inverseOf loze:isDeterminationOf ;
     skos:definition "The relation that obtains between a schematic particular x and a schematic particular y if and only if y is a determination of x" .
+
+loze:hasDuration a owl:DatatypeProperty ;
+    rdfs:label "has Duration" ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( loze:Eventuality loze:PeriodOfTime ) ] ;
+    rdfs:range xsd:duration ;
+    skos:definition "The relation that assigns a duration to an eventuality or a period of time" .
 
 loze:hasHeld a owl:ObjectProperty ;
     rdfs:label "has Held" ;
@@ -190,6 +214,13 @@ loze:hasInstrument a owl:ObjectProperty ;
     rdfs:range loze:Particular ;
     owl:inverseOf loze:isInstrumentIn ;
     skos:definition "The relation that obtains between an eventuality e and a particular p if and only if p is an instrument in e" .
+
+loze:hasMember a owl:ObjectProperty ;
+    rdfs:label "has Member" ;
+    rdfs:domain loze:Group ;
+    rdfs:range loze:Actor ;
+    owl:inverseOf loze:isMemberIn ;
+    skos:definition "The relation that obtains between a membership m and an actor a if and only if a joins the activities of a group in the context of m" .
 
 loze:hasNumberOfOccurrences a owl:DatatypeProperty ;
     rdfs:label "has Number Of Occurrences" ;
@@ -262,7 +293,7 @@ loze:hasSetting a owl:ObjectProperty ;
     owl:inverseOf loze:isSettingIn ;
     skos:definition "The relation that obtains between an eventuality e and an object o if and only if o is the setting in e" .
 
-loze:hasStage a owl:ObjectProperty ;
+loze:hasStage a owl:TransitiveProperty ;
     rdfs:label "has Stage" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:Eventuality ;
@@ -275,6 +306,27 @@ loze:hasStandard a owl:ObjectProperty ;
     rdfs:range loze:Particular ;
     owl:inverseOf loze:isStandardIn ;
     skos:definition "The relation that obtains between an eventuality e and a particular p if and only if p is the standard in e" .
+
+loze:hasSubperiod a owl:TransitiveProperty ;
+    rdfs:label "has Subperiod" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range loze:PeriodOfTime ;
+    owl:inverseOf loze:isSubperiodOf ;
+    skos:definition "The relation that obtains between two periods of time when the former has as part or segment the latter" .
+
+loze:hasSubsequentPeriod a owl:ObjectProperty ;
+    rdfs:label "has Subsequent Period" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range loze:PeriodOfTime ;
+    owl:inverseOf loze:isSubsequentPeriodTo ;
+    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p' immediately follows the end of p along the temporal axis" .
+
+loze:hasTemporalCoordinate a owl:DatatypeProperty ;
+    rdfs:label "has Temporal Coordinate" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:unionOf ( xsd:dateTime xsd:dateTimeStamp xsd:date xsd:time xsd:gYear xsd:gYearMonth xsd:gMonth xsd:gMonthDay xsd:gDay ) ] ;
+    skos:definition "The relation that assigns a temporal coordinates representation to a period of time" .
 
 loze:hasTheme a owl:ObjectProperty ;
     rdfs:label "has Theme" ;
@@ -297,33 +349,34 @@ loze:hasWaypoint a owl:ObjectProperty ;
     owl:inverseOf loze:isWaypointIn ;
     skos:definition "The relation that obtains between an eventuality e and a particular p if and only if p is a waypoint in e" .
 
-loze:isSubPeriodOf a owl:ObjectProperty ;
-    rdfs:label "is Sub-Period Of" ;
+loze:isEarlierThanPeriod a owl:TransitiveProperty ;
+    rdfs:label "is Earlier Than Period" ;
     rdfs:domain loze:PeriodOfTime ;
     rdfs:range loze:PeriodOfTime ;
-    skos:definition "The relation that obtains between two periods of time of which the former is a part or segment of the latter" ;
-    skos:example "The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816" .
+    owl:inverseOf loze:isLaterThanPeriod ;
+    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p is entirely anterior to p' along the temporal axis" .
 
 loze:materials-and-composition a owl:Ontology ;
     rdfs:label "Materials and Composition" ;
     owl:imports loze: ;
-    skos:definition "An extension of loze.ttl with classes and relations for modelling substances and material composition" .
+    skos:definition "An extension of loze-foundation.ttl that consists of classes and relations intended for the modelling substances and material composition" .
 
 loze:suggested-social-extension a owl:Ontology ;
     rdfs:label "Suggested Social Extension" ;
     owl:imports loze: ;
-    skos:definition "An extension of loze.ttl with classes and relations for modelling living beings and social entities such as persons, groups, and organisations" .
+    skos:definition "An extension of loze-foundation.ttl pertaining to the social domain" ;
+    skos:note "Among the other things, this extension includes a minimal taxonomy of living beings, which not even remotely expected to replicate the richness and depth of a full biological taxonomy - the so-called Tree of Life; if needed, the present taxonomy could be dramatically expanded" .
 
 loze:temporal-relations a owl:Ontology ;
     rdfs:label "Temporal Relations" ;
     owl:imports loze: ;
-    skos:definition "An extension of loze.ttl with relations for locating eventualities relative to periods of time" .
+    skos:definition "An extension of loze-foundation.ttl that consists of relations for modelling temporal location, coordinates, and duration" .
 
 loze:throughoutTime a owl:ObjectProperty ;
     rdfs:label "throughout Time" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime ;
-    skos:definition "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t" ;
+    skos:definition "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t and until the end of t" ;
     skos:example "WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period" ;
     skos:note "The function of this relation is to specify the temporal location of an eventuality as a whole" .
 
@@ -339,51 +392,20 @@ loze:withinTime a owl:ObjectProperty ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:PeriodOfTime ;
     skos:definition "The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t" ;
-    skos:note "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium" .
-
-loze:Aggregate a owl:Class ;
-    rdfs:label "Aggregate" ;
-    rdfs:subClassOf loze:Thing ;
-    skos:definition "A thing that is individuated by some stable material composition or spatial contiguity" ;
-    skos:example "A chunk of wood, a waterbody, the liquid contained in a tank, a heap of sand, the global petrol supply" ;
-    skos:note "An aggregate can also be scattered across space - such as the total water reserve of England or the amount of methane used for heating my house over the last year - in which case its individuation is based on a combination of material composition and practical interests",
-        "Objects are also typically material, but aggregates differ from objects because they are not unified by an internal organisation, function or form" .
+    skos:example "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium" .
 
 loze:Artefact a owl:Class ;
     rdfs:label "Artefact" ;
     rdfs:subClassOf loze:Object ;
     skos:definition "An object that is designed and made by humans for serving certain purposes or functions" ;
     skos:example "A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a software, an artwork" ;
-    skos:note "Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact" .
-
-loze:Constitution a owl:Class ;
-    rdfs:label "Constitution" ;
-    rdfs:subClassOf loze:Composition ;
-    skos:definition "An eventuality that consists in one particular being entirely made up by repeated occurrences of a given schematic particular" ;
-    skos:example "A polymerous sequence being made up by repetitions of a given monomer; an aggregate of tablets being made up by one tablet (construed as a schematic object) repeated in 10 occurrences" ;
-    skos:note "In a constitution, the core participants are the composite (loze:isCompositeIn) and the schematic particular that is repeated in it (loze:isComponentIn)",
-        "In formal mereology, one particular being 'entirely made up' by repeated occurrences, means that it is identical to the mereological sum of those occurrences: as an approximation, this means that its only parts are those occurrences and the parts of those occurrences; more rigorous definitions can be found in the philosophical literature on formal mereology",
-        "In practice, the function of this class of eventualities is to describe the overall composition of a particular without giving an enumeration of its individual parts" .
+    skos:note "Artefact can be either schematic or concrete: a software - in abstraction from its installed copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact" .
 
 loze:NonHumanAnimal a owl:Class ;
     rdfs:label "Non-Human Animal" ;
     rdfs:subClassOf loze:Animal ;
     skos:definition "An animal that is not a specimen of the species Homo sapiens" ;
     skos:note "In ordinary talk as well as legal talk, non-human animals are usually called just 'animals'" .
-
-loze:Parthood a owl:Class ;
-    rdfs:label "Parthood" ;
-    rdfs:subClassOf loze:Composition ;
-    skos:definition "An eventuality that consists in one particular being part of another particular" ;
-    skos:example "An arm being part of a person, a wall being part of a house, a compressor being part of a refrigerator, a wood board being part of a table, a nucleus being part of an atom, Mars being part of the solar system, the lithosphere being part of the Earth, a movement being part of symphony, hydrogen atom being part of water molecule" ;
-    skos:note "The core participants in a parthood are the part (loze:isComponentIn) and the composite (loze:isCompositeIn)" .
-
-loze:Person a owl:Class ;
-    rdfs:label "Person" ;
-    rdfs:subClassOf loze:Animal ;
-    skos:definition "An animal that is a specimen of the species Homo sapiens" ;
-    skos:note "It does not encompass those entities that in the legal jargon are called 'legal persons' or 'non-physical persons' ",
-        "Specimens of other species of the genus Homo (such as Homo erectus or Homo Neanderthalensis) would be problematic to categorise, because they are not specimens of Homo sapiens yet they qualify as humans in a broader sense; in practice, this issue is irrelevant, since Homo sapiens is the only extant species of the genus Homo" .
 
 loze:Place a owl:Class ;
     rdfs:label "Place" ;
@@ -421,7 +443,7 @@ loze:isBeneficiaryIn a owl:ObjectProperty ;
     rdfs:subPropertyOf loze:isParticipantIn ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p benefits from what happens in the context of e" ;
     skos:example "People with cancer are the beneficiaries in a donation to cancer research, a household is the beneficiaty in an allocation of subsidies for energy upgrades work to a company" ;
-    skos:note "In some cases, the beneficiary of an eventuality is the same as the patient: for example, the beneficiary of successful a medication, therapy, or surgical operation is the patient",
+    skos:note "In some cases, the beneficiary of an eventuality is the same as the affected participant: for example, the beneficiary of a successful medication, therapy, or surgical operation is the affected participant",
         "The beneficiary is often going to be the recipient too, but there are exceptions; consider a case in which a household is awarded a grant for the energy upgrade of their house, and the grant is paid to an energy upgrade company: in that scenario, the company is the recipient of the grant, but the household is the beneficiary" .
 
 loze:isCauseOf a owl:ObjectProperty ;
@@ -430,15 +452,15 @@ loze:isCauseOf a owl:ObjectProperty ;
     rdfs:range loze:Eventuality ;
     skos:definition "The relation that obtains between two eventualities e and e' if and only if the occurrence of e contributes to make e' occur" ;
     skos:note "A simple, informal test for assessing whether an eventuality e is cause of another eventuality e' is to ask whether e'occurs (also) because of e, or whether the occurrence of e' is explained (among the other things) by the occurrence of e; if the answer is affirmative, then e entertains loze:isCauseOf with e' ",
-        "Multiple eventualities can entertain the relation :isCauseOf with a given eventuality, since an eventuality can have more than one cause" .
+        "Multiple eventualities can entertain the relation loze:isCauseOf with a given eventuality, since an eventuality can have more than one cause" .
 
-loze:isCompositeIn a owl:ObjectProperty ;
-    rdfs:label "is Composite In" ;
-    rdfs:domain loze:Particular ;
-    rdfs:range loze:Composition ;
-    rdfs:subPropertyOf loze:isParticipantIn ;
-    skos:definition "The relation that obtains between a particular p and a composition c if and only if p has as component some other particular in the context of c" ;
-    skos:example "In my arm being part of my body, my arm is the component and my arm is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component" .
+loze:isCompositeGroupIn a owl:ObjectProperty ;
+    rdfs:label "is Composite Group In" ;
+    rdfs:domain loze:Group ;
+    rdfs:range loze:Membership ;
+    rdfs:subPropertyOf loze:isCompositeIn ;
+    skos:definition "The relation that obtains between a group g and a membership m if and only if g has some member in the context of m" ;
+    skos:example "In the membership of France in the European Union, France is the member and the European Union is the composite group; in the membership of Toyota in JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the composite group" .
 
 loze:isConcretizationOf a owl:ObjectProperty ;
     rdfs:label "is Concretization Of" ;
@@ -511,6 +533,14 @@ loze:isInstrumentIn a owl:ObjectProperty ;
     skos:example "The gun is the instrument in a killing, the hammer is the instrument in the driving of a nail, the vehicle is the instrument in a journey, a debit or credit card is the instrument in a payment" ;
     skos:note "The instrument in an eventuality can also be a person: for example, the messenger is the instrument in the sending of a message" .
 
+loze:isMemberIn a owl:ObjectProperty ;
+    rdfs:label "is Member In" ;
+    rdfs:domain loze:Actor ;
+    rdfs:range loze:Group ;
+    rdfs:subPropertyOf loze:isComponentIn ;
+    skos:definition "The relation that obtains between an actor a and a membership m if and only if a joins the goals and/or the activities of a group in the context of that m" ;
+    skos:example "In the membership of France in the European Union, France is the member and the European Union is the composite group; in the membership of Toyota in JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the composite group" .
+
 loze:isOriginIn a owl:ObjectProperty ;
     rdfs:label "is Origin In" ;
     rdfs:domain loze:Particular ;
@@ -536,7 +566,7 @@ loze:isRecipeIn a owl:ObjectProperty ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isInstructionIn ;
     skos:definition "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribes the ingredient ratio and/or doses and the procedure for producing concrete particulars of a certain type or with certain features" ;
-    skos:example "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs" ;
+    skos:example "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula together with the alloying instructions are the recipe in the manufacturing of steel slabs" ;
     skos:note "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it will also have a product (loze:isProductIn), which will be a concrete particular" .
 
 loze:isRecipientIn a owl:ObjectProperty ;
@@ -589,7 +619,7 @@ loze:isSettingIn a owl:ObjectProperty ;
     skos:note "Only objects can be settings, since they are the only particulars that have the sort of hierarchical structure in which something can occupy a role or function",
         "This thematic relation is intended for those eventualities that consist in roles, positions, or functions within a setting or an organised system; the participant that occupies the role is a theme in the eventuality" .
 
-loze:isStageOf a owl:ObjectProperty ;
+loze:isStageOf a owl:TransitiveProperty ;
     rdfs:label "is Stage Of" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range loze:Eventuality ;
@@ -598,6 +628,22 @@ loze:isStageOf a owl:ObjectProperty ;
     skos:note "Given an eventuality e and a period of time t, e can have at the most one stage that occurs from the start to the end of t",
         "In other upper-level ontologies, relations like this are considered special cases of parthood, since the stages of an eventuality can be viewed as its 'temporal slices'; however, we prefer to suspend the judgment about whether the stages of an eventuality are to be considered among its parts" .
 
+loze:isSubperiodOf a owl:TransitiveProperty ;
+    rdfs:label "is Subperiod Of" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range loze:PeriodOfTime ;
+    skos:definition "The relation that obtains between two periods of time of which the former is a part or segment of the latter" ;
+    skos:example "The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816" .
+
+loze:isSubsequentPeriodTo a owl:ObjectProperty ;
+    rdfs:label "is Subsequent Period To" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range loze:PeriodOfTime ;
+    rdfs:subPropertyOf loze:isLaterThanPeriod ;
+    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p immediately follows the end of p' along the temporal axis" ;
+    skos:example "The XIX century is subsequent to the XVIII century, the 4th of May of 1999 is subsequent to the 3rd of May of 1999, the year 1768 is subsequent to the year 1767" ;
+    skos:note "Since the 4th of May of 1999 starts when the 3rd of May ends, one could argue that there is actually an instant of time that belong to both the 3rd and the 4th; these are complex issues at the interface of metaphysics and mathematics that we cannot address here; however, their practical relevance is nil, since we will never need to refer to instants, but only to extended, non-instantaneous periods of time" .
+
 loze:isWaypointIn a owl:ObjectProperty ;
     rdfs:label "is Waypoint In" ;
     rdfs:domain loze:Particular ;
@@ -605,43 +651,75 @@ loze:isWaypointIn a owl:ObjectProperty ;
     rdfs:subPropertyOf loze:isParticipantIn ;
     skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is an intermediate point of movement or change in the context of e" ;
     skos:example "An intermediate stop in a travel, the ducts linking the supply point to a distribution point" ;
-    skos:note "The destination does not need to be a place, but it can be a thing or a period of time too" .
+    skos:note "The waypoint does not need to be a place, but it can be a thing or a period of time too" .
 
-loze:Animal a owl:Class ;
-    rdfs:label "Animal" ;
-    rdfs:subClassOf loze:LivingBeing ;
-    owl:disjointUnionOf ( loze:Person loze:NonHumanAnimal ) ;
-    skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterothropic - that is, derives its nourishment from the consumption of other living beings" ;
-    skos:note "Animals typically have a more flexible body than plants and fungi and are able to move",
-        "Within biological taxonomy - so-called Tree of Life - animals are the members of the kingdom of Animalia" .
+loze:Actor a owl:Class ;
+    rdfs:label "Actor" ;
+    owl:disjointUnionOf ( loze:Person loze:Organisation ) ;
+    skos:definition "An object that is either a person or an organisation" ;
+    skos:note "It roughly corresponds to the legal concept of a legal person",
+        "This class is meant to encompass all the objects that can deliberate, make decisions, and bear responsibility" .
+
+loze:Aggregate a owl:Class ;
+    rdfs:label "Aggregate" ;
+    rdfs:subClassOf loze:Thing ;
+    skos:definition "A thing that is individuated by some stable material composition or spatial contiguity" ;
+    skos:example "A chunk of wood, a waterbody, the liquid contained in a tank, a heap of sand, the global petrol supply" ;
+    skos:note "An aggregate can also be scattered across space - such as the total water reserve of England or the amount of methane used for heating my house over the last year - in which case its individuation is based on a combination of material composition and practical interests",
+        "Objects are also typically material, but aggregates differ from objects because they are not unified by an internal organisation, function or form" .
 
 loze:Containment a owl:Class ;
     rdfs:label "Containment" ;
-    rdfs:comment "An eventuality in which a particular is positioned within and physically constrained by another object" ;
     rdfs:subClassOf loze:Eventuality ;
+    skos:definition "An eventuality in which a particular is positioned within and physically constrained by another object" ;
     skos:example "A box containing eggs, a glass containing a portion of water, a dwelling containing pieces of furniture" ;
     skos:note "In a containment, the core participants are the container (loze:isHostIn) and the content (loze:isContentIn)" .
-
-loze:Group a owl:Class ;
-    rdfs:label "Group" ;
-    rdfs:subClassOf loze:Object ;
-    skos:definition "An object that consists of persons that are associated to each other by some socially significant relation or recurrent interaction" ;
-    skos:example "A household, a family, a couple, any organisation" ;
-    skos:note "Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; such collections are best modelled as classes" .
 
 loze:LivingBeing a owl:Class ;
     rdfs:label "Living Being" ;
     rdfs:subClassOf loze:Object ;
     skos:definition "An object that displays properties such as responsiveness, growth, metabolism, energy transformation, and reproduction" ;
-    skos:note "The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; nevertheless, there are still borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)" .
+    skos:note "The precise definition of life and living being is controversial in philosophy of science and theoretical biology; still, the marks described in our definition are normally sufficient for assessing whether an object is a living being or not; that being said, there are a few borderline cases, such as viruses and so-called super-organisms (e.g. coral colonies and bacterial biofilms)" .
+
+loze:Membership a owl:Class ;
+    rdfs:label "Membership" ;
+    rdfs:subClassOf loze:Composition ;
+    skos:definition "A composition that consists in an actor joining the goals and/or th activities of a group" ;
+    skos:example "A person being a member of a household, a person being a member of a club or charity, a person being an employee of a company, a company being a member of a trade association, France being a member of the European Union" ;
+    skos:note "In a membership, the main participants are a member (loze:isMemberIn) and a composite (loze:isCompositeIn): the former is the actor that is the member, and the latter is the group of which they are a member" .
+
+loze:Organisation a owl:Class ;
+    rdfs:label "Organisation" ;
+    rdfs:subClassOf loze:Group ;
+    skos:definition "A group whose members are acting together in the pursuit of one or more common goals, based on an agreed upon system of commitments and rules" ;
+    skos:example "A company, a charity or foundation, a political party, a club, a state or government, an international organisation, a criminal gang, a terrorist organisation" ;
+    skos:note "A group does not need to be legally registered or recognised to qualify as an organisation; in fact, there are organisations that are illegal by definition, such as criminal gangs and terrorist organisations",
+        "An organisation can also have other organisations as parts: for example, a company can have other companies - its subsidiaries - as parts, and an international organisation can have governments as parts" .
+
+loze:Person a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:subClassOf loze:Animal ;
+    skos:definition "An animal that is a specimen of the species Homo sapiens" ;
+    skos:note "It does not encompass those entities that in the legal jargon are called 'legal persons' or 'non-physical persons' ",
+        "Specimens of other species of the genus Homo (such as Homo erectus or Homo Neanderthalensis) would be problematic to categorise, because they are not specimens of Homo sapiens yet they qualify as humans in a broader sense; in practice, this issue is irrelevant, since Homo sapiens is the only extant species of the genus Homo" .
 
 loze:Substance a owl:Class ;
     rdfs:label "Substance" ;
-    rdfs:subClassOf loze:SchematicParticular ;
-    skos:definition "A schematic particular that is highly dissectable" ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:unionOf ( loze:Object loze:Aggregate ) ],
+        loze:SchematicParticular ;
+    skos:definition "A schematic particular that (i) is either an object or an aggregate and (ii) is highly dissectable" ;
     skos:example "Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint" ;
-    skos:note "Dissectability consists in concretizations being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold",
-        "Here the word 'substance' is used in the chemical sense, and not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics" .
+    skos:note "Dissectability consists in the concretizations of a schematic particular being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearence of infinite divisibility, we know from chemistry that this dissectability is going to stop at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold",
+        "Here the word 'substance' is used in the chemical sense, not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics" .
+
+loze:isCompositeIn a owl:ObjectProperty ;
+    rdfs:label "is Composite In" ;
+    rdfs:domain loze:Particular ;
+    rdfs:range loze:Composition ;
+    rdfs:subPropertyOf loze:isParticipantIn ;
+    skos:definition "The relation that obtains between a particular p and a composition c if and only if p has as component some other particular in the context of c" ;
+    skos:example "In my arm being part of my body, my arm is the component and my body is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component" .
 
 loze:isContentIn a owl:ObjectProperty ;
     rdfs:label "is Content In" ;
@@ -658,6 +736,14 @@ loze:isInstructionIn a owl:ObjectProperty ;
     rdfs:subPropertyOf loze:isStandardIn ;
     skos:definition "The sub-relation of loze:isStandardIn that obtains when the standard in question is an information artefact consisting of instructions for performing the eventuality" ;
     skos:example "The assembly manual is the instruction in the assembly of a piece of furniture, the cookbook recipe is the instruction in the preparation of a cake, the workflow documentation is the instruction in the execution of a technical process, a computer programme or software is the instruction in a computational process or programme execution" .
+
+loze:isLaterThanPeriod a owl:TransitiveProperty ;
+    rdfs:label "is Later Than Period" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range loze:PeriodOfTime ;
+    skos:definition "The relation that obtains between a period of time p and another period of time p' if and only if p is entirely posterior to p' along the temporal axis" ;
+    skos:example "The year 2008 is later than 1972, the early-modern period is later than classical antiquity, the XVI century is later than the XIII century" ;
+    skos:note "This relation does not obtain in those cases in which one period is only partly posterior to another one - for example, it does not obtain between the 1800-1850 period and the 1815-1870 period" .
 
 loze:isStandardIn a owl:ObjectProperty ;
     rdfs:label "is Standard In" ;
@@ -677,6 +763,14 @@ loze:isTopicIn a owl:ObjectProperty ;
     skos:example "Joe is the topic in an identity check, an electrical system is the topic of an electrical safety report, cancer (as a schematic particular or a class of eventualities) is the topic in a cancer research, liberty is the topic of John Stuart Mill's essay 'On Liberty', a book (in abstraction from its copies) is the topic of a review" ;
     skos:note "Since a cognition can be about abstractions, the topic of an eventuality can also be a class or a schematic particular" .
 
+loze:Animal a owl:Class ;
+    rdfs:label "Animal" ;
+    rdfs:subClassOf loze:LivingBeing ;
+    owl:disjointUnionOf ( loze:Person loze:NonHumanAnimal ) ;
+    skos:definition "A living being that (i) is eukaryote - namely, has cells with a membrane-bound nucleus and organelles - and (ii) is heterotrophic - that is, derives its nourishment from the consumption of other living beings" ;
+    skos:note "Animals typically have a more flexible body than plants and fungi and are able to move",
+        "Within the taxonomy of living beings - so-called Tree of Life - animals are the members of the kingdom of Animalia" .
+
 loze:ConcreteParticular a owl:Class ;
     rdfs:label "Concrete Particular" ;
     rdfs:subClassOf loze:Particular ;
@@ -684,6 +778,19 @@ loze:ConcreteParticular a owl:Class ;
     skos:example "Your arm, one Toyota Corolla unit, the computer in front of you, the portion of water in a given glass, a piece of gold, one performance of Beethoven's Symphony No 9, the stabbing of Caesar from Brutus, a heap of sand, your bedroom, the last hour" ;
     skos:note "Differently from Schematic particulars, a concrete particular only occupies one place or location at a time: my copy of War and Peace occupies one slot in my bookcase right now; I can only occupy one place at a time; a unit of Toyota Corolla is in one place at a time; a particular performance of Beethoven's Symphony No 9 takes place in one and only one venue",
         "The distinction between concrete particulars and schematic particulars cuts across all the other divisions of the class :Particular: there are concrete objects and schematic objects, concrete eventualities and schematic eventualities, concrete aggregates and schematic aggregates, and so on" .
+
+loze:isThemeIn a owl:ObjectProperty ;
+    rdfs:label "is Theme In" ;
+    rdfs:domain loze:Entity ;
+    rdfs:range loze:Eventuality ;
+    rdfs:subPropertyOf loze:isParticipantIn ;
+    skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is in a certain state or occupies a position in the context of e" ;
+    skos:example "In a marriage, both spouses are themes; in the case of a glass lying on a table, the glass is the theme; in the case of an amount of liquid contained in a tank, the amount of liquid is the theme; in the case of somebody owning a real estate, the real estate is theme" ;
+    skos:note "That of the theme is a broad thematic relations that can be useful whenever no other thematic relation applies; that being said, more specific sub-relations should be defined whenever needed" .
+
+loze: a owl:Ontology ;
+    rdfs:label "Loze Foundation" ;
+    skos:definition "An upper-level ontology largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe, supplemented with the concept of a schematic particular explored by Eddy Zemach" .
 
 loze:isComponentIn a owl:ObjectProperty ;
     rdfs:label "is Component In" ;
@@ -693,19 +800,6 @@ loze:isComponentIn a owl:ObjectProperty ;
     skos:definition "The relation that obtains between a particular p and a composition c if and only if p composes some other particular in the context of c" ;
     skos:example "In my arm being part of my body, my arm is the component and my body is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component" .
 
-loze:isThemeIn a owl:ObjectProperty ;
-    rdfs:label "is Theme In" ;
-    rdfs:domain loze:Particular ;
-    rdfs:range loze:Eventuality ;
-    rdfs:subPropertyOf loze:isParticipantIn ;
-    skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is in a certain state or occupies a position in the context of e" ;
-    skos:example "In a marriage, both spouses are themes; in the case of a glass lying on a table, the glass is the theme; in the case of an amount of liquid contained in a tank, the amount of liquid is the theme; in the case of somebody owning a real estate, the real estate is theme" ;
-    skos:note "That of the theme is a broad thematic relations that can be useful whenever no other thematic relation applies; that being said, more specific sub-relations should be defined whenever needed" .
-
-loze: a owl:Ontology ;
-    rdfs:label "Loze Upper-Level Ontology" ;
-    skos:definition "A top-level ontology largely inspired - with a few deviations and additions - by the four-category ontology outlined by the philosopher E. J. Lowe (2006), supplemented with the concept of a schematic particular explored by Eddy Zemach (1970)" .
-
 loze:InformationArtefact a owl:Class ;
     rdfs:label "Information Artefact" ;
     rdfs:subClassOf loze:Artefact ;
@@ -713,7 +807,14 @@ loze:InformationArtefact a owl:Class ;
     skos:example "A book, an article, a note, a document, a digital file, a computer programme or software" ;
     skos:note "An information artefact can be either a schematic object or a concrete object: War and Peace is schematic, whereas its copies are concrete; a PDF file is schematic, whereas its copies are concrete; a software is schematic, whereas its installed copies are concrete",
         "An information artefact that is concrete is always going to be the concretization of some schematic information artefact",
-        "The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine" .
+        "The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry information that is only meant to be executed by a machine" .
+
+loze:Group a owl:Class ;
+    rdfs:label "Group" ;
+    rdfs:subClassOf loze:Object ;
+    skos:definition "An object that consists of persons that are associated to each other by some socially significant relations or recurrent interactions" ;
+    skos:example "A household, a family, a couple, any organisation" ;
+    skos:note "Groups don't include collections of persons who merely happen to have a common feature - such as the men, the persons with blonde hair, or the graduates - unless those persons also happen to be organised together or to interact with each other on a regular basis; if needed, such collections are best modelled as classes" .
 
 loze:Object a owl:Class ;
     rdfs:label "Object" ;
@@ -722,13 +823,6 @@ loze:Object a owl:Class ;
     skos:example "A human, a horse, a molecule, a table, a computer, a planet, a paracetamol tablet" ;
     skos:note "An object persists over time as long as it preserves the internal organisation, function, or form that individuates it; as long as that is preserved, the parts of the objects and their types can change without causing the object to go out of existence" .
 
-loze:Entity a owl:Class ;
-    rdfs:label "Entity" ;
-    owl:disjointUnionOf ( owl:Class loze:Particular ) ;
-    owl:equivalentClass owl:Thing ;
-    skos:definition "Anything that exists, is real, or is in the world" ;
-    skos:note "It corresponds to owl:Thing" .
-
 loze:Thing a owl:Class ;
     rdfs:label "Thing" ;
     rdfs:subClassOf loze:Particular ;
@@ -736,18 +830,18 @@ loze:Thing a owl:Class ;
     skos:definition "A particular entity that is not a way of being or a modification of other entities" ;
     skos:note "Despite the similar local name, this class is much narrower than owl:Thing, which encompasses all entities" .
 
+loze:Entity a owl:Class ;
+    rdfs:label "Entity" ;
+    owl:disjointUnionOf ( owl:Class loze:Particular ) ;
+    owl:equivalentClass owl:Thing ;
+    skos:definition "Anything that exists, is real, or is in the world" ;
+    skos:note "It corresponds to owl:Thing" .
+
 loze:Composition a owl:Class ;
     rdfs:label "Composition" ;
     rdfs:subClassOf loze:Eventuality ;
-    owl:unionOf ( loze:Parthood loze:Constitution ) ;
-    skos:definition "An eventuality that is either a parthood or a constitution" .
-
-loze:PeriodOfTime a owl:Class ;
-    rdfs:label "Period Of Time" ;
-    rdfs:subClassOf loze:Thing ;
-    skos:definition "A thing that is individuated by its coordinates across the temporal axis" ;
-    skos:example "The year 1943, the 6th of May of 2005, any second or minute, the period that goes from the 3rd of May of 1467 to the 22nd of July of 1615" ;
-    skos:note "Two period of time can have exactly the same duration and yet be distinct period of time, because they have distinct beginnings and ends; for example, this hour and the next hour are two distinct periods, despite having the exact same duration of 60 minutes" .
+    skos:definition "An eventuality that consists in one entity being made up or incorporating some other entity" ;
+    skos:note "In Loze Foundation, this class only has two subclasses, namely loze:Parthood and loze:Constitution; however, other subclasses are defined in Loze's extensions, and further subclasses should be freely defined whenever needed" .
 
 loze:SchematicParticular a owl:Class ;
     rdfs:label "Schematic Particular" ;
@@ -768,11 +862,18 @@ loze:isParticipantIn a owl:ObjectProperty ;
     skos:note "Intuitively, the participants in an eventuality can be viewed as the entities that are involved in it or play some role in it",
         "There are various ways in which an entity can participate in an eventuality, which are expressed by means of various sub-relations of loze:isParticipantIn" .
 
+loze:PeriodOfTime a owl:Class ;
+    rdfs:label "Period Of Time" ;
+    rdfs:subClassOf loze:Thing ;
+    skos:definition "A thing that is individuated by its coordinates along the temporal axis" ;
+    skos:example "The year 1943, the 6th of May of 2005, any second or minute, the period that goes from the 3rd of May of 1467 to the 22nd of July of 1615" ;
+    skos:note "Two period of time can have exactly the same duration and yet be distinct period of time, because they have distinct beginnings and ends; for example, this hour and the next hour are two distinct periods, despite having the exact same duration of 60 minutes" .
+
 loze:Particular a owl:Class ;
     rdfs:label "Particular" ;
     rdfs:subClassOf loze:Entity ;
-    owl:disjointUnionOf ( loze:Thing loze:Eventuality ),
-        ( loze:SchematicParticular loze:ConcreteParticular ) ;
+    owl:disjointUnionOf ( loze:SchematicParticular loze:ConcreteParticular ),
+        ( loze:Thing loze:Eventuality ) ;
     skos:definition "An entity that is not a class or type of entities" ;
     skos:note "Particular entities are to be contrasted with classes; the concept of a particular mostly corresponds to the Semantic Web concept of an individual or instance" .
 

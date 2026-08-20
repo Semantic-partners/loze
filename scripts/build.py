@@ -60,7 +60,7 @@ if os.environ.get("PYTHONHASHSEED") != "0":
 import shutil
 from pathlib import Path
 
-from rdflib import Dataset, Graph, URIRef
+from rdflib import BNode, Dataset, Graph, URIRef
 from rdflib.compare import to_canonical_graph
 from rdflib.namespace import OWL, RDF, RDFS, SKOS
 
@@ -1097,8 +1097,16 @@ def main() -> None:
     for slug_, _s in MODULES:
         cg_ = canonical(per_module[slug_])
         tgt = canon_ds.graph(URIRef(NS + slug_))
+        # Canonical blank node labels are derived from structure, so two modules
+        # containing the same shape get the SAME label — three of them do here.
+        # Harmless while each graph stands alone, but in one dataset they merge,
+        # and flattening the quads then loses the triples that collided. Namespace
+        # them by graph. Still deterministic: the prefix is the slug.
+        pfx = slug_ or "root"
+        def rename(t, _p=pfx):
+            return tuple(BNode(f"{_p}_{x}") if isinstance(x, BNode) else x for x in t)
         for t in sorted(cg_, key=lambda x: (str(x[0]), str(x[1]), str(x[2]))):
-            tgt.add(t)
+            tgt.add(rename(t))
         for pfx, ns_ in cg_.namespaces():
             tgt.bind(pfx, ns_, override=False)
     for ext, fmt in QUAD_SERIALISATIONS:

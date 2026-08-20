@@ -6,12 +6,12 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "Loze Upper-Level Ontology"
+        "@value": "Loze Foundation"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "A top-level ontology largely inspired - with a few deviations and additions - by the four-category ontology outlined by the philosopher E. J. Lowe (2006), supplemented with the concept of a schematic particular explored by Eddy Zemach (1970)"
+        "@value": "An upper-level ontology largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe, supplemented with the concept of a schematic particular explored by Eddy Zemach"
       }
     ]
   },
@@ -64,21 +64,14 @@
         "@id": "https://loze-ontology.org/Eventuality"
       }
     ],
-    "http://www.w3.org/2002/07/owl#unionOf": [
-      {
-        "@list": [
-          {
-            "@id": "https://loze-ontology.org/Parthood"
-          },
-          {
-            "@id": "https://loze-ontology.org/Constitution"
-          }
-        ]
-      }
-    ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "An eventuality that is either a parthood or a constitution"
+        "@value": "An eventuality that consists in one entity being made up or incorporating some other entity"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#note": [
+      {
+        "@value": "In Loze Foundation, this class only has two subclasses, namely loze:Parthood and loze:Constitution; however, other subclasses are defined in Loze's extensions, and further subclasses should be freely defined whenever needed"
       }
     ]
   },
@@ -133,7 +126,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "An eventuality that consists in one particular being entirely made up by repeated occurrences of a given schematic particular"
+        "@value": "A composition that consists in one particular being entirely made up by repeated occurrences of a given schematic particular"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
@@ -158,11 +151,6 @@
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
-    "http://www.w3.org/2000/01/rdf-schema#comment": [
-      {
-        "@value": "An eventuality in which a particular is positioned within and physically constrained by another object"
-      }
-    ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
         "@value": "Containment"
@@ -171,6 +159,11 @@
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
         "@id": "https://loze-ontology.org/Eventuality"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "An eventuality in which a particular is positioned within and physically constrained by another object"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
@@ -304,7 +297,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "An eventuality that consists in one particular being part of another particular"
+        "@value": "A composition that consists in one particular being part of another particular"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
@@ -383,7 +376,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "A thing that is individuated by its coordinates across the temporal axis"
+        "@value": "A thing that is individuated by its coordinates along the temporal axis"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
@@ -458,10 +451,10 @@
     ],
     "http://www.w3.org/2004/02/skos/core#note": [
       {
-        "@value": "In a place occupation, the host is always a place, rather the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself"
+        "@value": "In a place occupation, the host is always a place, rather than the object enclosing it - say, the interior of a refrigerator, rather than the refrigerator itself"
       },
       {
-        "@value": "The core participants in a place occupation are the place (:isHostIn) and the particular entity that occupies it (:isHostedIn)"
+        "@value": "The core participants in a place occupation are the place (loze:isHostIn) and the particular entity that occupies it (loze:isContentIn)"
       }
     ]
   },
@@ -831,7 +824,7 @@
   {
     "@id": "https://loze-ontology.org/hasDetermination",
     "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
+      "http://www.w3.org/2002/07/owl#TransitiveProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
@@ -1172,7 +1165,7 @@
   {
     "@id": "https://loze-ontology.org/hasStage",
     "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
+      "http://www.w3.org/2002/07/owl#TransitiveProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
@@ -1421,7 +1414,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#note": [
       {
-        "@value": "In some cases, the beneficiary of an eventuality is the same as the patient: for example, the beneficiary of successful a medication, therapy, or surgical operation is the patient"
+        "@value": "In some cases, the beneficiary of an eventuality is the same as the affected participant: for example, the beneficiary of a successful medication, therapy, or surgical operation is the affected participant"
       },
       {
         "@value": "The beneficiary is often going to be the recipient too, but there are exceptions; consider a case in which a household is awarded a grant for the energy upgrade of their house, and the grant is paid to an energy upgrade company: in that scenario, the company is the recipient of the grant, but the household is the beneficiary"
@@ -1458,7 +1451,7 @@
         "@value": "A simple, informal test for assessing whether an eventuality e is cause of another eventuality e' is to ask whether e'occurs (also) because of e, or whether the occurrence of e' is explained (among the other things) by the occurrence of e; if the answer is affirmative, then e entertains loze:isCauseOf with e' "
       },
       {
-        "@value": "Multiple eventualities can entertain the relation :isCauseOf with a given eventuality, since an eventuality can have more than one cause"
+        "@value": "Multiple eventualities can entertain the relation loze:isCauseOf with a given eventuality, since an eventuality can have more than one cause"
       }
     ]
   },
@@ -1530,7 +1523,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
       {
-        "@value": "In my arm being part of my body, my arm is the component and my arm is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component"
+        "@value": "In my arm being part of my body, my arm is the component and my body is the composite; in a heap of sand having an individual grain as part, the heap is the composite and the grain is the component; in the composition of water by hydrogen, water is the composite and hydrogen is the component"
       }
     ]
   },
@@ -2105,7 +2098,7 @@
   {
     "@id": "https://loze-ontology.org/isStageOf",
     "@type": [
-      "http://www.w3.org/2002/07/owl#ObjectProperty"
+      "http://www.w3.org/2002/07/owl#TransitiveProperty"
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
@@ -2148,7 +2141,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://loze-ontology.org/Particular"
+        "@id": "https://loze-ontology.org/Entity"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -2260,7 +2253,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#note": [
       {
-        "@value": "The destination does not need to be a place, but it can be a thing or a period of time too"
+        "@value": "The waypoint does not need to be a place, but it can be a thing or a period of time too"
       }
     ]
   }

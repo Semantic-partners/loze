@@ -1,5 +1,62 @@
 [
   {
+    "@id": "_:cb3e672fa2d8aad62c180c5bca0c7112f3bbf66bdafb0494068a2473beef83391a",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Datatype"
+    ],
+    "http://www.w3.org/2002/07/owl#unionOf": [
+      {
+        "@list": [
+          {
+            "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+          },
+          {
+            "@id": "http://www.w3.org/2001/XMLSchema#dateTimeStamp"
+          },
+          {
+            "@id": "http://www.w3.org/2001/XMLSchema#date"
+          },
+          {
+            "@id": "http://www.w3.org/2001/XMLSchema#time"
+          },
+          {
+            "@id": "http://www.w3.org/2001/XMLSchema#gYear"
+          },
+          {
+            "@id": "http://www.w3.org/2001/XMLSchema#gYearMonth"
+          },
+          {
+            "@id": "http://www.w3.org/2001/XMLSchema#gMonth"
+          },
+          {
+            "@id": "http://www.w3.org/2001/XMLSchema#gMonthDay"
+          },
+          {
+            "@id": "http://www.w3.org/2001/XMLSchema#gDay"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "@id": "_:cb68067f2b743e19efb21ee5d853c3161b0666d622a2f0455c63f429b69f182231",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2002/07/owl#unionOf": [
+      {
+        "@list": [
+          {
+            "@id": "https://loze-ontology.org/Eventuality"
+          },
+          {
+            "@id": "https://loze-ontology.org/PeriodOfTime"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "@id": "https://loze-ontology.org/afterTime",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
@@ -26,7 +83,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
       {
-        "@value": "WWII occurred after 1900, the birth of Napoleon occurred after 1700, "
+        "@value": "WWII occurred after 1900, the birth of Napoleon occurred after 1700"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#note": [
@@ -139,7 +196,64 @@
     ]
   },
   {
-    "@id": "https://loze-ontology.org/isSubPeriodOf",
+    "@id": "https://loze-ontology.org/hasDuration",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "_:cb68067f2b743e19efb21ee5d853c3161b0666d622a2f0455c63f429b69f182231"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has Duration"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#duration"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that assigns a duration to an eventuality or a period of time"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/hasSubperiod",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#TransitiveProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has Subperiod"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://loze-ontology.org/isSubperiodOf"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between two periods of time when the former has as part or segment the latter"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/hasSubsequentPeriod",
     "@type": [
       "http://www.w3.org/2002/07/owl#ObjectProperty"
     ],
@@ -150,7 +264,131 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "is Sub-Period Of"
+        "@value": "has Subsequent Period"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://loze-ontology.org/isSubsequentPeriodTo"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between a period of time p and another period of time p' if and only if p' immediately follows the end of p along the temporal axis"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/hasTemporalCoordinate",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has Temporal Coordinate"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "_:cb3e672fa2d8aad62c180c5bca0c7112f3bbf66bdafb0494068a2473beef83391a"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that assigns a temporal coordinates representation to a period of time"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/isEarlierThanPeriod",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#TransitiveProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "is Earlier Than Period"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#inverseOf": [
+      {
+        "@id": "https://loze-ontology.org/isLaterThanPeriod"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between a period of time p and another period of time p' if and only if p is entirely anterior to p' along the temporal axis"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/isLaterThanPeriod",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#TransitiveProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "is Later Than Period"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between a period of time p and another period of time p' if and only if p is entirely posterior to p' along the temporal axis"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#example": [
+      {
+        "@value": "The year 2008 is later than 1972, the early-modern period is later than classical antiquity, the XVI century is later than the XIII century"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#note": [
+      {
+        "@value": "This relation does not obtain in those cases in which one period is only partly posterior to another one - for example, it does not obtain between the 1800-1850 period and the 1815-1870 period"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/isSubperiodOf",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#TransitiveProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "is Subperiod Of"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
@@ -166,6 +404,47 @@
     "http://www.w3.org/2004/02/skos/core#example": [
       {
         "@value": "The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816"
+      }
+    ]
+  },
+  {
+    "@id": "https://loze-ontology.org/isSubsequentPeriodTo",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "is Subsequent Period To"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://loze-ontology.org/PeriodOfTime"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+      {
+        "@id": "https://loze-ontology.org/isLaterThanPeriod"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The relation that obtains between a period of time p and another period of time p' if and only if p immediately follows the end of p' along the temporal axis"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#example": [
+      {
+        "@value": "The XIX century is subsequent to the XVIII century, the 4th of May of 1999 is subsequent to the 3rd of May of 1999, the year 1768 is subsequent to the year 1767"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#note": [
+      {
+        "@value": "Since the 4th of May of 1999 starts when the 3rd of May ends, one could argue that there is actually an instant of time that belong to both the 3rd and the 4th; these are complex issues at the interface of metaphysics and mathematics that we cannot address here; however, their practical relevance is nil, since we will never need to refer to instants, but only to extended, non-instantaneous periods of time"
       }
     ]
   },
@@ -186,7 +465,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "An extension of loze.ttl with relations for locating eventualities relative to periods of time"
+        "@value": "An extension of loze-foundation.ttl that consists of relations for modelling temporal location, coordinates, and duration"
       }
     ]
   },
@@ -212,7 +491,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t"
+        "@value": "The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t and until the end of t"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
@@ -282,7 +561,7 @@
         "@value": "The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t"
       }
     ],
-    "http://www.w3.org/2004/02/skos/core#note": [
+    "http://www.w3.org/2004/02/skos/core#example": [
       {
         "@value": "WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium"
       }

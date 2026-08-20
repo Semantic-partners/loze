@@ -1,77 +1,186 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rdf:RDF xmlns:ns1="http://www.w3.org/2000/01/rdf-schema#" xmlns:ns2="http://www.w3.org/2004/02/skos/core#" xmlns:ns3="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:ns1="http://www.w3.org/2002/07/owl#" xmlns:ns2="http://www.w3.org/2000/01/rdf-schema#" xmlns:ns3="http://www.w3.org/2004/02/skos/core#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:nodeID="cb3e672fa2d8aad62c180c5bca0c7112f3bbf66bdafb0494068a2473beef83391a">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype" />
+    <ns1:unionOf rdf:nodeID="cb5831a2404aaeb20fa77985b89ca2d4c74145455bae02482d325041258048cb12" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cb1289ab531ad566b72a1115e1382a30ca8d066f2f48ebca81a07042f4637446598">
+    <rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#gDay" />
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cb4a3bf6f6ab51ff8e7933984ac87c22f5dc3e6032c2900782d347d94245470785">
+    <rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp" />
+    <rdf:rest rdf:nodeID="cbf53e89effa6c2df3d2070174abe1408f23217f0347b503980fa969e5eb7c82ad" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cbf53e89effa6c2df3d2070174abe1408f23217f0347b503980fa969e5eb7c82ad">
+    <rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+    <rdf:rest rdf:nodeID="cbd4f02f1e9ce3e57a26a79065a552b172df605e654b1b797d4b91b413614276b7" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cb5831a2404aaeb20fa77985b89ca2d4c74145455bae02482d325041258048cb12">
+    <rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime" />
+    <rdf:rest rdf:nodeID="cb4a3bf6f6ab51ff8e7933984ac87c22f5dc3e6032c2900782d347d94245470785" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cbd4f02f1e9ce3e57a26a79065a552b172df605e654b1b797d4b91b413614276b7">
+    <rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#time" />
+    <rdf:rest rdf:nodeID="cb8c8016d1a363faace7e79a4921ddc418c07900d4c2c332f9d7fab6a2a643eb3f" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cb68067f2b743e19efb21ee5d853c3161b0666d622a2f0455c63f429b69f182231">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <ns1:unionOf rdf:nodeID="cb0" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cbd38cb5fc78915ac5a6d3ce0646f099cf95be7904d7083a39f715729e478b8b3d">
+    <rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#gYearMonth" />
+    <rdf:rest rdf:nodeID="cb536ce46d9e26f88e8dc75a47847a7849b16fac3fc0dac2e53fa437bf93218c48" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cb0">
+    <rdf:first rdf:resource="https://loze-ontology.org/Eventuality" />
+    <rdf:rest rdf:nodeID="cbd7c96744b860be374134b6eeace4a6009e3d5947219e59b3c009836ad1012775" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cb1853dba644da1586608b9b5b66bb3a7750fdf928b2cd7b0e9d2502ddca909e58">
+    <rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#gMonthDay" />
+    <rdf:rest rdf:nodeID="cb1289ab531ad566b72a1115e1382a30ca8d066f2f48ebca81a07042f4637446598" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cbd7c96744b860be374134b6eeace4a6009e3d5947219e59b3c009836ad1012775">
+    <rdf:first rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cb536ce46d9e26f88e8dc75a47847a7849b16fac3fc0dac2e53fa437bf93218c48">
+    <rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#gMonth" />
+    <rdf:rest rdf:nodeID="cb1853dba644da1586608b9b5b66bb3a7750fdf928b2cd7b0e9d2502ddca909e58" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="cb8c8016d1a363faace7e79a4921ddc418c07900d4c2c332f9d7fab6a2a643eb3f">
+    <rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#gYear" />
+    <rdf:rest rdf:nodeID="cbd38cb5fc78915ac5a6d3ce0646f099cf95be7904d7083a39f715729e478b8b3d" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/afterTime">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Eventuality" />
-    <ns1:label>after Time</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
-    <ns2:definition>The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely after t</ns2:definition>
-    <ns2:example>WWII occurred after 1900, the birth of Napoleon occurred after 1700, </ns2:example>
-    <ns2:note>The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939</ns2:note>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Eventuality" />
+    <ns2:label>after Time</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns3:definition>The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely after t</ns3:definition>
+    <ns3:example>WWII occurred after 1900, the birth of Napoleon occurred after 1700</ns3:example>
+    <ns3:note>The relation obtains even if the eventuality does not occur immediately after the period of time: for example, WWII occurred after 1900, even though it only started in 1939</ns3:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/atTime">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Eventuality" />
-    <ns1:label>at Time</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
-    <ns2:definition>The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t</ns2:definition>
-    <ns2:example>WWII was happening at 1943, the French Revolution was happening at 1790, the Italian Renaissance was happening at 1513</ns2:example>
-    <ns2:note>This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too</ns2:note>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Eventuality" />
+    <ns2:label>at Time</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns3:definition>The relation that obtains between an eventuality e and a period of time t if and only if e is the case or is occurring at t</ns3:definition>
+    <ns3:example>WWII was happening at 1943, the French Revolution was happening at 1790, the Italian Renaissance was happening at 1513</ns3:example>
+    <ns3:note>This relation doesn't necessarily relate an eventuality to the entire period of time when it occurs; for example, WWII started in 1939 and ended in 1945, but it was still in course in 1943, so it entertains the relation loze:atTime with 1943 too</ns3:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/beforeTime">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Eventuality" />
-    <ns1:label>before Time</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
-    <ns2:definition>The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t</ns2:definition>
-    <ns2:example>WWII occurred before 1960, the birth of Napoleon occurred before 1800</ns2:example>
-    <ns2:note>The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1970, even though over two decades passed between the end of WWII and 1970</ns2:note>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Eventuality" />
+    <ns2:label>before Time</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns3:definition>The relation that obtains between an eventuality e and a period of time t if and only if e occurs entirely before t</ns3:definition>
+    <ns3:example>WWII occurred before 1960, the birth of Napoleon occurred before 1800</ns3:example>
+    <ns3:note>The relation obtains even if the eventuality does not occur right before the period of time: for example, WWII occurred before 1970, even though over two decades passed between the end of WWII and 1970</ns3:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/fromTime">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Eventuality" />
-    <ns1:label>from Time</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
-    <ns2:definition>The relation that obtains between an eventuality e and a period of time t if and only if e starts occurring at t</ns2:definition>
-    <ns2:example>WWII occurred from 1939, the Thirty Years' War occurred from 1618, Napoleon's life occurred from 1769</ns2:example>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Eventuality" />
+    <ns2:label>from Time</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns3:definition>The relation that obtains between an eventuality e and a period of time t if and only if e starts occurring at t</ns3:definition>
+    <ns3:example>WWII occurred from 1939, the Thirty Years' War occurred from 1618, Napoleon's life occurred from 1769</ns3:example>
   </rdf:Description>
-  <rdf:Description rdf:about="https://loze-ontology.org/isSubPeriodOf">
+  <rdf:Description rdf:about="https://loze-ontology.org/hasDuration">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <ns2:domain rdf:nodeID="cb68067f2b743e19efb21ee5d853c3161b0666d622a2f0455c63f429b69f182231" />
+    <ns2:label>has Duration</ns2:label>
+    <ns2:range rdf:resource="http://www.w3.org/2001/XMLSchema#duration" />
+    <ns3:definition>The relation that assigns a duration to an eventuality or a period of time</ns3:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasSubperiod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty" />
+    <ns2:domain rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns2:label>has Subperiod</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns1:inverseOf rdf:resource="https://loze-ontology.org/isSubperiodOf" />
+    <ns3:definition>The relation that obtains between two periods of time when the former has as part or segment the latter</ns3:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasSubsequentPeriod">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/PeriodOfTime" />
-    <ns1:label>is Sub-Period Of</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
-    <ns2:definition>The relation that obtains between two periods of time of which the former is a part or segment of the latter</ns2:definition>
-    <ns2:example>The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816</ns2:example>
+    <ns2:domain rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns2:label>has Subsequent Period</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns1:inverseOf rdf:resource="https://loze-ontology.org/isSubsequentPeriodTo" />
+    <ns3:definition>The relation that obtains between a period of time p and another period of time p' if and only if p' immediately follows the end of p along the temporal axis</ns3:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/hasTemporalCoordinate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <ns2:domain rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns2:label>has Temporal Coordinate</ns2:label>
+    <ns2:range rdf:nodeID="cb3e672fa2d8aad62c180c5bca0c7112f3bbf66bdafb0494068a2473beef83391a" />
+    <ns3:definition>The relation that assigns a temporal coordinates representation to a period of time</ns3:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isEarlierThanPeriod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty" />
+    <ns2:domain rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns2:label>is Earlier Than Period</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns1:inverseOf rdf:resource="https://loze-ontology.org/isLaterThanPeriod" />
+    <ns3:definition>The relation that obtains between a period of time p and another period of time p' if and only if p is entirely anterior to p' along the temporal axis</ns3:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isLaterThanPeriod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty" />
+    <ns2:domain rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns2:label>is Later Than Period</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns3:definition>The relation that obtains between a period of time p and another period of time p' if and only if p is entirely posterior to p' along the temporal axis</ns3:definition>
+    <ns3:example>The year 2008 is later than 1972, the early-modern period is later than classical antiquity, the XVI century is later than the XIII century</ns3:example>
+    <ns3:note>This relation does not obtain in those cases in which one period is only partly posterior to another one - for example, it does not obtain between the 1800-1850 period and the 1815-1870 period</ns3:note>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isSubperiodOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty" />
+    <ns2:domain rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns2:label>is Subperiod Of</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns3:definition>The relation that obtains between two periods of time of which the former is a part or segment of the latter</ns3:definition>
+    <ns3:example>The year 1969 is a sub-period of the XX century, the period 1740-1751 is a sub-period of the period 1740-1789, the June of 1816 is a sub-period of the year 1816</ns3:example>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://loze-ontology.org/isSubsequentPeriodTo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <ns2:domain rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns2:label>is Subsequent Period To</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns2:subPropertyOf rdf:resource="https://loze-ontology.org/isLaterThanPeriod" />
+    <ns3:definition>The relation that obtains between a period of time p and another period of time p' if and only if p immediately follows the end of p' along the temporal axis</ns3:definition>
+    <ns3:example>The XIX century is subsequent to the XVIII century, the 4th of May of 1999 is subsequent to the 3rd of May of 1999, the year 1768 is subsequent to the year 1767</ns3:example>
+    <ns3:note>Since the 4th of May of 1999 starts when the 3rd of May ends, one could argue that there is actually an instant of time that belong to both the 3rd and the 4th; these are complex issues at the interface of metaphysics and mathematics that we cannot address here; however, their practical relevance is nil, since we will never need to refer to instants, but only to extended, non-instantaneous periods of time</ns3:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/temporal-relations">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology" />
-    <ns1:label>Temporal Relations</ns1:label>
-    <ns3:imports rdf:resource="https://loze-ontology.org/" />
-    <ns2:definition>An extension of loze.ttl with relations for locating eventualities relative to periods of time</ns2:definition>
+    <ns2:label>Temporal Relations</ns2:label>
+    <ns1:imports rdf:resource="https://loze-ontology.org/" />
+    <ns3:definition>An extension of loze-foundation.ttl that consists of relations for modelling temporal location, coordinates, and duration</ns3:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/throughoutTime">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Eventuality" />
-    <ns1:label>throughout Time</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
-    <ns2:definition>The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t until and until the end of t</ns2:definition>
-    <ns2:example>WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period</ns2:example>
-    <ns2:note>The function of this relation is to specify the temporal location of an eventuality as a whole</ns2:note>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Eventuality" />
+    <ns2:label>throughout Time</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns3:definition>The relation that obtains between an eventuality e and a period t if and only if e occurs starting from the beginning of t and until the end of t</ns3:definition>
+    <ns3:example>WWII occurred throughout the 1939-1945 period, the Thirty Years' War occurred throghout the 1618-1648 period, Napoleon's life occurred throughout the 1769-1821 period</ns3:example>
+    <ns3:note>The function of this relation is to specify the temporal location of an eventuality as a whole</ns3:note>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/untilTime">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Eventuality" />
-    <ns1:label>until Time</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
-    <ns2:definition>The relation that obtains between an eventuality e and a period of time t if and only if e ends at t</ns2:definition>
-    <ns2:example>WWII occurred until 1945, the Thirty Years' War occurred until 1648, Napoleon's life occurred until 1821</ns2:example>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Eventuality" />
+    <ns2:label>until Time</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns3:definition>The relation that obtains between an eventuality e and a period of time t if and only if e ends at t</ns3:definition>
+    <ns3:example>WWII occurred until 1945, the Thirty Years' War occurred until 1648, Napoleon's life occurred until 1821</ns3:example>
   </rdf:Description>
   <rdf:Description rdf:about="https://loze-ontology.org/withinTime">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
-    <ns1:domain rdf:resource="https://loze-ontology.org/Eventuality" />
-    <ns1:label>within Time</ns1:label>
-    <ns1:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
-    <ns2:definition>The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t</ns2:definition>
-    <ns2:note>WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium</ns2:note>
+    <ns2:domain rdf:resource="https://loze-ontology.org/Eventuality" />
+    <ns2:label>within Time</ns2:label>
+    <ns2:range rdf:resource="https://loze-ontology.org/PeriodOfTime" />
+    <ns3:definition>The relation that obtains betwen an eventuality e and a period of time t if and only if e occurs throughout a a sub-period of t</ns3:definition>
+    <ns3:example>WWII occurred within the XX century, the Thirty Years' War occurred within the 1620-1650 period, the Italian Renaissance occurred within the second millenium</ns3:example>
   </rdf:Description>
 </rdf:RDF>

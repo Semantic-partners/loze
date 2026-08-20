@@ -26,7 +26,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#note": [
       {
-        "@value": "Artefact can be either schematic or concrete: a software - in abstraction from its installated copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact"
+        "@value": "Artefact can be either schematic or concrete: a software - in abstraction from its installed copies - is an artefact; a software's installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact"
       }
     ]
   },
@@ -63,7 +63,7 @@
         "@value": "An information artefact that is concrete is always going to be the concretization of some schematic information artefact"
       },
       {
-        "@value": "The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry informaton that is only meant to be executed by a machine"
+        "@value": "The information carried by an information artefact does not need to be intelligible for humans: for example, certain files or codes carry information that is only meant to be executed by a machine"
       }
     ]
   },
@@ -118,7 +118,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
-        "@value": "An extension of loze.ttl with classes and predicates related to artefacts, information artefacts, and instructions"
+        "@value": "An extension of loze-foundation.ttl pertaining to artefacts, information, and instructions"
       }
     ]
   },
@@ -283,7 +283,7 @@
     ],
     "http://www.w3.org/2004/02/skos/core#example": [
       {
-        "@value": "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula togethet with the alloying instructions are the recipe in the manufacturing of steel slabs"
+        "@value": "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula together with the alloying instructions are the recipe in the manufacturing of steel slabs"
       }
     ],
     "http://www.w3.org/2004/02/skos/core#note": [
