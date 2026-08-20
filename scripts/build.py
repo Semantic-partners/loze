@@ -454,6 +454,15 @@ ul.tree a { font-weight: 500; }
 .z-item { font-family: "DM Sans", sans-serif; font-size: 13.5px; fill: hsl(var(--foreground)); }
 .z-axis { font-family: "DM Mono", monospace; font-size: 12px; letter-spacing: var(--tracking-label);
   fill: hsl(var(--foreground)); }
+/* loze's categories laid over Zemach's grid. Eventuality is the one that spans:
+   he separates Event from Process on spatial continuity and loze does not cut
+   there, so one outline has to cross a boundary. */
+.z-span { fill: none; stroke: hsl(var(--muted-foreground)); stroke-width: 2;
+  stroke-dasharray: 7 5; }
+.z-span-hit { stroke: hsl(var(--brand-accent)); stroke-width: 2.5; }
+.z-span-lab { font-family: "DM Mono", monospace; font-size: 12.5px; letter-spacing: 0.04em;
+  fill: hsl(var(--muted-foreground)); text-anchor: middle; stroke: none; }
+.z-span-hit-lab { fill: hsl(var(--brand-accent)); }
 .z-sub { font-family: "DM Sans", sans-serif; font-size: 12px; fill: hsl(var(--faint)); }
 .q-tag { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.04em;
   fill: hsl(var(--faint)); }
@@ -761,22 +770,24 @@ def zemach_figure() -> str:
          ["the moon landing", "a handshake", "yesterday&#8217;s sunset"], ""),
         (560, 96,  "Thing", "CT", "the desk you see again today",
          ["Fido the dog", "the Eiffel Tower", "my pencil"], ""),
-        (170, 274, "Process", "CS", "everywhere at once, then over",
+        (170, 298, "Process", "CS", "everywhere at once, then over",
          ["the French Revolution", "this rain", "the current inflation"], ""),
-        (560, 274, "Type", "PC", "wholly present in every token",
+        (560, 298, "Type", "PC", "wholly present in every token",
          ["water, gold, wheat", "the letter A", "Beethoven&#8217;s Fifth"], " z-hit"),
     ]
     out = ""
     for x, y, title, code, gloss, items, hit in CELLS:
-        out += (f'<rect class="z-cell{hit}" x="{x}" y="{y}" width="360" height="152"/>'
+        out += (f'<rect class="z-cell{hit}" x="{x}" y="{y}" width="360" height="176"/>'
                 f'<text class="z-title{hit}" x="{x+20}" y="{y+30}">{title}</text>'
                 f'<text class="z-code" x="{x+340}" y="{y+30}">{code}</text>'
                 f'<text class="z-gloss" x="{x+20}" y="{y+52}">{gloss}</text>')
         for i, it in enumerate(items):
             out += f'<text class="z-item" x="{x+20}" y="{y+82 + i*24}">&#8594; {it}</text>'
+        # Which loze class this quadrant becomes. The whole point of showing
+        # Zemach here is the mapping, and it was left implicit.
     return f'''
 <figure class="fig">
-<svg viewBox="0 0 960 500" role="img" xmlns="http://www.w3.org/2000/svg"
+<svg viewBox="0 0 960 556" role="img" xmlns="http://www.w3.org/2000/svg"
      aria-label="Zemach's four ontologies as a two by two. Columns are bound in time and continuous in time; rows are bound in space and continuous in space. Event, Thing, Process and Type. The Type quadrant, wholly present in every token, is highlighted: water, the letter A, Beethoven's Fifth. That is the cell loze keeps as a particular rather than a universal.">
   <text class="z-axis" x="170" y="34">BOUND IN TIME</text>
   <text class="z-sub" x="170" y="52">has temporal parts; over when done</text>
@@ -785,12 +796,18 @@ def zemach_figure() -> str:
   <text class="z-axis" x="0" y="150">BOUND IN</text>
   <text class="z-axis" x="0" y="168">SPACE</text>
   <text class="z-sub" x="0" y="188">has spatial parts</text>
-  <text class="z-axis" x="0" y="328">CONTINUOUS</text>
-  <text class="z-axis" x="0" y="346">IN SPACE</text>
-  <text class="z-sub" x="0" y="366">wholly present</text>
-  <text class="z-sub" x="0" y="382">at each place</text>
+  <text class="z-axis" x="0" y="352">CONTINUOUS</text>
+  <text class="z-axis" x="0" y="370">IN SPACE</text>
+  <text class="z-sub" x="0" y="390">wholly present</text>
+  <text class="z-sub" x="0" y="406">at each place</text>
   {out}
-  <text class="fig-note" x="170" y="482">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
+  <rect class="z-span" x="152" y="80" width="396" height="416" rx="14"/>
+  <text class="z-span-lab" x="350" y="484">loze:Eventuality</text>
+  <rect class="z-span z-span-q" x="542" y="80" width="396" height="196" rx="14"/>
+  <text class="z-span-lab" x="740" y="264">loze:Thing</text>
+  <rect class="z-span z-span-hit" x="542" y="282" width="396" height="214" rx="14"/>
+  <text class="z-span-lab z-span-hit-lab" x="740" y="484">loze:SchematicParticular</text>
+  <text class="fig-note" x="152" y="538">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
 </svg>
 <figcaption>Two axes, and neither is the class/instance one. Zemach cuts by whether a thing is
 wholly present at each <em>time</em> and at each <em>place</em>, which puts water, the letter A and

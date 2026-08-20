@@ -272,6 +272,15 @@ ul.tree a { font-weight: 500; }
 .z-item { font-family: "DM Sans", sans-serif; font-size: 13.5px; fill: hsl(var(--foreground)); }
 .z-axis { font-family: "DM Mono", monospace; font-size: 12px; letter-spacing: var(--tracking-label);
   fill: hsl(var(--foreground)); }
+/* loze's categories laid over Zemach's grid. Eventuality is the one that spans:
+   he separates Event from Process on spatial continuity and loze does not cut
+   there, so one outline has to cross a boundary. */
+.z-span { fill: none; stroke: hsl(var(--muted-foreground)); stroke-width: 2;
+  stroke-dasharray: 7 5; }
+.z-span-hit { stroke: hsl(var(--brand-accent)); stroke-width: 2.5; }
+.z-span-lab { font-family: "DM Mono", monospace; font-size: 12.5px; letter-spacing: 0.04em;
+  fill: hsl(var(--muted-foreground)); text-anchor: middle; stroke: none; }
+.z-span-hit-lab { fill: hsl(var(--brand-accent)); }
 .z-sub { font-family: "DM Sans", sans-serif; font-size: 12px; fill: hsl(var(--faint)); }
 .q-tag { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.04em;
   fill: hsl(var(--faint)); }
