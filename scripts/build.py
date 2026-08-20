@@ -426,6 +426,20 @@ ul.tree a { font-weight: 500; }
    separate arrows converging read as more machinery, not less. */
 .grp { fill: none; stroke: hsl(var(--border)); stroke-width: 1; stroke-dasharray: 3 4; }
 .fig-note { font-size: 13px; fill: hsl(var(--muted-foreground)); }
+/* Zemach's quadrants. Three are background and one carries the emphasis: the
+   Type cell is the one loze is built on, so it is the only coloured thing here. */
+.z-cell { fill: hsl(var(--surface)); stroke: hsl(var(--border)); stroke-width: 1.5; }
+.z-hit  { fill: hsl(var(--tint)); stroke: hsl(var(--brand-accent)); stroke-width: 2.5; }
+.z-title { font-family: "Plus Jakarta Sans", sans-serif; font-size: 17px; font-weight: 700;
+  fill: hsl(var(--foreground)); }
+.z-title.z-hit { fill: hsl(var(--brand-accent)); stroke: none; }
+.z-code { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.1em;
+  fill: hsl(var(--faint)); text-anchor: end; }
+.z-gloss { font-family: "DM Sans", sans-serif; font-size: 13px; fill: hsl(var(--muted-foreground)); }
+.z-item { font-family: "DM Sans", sans-serif; font-size: 13.5px; fill: hsl(var(--foreground)); }
+.z-axis { font-family: "DM Mono", monospace; font-size: 12px; letter-spacing: var(--tracking-label);
+  fill: hsl(var(--foreground)); }
+.z-sub { font-family: "DM Sans", sans-serif; font-size: 12px; fill: hsl(var(--faint)); }
 .q-tag { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.04em;
   fill: hsl(var(--faint)); }
 .fig-q { font-family: "DM Mono", monospace; font-size: 12.5px; fill: hsl(var(--foreground)); }
@@ -677,6 +691,61 @@ are inhabitable. The right-hand column is the one most modelling cannot hold —
 process type is forced to become a class and stops being able to carry its own data. That loze
 keeps it a particular is Zemach&#8217;s addition to Lowe&#8217;s four categories, the two sources
 <a href="/">the ontology</a> names.</figcaption>
+</figure>
+'''
+
+
+def zemach_figure() -> str:
+    """Zemach's four ontologies, redrawn in the page's own system.
+
+    Redrawn rather than embedded. The original is a raster on a white ground, which
+    would invert badly in dark mode and could not take the site's type or palette.
+    Redrawing also lets the emphasis go where it belongs: three quadrants are
+    background, and the fourth is the one loze is built on.
+    """
+    CELLS = [
+        (170, 96,  "Event", "NC", "a filled chunk of spacetime",
+         ["the moon landing", "a handshake", "yesterday&#8217;s sunset"], ""),
+        (560, 96,  "Thing", "CT", "the desk you see again today",
+         ["Fido the dog", "the Eiffel Tower", "my pencil"], ""),
+        (170, 274, "Process", "CS", "everywhere at once, then over",
+         ["the French Revolution", "this rain", "the current inflation"], ""),
+        (560, 274, "Type", "PC", "wholly present in every token",
+         ["water, gold, wheat", "the letter A", "Beethoven&#8217;s Fifth"], " z-hit"),
+    ]
+    out = ""
+    for x, y, title, code, gloss, items, hit in CELLS:
+        out += (f'<rect class="z-cell{hit}" x="{x}" y="{y}" width="360" height="152"/>'
+                f'<text class="z-title{hit}" x="{x+20}" y="{y+30}">{title}</text>'
+                f'<text class="z-code" x="{x+340}" y="{y+30}">{code}</text>'
+                f'<text class="z-gloss" x="{x+20}" y="{y+52}">{gloss}</text>')
+        for i, it in enumerate(items):
+            out += f'<text class="z-item" x="{x+20}" y="{y+82 + i*24}">&#8594; {it}</text>'
+    return f'''
+<figure class="fig">
+<svg viewBox="0 0 960 500" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="Zemach's four ontologies as a two by two. Columns are bound in time and continuous in time; rows are bound in space and continuous in space. Event, Thing, Process and Type. The Type quadrant, wholly present in every token, is highlighted: water, the letter A, Beethoven's Fifth. That is the cell loze keeps as a particular rather than a universal.">
+  <text class="z-axis" x="170" y="34">BOUND IN TIME</text>
+  <text class="z-sub" x="170" y="52">has temporal parts; over when done</text>
+  <text class="z-axis" x="560" y="34">CONTINUOUS IN TIME</text>
+  <text class="z-sub" x="560" y="52">wholly present at each time</text>
+  <text class="z-axis" x="0" y="150">BOUND IN</text>
+  <text class="z-axis" x="0" y="168">SPACE</text>
+  <text class="z-sub" x="0" y="188">has spatial parts</text>
+  <text class="z-axis" x="0" y="328">CONTINUOUS</text>
+  <text class="z-axis" x="0" y="346">IN SPACE</text>
+  <text class="z-sub" x="0" y="366">wholly present</text>
+  <text class="z-sub" x="0" y="382">at each place</text>
+  {out}
+  <text class="fig-note" x="170" y="482">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
+</svg>
+<figcaption>Two axes, and neither is the class/instance one. Zemach cuts by whether a thing is
+wholly present at each <em>time</em> and at each <em>place</em>, which puts water, the letter A and
+a symphony together in a quadrant of their own — repeatable, but not obviously classes. loze&#8217;s
+<a href="/SchematicParticular">Schematic Particular</a> is that cell, and its own examples are
+Zemach&#8217;s: a work of music, an alphabetic character, a substance like water or gold. The
+deviation is that loze keeps them <em>particulars</em>, so they can carry data and be pointed at,
+rather than promoting them to universals.</figcaption>
 </figure>
 '''
 
@@ -960,7 +1029,7 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
   {section("Specialised by", subs_html)}
   {"" if is_prop else section("Properties from this", props_where(RDFS.domain))}
   {"" if is_prop else section("Properties onto this", props_where(RDFS.range))}
-  {(FIGURE + query_figure() + EVENT_FIGURE) if d['name'] == "SchematicParticular" else (EVENT_FIGURE if d['name'] in ("Eventuality", "Thing", "hasParticipant", "hasProduct") else (FIGURE if d['name'] in ("isConcretizationOf", "hasConcretization") else ""))}
+  {(zemach_figure() + FIGURE + query_figure() + EVENT_FIGURE) if d['name'] == "SchematicParticular" else (EVENT_FIGURE if d['name'] in ("Eventuality", "Thing", "hasParticipant", "hasProduct") else (FIGURE if d['name'] in ("isConcretizationOf", "hasConcretization") else ""))}
   {section("Note", f'<p class="measure">{e(d["note"])}</p>' if d['note'] else "")}
 </div></main>
 """
@@ -1024,7 +1093,8 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
             for s2, src2 in MODULES if s2)
         modules_nav = section("Modules", f'<div class="grid">{cells}</div>')
 
-    schematic_section = (section("Why a schematic particular", FIGURE)
+    schematic_section = (section("Where the idea comes from", zemach_figure())
+                         + section("Why a schematic particular", FIGURE)
                          + section("What it buys", query_figure())
                          + section("Things and happenings are a different cut", EVENT_FIGURE))
 
