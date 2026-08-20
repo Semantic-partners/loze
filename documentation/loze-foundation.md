@@ -150,6 +150,36 @@ As we have already stressed, schematic particulars are one of the most unique fe
 1. Punning, that is, the pattern consisting in treating a class as an instance of another class; while Loze does not rule the possibility of punning altogether, it significantly reduces the need for it.
 2. Restrictions, which are the OWL construct for complex general statements; with Loze, many of the statements that would normally require one or more restrictions can be formalised in a much simpler way by referring to schematic particulars.
 
+### Schematic Particulars vs Punning
+
+### Schematic Particulars vs Restrictions
+
+Consider a scenario in which we need to say that a certain product model has this or that feature. For example, suppose that we need to say that the Toyota Corolla Hybrid has a . The standard approach consists in regarding the model Toyota Corolla Hybrid as a class, which has individual cars - say, *my* Toyota Corolla Hybrid - as instances:  
+
+```
+:ToyotaCorollaHybrid a owl:Class ;
+    rdfs:label "Toyota Corolla Hybrid" ;
+    rdfs:subClassOf :ToyotaCorolla .
+
+:my-car a :ToyotaCorollaHybrid .
+```
+With this approach, saying that the Toyota Corolla Hybrid has consists in saying that *every* instance of the class has ; in OWL, such an assertion requires the use of an existential restriction:
+
+```
+```
+. . In Loze, instead, we model an entity like the Toyota Corolla Hybrid as a schematic particular; it is a determination of the Toyota Corolla, and has various units - like my Toyota Corolla Hybrid - as concretisations:
+
+```
+:ToyotaCorollaHybrid a loze:SchematicParticular ;
+    rdfs:label "Toyota Corolla Hybrid" ;
+    loze:isDeterminationOf :ToyotaCorolla .
+
+:my-car loze:isConcretisationOf :ToyotaCorollaHybrid .
+```
+What difference does thus make when it comes to modelling the featurs of the Toyota Corolla Hybrid? The key aspect to keep in mind is that, differently from a class, a schematic particular shares the essential properties of its concretisations. Consequently, the Toyota Corolla Hybrid also has , just like its units. Therefore, we can describe its features the same way we would describe those of a unit:
+
+```
+```
 
 ## References
 
