@@ -426,6 +426,8 @@ ul.tree a { font-weight: 500; }
    separate arrows converging read as more machinery, not less. */
 .grp { fill: none; stroke: hsl(var(--border)); stroke-width: 1; stroke-dasharray: 3 4; }
 .fig-note { font-size: 13px; fill: hsl(var(--muted-foreground)); }
+.q-tag { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.04em;
+  fill: hsl(var(--faint)); }
 .fig-q { font-family: "DM Mono", monospace; font-size: 12.5px; fill: hsl(var(--foreground)); }
 .fig-ok { fill: hsl(var(--clr-status-ok)); }
 .q-chip { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.2; }
@@ -627,51 +629,54 @@ that happen to share a name.</figcaption>
 
 EVENT_FIGURE = '''
 <figure class="fig">
-<svg viewBox="0 0 960 372" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="A two by two. Columns are thing and eventuality, rows are schematic and concrete. The Toyota Corolla and a Corolla service sit in the schematic row; my Corolla and its service on 3 March sit in the concrete row. The same hasConcretization relation runs down both columns, because it is declared on the schematic to concrete axis and says nothing about things or happenings.">
+<svg viewBox="0 0 960 420" role="img" xmlns="http://www.w3.org/2000/svg"
+     aria-label="A two by two. Columns are Thing and Eventuality, rows are SchematicParticular and ConcreteParticular. Each quadrant names the two loze classes it is the intersection of. Toyota Corolla is a schematic thing, the 30,000-mile service a schematic eventuality, my Corolla a concrete thing, and its service on 3 March a concrete eventuality. The same hasConcretization relation runs down both columns.">
   <defs>
     <marker id="are" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
     </marker>
   </defs>
 
-  <text class="fig-band-lab" x="196" y="28">A THING</text>
-  <text class="fig-band-lab" x="560" y="28">A HAPPENING</text>
-  <text class="fig-band-lab" x="0" y="112">SCHEMATIC</text>
-  <text class="fig-band-lab" x="0" y="286">CONCRETE</text>
-  <line class="fig-rule" x1="530" y1="44" x2="530" y2="330"/>
-  <line class="fig-rule" x1="180" y1="196" x2="930" y2="196"/>
+  <text class="fig-band-lab" x="196" y="26">A THING</text>
+  <text class="fig-band-lab" x="560" y="26">A HAPPENING</text>
+  <text class="fig-band-lab" x="0" y="118">SCHEMATIC</text>
+  <text class="fig-band-lab" x="0" y="310">CONCRETE</text>
+  <line class="fig-rule" x1="530" y1="42" x2="530" y2="380"/>
+  <line class="fig-rule" x1="180" y1="216" x2="930" y2="216"/>
 
-  <rect class="n-inst n-schem" x="196" y="80" width="290" height="52"/>
-  <text class="n-lab n-sm" x="341" y="102">Toyota Corolla</text>
-  <text class="n-kind" x="341" y="120">the model, not a car</text>
+  <text class="q-tag" x="196" y="62">SchematicParticular &#215; Thing</text>
+  <rect class="n-inst n-schem" x="196" y="74" width="290" height="66"/>
+  <text class="n-lab n-sm" x="341" y="100">Toyota Corolla</text>
+  <text class="n-kind" x="341" y="118">the model, not a car</text>
 
-  <rect class="n-event n-schem-e" x="560" y="80" width="330" height="52"/>
-  <text class="n-lab n-sm" x="725" y="102">the 30,000-mile service</text>
-  <text class="n-kind" x="725" y="120">the procedure, not a visit</text>
+  <text class="q-tag" x="560" y="62">SchematicParticular &#215; Eventuality</text>
+  <rect class="n-event n-schem-e" x="560" y="74" width="330" height="66"/>
+  <text class="n-lab n-sm" x="725" y="100">the 30,000-mile service</text>
+  <text class="n-kind" x="725" y="118">the procedure, not a visit</text>
 
-  <rect class="n-inst" x="196" y="254" width="290" height="52"/>
-  <text class="n-lab n-sm" x="341" y="276">my Corolla</text>
-  <text class="n-kind" x="341" y="294">on the drive</text>
+  <text class="q-tag" x="196" y="256">ConcreteParticular &#215; Thing</text>
+  <rect class="n-inst" x="196" y="268" width="290" height="66"/>
+  <text class="n-lab n-sm" x="341" y="294">my Corolla</text>
+  <text class="n-kind" x="341" y="312">on the drive</text>
 
-  <rect class="n-event" x="560" y="254" width="330" height="52"/>
-  <text class="n-lab n-sm" x="725" y="276">its service, 3 March</text>
-  <text class="n-kind" x="725" y="294">two hours, one garage</text>
+  <text class="q-tag" x="560" y="256">ConcreteParticular &#215; Eventuality</text>
+  <rect class="n-event" x="560" y="268" width="330" height="66"/>
+  <text class="n-lab n-sm" x="725" y="294">its service, 3 March</text>
+  <text class="n-kind" x="725" y="312">two hours, one garage</text>
 
-  <line class="e-prop" x1="341" y1="132" x2="341" y2="250" marker-end="url(#are)"/>
-  <line class="e-prop" x1="725" y1="132" x2="725" y2="250" marker-end="url(#are)"/>
-  <text class="e-lab e-lab-prop" x="352" y="184">hasConcretization</text>
-  <text class="e-lab e-lab-prop" x="736" y="184">hasConcretization</text>
+  <line class="e-prop" x1="341" y1="140" x2="341" y2="264" marker-end="url(#are)"/>
+  <line class="e-prop" x1="725" y1="140" x2="725" y2="264" marker-end="url(#are)"/>
+  <text class="e-lab e-lab-prop" x="352" y="200">hasConcretization</text>
+  <text class="e-lab e-lab-prop" x="736" y="200">hasConcretization</text>
 
-  <text class="fig-note" x="0" y="356">One relation, both columns: it is declared SchematicParticular to ConcreteParticular and says nothing about things or happenings.</text>
+  <text class="fig-note" x="0" y="404">Four classes, two independent cuts. Every quadrant is populated, and the same relation carries the vertical one.</text>
 </svg>
-<figcaption>The repeatable/particular cut and the thing/happening cut are independent, so there
-are four cells and not three. A service procedure is repeatable in exactly the way a car model is:
-every actual service concretizes it, and the specification is the benchmark the visit answers to.
-The right-hand column is the one most ontologies cannot hold — it is where a process type has to
-become a class, and stops being able to carry its own data. That loze keeps it as a particular is
-the whole of Zemach&#8217;s addition to Lowe&#8217;s four categories, which
-<a href="/">the ontology</a> names as its two sources.</figcaption>
+<figcaption>The quadrant labels are the classes themselves: each cell is the intersection of one
+row class and one column class, and loze declares no disjointness between any of them, so all four
+are inhabitable. The right-hand column is the one most modelling cannot hold — it is where a
+process type is forced to become a class and stops being able to carry its own data. That loze
+keeps it a particular is Zemach&#8217;s addition to Lowe&#8217;s four categories, the two sources
+<a href="/">the ontology</a> names.</figcaption>
 </figure>
 '''
 

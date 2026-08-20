@@ -254,6 +254,8 @@ ul.tree a { font-weight: 500; }
    separate arrows converging read as more machinery, not less. */
 .grp { fill: none; stroke: hsl(var(--border)); stroke-width: 1; stroke-dasharray: 3 4; }
 .fig-note { font-size: 13px; fill: hsl(var(--muted-foreground)); }
+.q-tag { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.04em;
+  fill: hsl(var(--faint)); }
 .fig-q { font-family: "DM Mono", monospace; font-size: 12.5px; fill: hsl(var(--foreground)); }
 .fig-ok { fill: hsl(var(--clr-status-ok)); }
 .q-chip { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.2; }
