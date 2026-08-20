@@ -817,12 +817,47 @@ PROP_TYPES = {OWL.ObjectProperty, OWL.DatatypeProperty, OWL.AnnotationProperty,
               RDF.Property, OWL.TransitiveProperty, OWL.SymmetricProperty}
 
 
+def rdf_list(g: Graph, head) -> list:
+    """Members of an RDF collection, in order."""
+    out = []
+    while head is not None and head != RDF.nil:
+        first = g.value(head, RDF.first)
+        if first is None:
+            break
+        out.append(first)
+        head = g.value(head, RDF.rest)
+    return out
+
+
+def anon_expr(g: Graph, node) -> str:
+    """Render an anonymous class expression from its content.
+
+    Matteo's axioms introduced owl:unionOf expressions, and these were being
+    printed as their blank node label — 'n8289a058adf34293a1ef6d409b38da73b1'.
+    Meaningless to a reader, and not even stable: rdflib mints those labels per
+    parse, so three pages changed on every build. Describing the expression fixes
+    both, because the description comes from the members rather than the label.
+    """
+    for pred, joiner in ((OWL.unionOf, " or "), (OWL.intersectionOf, " and ")):
+        head = g.value(node, pred)
+        if head is not None:
+            members = rdf_list(g, head)
+            if members:
+                return joiner.join(term_link(g, m) for m in members)
+    on = g.value(node, OWL.onProperty)
+    if on is not None:
+        return f"a restriction on {term_link(g, on)}"
+    return "an anonymous class"
+
+
 def term_link(g: Graph, o) -> str:
     if isinstance(o, URIRef) and str(o).startswith(NS):
         lbl = g.value(o, RDFS.label)
         return f'<a href="/{e(local(o))}">{e(str(lbl) if lbl else local(o))}</a>'
     if isinstance(o, URIRef):
         return f'<code>{e(shorten(str(o)))}</code>'
+    if isinstance(o, BNode):
+        return anon_expr(g, o)
     return e(str(o))
 
 
