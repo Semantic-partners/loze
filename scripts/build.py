@@ -36,21 +36,8 @@ it: a static asset at the same path always wins, so the Function is never
 reached. RDF stays available at `/<name>.ttl` and is advertised from every page
 with <link rel="alternate">.
 
-Styling follows the Semantic Partners design system as shipped in
-operational-overlord (src/app/globals.css, tailwind.config.ts): ink/off-white
-surfaces, one green accent, square corners, and the reserved graph-node triad —
-class blue, instance green, property amber — which is the one place a colour
-here carries meaning rather than decoration.
-
-Typefaces are the one deliberate departure, chosen to echo ssense.com rather than
-operational-overlord. SSENSE's actual system is a proprietary Dinamo face —
-a grotesque that reads as boring-Arial until you notice the tilted s and blocky
-r, paired with a Times New Roman thinned down for secondary copy — commissioned
-for their 2017 redesign and not available to borrow. Archivo stands in for the
-grotesque (headings, body, labels); Newsreader at a light weight stands in for
-the thinned serif, reserved for term definitions and figure captions the way
-SSENSE reserves its serif for editorial copy. DM Mono stays for code and IRIs,
-which SSENSE has no equivalent register for.
+Styling is close to SP's style sheet. green as the main accent, blue is used as a secondary. amber is dropped. 
+Typefaces are changed: Archivo for grotesk, Newsreader for serif, DM Mono for code/IRIs.
 """
 
 from __future__ import annotations
@@ -445,12 +432,12 @@ ul.tree a { font-weight: 500; }
    Type cell is the one loze is built on, so it is the only coloured thing here. */
 .z-cell { fill: hsl(var(--surface)); stroke: hsl(var(--border)); stroke-width: 1.5; }
 .z-hit  { fill: hsl(var(--tint)); stroke: hsl(var(--brand-accent)); stroke-width: 2.5; }
-.z-title { font-family: "Archivo", sans-serif; font-size: 17px; font-weight: 700;
+.z-title { font-family: "Archivo", sans-serif; font-size: 15px; letter-spacing: 1.8px; font-weight: 700;
   fill: hsl(var(--foreground)); }
 .z-title.z-hit { fill: hsl(var(--brand-accent)); stroke: none; }
 .z-code { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.1em;
   fill: hsl(var(--faint)); text-anchor: end; }
-.z-gloss { font-family: "Archivo", sans-serif; font-size: 13px; fill: hsl(var(--muted-foreground)); }
+.z-gloss { font-family: "Archivo", sans-serif; font-size: 15px; letter-spacing: 1.8px; fill: hsl(var(--muted-foreground)); }
 .z-item { font-family: "Archivo", ui-serif, Georgia, serif; font-size: 13.5px; fill: hsl(var(--foreground)); }
 .z-axis { font-family: "DM Mono", monospace; font-size: 12px; letter-spacing: var(--tracking-label);
   fill: hsl(var(--foreground)); }
@@ -711,54 +698,46 @@ QUERY_FIGURE = '''
 
 EVENT_FIGURE = '''
 <figure class="fig">
-<svg viewBox="0 0 960 420" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="A two by two. Columns are Thing and Eventuality, rows are SchematicParticular and ConcreteParticular. Each quadrant names the two loze classes it is the intersection of. Toyota Corolla is a schematic thing, the 30,000-mile service a schematic eventuality, my Corolla a concrete thing, and its service on 3 March a concrete eventuality. The same hasConcretization relation runs down both columns.">
-  <defs>
-    <marker id="are" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
-    </marker>
-  </defs>
-
-  <text class="fig-band-lab" x="196" y="26">A THING</text>
-  <text class="fig-band-lab" x="560" y="26">A HAPPENING</text>
-  <text class="fig-band-lab" x="0" y="118">SCHEMATIC</text>
-  <text class="fig-band-lab" x="0" y="310">CONCRETE</text>
-  <line class="fig-rule" x1="530" y1="42" x2="530" y2="380"/>
-  <line class="fig-rule" x1="180" y1="216" x2="930" y2="216"/>
-
-  <text class="q-tag" x="196" y="62">SchematicParticular &#215; Thing</text>
-  <rect class="n-inst n-schem" x="196" y="74" width="290" height="66"/>
-  <text class="n-lab n-sm" x="341" y="100">Toyota Corolla</text>
-  <text class="n-kind" x="341" y="118">the model, not a car</text>
-
-  <text class="q-tag" x="560" y="62">SchematicParticular &#215; Eventuality</text>
-  <rect class="n-event n-schem-e" x="560" y="74" width="330" height="66"/>
-  <text class="n-lab n-sm" x="725" y="100">the 30,000-mile service</text>
-  <text class="n-kind" x="725" y="118">the procedure, not a visit</text>
-
-  <text class="q-tag" x="196" y="256">ConcreteParticular &#215; Thing</text>
-  <rect class="n-inst" x="196" y="268" width="290" height="66"/>
-  <text class="n-lab n-sm" x="341" y="294">my Corolla</text>
-  <text class="n-kind" x="341" y="312">on the drive</text>
-
-  <text class="q-tag" x="560" y="256">ConcreteParticular &#215; Eventuality</text>
-  <rect class="n-event" x="560" y="268" width="330" height="66"/>
-  <text class="n-lab n-sm" x="725" y="294">its service, 3 March</text>
-  <text class="n-kind" x="725" y="312">two hours, one garage</text>
-
-  <line class="e-prop" x1="341" y1="140" x2="341" y2="264" marker-end="url(#are)"/>
-  <line class="e-prop" x1="725" y1="140" x2="725" y2="264" marker-end="url(#are)"/>
-  <text class="e-lab e-lab-prop" x="352" y="200">hasConcretization</text>
-  <text class="e-lab e-lab-prop" x="736" y="200">hasConcretization</text>
-
-  <text class="fig-note" x="0" y="404">Four classes, two independent cuts. Every quadrant is populated, and the same relation carries the vertical one.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="574" viewBox="0 0 1060 574">
+<rect x="0" y="0" width="1060" height="574" fill="#FFFFFF"></rect>
+<defs><marker id="ah-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0D1117"></path></marker></defs>
+<line x1="486" y1="46" x2="486" y2="530" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="8 8"></line>
+<line x1="43" y1="287" x2="991" y2="287" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="8 8"></line>
+<line x1="332" y1="167" x2="660" y2="167" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+<line x1="332" y1="424" x2="660" y2="424" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+<line x1="243" y1="188" x2="243" y2="388" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+<line x1="758" y1="188" x2="758" y2="388" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+<text x="144" y="52" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8" fill="#0D1117">THING</text>
+<text x="692" y="52" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8" fill="#0D1117">OCCURENCE</text>
+<text x="18" y="167" transform="rotate(-90 18 167)" text-anchor="middle" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="1.5" fill="#5A6260">SCHEMATIC</text>
+<text x="18" y="424" transform="rotate(-90 18 424)" text-anchor="middle" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="1.5" fill="#5A6260">CONCRETE</text>
+<rect x="145" y="146" width="196" height="42" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
+<line x1="146.5" y1="146" x2="146.5" y2="188" stroke="#059669" stroke-width="3"></line>
+<text x="243" y="172" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_ToyotaCorolla</text>
+<rect x="660" y="146" width="196" height="42" fill="#EFF8FD" stroke="#BAE6FD" stroke-width="1"></rect>
+<line x1="661.5" y1="146" x2="661.5" y2="188" stroke="#0EA5E9" stroke-width="3"></line>
+<text x="758" y="172" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_30kMileSvc</text>
+<rect x="145" y="403" width="196" height="42" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
+<line x1="146.5" y1="403" x2="146.5" y2="445" stroke="#059669" stroke-width="3"></line>
+<text x="243" y="429" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_AlicesCorolla</text>
+<rect x="660" y="403" width="196" height="42" fill="#EFF8FD" stroke="#BAE6FD" stroke-width="1"></rect>
+<line x1="661.5" y1="403" x2="661.5" y2="445" stroke="#0EA5E9" stroke-width="3"></line>
+<text x="758" y="429" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_Alices30kMileSvc</text>
+<rect x="405" y="156" width="180" height="20" fill="#FFFFFF"></rect>
+<text x="496" y="171" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#0D1117">:hasRecommendedService</text>
+<rect x="450" y="413" width="95" height="20" fill="#FFFFFF"></rect>
+<text x="496" y="428" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#0D1117">:hasService</text>
+<rect x="173" y="276" width="140" height="20" fill="#FFFFFF"></rect>
+<text x="243" y="291" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#0D1117">:hasConcretization</text>
+<rect x="688" y="276" width="140" height="20" fill="#FFFFFF"></rect>
+<text x="758" y="291" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#0D1117">:hasConcretization</text>
 </svg>
-<figcaption>The quadrant labels are the classes themselves: each cell is the intersection of one
-row class and one column class, and loze declares no disjointness between any of them, so all four
-are inhabitable. The right-hand column is the one most modelling cannot hold — it is where a
-process type is forced to become a class and stops being able to carry its own data. That loze
-keeps it a particular is Zemach&#8217;s addition to Lowe&#8217;s four categories, the two sources
-<a href="/">the ontology</a> names.</figcaption>
+<figcaption>
+Loze allows schematic particulars to represent Things and Occurences, all as individuals. 
+By doing so, it is possible to model general, repeatable processes with more information, e.g. 
+the schematic particular event <code>:OilChange</code> can have an <code>:expectedPrice</code> of 100 USD.
+Because of this flexibility, Loze provides all of the aforementioned benefits not only to things, but happenings too.
+
 </figure>
 '''
 
@@ -795,17 +774,17 @@ def zemach_figure() -> str:
 <figure class="fig">
 <svg viewBox="0 0 960 556" role="img" xmlns="http://www.w3.org/2000/svg"
      aria-label="Zemach's four ontologies as a two by two. Columns are bound in time and continuous in time; rows are bound in space and continuous in space. Event, Thing, Process and Type. The Type quadrant, wholly present in every token, is highlighted: water, the letter A, Beethoven's Fifth. That is the cell loze keeps as a particular rather than a universal.">
-  <text class="z-axis" x="170" y="34" font-family="Archivo, sans-serif" font-weight="600" >BOUND IN TIME</text>
-  <text class="z-sub" x="170" y="52" font-family="Archivo, sans-serif" font-weight="500">has temporal parts; over when done</text>
-  <text class="z-axis" x="560" y="34" font-family="Archivo, sans-serif" font-weight="600">CONTINUOUS IN TIME</text>
-  <text class="z-sub" x="560" y="52" font-family="Archivo, sans-serif" font-weight="500">wholly present at each time</text>
-  <text class="z-axis" x="0" y="150" font-family="Archivo, sans-serif" font-weight="600">BOUND IN</text>
-  <text class="z-axis" x="0" y="168" font-family="Archivo, sans-serif" font-weight="600">SPACE</text>
-  <text class="z-sub" x="0" y="188" font-family="Archivo, sans-serif" font-weight="500">has spatial parts</text>
-  <text class="z-axis" x="0" y="352" font-family="Archivo, sans-serif" font-weight="600">CONTINUOUS</text>
-  <text class="z-axis" x="0" y="370" font-family="Archivo, sans-serif" font-weight="600">IN SPACE</text>
-  <text class="z-sub" x="0" y="390" font-family="Archivo, sans-serif" font-weight="500">wholly present</text>
-  <text class="z-sub" x="0" y="406" font-family="Archivo, sans-serif" font-weight="500">at each place</text>
+  <text class="z-axis" x="170" y="34" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">BOUND IN TIME</text>
+  <text class="z-sub" x="170" y="52" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">has temporal parts; over when done</text>
+  <text class="z-axis" x="560" y="34" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">CONTINUOUS IN TIME</text>
+  <text class="z-sub" x="560" y="52" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">wholly present at each time</text>
+  <text class="z-axis" x="0" y="150" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">BOUND IN</text>
+  <text class="z-axis" x="0" y="168" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">SPACE</text>
+  <text class="z-sub" x="0" y="188" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">has spatial parts</text>
+  <text class="z-axis" x="0" y="352" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">CONTINUOUS</text>
+  <text class="z-axis" x="0" y="370" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">IN SPACE</text>
+  <text class="z-sub" x="0" y="390" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">wholly present</text>
+  <text class="z-sub" x="0" y="406" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">at each place</text>
   {out}
   <rect class="z-span" x="160" y="86" width="380" height="398"/>
   <text class="z-span-lab" x="350" y="466">loze:Eventuality</text>
@@ -813,10 +792,9 @@ def zemach_figure() -> str:
   <text class="z-span-lab" x="740" y="264">loze:Thing</text>
   <rect class="z-span z-span-hit" x="550" y="288" width="380" height="196"/>
   <text class="z-span-lab z-span-hit-lab" x="740" y="466">loze:SchematicParticular</text>
-  <text class="fig-note" x="152" y="538">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
+  <text class="fig-note" x="152" y="538" font-family="Newsreader">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
 </svg>
 <figcaption>
-
 	The central novelty of loze is the use of <a href="/SchematicParticular">Schematic Particulars</a>; 
     things that are repeatable, wholly present at each time and place, 
     but are a step of abstraction below classes. Examples of such things, 
