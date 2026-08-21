@@ -36,11 +36,8 @@ it: a static asset at the same path always wins, so the Function is never
 reached. RDF stays available at `/<name>.ttl` and is advertised from every page
 with <link rel="alternate">.
 
-Styling follows the Semantic Partners design system as shipped in
-operational-overlord (src/app/globals.css, tailwind.config.ts): ink/off-white
-surfaces, one green accent, square corners, Plus Jakarta Sans / DM Sans / DM Mono,
-and the reserved graph-node triad — class blue, instance green, property amber —
-which is the one place a colour here carries meaning rather than decoration.
+Styling is close to SP's style sheet. green as the main accent, blue is used as a secondary. amber is dropped. 
+Typefaces are changed: Archivo for grotesk, Newsreader for serif, DM Mono for code/IRIs.
 """
 
 from __future__ import annotations
@@ -256,14 +253,14 @@ body {
   margin: 0;
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-family: "Archivo", ui-sans-serif, system-ui, -apple-system, sans-serif;
   font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3, h4 {
-  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  font-weight: 700;
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
   line-height: 1.1;
   margin: 0;
 }
@@ -291,7 +288,11 @@ header.top {
   color: hsl(var(--muted-foreground));
   margin-bottom: 0.75rem;
 }
-.lead { font-size: var(--fs-body-lg); font-weight: 300; color: hsl(var(--foreground)); margin: 1rem 0 0; }
+.lead {
+  font-family: "Newsreader", ui-serif, Georgia, serif;
+  font-size: var(--fs-body-lg); font-weight: 300; font-style: normal;
+  color: hsl(var(--foreground)); margin: 1rem 0 0;
+}
 .iri {
   font-family: "DM Mono", ui-monospace, monospace;
   font-size: var(--fs-sm);
@@ -519,6 +520,7 @@ a.modtag:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-
 .fig { margin: 0 0 1rem; }
 .fig svg { width: 100%; height: auto; display: block; }
 .fig figcaption {
+  font-family: "Newsreader", ui-serif, Georgia, serif;
   max-width: var(--measure); margin-top: 1rem;
   font-size: var(--fs-sm); color: hsl(var(--muted-foreground));
 }
@@ -541,15 +543,24 @@ a.modtag:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-
    Type cell is the one loze is built on, so it is the only coloured thing here. */
 .z-cell { fill: hsl(var(--surface)); stroke: hsl(var(--border)); stroke-width: 1.5; }
 .z-hit  { fill: hsl(var(--tint)); stroke: hsl(var(--brand-accent)); stroke-width: 2.5; }
-.z-title { font-family: "Plus Jakarta Sans", sans-serif; font-size: 17px; font-weight: 700;
+.z-title { font-family: "Archivo", sans-serif; font-size: 15px; letter-spacing: 1.8px; font-weight: 700;
   fill: hsl(var(--foreground)); }
 .z-title.z-hit { fill: hsl(var(--brand-accent)); stroke: none; }
 .z-code { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.1em;
   fill: hsl(var(--faint)); text-anchor: end; }
-.z-gloss { font-family: "DM Sans", sans-serif; font-size: 13px; fill: hsl(var(--muted-foreground)); }
-.z-item { font-family: "DM Sans", sans-serif; font-size: 13.5px; fill: hsl(var(--foreground)); }
+.z-gloss { font-family: "Archivo", sans-serif; font-size: 15px; letter-spacing: 1.8px; fill: hsl(var(--muted-foreground)); }
+.z-item { font-family: "Archivo", ui-serif, Georgia, serif; font-size: 13.5px; fill: hsl(var(--foreground)); }
 .z-axis { font-family: "DM Mono", monospace; font-size: 12px; letter-spacing: var(--tracking-label);
   fill: hsl(var(--foreground)); }
+/* loze's categories laid over Zemach's grid. Eventuality is the one that spans:
+   he separates Event from Process on spatial continuity and loze does not cut
+   there, so one outline has to cross a boundary. */
+.z-span { fill: none; stroke: hsl(var(--muted-foreground)); stroke-width: 2;
+  stroke-dasharray: 7 5; }
+.z-span-hit { stroke: hsl(var(--brand-accent)); stroke-width: 2.5; }
+.z-span-lab { font-family: "DM Mono", monospace; font-size: 12.5px; letter-spacing: 0.04em;
+  fill: hsl(var(--muted-foreground)); text-anchor: middle; stroke: none; }
+.z-span-hit-lab { fill: hsl(var(--brand-accent)); }
 .z-sub { font-family: "DM Sans", sans-serif; font-size: 12px; fill: hsl(var(--faint)); }
 .q-tag { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.04em;
   fill: hsl(var(--faint)); }
@@ -561,13 +572,13 @@ a.modtag:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-
 .n-schem-e { stroke-width: 3; stroke-dasharray: 3 3; }
 .n-event { fill: hsl(var(--surface)); stroke: hsl(var(--foreground) / 0.55);
   stroke-width: 1.5; stroke-dasharray: 2 3; }
-.q-lab { font-family: "DM Sans", sans-serif; font-size: 12.5px; fill: hsl(var(--foreground)); text-anchor: middle; }
+.q-lab { font-family: "Archivo", sans-serif; font-size: 12.5px; fill: hsl(var(--foreground)); text-anchor: middle; }
 
 .n-class { fill: hsl(var(--clr-node-class) / 0.10); stroke: hsl(var(--clr-node-class)); stroke-width: 1.5; }
 .n-inst  { fill: hsl(var(--clr-node-instance) / 0.12); stroke: hsl(var(--clr-node-instance)); stroke-width: 1.5; }
 /* The schematic one is the claim, so it is the only node drawn heavier. */
 .n-schem { stroke-width: 3; }
-.n-lab  { font-family: "DM Sans", sans-serif; font-size: 14px; font-weight: 500;
+.n-lab  { font-family: "Archivo", sans-serif; font-size: 14px; font-weight: 500;
           fill: hsl(var(--foreground)); text-anchor: middle; }
 .n-sm  { font-size: 13px; }
 .n-kind { font-family: "DM Mono", monospace; font-size: 11px;
@@ -596,212 +607,248 @@ footer.bot .measure p { margin: 0 0 0.75rem; }
 
 FIGURE = '''
 <figure class="fig">
-<svg viewBox="0 0 960 444" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="A line divides classes above from particulars below. Without a schematic particular, Toyota Corolla must appear twice, once as a class so units can be instances of it and once as an individual so it can carry a kerb weight, with the two kept in sync by hand. With one, it appears once, below the line, carrying its data and acting as the benchmark its units concretize.">
-  <defs>
-    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
-    </marker>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="1720" height="900" viewBox="0 0 1720 900">
+    <defs>
+      <marker id="ah-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#0D1117"></path>
+      </marker>
+      <marker id="ah-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#B45309"></path>
+      </marker>
+      <marker id="ah-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#059669"></path>
+      </marker>
+    </defs>
+  
+    <rect x="0" y="0" width="1720" height="900" fill="#FFFFFF"></rect>
+  
+    <line x1="0" y1="420" x2="1720" y2="420" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="8 8"></line>
+    <line x1="840" y1="60" x2="840" y2="840" stroke="#0D1117" stroke-width="2"></line>
+  
+    <text x="80" y="50" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8" fill="#0D1117">PUNNING</text>
+    <text x="920" y="50" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8" fill="#0D1117">SCHEMATIC PARTICULAR</text>
+    <text transform="translate(38,240) rotate(-90)" text-anchor="middle" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8" fill="#5A6260">CLASSES</text>
+    <text transform="translate(38,610) rotate(-90)" text-anchor="middle" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8" fill="#5A6260">INDIVIDUALS</text>
+  
+    
+    <line x1="420" y1="304" x2="420" y2="162" fill="none" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+    <line x1="220" y1="500" x2="358" y2="362" fill="none" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+    <line x1="482" y1="362" x2="618" y2="498" fill="none" stroke="#B45309" stroke-width="1.5" stroke-dasharray="7 6" marker-start="url(#ah-amber)" marker-end="url(#ah-amber)"></line>
+  
+    
+    <line x1="1060" y1="520" x2="1218" y2="362" fill="none" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+    <line x1="1572" y1="592" x2="1342" y2="362" fill="none" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+    <line x1="1202" y1="620" x2="1448" y2="620" fill="none" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+  
+    
+    <rect x="300.5" y="100.5" width="239" height="55" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="1"></rect>
+    <line x1="300" y1="101.5" x2="540" y2="101.5" stroke="#0EA5E9" stroke-width="3"></line>
+    <text x="420" y="135" font-family="DM Mono, Menlo, Consolas, monospace" font-size="20" fill="#0D1117" text-anchor="middle">:Car</text>
+  
+    
+    <rect x="300.5" y="304.5" width="239" height="55" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="1"></rect>
+    <line x1="300" y1="305.5" x2="540" y2="305.5" stroke="#0EA5E9" stroke-width="3"></line>
+    <text x="420" y="339" font-family="DM Mono, Menlo, Consolas, monospace" font-size="20" fill="#0D1117" text-anchor="middle">:ToyotaCorolla</text>
+  
+    
+    <rect x="80.5" y="500.5" width="279" height="199" fill="#FBFCFA" stroke="#C9CEC7" stroke-width="1"></rect>
+    <rect x="100.5" y="530.5" width="239" height="57" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
+    <line x1="101.5" y1="530" x2="101.5" y2="588" stroke="#059669" stroke-width="3"></line>
+    <text x="220" y="565" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_AlicesCorolla</text>
+    <rect x="100.5" y="612.5" width="239" height="57" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
+    <line x1="101.5" y1="612" x2="101.5" y2="670" stroke="#059669" stroke-width="3"></line>
+    <text x="220" y="647" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_BobsCorolla</text>
+  
+    
+    <rect x="500.5" y="500.5" width="239" height="55" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
+    <line x1="501.5" y1="500" x2="501.5" y2="556" stroke="#059669" stroke-width="3"></line>
+    <text x="620" y="534" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_ToyotaCorolla</text>
+    <rect x="500.5" y="556.5" width="239" height="43" fill="#FFFFFF" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="5 4"></rect>
+    <text x="620" y="584" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#5A6260" text-anchor="middle">:advertisedWeight 1205kg</text>
+  
+    
+    <rect x="432" y="222" width="141" height="21" fill="#FFFFFF"></rect>
+    <text x="438" y="238" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">rdfs:subClassOf</text>
+    <rect x="250" y="419" width="80" height="21" fill="#FFFFFF"></rect>
+    <text x="290" y="435" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" text-anchor="middle">rdf:type</text>
+    <rect x="512" y="419" width="76" height="21" fill="#FFFFFF"></rect>
+    <text x="550" y="435" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="1.2" fill="#B45309" text-anchor="middle">PUNNED</text>
+  
+    
+    <rect x="1160.5" y="304.5" width="239" height="55" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="1"></rect>
+    <line x1="1160" y1="305.5" x2="1400" y2="305.5" stroke="#0EA5E9" stroke-width="3"></line>
+    <text x="1280" y="339" font-family="DM Mono, Menlo, Consolas, monospace" font-size="20" fill="#0D1117" text-anchor="middle">:Car</text>
+  
+    
+    <rect x="920.5" y="520.5" width="279" height="199" fill="#FBFCFA" stroke="#C9CEC7" stroke-width="1"></rect>
+    <rect x="940.5" y="550.5" width="239" height="57" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
+    <line x1="941.5" y1="550" x2="941.5" y2="608" stroke="#059669" stroke-width="3"></line>
+    <text x="1060" y="585" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_AlicesCorolla</text>
+    <rect x="940.5" y="632.5" width="239" height="57" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
+    <line x1="941.5" y1="632" x2="941.5" y2="690" stroke="#059669" stroke-width="3"></line>
+    <text x="1060" y="667" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_BobsCorolla</text>
+  
+    
+    <rect x="1452.5" y="592.5" width="239" height="55" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
+    <line x1="1453.5" y1="592" x2="1453.5" y2="648" stroke="#059669" stroke-width="3"></line>
+    <text x="1572" y="626" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_ToyotaCorolla</text>
+    <rect x="1452.5" y="648.5" width="239" height="43" fill="#FFFFFF" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="5 4"></rect>
+    <text x="1572" y="676" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#5A6260" text-anchor="middle">:advertisedWeight 1205kg</text>
+  
+    
+    <rect x="1028" y="442" width="80" height="21" fill="#FFFFFF"></rect>
+    <text x="1034" y="458" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">rdf:type</text>
+    <rect x="1444" y="442" width="80" height="21" fill="#FFFFFF"></rect>
+    <text x="1450" y="458" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">rdf:type</text>
+    <rect x="1236" y="586" width="180" height="21" fill="#FFFFFF"></rect>
+    <text x="1242" y="602" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:isConcretizationOf</text>
+  </svg>
+<figcaption>
+By using schematic particulars, modelers are able to leverage a third, 
+middle layer of abstraction. The schematic particular is an <code>owl:NamedIndividual</code>, 
+yet is semantically more abstract than a concrete object. 
+Objects (also individuals) concretize these particulars at the most specific layer, 
+while classes typify particulars at the most abstract layer. <br><br>
 
-  <line class="fig-band" x1="0" y1="206" x2="960" y2="206"/>
-  <text class="fig-band-lab" x="0" y="76">CLASSES</text>
-  <text class="fig-band-lab" x="0" y="250">PARTICULARS</text>
+In the above example, we outline two methods for modeling the fact that there are cars, 
+in the most general sense, as well as Toyota Corollas as products,
+ in addition to the actual objects that are Alice’s and Bob’s Corollas. <br><br>
 
-  <text class="fig-panel" x="150" y="24">Without a schematic particular</text>
-  <text class="fig-panel" x="590" y="24">With one</text>
-  <line class="fig-rule" x1="512" y1="44" x2="512" y2="404"/>
-
-  <!-- LEFT: the same name has to appear on both sides of the line -->
-  <rect class="n-class" x="150" y="56" width="150" height="38"/>
-  <text class="n-lab n-sm" x="225" y="80">Car</text>
-
-  <rect class="n-class" x="150" y="128" width="150" height="38"/>
-  <text class="n-lab n-sm" x="225" y="152">Toyota Corolla</text>
-  <line class="e-base" x1="225" y1="128" x2="225" y2="98" marker-end="url(#ar)"/>
-  <text class="e-lab" x="234" y="120">subClassOf</text>
-
-  <rect class="n-inst n-pun" x="330" y="226" width="150" height="38"/>
-  <text class="n-lab n-sm" x="405" y="250">Toyota Corolla</text>
-  <text class="n-kind" x="405" y="280">advertised 1205 kg</text>
-
-  <line class="e-pun" x1="300" y1="156" x2="336" y2="226"/>
-  <text class="e-lab e-lab-warn" x="332" y="186">punned</text>
-
-  <rect class="grp" x="126" y="326" width="230" height="58"/>
-  <rect class="n-inst" x="138" y="338" width="98" height="34"/>
-  <text class="n-lab n-sm" x="187" y="360">my Corolla</text>
-  <rect class="n-inst" x="246" y="338" width="98" height="34"/>
-  <text class="n-lab n-sm" x="295" y="360">a new one</text>
-
-  <line class="e-base" x1="225" y1="326" x2="225" y2="172" marker-end="url(#ar)"/>
-  <text class="e-lab" x="234" y="300">a</text>
-
-  <text class="fig-note fig-warn" x="126" y="410">Two entities, one name. Nothing keeps them in step.</text>
-
-  <!-- RIGHT: it appears once, and refines within the particulars -->
-  <rect class="n-class" x="700" y="56" width="150" height="38"/>
-  <text class="n-lab n-sm" x="775" y="80">Car</text>
-
-  <rect class="grp" x="524" y="248" width="414" height="140"/>
-
-  <rect class="n-inst n-schem" x="536" y="272" width="156" height="46"/>
-  <text class="n-lab n-sm" x="614" y="292">Toyota Corolla</text>
-  <text class="n-kind" x="614" y="309">the model</text>
-
-  <rect class="n-inst n-schem" x="760" y="272" width="166" height="46"/>
-  <text class="n-lab n-sm" x="843" y="292">Corolla Hatchback</text>
-  <text class="n-kind" x="843" y="309">advertised 1205 kg</text>
-
-  <line class="e-base" x1="760" y1="295" x2="696" y2="295" marker-end="url(#ar)"/>
-  <text class="e-lab" x="700" y="262">isDeterminationOf</text>
-
-  <rect class="n-inst" x="760" y="344" width="166" height="32"/>
-  <text class="n-lab n-sm" x="843" y="365">my Corolla</text>
-  <line class="e-prop" x1="843" y1="344" x2="843" y2="322" marker-end="url(#ar)"/>
-
-  <line class="e-base" x1="690" y1="248" x2="775" y2="98" marker-end="url(#ar)"/>
-  <text class="e-lab" x="712" y="180">a</text>
-
-  <text class="fig-note" x="524" y="412">One entity, and it refines without ever becoming a class:</text>
-  <text class="fig-note" x="524" y="428">determination is subclassing&#8217;s counterpart down here.</text>
-</svg>
-<figcaption>The line divides classes from particulars, and the question is how many times
-<code>Toyota Corolla</code> has to appear. On the left, twice: as a class so units can be instances
-of it, and again as an individual so it can hold a kerb weight — two entities sharing a name, kept
-in step by hand. A schematic particular removes the second one &#8212; and note what happens below the
-line: <code>Corolla Hatchback</code> refines the model without leaving the particulars, because
-<code>isDeterminationOf</code> is, in the ontology&#8217;s words, &#8220;the schematic particulars&#8217;
-counterpart of subclasshood&#8221;. Amber is <code>isConcretizationOf</code>. The example is the
-ontology&#8217;s own: <em>&#8220;the specifications of the Toyota Corolla are the benchmark for the
-features of its units&#8221;</em>, <code>skos:note</code> on
-<a href="/SchematicParticular">Schematic Particular</a>.</figcaption>
+In the left approach, we model a Corolla as both an owl:Class and <code>owl:NamedIndividual</code>, 
+in a standard example of punning. Punning enables us to say things about the thing 
+that is a Toyota Corolla (that it is advertised to be 1205 kg). 
+	
+In contrast, using Loze and its <code>:SchematicParticular</code> to model this, 
+we are able to instantiate a schematic particular (<code>:_ToyotaCorolla</code>), 
+which is of type <code>:Car</code>, and is concretized by both Alice and Bob’s 
+Corollas, achieving the same semantic content without the need to resort to punning.
+</figcaption>
 </figure>
 '''
 
-
-def _chip(x, y, label, cls="q-chip"):
-    w = max(74, int(len(label) * 7.6) + 22)
-    return (f'<rect class="{cls}" x="{x}" y="{y}" width="{w}" height="30"/>'
-            f'<text class="q-lab" x="{x + w // 2}" y="{y + 20}">{label}</text>'), w
-
-
-def _row(x0, y, chips, cls="q-chip"):
-    out, cx = "", x0
-    for c in chips:
-        frag, w = _chip(cx, y, c, cls)
-        out += frag
-        cx += w + 8
-    return out
-
-
-def query_figure() -> str:
-    """Second figure: what the category buys at query time.
-
-    The first figure shows the modelling cost — the model said twice. This shows
-    the consequence, which is where it actually bites: a general question about
-    the model either reaches it or it does not. The pattern is split into its two
-    triples so the join is visible; on the left the two match-sets are disjoint,
-    so nothing satisfies both.
-    """
-    L, R = 126, 546
-    rows = [
-        (78,  "?m a :Car",
-         ["my Corolla", "a new one"],
-         ["Corolla Hatchback", "my Corolla", "a new one"]),
-        (176, "?m :advertisedWeight ?kg",
-         ["Corolla Hatchback"],
-         ["Corolla Hatchback"]),
-    ]
-    body = ""
-    for y, pattern, left, right in rows:
-        body += (f'<text class="fig-q" x="{L}" y="{y}">{pattern}</text>'
-                 f'<text class="fig-q" x="{R}" y="{y}">{pattern}</text>')
-        body += _row(L, y + 12, left)
-        body += _row(R, y + 12, right)
-
-    body += (f'<line class="fig-rule" x1="{L}" y1="266" x2="500" y2="266"/>'
-             f'<line class="fig-rule" x1="{R}" y1="266" x2="932" y2="266"/>'
-             f'<text class="fig-q" x="{L}" y="292">both &#8594;</text>'
-             f'<text class="fig-q" x="{R}" y="292">both &#8594;</text>'
-             f'<text class="fig-note fig-warn" x="{L}" y="330">no rows</text>'
-             + _row(R, 306, ["Corolla Hatchback"], "q-chip q-hit")
-             + f'<text class="fig-note fig-ok" x="{R + 190}" y="330">1205 kg</text>')
-
-    return f'''
+QUERY_FIGURE = '''
 <figure class="fig">
-<svg viewBox="0 0 960 356" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="The same two-triple pattern asked on both sides. Where the model is a class, the things that are Cars and the thing that has a kerb weight are different sets, so nothing satisfies both and the query returns no rows. Where the model is a schematic particular it belongs to both sets, and the query returns Toyota Corolla with its kerb weight.">
-  <text class="fig-panel" x="126" y="24">Model as a class</text>
-  <text class="fig-panel" x="546" y="24">Model as a schematic particular</text>
-  <line class="fig-rule" x1="512" y1="40" x2="512" y2="340"/>
-  <text class="fig-band-lab" x="0" y="90">MATCHES</text>
-  <text class="fig-band-lab" x="0" y="292">JOIN</text>
-  {body}
-</svg>
-<figcaption>Asking about the model, not a car. Note whose weight it is: a car has a mass you
-could put it on a weighbridge to find, while an <em>advertised</em> weight belongs to the variant
-and holds for every unit of it. That is a fact about a repeatable thing, which is exactly what loze
-gives you somewhere to put. The pattern is two triples, and the
-answer turns on whether one thing satisfies both. Model it as a class and it cannot: a subclass is not an
-instance, so the set that has a kerb weight and the set that are Cars never meet. As a schematic
-particular the model sits in both, and the general question is answered with the same pattern you
-would use for any individual — no metamodelling, and nothing to tell a reasoner about two entities
-that happen to share a name.</figcaption>
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="880" viewBox="0 0 1300 880">
+  <rect x="0" y="0" width="1300" height="880" fill="#FFFFFF"/>
+  <line x1="667" y1="90" x2="667" y2="860" stroke="#0D1117" stroke-width="2"/>
+  <line x1="190" y1="563" x2="1300" y2="563" stroke="#0D1117" stroke-width="2"/>
+  <text x="248" y="75" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="1.8" fill="#0D1117">CLASS</text>
+  <text x="700" y="75" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="1.8" fill="#0D1117">SCHEMATIC PARTICULAR</text>
+  <text x="200" y="323" transform="rotate(-90 200 323)" text-anchor="middle" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="1.8" fill="#5A6260">INDIVIDUAL LEVEL</text>
+  <text x="200" y="714" transform="rotate(-90 200 714)" text-anchor="middle" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="1.8" fill="#5A6260">CONCEPT LEVEL</text>
+  <rect x="248" y="110" width="260" height="120" fill="#F6F7F5" stroke="#E4E6E2" stroke-width="1"/>
+  <text x="264" y="141" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">SELECT ?car</text>
+  <text x="264" y="163" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">WHERE{</text>
+  <text x="264" y="185" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">?car a :Car</text>
+  <text x="264" y="207" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">}</text>
+  <rect x="248" y="250" width="150" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="249.5" y1="250" x2="249.5" y2="294" stroke="#059669" stroke-width="3"/>
+  <text x="323" y="277" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_AlicesCorolla</text>
+  <rect x="418" y="250" width="150" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="419.5" y1="250" x2="419.5" y2="294" stroke="#059669" stroke-width="3"/>
+  <text x="493" y="277" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_BobsCorolla</text>
+  <rect x="248" y="314" width="384" height="120" fill="#F6F7F5" stroke="#E4E6E2" stroke-width="1"/>
+  <text x="264" y="345" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">SELECT ?car ?weight</text>
+  <text x="264" y="367" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">WHERE{</text>
+  <text x="264" y="389" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">?car :advertisedWeight ?weight</text>
+  <text x="264" y="411" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">}</text>
+  <rect x="248" y="454" width="172" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="249.5" y1="454" x2="249.5" y2="498" stroke="#059669" stroke-width="3"/>
+  <text x="334" y="481" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_ToyotaCorolla</text>
+  <rect x="248" y="498" width="172" height="30" fill="#FFFFFF" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="334" y="517" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="11" fill="#5A6260">:advertisedWeight 1205kg</text>
+  <rect x="700" y="314" width="260" height="120" fill="#F6F7F5" stroke="#E4E6E2" stroke-width="1"/>
+  <text x="716" y="345" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">SELECT ?car ?weight</text>
+  <text x="716" y="367" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">WHERE{</text>
+  <text x="716" y="389" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">?car a :Car</text>
+  <text x="716" y="411" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">}</text>
+  <rect x="700" y="454" width="150" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="701.5" y1="454" x2="701.5" y2="498" stroke="#059669" stroke-width="3"/>
+  <text x="775" y="481" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_AlicesCorolla</text>
+  <rect x="866" y="454" width="150" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="867.5" y1="454" x2="867.5" y2="498" stroke="#059669" stroke-width="3"/>
+  <text x="941" y="481" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_BobsCorolla</text>
+  <rect x="1032" y="454" width="172" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="1033.5" y1="454" x2="1033.5" y2="498" stroke="#059669" stroke-width="3"/>
+  <text x="1118" y="481" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_ToyotaCorolla</text>
+  <rect x="1032" y="498" width="172" height="30" fill="#FFFFFF" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="1118" y="517" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="11" fill="#5A6260">:advertisedWeight 1205kg</text>
+  <rect x="248" y="592" width="384" height="142" fill="#F6F7F5" stroke="#E4E6E2" stroke-width="1"/>
+  <text x="264" y="623" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">SELECT ?car ?weight</text>
+  <text x="264" y="645" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">WHERE{</text>
+  <text x="264" y="667" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">?car a :Car ;</text>
+  <text x="264" y="689" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">     :advertisedWeight ?weight</text>
+  <text x="264" y="711" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">}</text>
+  <rect x="700" y="592" width="384" height="142" fill="#F6F7F5" stroke="#E4E6E2" stroke-width="1"/>
+  <text x="716" y="623" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">SELECT ?car ?weight</text>
+  <text x="716" y="645" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">WHERE{</text>
+  <text x="716" y="667" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">?car a :Car ;</text>
+  <text x="716" y="689" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">     :advertisedWeight ?weight</text>
+  <text x="716" y="711" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117" xml:space="preserve">}</text>
+  <rect x="700" y="754" width="172" height="44" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <line x1="701.5" y1="754" x2="701.5" y2="798" stroke="#059669" stroke-width="3"/>
+  <text x="786" y="781" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_ToyotaCorolla</text>
+  <rect x="700" y="798" width="172" height="30" fill="#FFFFFF" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="786" y="817" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="11" fill="#5A6260">:advertisedWeight 1205kg</text>
+
+  <rect x="248" y="754" width="172" height="44" fill="#F49F99" stroke="#FF1500" stroke-width="1"/>
+    <line x1="249.5" y1="754" x2="249.5" y2="798" stroke="#EB5045" stroke-width="3"/>
+    <text x="332.5" y="781" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">None</text>
+    
+  </svg>
+  <figcaption>
+  There are query benefits to using Loze’s schematic particulars. 
+  In the Loze example, with <code>:_ToyotaCorolla</code> as both a <code>:Car</code> 
+  a repeatable thing which is concretized, users can ask concept-level questions, such as 
+  “What is the advertised weight of a Toyota Corolla?” using concise and transparent SPARQL patterns,
+  rather than resorting to convoluted metamodeling, or <code>owl:NamedIndividual</code> proxies for an 
+  <code>owl:Class</code>
+  </figcaption>
 </figure>
 '''
-
 
 EVENT_FIGURE = '''
 <figure class="fig">
-<svg viewBox="0 0 960 420" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="A two by two. Columns are Thing and Eventuality, rows are SchematicParticular and ConcreteParticular. Each quadrant names the two loze classes it is the intersection of. Toyota Corolla is a schematic thing, the 30,000-mile service a schematic eventuality, my Corolla a concrete thing, and its service on 3 March a concrete eventuality. The same hasConcretization relation runs down both columns.">
-  <defs>
-    <marker id="are" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
-    </marker>
-  </defs>
-
-  <text class="fig-band-lab" x="196" y="26">A THING</text>
-  <text class="fig-band-lab" x="560" y="26">A HAPPENING</text>
-  <text class="fig-band-lab" x="0" y="118">SCHEMATIC</text>
-  <text class="fig-band-lab" x="0" y="310">CONCRETE</text>
-  <line class="fig-rule" x1="530" y1="42" x2="530" y2="380"/>
-  <line class="fig-rule" x1="180" y1="216" x2="930" y2="216"/>
-
-  <text class="q-tag" x="196" y="62">SchematicParticular &#215; Thing</text>
-  <rect class="n-inst n-schem" x="196" y="74" width="290" height="66"/>
-  <text class="n-lab n-sm" x="341" y="100">Toyota Corolla</text>
-  <text class="n-kind" x="341" y="118">the model, not a car</text>
-
-  <text class="q-tag" x="560" y="62">SchematicParticular &#215; Eventuality</text>
-  <rect class="n-event n-schem-e" x="560" y="74" width="330" height="66"/>
-  <text class="n-lab n-sm" x="725" y="100">the 30,000-mile service</text>
-  <text class="n-kind" x="725" y="118">the procedure, not a visit</text>
-
-  <text class="q-tag" x="196" y="256">ConcreteParticular &#215; Thing</text>
-  <rect class="n-inst" x="196" y="268" width="290" height="66"/>
-  <text class="n-lab n-sm" x="341" y="294">my Corolla</text>
-  <text class="n-kind" x="341" y="312">on the drive</text>
-
-  <text class="q-tag" x="560" y="256">ConcreteParticular &#215; Eventuality</text>
-  <rect class="n-event" x="560" y="268" width="330" height="66"/>
-  <text class="n-lab n-sm" x="725" y="294">its service, 3 March</text>
-  <text class="n-kind" x="725" y="312">two hours, one garage</text>
-
-  <line class="e-prop" x1="341" y1="140" x2="341" y2="264" marker-end="url(#are)"/>
-  <line class="e-prop" x1="725" y1="140" x2="725" y2="264" marker-end="url(#are)"/>
-  <text class="e-lab e-lab-prop" x="352" y="200">hasConcretization</text>
-  <text class="e-lab e-lab-prop" x="736" y="200">hasConcretization</text>
-
-  <text class="fig-note" x="0" y="404">Four classes, two independent cuts. Every quadrant is populated, and the same relation carries the vertical one.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="574" viewBox="0 0 1060 574">
+<rect x="0" y="0" width="1060" height="574" fill="#FFFFFF"></rect>
+<defs><marker id="ah-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0D1117"></path></marker></defs>
+<line x1="486" y1="46" x2="486" y2="530" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="8 8"></line>
+<line x1="43" y1="287" x2="991" y2="287" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="8 8"></line>
+<line x1="332" y1="167" x2="660" y2="167" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+<line x1="332" y1="424" x2="660" y2="424" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+<line x1="243" y1="188" x2="243" y2="388" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+<line x1="758" y1="188" x2="758" y2="388" stroke="#0D1117" stroke-width="1.5" marker-end="url(#ah-ink)"></line>
+<text x="144" y="52" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8" fill="#0D1117">THING</text>
+<text x="692" y="52" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8" fill="#0D1117">OCCURENCE</text>
+<text x="18" y="167" transform="rotate(-90 18 167)" text-anchor="middle" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="1.5" fill="#5A6260">SCHEMATIC</text>
+<text x="18" y="424" transform="rotate(-90 18 424)" text-anchor="middle" font-family="DM Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="1.5" fill="#5A6260">CONCRETE</text>
+<rect x="145" y="146" width="196" height="42" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
+<line x1="146.5" y1="146" x2="146.5" y2="188" stroke="#059669" stroke-width="3"></line>
+<text x="243" y="172" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_ToyotaCorolla</text>
+<rect x="660" y="146" width="196" height="42" fill="#EFF8FD" stroke="#BAE6FD" stroke-width="1"></rect>
+<line x1="661.5" y1="146" x2="661.5" y2="188" stroke="#0EA5E9" stroke-width="3"></line>
+<text x="758" y="172" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_30kMileSvc</text>
+<rect x="145" y="403" width="196" height="42" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
+<line x1="146.5" y1="403" x2="146.5" y2="445" stroke="#059669" stroke-width="3"></line>
+<text x="243" y="429" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_AlicesCorolla</text>
+<rect x="660" y="403" width="196" height="42" fill="#EFF8FD" stroke="#BAE6FD" stroke-width="1"></rect>
+<line x1="661.5" y1="403" x2="661.5" y2="445" stroke="#0EA5E9" stroke-width="3"></line>
+<text x="758" y="429" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#0D1117">:_Alices30kMileSvc</text>
+<rect x="405" y="156" width="180" height="20" fill="#FFFFFF"></rect>
+<text x="496" y="171" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#0D1117">:hasRecommendedService</text>
+<rect x="450" y="413" width="95" height="20" fill="#FFFFFF"></rect>
+<text x="496" y="428" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#0D1117">:hasService</text>
+<rect x="173" y="276" width="140" height="20" fill="#FFFFFF"></rect>
+<text x="243" y="291" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#0D1117">:hasConcretization</text>
+<rect x="688" y="276" width="140" height="20" fill="#FFFFFF"></rect>
+<text x="758" y="291" text-anchor="middle" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#0D1117">:hasConcretization</text>
 </svg>
-<figcaption>The quadrant labels are the classes themselves: each cell is the intersection of one
-row class and one column class, and loze declares no disjointness between any of them, so all four
-are inhabitable. The right-hand column is the one most modelling cannot hold — it is where a
-process type is forced to become a class and stops being able to carry its own data. That loze
-keeps it a particular is Zemach&#8217;s addition to Lowe&#8217;s four categories, the two sources
-<a href="/">the ontology</a> names.</figcaption>
+<figcaption>
+Loze allows schematic particulars to represent Things and Occurences, all as individuals. 
+By doing so, it is possible to model general, repeatable processes with more information, e.g. 
+the schematic particular event <code>:OilChange</code> can have an <code>:expectedPrice</code> of 100 USD.
+Because of this flexibility, Loze provides all of the aforementioned benefits not only to things, but happenings too.
+
 </figure>
 '''
 
@@ -819,44 +866,51 @@ def zemach_figure() -> str:
          ["the moon landing", "a handshake", "yesterday&#8217;s sunset"], ""),
         (560, 96,  "Thing", "CT", "the desk you see again today",
          ["Fido the dog", "the Eiffel Tower", "my pencil"], ""),
-        (170, 274, "Process", "CS", "everywhere at once, then over",
+        (170, 298, "Process", "CS", "everywhere at once, then over",
          ["the French Revolution", "this rain", "the current inflation"], ""),
-        (560, 274, "Type", "PC", "wholly present in every token",
+        (560, 298, "Type", "PC", "wholly present in every token",
          ["water, gold, wheat", "the letter A", "Beethoven&#8217;s Fifth"], " z-hit"),
     ]
     out = ""
     for x, y, title, code, gloss, items, hit in CELLS:
-        out += (f'<rect class="z-cell{hit}" x="{x}" y="{y}" width="360" height="152"/>'
+        out += (f'<rect class="z-cell{hit}" x="{x}" y="{y}" width="360" height="176"/>'
                 f'<text class="z-title{hit}" x="{x+20}" y="{y+30}">{title}</text>'
                 f'<text class="z-code" x="{x+340}" y="{y+30}">{code}</text>'
                 f'<text class="z-gloss" x="{x+20}" y="{y+52}">{gloss}</text>')
         for i, it in enumerate(items):
             out += f'<text class="z-item" x="{x+20}" y="{y+82 + i*24}">&#8594; {it}</text>'
+        # Which loze class this quadrant becomes. The whole point of showing
+        # Zemach here is the mapping, and it was left implicit.
     return f'''
 <figure class="fig">
-<svg viewBox="0 0 960 500" role="img" xmlns="http://www.w3.org/2000/svg"
+<svg viewBox="0 0 960 556" role="img" xmlns="http://www.w3.org/2000/svg"
      aria-label="Zemach's four ontologies as a two by two. Columns are bound in time and continuous in time; rows are bound in space and continuous in space. Event, Thing, Process and Type. The Type quadrant, wholly present in every token, is highlighted: water, the letter A, Beethoven's Fifth. That is the cell loze keeps as a particular rather than a universal.">
-  <text class="z-axis" x="170" y="34">BOUND IN TIME</text>
-  <text class="z-sub" x="170" y="52">has temporal parts; over when done</text>
-  <text class="z-axis" x="560" y="34">CONTINUOUS IN TIME</text>
-  <text class="z-sub" x="560" y="52">wholly present at each time</text>
-  <text class="z-axis" x="0" y="150">BOUND IN</text>
-  <text class="z-axis" x="0" y="168">SPACE</text>
-  <text class="z-sub" x="0" y="188">has spatial parts</text>
-  <text class="z-axis" x="0" y="328">CONTINUOUS</text>
-  <text class="z-axis" x="0" y="346">IN SPACE</text>
-  <text class="z-sub" x="0" y="366">wholly present</text>
-  <text class="z-sub" x="0" y="382">at each place</text>
+  <text class="z-axis" x="170" y="34" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">BOUND IN TIME</text>
+  <text class="z-sub" x="170" y="52" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">has temporal parts; over when done</text>
+  <text class="z-axis" x="560" y="34" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">CONTINUOUS IN TIME</text>
+  <text class="z-sub" x="560" y="52" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">wholly present at each time</text>
+  <text class="z-axis" x="0" y="150" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">BOUND IN</text>
+  <text class="z-axis" x="0" y="168" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">SPACE</text>
+  <text class="z-sub" x="0" y="188" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">has spatial parts</text>
+  <text class="z-axis" x="0" y="352" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">CONTINUOUS</text>
+  <text class="z-axis" x="0" y="370" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">IN SPACE</text>
+  <text class="z-sub" x="0" y="390" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">wholly present</text>
+  <text class="z-sub" x="0" y="406" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">at each place</text>
   {out}
-  <text class="fig-note" x="170" y="482">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
+  <rect class="z-span" x="160" y="86" width="380" height="398"/>
+  <text class="z-span-lab" x="350" y="466">loze:Eventuality</text>
+  <rect class="z-span z-span-q" x="550" y="86" width="380" height="196"/>
+  <text class="z-span-lab" x="740" y="264">loze:Thing</text>
+  <rect class="z-span z-span-hit" x="550" y="288" width="380" height="196"/>
+  <text class="z-span-lab z-span-hit-lab" x="740" y="466">loze:SchematicParticular</text>
+  <text class="fig-note" x="152" y="538" font-family="Newsreader">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
 </svg>
-<figcaption>Two axes, and neither is the class/instance one. Zemach cuts by whether a thing is
-wholly present at each <em>time</em> and at each <em>place</em>, which puts water, the letter A and
-a symphony together in a quadrant of their own — repeatable, but not obviously classes. loze&#8217;s
-<a href="/SchematicParticular">Schematic Particular</a> is that cell, and its own examples are
-Zemach&#8217;s: a work of music, an alphabetic character, a substance like water or gold. The
-deviation is that loze keeps them <em>particulars</em>, so they can carry data and be pointed at,
-rather than promoting them to universals.</figcaption>
+<figcaption>
+	The central novelty of loze is the use of <a href="/SchematicParticular">Schematic Particulars</a>; 
+    things that are repeatable, wholly present at each time and place, 
+    but are a step of abstraction below classes. Examples of such things, 
+    as provided by Zemach, are a work of music (Beethoven’s Fifth), an element or 
+    compound (gold, water), and characters or numbers.</figcaption>
 </figure>
 '''
 
@@ -865,8 +919,8 @@ FONTS = (
     '<link rel="preconnect" href="https://fonts.googleapis.com">'
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-    'family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&'
-    'family=Plus+Jakarta+Sans:wght@700;800&display=swap">'
+    'family=DM+Mono:wght@400;500&family=Archivo:wght@400;500;600;700&'
+    'family=Newsreader:ital,wght@0,300;0,400;1,300&display=swap">'
 )
 
 
@@ -1300,7 +1354,7 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
   {section("Specialised by", subs_html)}
   {"" if is_prop else section("Properties from this", props_where(RDFS.domain))}
   {"" if is_prop else section("Properties onto this", props_where(RDFS.range))}
-  {(zemach_figure() + FIGURE + query_figure() + EVENT_FIGURE) if d['name'] == "SchematicParticular" else (EVENT_FIGURE if d['name'] in ("Eventuality", "Thing", "hasParticipant", "hasProduct") else (FIGURE if d['name'] in ("isConcretizationOf", "hasConcretization") else ""))}
+  {(zemach_figure() + FIGURE + QUERY_FIGURE + EVENT_FIGURE) if d['name'] == "SchematicParticular" else (EVENT_FIGURE if d['name'] in ("Eventuality", "Thing", "hasParticipant", "hasProduct") else (FIGURE if d['name'] in ("isConcretizationOf", "hasConcretization") else ""))}
   {section("Note", f'<p class="measure">{e(d["note"])}</p>' if d['note'] else "")}
 </div></main>
 """
@@ -1366,7 +1420,7 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
 
     schematic_section = (section("Where the idea comes from", zemach_figure())
                          + section("Why a schematic particular", FIGURE)
-                         + section("What it buys", query_figure())
+                         + section("What it buys", QUERY_FIGURE)
                          + section("Things and happenings are a different cut", EVENT_FIGURE))
 
     trail = ("" if slug == ""
