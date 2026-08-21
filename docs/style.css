@@ -25,6 +25,14 @@
   --clr-status-danger: 0 62% 50%;
   --clr-status-ok: 160 96% 30%;
 
+  /* The kind pill is small text, and the triad above was picked to sit on a
+     tinted fill in a diagram, not to be read. On the light surface all three
+     came out between 1.8:1 and 2.6:1 — under half what small text needs, and
+     amber on off-white was the worst of them. Same hues, dark enough to read. */
+  --kind-class:    205 90% 39%;
+  --kind-instance: 160 96% 25%;
+  --kind-property:  38 92% 31%;
+
   --background: var(--clr-white);
   --foreground: var(--clr-ink);
   --surface: var(--clr-off-white);
@@ -70,6 +78,10 @@ html { font-size: var(--root-step); }
     --border-emphasis: 216 18% 30%;
     /* #059669 fails contrast on ink; the light green is the token for dark. */
     --brand-accent: var(--clr-green-light);
+    /* On ink the original triad already clears 5:1, so it stands. */
+    --kind-class: var(--clr-node-class);
+    --kind-instance: var(--clr-node-instance);
+    --kind-property: var(--clr-node-property);
     --code-lit: 25 80% 66%;
     --code-kw:  300 68% 78%;
     --code-pfx: 206 80% 70%;
@@ -175,9 +187,9 @@ section + section { margin-top: 3.5rem; }
   border-radius: var(--radius-pill);
   border: 1px solid;
 }
-.kind-class    { color: hsl(var(--clr-node-class));    border-color: hsl(var(--clr-node-class) / 0.4);    background: hsl(var(--clr-node-class) / 0.08); }
-.kind-property { color: hsl(var(--clr-node-property)); border-color: hsl(var(--clr-node-property) / 0.4); background: hsl(var(--clr-node-property) / 0.08); }
-.kind-instance { color: hsl(var(--clr-node-instance)); border-color: hsl(var(--clr-node-instance) / 0.4); background: hsl(var(--clr-node-instance) / 0.08); }
+.kind-class    { color: hsl(var(--kind-class));    border-color: hsl(var(--clr-node-class) / 0.4);    background: hsl(var(--clr-node-class) / 0.08); }
+.kind-property { color: hsl(var(--kind-property)); border-color: hsl(var(--clr-node-property) / 0.4); background: hsl(var(--clr-node-property) / 0.08); }
+.kind-instance { color: hsl(var(--kind-instance)); border-color: hsl(var(--clr-node-instance) / 0.4); background: hsl(var(--clr-node-instance) / 0.08); }
 
 dl.props { display: grid; grid-template-columns: minmax(9rem, auto) 1fr; gap: 0.5rem 1.5rem; margin: 0; font-size: var(--fs-sm); }
 dl.props dt { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-xs); letter-spacing: 0.04em; color: hsl(var(--muted-foreground)); }
@@ -376,6 +388,11 @@ a.modtag:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-
 .z-title { font-family: "Archivo", sans-serif; font-size: 15px; letter-spacing: 1.8px; font-weight: 700;
   fill: hsl(var(--foreground)); }
 .z-title.z-hit { fill: hsl(var(--brand-accent)); stroke: none; }
+/* The four corner codes were bare initials with nothing on the page saying
+   what they stood for. Expanded against the two axes rather than quoting
+   Zemach's own wording, because the grid is what makes it checkable. */
+.z-key { font-family: "DM Mono", monospace; font-size: 12px; letter-spacing: 0.02em;
+  fill: hsl(var(--faint)); }
 .z-code { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.1em;
   fill: hsl(var(--faint)); text-anchor: end; }
 .z-gloss { font-family: "Archivo", sans-serif; font-size: 15px; letter-spacing: 1.8px; fill: hsl(var(--muted-foreground)); }

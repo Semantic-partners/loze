@@ -195,6 +195,14 @@ CSS = """
   --clr-status-danger: 0 62% 50%;
   --clr-status-ok: 160 96% 30%;
 
+  /* The kind pill is small text, and the triad above was picked to sit on a
+     tinted fill in a diagram, not to be read. On the light surface all three
+     came out between 1.8:1 and 2.6:1 — under half what small text needs, and
+     amber on off-white was the worst of them. Same hues, dark enough to read. */
+  --kind-class:    205 90% 39%;
+  --kind-instance: 160 96% 25%;
+  --kind-property:  38 92% 31%;
+
   --background: var(--clr-white);
   --foreground: var(--clr-ink);
   --surface: var(--clr-off-white);
@@ -240,6 +248,10 @@ html { font-size: var(--root-step); }
     --border-emphasis: 216 18% 30%;
     /* #059669 fails contrast on ink; the light green is the token for dark. */
     --brand-accent: var(--clr-green-light);
+    /* On ink the original triad already clears 5:1, so it stands. */
+    --kind-class: var(--clr-node-class);
+    --kind-instance: var(--clr-node-instance);
+    --kind-property: var(--clr-node-property);
     --code-lit: 25 80% 66%;
     --code-kw:  300 68% 78%;
     --code-pfx: 206 80% 70%;
@@ -345,9 +357,9 @@ section + section { margin-top: 3.5rem; }
   border-radius: var(--radius-pill);
   border: 1px solid;
 }
-.kind-class    { color: hsl(var(--clr-node-class));    border-color: hsl(var(--clr-node-class) / 0.4);    background: hsl(var(--clr-node-class) / 0.08); }
-.kind-property { color: hsl(var(--clr-node-property)); border-color: hsl(var(--clr-node-property) / 0.4); background: hsl(var(--clr-node-property) / 0.08); }
-.kind-instance { color: hsl(var(--clr-node-instance)); border-color: hsl(var(--clr-node-instance) / 0.4); background: hsl(var(--clr-node-instance) / 0.08); }
+.kind-class    { color: hsl(var(--kind-class));    border-color: hsl(var(--clr-node-class) / 0.4);    background: hsl(var(--clr-node-class) / 0.08); }
+.kind-property { color: hsl(var(--kind-property)); border-color: hsl(var(--clr-node-property) / 0.4); background: hsl(var(--clr-node-property) / 0.08); }
+.kind-instance { color: hsl(var(--kind-instance)); border-color: hsl(var(--clr-node-instance) / 0.4); background: hsl(var(--clr-node-instance) / 0.08); }
 
 dl.props { display: grid; grid-template-columns: minmax(9rem, auto) 1fr; gap: 0.5rem 1.5rem; margin: 0; font-size: var(--fs-sm); }
 dl.props dt { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-xs); letter-spacing: 0.04em; color: hsl(var(--muted-foreground)); }
@@ -546,6 +558,11 @@ a.modtag:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-
 .z-title { font-family: "Archivo", sans-serif; font-size: 15px; letter-spacing: 1.8px; font-weight: 700;
   fill: hsl(var(--foreground)); }
 .z-title.z-hit { fill: hsl(var(--brand-accent)); stroke: none; }
+/* The four corner codes were bare initials with nothing on the page saying
+   what they stood for. Expanded against the two axes rather than quoting
+   Zemach's own wording, because the grid is what makes it checkable. */
+.z-key { font-family: "DM Mono", monospace; font-size: 12px; letter-spacing: 0.02em;
+  fill: hsl(var(--faint)); }
 .z-code { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.1em;
   fill: hsl(var(--faint)); text-anchor: end; }
 .z-gloss { font-family: "Archivo", sans-serif; font-size: 15px; letter-spacing: 1.8px; fill: hsl(var(--muted-foreground)); }
@@ -883,7 +900,7 @@ def zemach_figure() -> str:
         # Zemach here is the mapping, and it was left implicit.
     return f'''
 <figure class="fig">
-<svg viewBox="0 0 960 556" role="img" xmlns="http://www.w3.org/2000/svg"
+<svg viewBox="0 0 960 572" role="img" xmlns="http://www.w3.org/2000/svg"
      aria-label="Zemach's four ontologies as a two by two. Columns are bound in time and continuous in time; rows are bound in space and continuous in space. Event, Thing, Process and Type. The Type quadrant, wholly present in every token, is highlighted: water, the letter A, Beethoven's Fifth. That is the cell loze keeps as a particular rather than a universal.">
   <text class="z-axis" x="170" y="34" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">BOUND IN TIME</text>
   <text class="z-sub" x="170" y="52" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">has temporal parts; over when done</text>
@@ -903,7 +920,8 @@ def zemach_figure() -> str:
   <text class="z-span-lab" x="740" y="264">loze:Thing</text>
   <rect class="z-span z-span-hit" x="550" y="288" width="380" height="196"/>
   <text class="z-span-lab z-span-hit-lab" x="740" y="466">loze:SchematicParticular</text>
-  <text class="fig-note" x="152" y="538" font-family="Newsreader">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
+  <text class="z-key" x="152" y="522">NC continuous in neither &#183; CT continuous in time &#183; CS continuous in space &#183; PC continuous in both</text>
+  <text class="fig-note" x="152" y="552" font-family="Newsreader">Zemach, &#8220;Four Ontologies&#8221;, Journal of Philosophy 67 (1970). loze takes the fourth cell and keeps it a particular.</text>
 </svg>
 <figcaption>
 	The central novelty of loze is the use of <a href="/SchematicParticular">Schematic Particulars</a>; 
@@ -1169,6 +1187,39 @@ def class_tree(g: Graph, root: URIRef, classes: set, depth: int = 0, seen=None, 
             + (f"<ul>{inner}</ul>" if inner else "") + "</li>")
 
 
+def prop_row(g: Graph, p: URIRef, current: URIRef | None = None) -> str:
+    """One reference row for a property: name, signature, clipped definition.
+
+    Every page that lists properties uses this. There were three copies of it and
+    a module page was still rendering bare chips, which is what a bare chip costs
+    you — the reader cannot see what the property joins without clicking.
+
+    `current` is the term whose page this is, if any: that end of the signature
+    is muted and unlinked so the eye lands on the end that varies.
+    """
+    d = describe(g, p)
+
+    def side(which):
+        parts = []
+        for o in g.objects(p, which):
+            if current is not None and o == current:
+                lbl = g.value(o, RDFS.label)
+                parts.append(f'<span class="self">{e(str(lbl) if lbl else local(o))}</span>')
+            elif isinstance(o, BNode):
+                parts.append(short_expr(g, o))
+            else:
+                parts.append(term_link(g, o))
+        return ", ".join(parts)
+
+    dom, rng = side(RDFS.domain), side(RDFS.range)
+    sig = f"{dom} &rarr; {rng}" if dom and rng else (dom or rng or '<span class="pn">—</span>')
+    return (f'<div class="refrow">'
+            f'<span class="rt"><a href="/{e(local(p))}">{e(local(p))}</a></span>'
+            f'<span class="rr rsig">{sig}</span>'
+            f'<span class="rd">{e(clip(d["definition"], 88))}</span>'
+            f'</div>')
+
+
 def prop_ancestors(g: Graph, p: URIRef) -> list[URIRef]:
     """Super-property chain to the top, nearest first."""
     out, seen, cur = [], {p}, p
@@ -1319,14 +1370,8 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
             return ", ".join(parts)
 
         def row(p):
-            d = describe(union, p)
-            dom, rng = end(p, RDFS.domain), end(p, RDFS.range)
-            sig = f"{dom} &rarr; {rng}" if dom and rng else (dom or rng)
-            return (f'<div class="refrow">'
-                    f'<span class="rt"><a href="/{e(local(p))}">{e(local(p))}</a></span>'
-                    f'<span class="rr rsig">{sig}</span>'
-                    f'<span class="rd">{e(clip(d["definition"], 88))}</span>'
-                    f'</div>')
+            return prop_row(union, p, current=s)
+
 
         out = "".join(row(p) for p in direct)
         if inherited:
@@ -1402,12 +1447,11 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
     if by_domain:
         blocks = []
         for dom in sorted(by_domain):
-            chips = "".join(
-                f'<a class="chip chip-prop" href="/{e(local(p))}">{e(str(union.value(p, RDFS.label) or local(p)))}</a>'
-                for p in sorted(by_domain[dom], key=lambda x: local(x).lower()))
+            rows = "".join(prop_row(union, p)
+                           for p in sorted(by_domain[dom], key=lambda x: local(x).lower()))
             head = (f'<a href="/{e(dom)}">{e(dom)}</a>' if dom != "—" else "no declared domain")
             blocks.append(f'<div class="domgroup"><div class="domhead">from {head}</div>'
-                          f'<div class="chips">{chips}</div></div>')
+                          f'{rows}</div>')
         prop_html = "".join(blocks)
 
     modules_nav = ""
@@ -1770,17 +1814,7 @@ def render_terms(union: Graph, defined_in: dict) -> str:
 
     out = []
     for key in sorted(groups, key=str.lower):
-        rows = []
-        for p in groups[key]:
-            d = describe(union, p)
-            rng = [term_link(union, o) if isinstance(o, URIRef) else anon_expr(union, o)
-                   for o in union.objects(p, RDFS.range)]
-            rows.append(
-                f'<div class="refrow">'
-                f'<span class="rt"><a href="/{e(local(p))}">{e(local(p))}</a></span>'
-                f'<span class="rd">{e(clip(d["definition"]))}</span>'
-                f'<span class="rr">{("&rarr; " + ", ".join(rng)) if rng else ""}</span>'
-                f'</div>')
+        rows = [prop_row(union, p) for p in groups[key]]
         out.append(f'<div class="domgroup"><div class="domhead">{heads[key]}</div>{"".join(rows)}</div>')
 
     body = f"""

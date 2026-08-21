@@ -32,6 +32,11 @@ DOCS = ROOT / "docs"
 # Straight out of docs/_headers, so a .ttl fetched from here parses at the other
 # end just as it would in production.
 TYPES = {
+    # Pages sends a charset on these; stdlib does not. Without it the browser
+    # guesses, and a page whose curly quotes come out as mojibake sends you
+    # hunting for an encoding bug that is not in the file.
+    ".html": "text/html; charset=utf-8",
+    ".css": "text/css; charset=utf-8",
     ".ttl": "text/turtle; charset=utf-8",
     ".nt": "application/n-triples; charset=utf-8",
     ".rdf": "application/rdf+xml; charset=utf-8",
