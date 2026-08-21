@@ -9,3 +9,9 @@ __pycache__/
 .claude/
 .vscode/
 .idea/
+
+# Build output. `python3 scripts/build.py` regenerates every file in here from
+# the .ttl, so tracking it put ~1800 lines of machine-written HTML into a diff
+# whose hand-written part was a fraction of that, and made every branch collide
+# on files no one edits. The Turtle is the source; docs/ is a view of it.
+docs/

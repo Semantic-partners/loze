@@ -7,13 +7,21 @@ A peculiar feature is the category of schematic particulars: these are repeatabl
 ## The site
 
 The Turtle is the source. `docs/` is a generated view of it — one page per term,
-plus a reference and a page of examples. Run these from the root of this repo:
+plus a reference and a page of examples. It is **not** in git: build it first,
+and rebuild it after editing any `.ttl`. Run these from the root of this repo:
 
     cd /path/to/loze
 
+    python3 scripts/build.py     # writes docs/ — do this first
     python3 scripts/serve.py     # read it:    http://localhost:8788
-    python3 scripts/build.py     # rebuild docs/ after editing any .ttl
     python3 scripts/check.py     # assert the output holds together
+
+Deploying is the same build plus an upload:
+
+    python3 scripts/build.py && npx wrangler pages deploy docs --project-name=loze
+
+Add `--branch=<name>` to get a preview URL for a branch instead of publishing to
+production.
 
 Nothing to install and no virtualenv: `serve.py` is standard library only, and
 `build.py` needs `rdflib`, which is already on the system Python. Pass a port if
