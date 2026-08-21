@@ -34,6 +34,11 @@
   --border-emphasis: var(--clr-border-mid);
   --brand-accent: var(--clr-green);
   --tint: var(--clr-green-tint);
+  /* Turtle literals. Deliberately NOT the link green: a string is not
+     clickable, and colouring it like one is a lie. */
+  --code-lit: 25 85% 32%;
+  --code-kw:  300 55% 38%;   /* a, @prefix */
+  --code-pfx: 212 78% 34%;   /* owl:, rdfs:, xsd: and full IRIs */
 
   --radius: 0px;            /* sharp corners are the brand */
   --radius-pill: 9999px;    /* the only round thing */
@@ -65,6 +70,9 @@ html { font-size: var(--root-step); }
     --border-emphasis: 216 18% 30%;
     /* #059669 fails contrast on ink; the light green is the token for dark. */
     --brand-accent: var(--clr-green-light);
+    --code-lit: 25 80% 66%;
+    --code-kw:  300 68% 78%;
+    --code-pfx: 206 80% 70%;
     --clr-status-ok: 158 65% 52%;
     --tint: 216 29% 18%;
   }
@@ -194,17 +202,115 @@ ul.tree a { font-weight: 500; }
 .titleline { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+/* Every chip on this site is an <a>. Body-text ink made them read as inert
+   badges, so nobody clicked them — the accent is what says "this goes somewhere". */
 .chip {
   font-size: var(--fs-sm);
   border: 1px solid hsl(var(--border-emphasis));
   border-radius: var(--radius);
   padding: 0.3rem 0.6rem;
-  color: hsl(var(--foreground));
+  color: hsl(var(--brand-accent));
   transition: border-color 150ms var(--ease-brand), color 150ms var(--ease-brand);
 }
 .chip:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-accent)); text-decoration: none; }
 /* Properties keep the amber of the node triad, quietly — a left edge, not a fill. */
 .chip-prop { border-left: 3px solid hsl(var(--clr-node-property) / 0.7); font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-xs); }
+
+/* Site nav. Every page had exactly one way out — the breadcrumb to / — so a
+   property page was a dead end. This is the same four links everywhere. */
+nav.site {
+  border-bottom: 1px solid hsl(var(--border));
+  background: hsl(var(--background));
+}
+nav.site .wrap { display: flex; gap: 1.4rem; align-items: baseline; padding-top: 0.9rem; padding-bottom: 0.9rem; flex-wrap: wrap; }
+nav.site a {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  transition: color 150ms var(--ease-brand);
+}
+nav.site a:hover { color: hsl(var(--brand-accent)); }
+nav.site a.here { color: hsl(var(--foreground)); border-bottom: 2px solid hsl(var(--brand-accent)); padding-bottom: 2px; }
+nav.site .navmark { font-weight: 700; color: hsl(var(--foreground)); margin-right: auto; }
+
+/* An example is the ontology's own words about what falls under a term. It
+   earns more room than a note: it is what most readers came for. */
+.example {
+  border-left: 3px solid hsl(var(--clr-node-property) / 0.7);
+  padding: 0.15rem 0 0.15rem 1rem;
+  margin: 0;
+  color: hsl(var(--foreground));
+}
+.example p { margin: 0; }
+
+/* Plain English, before the diagrams. Set larger than body text because it is
+   the thing to read first. */
+.inshort { font-size: var(--fs-body-lg); margin: 0; }
+
+/* Turtle snippets. The ontology's own syntax is the clearest example there is,
+   so these are plain code — no diagram, nothing to decode. */
+pre.ttl {
+  font-family: "DM Mono", ui-monospace, SFMono-Regular, monospace;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  background: hsl(var(--surface));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  margin: 0 0 0.5rem;
+}
+pre.ttl a { color: hsl(var(--brand-accent)); }
+pre.ttl a:hover { text-decoration: underline; }
+pre.ttl .cm   { color: hsl(var(--muted-foreground)); }
+pre.ttl .lit  { color: hsl(var(--code-lit)); }
+pre.ttl .kw   { color: hsl(var(--code-kw)); font-weight: 500; }
+pre.ttl .pfx  { color: hsl(var(--code-pfx)); }
+pre.ttl .tiri { color: hsl(var(--code-pfx)); }
+pre.ttl .loc  { color: hsl(var(--foreground)); }
+pre.ttl .pn   { color: hsl(var(--faint)); }
+
+.worked { margin-bottom: 2.25rem; }
+.worked h3 { font-size: var(--fs-h4); margin: 0 0 0.3rem; }
+.worked .why { color: hsl(var(--muted-foreground)); font-size: var(--fs-sm); margin: 0 0 0.75rem; max-width: var(--measure); }
+
+/* The reference page: one row per term, dense enough to scan. */
+.refrow { display: flex; gap: 0.75rem; align-items: baseline; padding: 0.3rem 0; border-bottom: 1px solid hsl(var(--border) / 0.6); flex-wrap: wrap; }
+.refrow .rt { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-sm); min-width: 15rem; }
+.refrow .rd { font-size: var(--fs-sm); color: hsl(var(--muted-foreground)); flex: 1 1 18rem; }
+.refrow .rr { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-2xs); color: hsl(var(--muted-foreground)); letter-spacing: 0.04em; }
+/* The signature on a class page. Wide enough that domain → range does not wrap
+   for the common cases, and it comes before the prose because it is the answer. */
+.refrow .rsig { flex: 0 1 21rem; min-width: 15rem; max-width: 26rem; font-size: var(--fs-xs); overflow-wrap: anywhere; }
+/* The end of the signature that is the page you are on. Present, but not the
+   thing to read — and not a link back to here. */
+.refrow .self { color: hsl(var(--faint)); }
+/* The specialisation ladder. Indent carries the chain; the signature on every
+   rung is what makes the narrowing visible without clicking. */
+.specrow { display: flex; gap: 0.75rem; align-items: baseline; padding: 0.35rem 0; flex-wrap: wrap; }
+.specrow .rt { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-sm); min-width: 13rem; }
+.specnow { background: hsl(var(--tint)); }
+.narrows {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.04em;
+  color: hsl(var(--code-lit));
+  border: 1px solid hsl(var(--code-lit) / 0.35);
+  padding: 0.05rem 0.35rem;
+  white-space: nowrap;
+}
+.specnote { color: hsl(var(--muted-foreground)); font-size: var(--fs-sm); margin: 0 0 1rem; }
+
+.inhead {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.04em;
+  color: hsl(var(--muted-foreground));
+  margin: 1.5rem 0 0.5rem;
+}
+.refrow .rsig code { font-size: inherit; }
 
 .domgroup { margin-bottom: 1.5rem; }
 .domhead {
@@ -219,12 +325,16 @@ ul.tree a { font-weight: 500; }
   font-family: "DM Mono", ui-monospace, monospace;
   font-size: var(--fs-2xs);
   letter-spacing: 0.04em;
-  color: hsl(var(--muted-foreground));
+  /* It goes to the module page, so it takes the link colour. Kept small rather
+     than kept grey: muted ink is what made it read as a dead badge. */
+  color: hsl(var(--brand-accent));
   border: 1px solid hsl(var(--border));
   padding: 0.05rem 0.35rem;
   margin-left: 0.5rem;
   white-space: nowrap;
+  transition: border-color 150ms var(--ease-brand), color 150ms var(--ease-brand);
 }
+a.modtag:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-accent)); text-decoration: none; }
 
 /* ── The one figure ──────────────────────────────────────────────────────────
    Nodes take their colour from the same triad the chips use, so blue still means

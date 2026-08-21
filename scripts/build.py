@@ -47,6 +47,7 @@ from __future__ import annotations
 
 import html as html_mod
 import os
+import re
 import sys as _sys
 
 # rdflib's canonicalisation has to break ties between structurally similar blank
@@ -206,6 +207,11 @@ CSS = """
   --border-emphasis: var(--clr-border-mid);
   --brand-accent: var(--clr-green);
   --tint: var(--clr-green-tint);
+  /* Turtle literals. Deliberately NOT the link green: a string is not
+     clickable, and colouring it like one is a lie. */
+  --code-lit: 25 85% 32%;
+  --code-kw:  300 55% 38%;   /* a, @prefix */
+  --code-pfx: 212 78% 34%;   /* owl:, rdfs:, xsd: and full IRIs */
 
   --radius: 0px;            /* sharp corners are the brand */
   --radius-pill: 9999px;    /* the only round thing */
@@ -237,6 +243,9 @@ html { font-size: var(--root-step); }
     --border-emphasis: 216 18% 30%;
     /* #059669 fails contrast on ink; the light green is the token for dark. */
     --brand-accent: var(--clr-green-light);
+    --code-lit: 25 80% 66%;
+    --code-kw:  300 68% 78%;
+    --code-pfx: 206 80% 70%;
     --clr-status-ok: 158 65% 52%;
     --tint: 216 29% 18%;
   }
@@ -366,17 +375,115 @@ ul.tree a { font-weight: 500; }
 .titleline { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+/* Every chip on this site is an <a>. Body-text ink made them read as inert
+   badges, so nobody clicked them — the accent is what says "this goes somewhere". */
 .chip {
   font-size: var(--fs-sm);
   border: 1px solid hsl(var(--border-emphasis));
   border-radius: var(--radius);
   padding: 0.3rem 0.6rem;
-  color: hsl(var(--foreground));
+  color: hsl(var(--brand-accent));
   transition: border-color 150ms var(--ease-brand), color 150ms var(--ease-brand);
 }
 .chip:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-accent)); text-decoration: none; }
 /* Properties keep the amber of the node triad, quietly — a left edge, not a fill. */
 .chip-prop { border-left: 3px solid hsl(var(--clr-node-property) / 0.7); font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-xs); }
+
+/* Site nav. Every page had exactly one way out — the breadcrumb to / — so a
+   property page was a dead end. This is the same four links everywhere. */
+nav.site {
+  border-bottom: 1px solid hsl(var(--border));
+  background: hsl(var(--background));
+}
+nav.site .wrap { display: flex; gap: 1.4rem; align-items: baseline; padding-top: 0.9rem; padding-bottom: 0.9rem; flex-wrap: wrap; }
+nav.site a {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  transition: color 150ms var(--ease-brand);
+}
+nav.site a:hover { color: hsl(var(--brand-accent)); }
+nav.site a.here { color: hsl(var(--foreground)); border-bottom: 2px solid hsl(var(--brand-accent)); padding-bottom: 2px; }
+nav.site .navmark { font-weight: 700; color: hsl(var(--foreground)); margin-right: auto; }
+
+/* An example is the ontology's own words about what falls under a term. It
+   earns more room than a note: it is what most readers came for. */
+.example {
+  border-left: 3px solid hsl(var(--clr-node-property) / 0.7);
+  padding: 0.15rem 0 0.15rem 1rem;
+  margin: 0;
+  color: hsl(var(--foreground));
+}
+.example p { margin: 0; }
+
+/* Plain English, before the diagrams. Set larger than body text because it is
+   the thing to read first. */
+.inshort { font-size: var(--fs-body-lg); margin: 0; }
+
+/* Turtle snippets. The ontology's own syntax is the clearest example there is,
+   so these are plain code — no diagram, nothing to decode. */
+pre.ttl {
+  font-family: "DM Mono", ui-monospace, SFMono-Regular, monospace;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  background: hsl(var(--surface));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  margin: 0 0 0.5rem;
+}
+pre.ttl a { color: hsl(var(--brand-accent)); }
+pre.ttl a:hover { text-decoration: underline; }
+pre.ttl .cm   { color: hsl(var(--muted-foreground)); }
+pre.ttl .lit  { color: hsl(var(--code-lit)); }
+pre.ttl .kw   { color: hsl(var(--code-kw)); font-weight: 500; }
+pre.ttl .pfx  { color: hsl(var(--code-pfx)); }
+pre.ttl .tiri { color: hsl(var(--code-pfx)); }
+pre.ttl .loc  { color: hsl(var(--foreground)); }
+pre.ttl .pn   { color: hsl(var(--faint)); }
+
+.worked { margin-bottom: 2.25rem; }
+.worked h3 { font-size: var(--fs-h4); margin: 0 0 0.3rem; }
+.worked .why { color: hsl(var(--muted-foreground)); font-size: var(--fs-sm); margin: 0 0 0.75rem; max-width: var(--measure); }
+
+/* The reference page: one row per term, dense enough to scan. */
+.refrow { display: flex; gap: 0.75rem; align-items: baseline; padding: 0.3rem 0; border-bottom: 1px solid hsl(var(--border) / 0.6); flex-wrap: wrap; }
+.refrow .rt { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-sm); min-width: 15rem; }
+.refrow .rd { font-size: var(--fs-sm); color: hsl(var(--muted-foreground)); flex: 1 1 18rem; }
+.refrow .rr { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-2xs); color: hsl(var(--muted-foreground)); letter-spacing: 0.04em; }
+/* The signature on a class page. Wide enough that domain → range does not wrap
+   for the common cases, and it comes before the prose because it is the answer. */
+.refrow .rsig { flex: 0 1 21rem; min-width: 15rem; max-width: 26rem; font-size: var(--fs-xs); overflow-wrap: anywhere; }
+/* The end of the signature that is the page you are on. Present, but not the
+   thing to read — and not a link back to here. */
+.refrow .self { color: hsl(var(--faint)); }
+/* The specialisation ladder. Indent carries the chain; the signature on every
+   rung is what makes the narrowing visible without clicking. */
+.specrow { display: flex; gap: 0.75rem; align-items: baseline; padding: 0.35rem 0; flex-wrap: wrap; }
+.specrow .rt { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-sm); min-width: 13rem; }
+.specnow { background: hsl(var(--tint)); }
+.narrows {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.04em;
+  color: hsl(var(--code-lit));
+  border: 1px solid hsl(var(--code-lit) / 0.35);
+  padding: 0.05rem 0.35rem;
+  white-space: nowrap;
+}
+.specnote { color: hsl(var(--muted-foreground)); font-size: var(--fs-sm); margin: 0 0 1rem; }
+
+.inhead {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.04em;
+  color: hsl(var(--muted-foreground));
+  margin: 1.5rem 0 0.5rem;
+}
+.refrow .rsig code { font-size: inherit; }
 
 .domgroup { margin-bottom: 1.5rem; }
 .domhead {
@@ -391,12 +498,16 @@ ul.tree a { font-weight: 500; }
   font-family: "DM Mono", ui-monospace, monospace;
   font-size: var(--fs-2xs);
   letter-spacing: 0.04em;
-  color: hsl(var(--muted-foreground));
+  /* It goes to the module page, so it takes the link colour. Kept small rather
+     than kept grey: muted ink is what made it read as a dead badge. */
+  color: hsl(var(--brand-accent));
   border: 1px solid hsl(var(--border));
   padding: 0.05rem 0.35rem;
   margin-left: 0.5rem;
   white-space: nowrap;
+  transition: border-color 150ms var(--ease-brand), color 150ms var(--ease-brand);
 }
+a.modtag:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-accent)); text-decoration: none; }
 
 /* ── The one figure ──────────────────────────────────────────────────────────
    Nodes take their colour from the same triad the chips use, so blue still means
@@ -759,7 +870,22 @@ FONTS = (
 )
 
 
-def shell(title: str, alternates: str, body: str) -> str:
+NAV = [("/terms", "terms"), ("/examples", "examples")]
+
+
+def nav(here: str = "") -> str:
+    """The same links on every page. Without this the only way out of a term page
+    was the breadcrumb to /, which made every property page a dead end."""
+    mark = ('<span class="navmark">loze</span>' if here == "/"
+            else '<a class="navmark" href="/">loze</a>')
+    links = "".join(
+        f'<a class="here" href="{href}">{e(label)}</a>' if href == here
+        else f'<a href="{href}">{e(label)}</a>'
+        for href, label in NAV)
+    return f'<nav class="site"><div class="wrap">{mark}{links}</div></nav>'
+
+
+def shell(title: str, alternates: str, body: str, here: str = "") -> str:
     """One page. `alternates` advertises the RDF for this document.
 
     The <link rel="alternate"> lines are the only content negotiation there is:
@@ -779,6 +905,7 @@ def shell(title: str, alternates: str, body: str) -> str:
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+{nav(here)}
 {body}
 <footer class="bot"><div class="wrap measure">
   <p>loze is a top-level ontology after E. J. Lowe's four-category ontology, with
@@ -831,12 +958,14 @@ def describe(g: Graph, s: URIRef) -> dict:
     label = g.value(s, RDFS.label)
     definition = g.value(s, SKOS.definition) or g.value(s, RDFS.comment)
     note = g.value(s, SKOS.note)
+    example = g.value(s, SKOS.example)
     css, kind = kind_of(g, s)
     return {
         "iri": str(s), "name": local(s),
         "label": str(label) if label else local(s),
         "definition": str(definition) if definition else "",
         "note": str(note) if note else "",
+        "example": str(example) if example else "",
         "css": css, "kind": kind,
     }
 
@@ -919,6 +1048,24 @@ def anon_expr(g: Graph, node) -> str:
     return "an anonymous class"
 
 
+def short_expr(g: Graph, node, keep: int = 2) -> str:
+    """An anonymous expression, cut down for a signature line.
+
+    hasTemporalCoordinate ranges over a union of nine xsd date and time types.
+    Spelled out that is three lines of noise in a row meant to be scanned, and it
+    wrecks the column it sits in. The full list is on the property's own page.
+    """
+    for pred, joiner in ((OWL.unionOf, " or "), (OWL.intersectionOf, " and ")):
+        head = g.value(node, pred)
+        if head is not None:
+            members = rdf_list(g, head)
+            if len(members) > keep + 1:
+                shown = joiner.join(term_link(g, m) for m in members[:keep])
+                return f"{shown}{joiner}{len(members) - keep} more"
+            break
+    return anon_expr(g, node)
+
+
 def term_link(g: Graph, o) -> str:
     if isinstance(o, URIRef) and str(o).startswith(NS):
         lbl = g.value(o, RDFS.label)
@@ -960,10 +1107,83 @@ def class_tree(g: Graph, root: URIRef, classes: set, depth: int = 0, seen=None, 
     if tags:
         mod = tags.get(str(root))
         if mod:
-            tag = f'<span class="modtag">{e(mod)}</span>'
+            # The tag is the module slug, which is also its URL. It was a span,
+            # so it looked exactly like a chip and went nowhere.
+            tag = f'<a class="modtag" href="/{e(mod)}">{e(mod)}</a>'
     return (f'<li><a href="/{e(d["name"])}">{e(d["label"])}</a>{tag}'
-            f'<span class="tree-def">{e(d["definition"][:90])}</span>'
+            f'<span class="tree-def">{e(clip(d["definition"], 90))}</span>'
             + (f"<ul>{inner}</ul>" if inner else "") + "</li>")
+
+
+def prop_ancestors(g: Graph, p: URIRef) -> list[URIRef]:
+    """Super-property chain to the top, nearest first."""
+    out, seen, cur = [], {p}, p
+    while True:
+        nxt = None
+        for o in g.objects(cur, RDFS.subPropertyOf):
+            if isinstance(o, URIRef) and str(o).startswith(NS) and o not in seen:
+                nxt = o
+                break
+        if nxt is None:
+            return out
+        out.append(nxt); seen.add(nxt); cur = nxt
+
+
+def _ends(g: Graph, p: URIRef, pred) -> tuple[str, frozenset]:
+    vals = sorted(g.objects(p, pred), key=str)
+    html = ", ".join(term_link(g, o) for o in vals) or '<span class="pn">—</span>'
+    return html, frozenset(str(v) for v in vals)
+
+
+def spec_table(g: Graph, s: URIRef) -> str:
+    """The sub-property chain with the signature at every level.
+
+    A sub-property may narrow its parent's domain and range, and asserting it
+    asserts the narrower ones too — isMemberIn goes Actor to Group where its
+    parent isComponentIn goes Particular to Composition. That is the step people
+    new to this reliably miss, and no page here showed it: you saw one signature
+    and had to click up the chain to find out it had been tightened.
+    """
+    chain = prop_ancestors(g, s)
+    kids = sorted([c for c in g.subjects(RDFS.subPropertyOf, s)
+                   if isinstance(c, URIRef) and str(c).startswith(NS)],
+                  key=lambda x: local(x).lower())
+    if not chain and not kids:
+        return ""
+
+    line = list(reversed(chain)) + [s]
+    rows = []
+
+    def emit(p, depth, parent, current):
+        dom_html, dom = _ends(g, p, RDFS.domain)
+        rng_html, rng = _ends(g, p, RDFS.range)
+        tag = ""
+        if parent is not None:
+            _, pdom = _ends(g, parent, RDFS.domain)
+            _, prng = _ends(g, parent, RDFS.range)
+            narrowed = [w for w, a, b in (("domain", dom, pdom), ("range", rng, prng))
+                        if a != b]
+            if narrowed:
+                tag = f'<span class="narrows">narrows {" and ".join(narrowed)}</span>'
+        name = (f'<span class="self">{e(local(p))}</span>' if current
+                else f'<a href="/{e(local(p))}">{e(local(p))}</a>')
+        rows.append(
+            f'<div class="specrow{" specnow" if current else ""}" '
+            f'style="padding-left:{depth * 1.4:.1f}rem">'
+            f'<span class="rt">{name}</span>'
+            f'<span class="rr rsig">{dom_html} &rarr; {rng_html}</span>'
+            f'{tag}</div>')
+
+    for depth, p in enumerate(line):
+        emit(p, depth, line[depth - 1] if depth else None, p == s)
+    for k in kids:
+        emit(k, len(line), s, False)
+
+    note = ('<p class="specnote measure">Asserting a sub-property asserts its own '
+            'domain and range, not just the parent\'s. Anything you put either '
+            'side is taken to be of the narrower class, whether or not you said '
+            'so.</p>')
+    return note + "".join(rows)
 
 
 def section(head: str, inner: str) -> str:
@@ -1006,12 +1226,60 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
         for c in subs) + "</div>") if subs else ""
 
     def props_where(pred):
-        got = sorted({p for p in union.subjects(pred, s)
-                      if set(union.objects(p, RDF.type)) & PROP_TYPES},
-                     key=lambda x: local(x).lower())
-        return ('<div class="chips">' + "".join(
-            f'<a class="chip chip-prop" href="/{e(local(p))}">{e(str(union.value(p, RDFS.label) or local(p)))}</a>'
-            for p in got) + "</div>") if got else ""
+        """Every property that reaches this class, with its whole signature.
+
+        A bare chip made you click through to learn what the property even
+        joined — which is the one thing you opened the class page to find out.
+        Both ends are shown; the end that is this page is muted and unlinked, so
+        the eye lands on the far one, which is the end that varies.
+        """
+        # Direct, then inherited. A Composition IS an Eventuality, so atTime
+        # applies to it — and leaving it off this page sends the reader hunting
+        # up the tree for a property that was theirs all along.
+        direct = sorted({p for p in union.subjects(pred, s)
+                         if set(union.objects(p, RDF.type)) & PROP_TYPES},
+                        key=lambda x: local(x).lower())
+        seen_p = set(direct)
+        inherited = []
+        for anc in chain:
+            for p in sorted({p for p in union.subjects(pred, anc)
+                             if set(union.objects(p, RDF.type)) & PROP_TYPES},
+                            key=lambda x: local(x).lower()):
+                if p not in seen_p:
+                    seen_p.add(p)
+                    inherited.append(p)
+        got = direct + inherited
+        if not got:
+            return ""
+
+        def end(p, which):
+            parts = []
+            for o in union.objects(p, which):
+                if o == s:
+                    lbl = union.value(o, RDFS.label)
+                    parts.append(f'<span class="self">{e(str(lbl) if lbl else local(o))}</span>')
+                elif isinstance(o, BNode):
+                    parts.append(short_expr(union, o))
+                else:
+                    parts.append(term_link(union, o))
+            return ", ".join(parts)
+
+        def row(p):
+            d = describe(union, p)
+            dom, rng = end(p, RDFS.domain), end(p, RDFS.range)
+            sig = f"{dom} &rarr; {rng}" if dom and rng else (dom or rng)
+            return (f'<div class="refrow">'
+                    f'<span class="rt"><a href="/{e(local(p))}">{e(local(p))}</a></span>'
+                    f'<span class="rr rsig">{sig}</span>'
+                    f'<span class="rd">{e(clip(d["definition"], 88))}</span>'
+                    f'</div>')
+
+        out = "".join(row(p) for p in direct)
+        if inherited:
+            out += ('<div class="inhead">inherited &mdash; the signature names the '
+                    'class each one is declared on</div>'
+                    + "".join(row(p) for p in inherited))
+        return out
 
     body = f"""
 <header class="top"><div class="wrap">
@@ -1025,7 +1293,10 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
   {formats_for('')}
 </div></header>
 <main><div class="wrap">
+  {section("In short", f'<p class="inshort measure">{e(IN_SHORT[d["name"]])}</p>') if d['name'] in IN_SHORT else ""}
   {section("In the model", props_dl)}
+  {section("For example", f'<div class="example measure"><p>{e(d["example"])}</p></div>' if d['example'] else "")}
+  {section("Specialisation", spec_table(union, s)) if is_prop else ""}
   {section("Specialised by", subs_html)}
   {"" if is_prop else section("Properties from this", props_where(RDFS.domain))}
   {"" if is_prop else section("Properties onto this", props_where(RDFS.range))}
@@ -1150,6 +1421,330 @@ def check_no_collisions(union: Graph) -> None:
         raise SystemExit(f"REFUSING TO BUILD — terms differing only by case: {dupes}")
 
 
+def clip(text: str, n: int = 104) -> str:
+    """Shorten to a whole word. Cutting mid-word reads as a rendering fault."""
+    if len(text) <= n:
+        return text
+    return text[:n].rsplit(" ", 1)[0].rstrip(" ,;:") + "…"
+
+
+# One pass over the Turtle, left to right. Alternation order is the whole trick:
+# a token that can contain another token's opening character must come first, so
+# a " inside a comment and a # inside an IRI are both swallowed by the token that
+# really owns them. Layered re.sub over already-escaped HTML could not do that.
+TTL_TOKEN = re.compile(r"""
+      (?P<string>"(?:[^"\\\n]|\\.)*")
+    | (?P<comment>\#[^\n]*)
+    | (?P<iri><[^>\s]*>)
+    | (?P<directive>@[A-Za-z]+)
+    | (?P<pname>[A-Za-z][\w.-]*:[\w.\-%]*|:[\w.\-%]*)
+    | (?P<num>-?\d[\d.]*)
+    | (?P<kw>(?<![\w:-])a(?![\w:-]))
+    | (?P<punc>\^\^|[;,.\[\]()])
+""", re.X)
+
+
+def ttl_html(src: str) -> str:
+    """Highlight a Turtle snippet and link every loze: term in it.
+
+    Colour follows what a token IS, not whether it happens to be a link. Before,
+    only loze: names and strings were coloured — because those were the two things
+    the old regexes knew about — so owl:Class, rdfs:subClassOf, xsd:decimal and
+    the `a` keyword all read as undifferentiated black.
+    """
+    src = src.strip("\n")
+    out, pos = [], 0
+    for m in TTL_TOKEN.finditer(src):
+        if m.start() > pos:
+            out.append(e(src[pos:m.start()]))
+        pos = m.end()
+        kind, text = m.lastgroup, m.group()
+        if kind == "pname":
+            prefix, _, localname = text.partition(":")
+            if prefix == "loze" and localname:
+                # check_examples() guarantees these resolve, so the link is safe.
+                out.append(f'<a href="/{e(localname)}">{e(text)}</a>')
+            elif prefix:
+                out.append(f'<span class="pfx">{e(text)}</span>')
+            else:
+                # A name in the example's own namespace — the reader's data.
+                out.append(f'<span class="loc">{e(text)}</span>')
+        elif kind in ("string", "num"):
+            out.append(f'<span class="lit">{e(text)}</span>')
+        elif kind in ("kw", "directive"):
+            out.append(f'<span class="kw">{e(text)}</span>')
+        elif kind == "iri":
+            out.append(f'<span class="tiri">{e(text)}</span>')
+        elif kind == "comment":
+            out.append(f'<span class="cm">{e(text)}</span>')
+        else:
+            out.append(f'<span class="pn">{e(text)}</span>')
+    out.append(e(src[pos:]))
+    return f'<pre class="ttl">{"".join(out)}</pre>'
+
+
+# Worked examples. These answer questions people actually arrive with, in the
+# ontology's own syntax. Every term used here is checked against the graph at
+# build time by check_examples(), so a snippet cannot rot silently.
+WORKED = [
+    ("Give an event a time",
+     "You have an interview, and you want to say when it happened. Make "
+     "<code>:Interview</code> a subclass of <code>loze:Eventuality</code> — you "
+     "want the domain class — and every loze property that takes an eventuality "
+     "still reaches it, because <code>rdfs:domain</code> is inherited. The time "
+     "is a period of time, and <code>loze:atTime</code> joins the two.",
+     """
+:Interview
+    a owl:Class ;
+    rdfs:subClassOf loze:Eventuality .       # your class, under loze's category
+
+:interview-delivery-team
+    a :Interview ;
+    rdfs:label "Interview with the delivery team" ;
+    loze:hasAgent       :lance ;             # who ran it
+    loze:hasParticipant :sam ;               # who else was there
+    loze:hasTopic       :the-migration ;     # what it was about
+    loze:atTime         :morning-2026-08-14 .
+
+:morning-2026-08-14
+    a loze:PeriodOfTime ;
+    loze:hasTemporalCoordinate "2026-08-14T10:00:00"^^xsd:dateTime ;
+    loze:hasDuration           "PT90M"^^xsd:duration .
+"""),
+    ("Say when something started and stopped",
+     "<code>loze:atTime</code> says an eventuality was going on then — it need not "
+     "cover the whole span. For the ends, use <code>loze:fromTime</code> and "
+     "<code>loze:untilTime</code>.",
+     """
+:Migration
+    a owl:Class ;
+    rdfs:subClassOf loze:Eventuality .
+
+:the-migration
+    a :Migration ;
+    loze:fromTime  :2026-q1 ;
+    loze:untilTime :2026-q3 ;
+    loze:atTime    :2026-q2 .    # still running in Q2
+
+:2026-q2
+    a loze:PeriodOfTime ;
+    loze:isSubperiodOf :year-2026 .
+"""),
+    ("Say who did what, to whom, with what",
+     "Rather than a bespoke relation per kind of event, loze gives you one set of "
+     "roles that works across domains. Reach for these before inventing your own.",
+     """
+:Payment
+    a owl:Class ;
+    rdfs:subClassOf loze:Eventuality .
+
+:payment-8871
+    a :Payment ;
+    loze:hasAgent      :acme-ltd ;       # the one who acts
+    loze:hasRecipient  :supplier-ltd ;   # the one it is conferred on
+    loze:hasInstrument :card-4417 ;      # the means
+    loze:atTime        :2026-08-14 .
+"""),
+    ("Describe a model, not a unit",
+     "The car model has an advertised weight; your car has a weight you could put "
+     "on a weighbridge. They are different facts about different things. Make the "
+     "model a schematic particular and it can carry its own data without becoming "
+     "a class.",
+     """
+:ToyotaCorolla
+    a loze:SchematicParticular .
+
+:CorollaHatchback
+    a loze:SchematicParticular ;
+    loze:isDeterminationOf :ToyotaCorolla ;   # the counterpart of subclassing
+    :advertisedWeight      "1205"^^xsd:decimal .
+
+:my-corolla
+    a loze:ConcreteParticular ;
+    loze:isConcretizationOf :CorollaHatchback .
+"""),
+    ("Say something general, without punning",
+     "This is what the category is for. A schematic particular is repeatable like "
+     "a class but carries data like an instance, so a general fact about the model "
+     "is an ordinary triple. The usual alternatives are a pun — one name used as "
+     "both a class and an individual — or a restriction.",
+     """
+# The usual way. :ToyotaCorolla is a class so units can be instances of it,
+# and an individual so it can hold a weight. OWL 2 permits the pun; nothing
+# keeps the two in step, and the weight is invisible to a query over cars.
+:ToyotaCorolla a owl:Class ;
+    rdfs:subClassOf :Car .
+:ToyotaCorolla :advertisedWeight "1205"^^xsd:decimal .   # the pun
+:my-corolla a :ToyotaCorolla .
+
+# loze. One entity, no pun. It is a particular, so the general fact is just
+# a triple, and ?m a :Car / ?m :advertisedWeight ?kg both match it.
+:ToyotaCorolla a loze:SchematicParticular, :Car ;
+    :advertisedWeight "1205"^^xsd:decimal .
+:my-corolla loze:isConcretizationOf :ToyotaCorolla .
+"""),
+]
+
+PREFIXES = """@prefix :     <https://example.org/> .
+@prefix loze: <https://loze-ontology.org/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+"""
+
+
+# Plain English for the terms that need it before the figures. The ontology's own
+# skos:definition is precise and says nothing about what the term buys you.
+IN_SHORT = {
+    "SchematicParticular":
+        "A schematic particular sits between an instance and a class. It repeats "
+        "like a class — many things can be concretizations of it — but it carries "
+        "data like an instance, and it can be an eventuality as much as a thing. "
+        "That is what lets you say something general about it using the same "
+        "triples you would use for any individual. Without it, saying the same "
+        "thing needs OWL 2 punning or a restriction.",
+    "Eventuality":
+        "One category for events, processes, states, qualities and relations. "
+        "loze does not split them, because the lines between them do not hold up "
+        "and you do not need them: anything you want to time, or attribute to "
+        "someone, or give participants, is an eventuality.",
+}
+
+
+def check_examples(union: Graph) -> None:
+    """Every loze: term named in a worked snippet must exist. A hand-written
+    example that quietly names a term the ontology dropped is worse than none."""
+    known = {local(s) for s in union.subjects() if isinstance(s, URIRef)
+             and str(s).startswith(NS)}
+    bad = set()
+    for title, _why, snippet in WORKED:
+        # It must parse. A snippet a reader cannot paste into a store is not an
+        # example, it is a picture of one.
+        try:
+            Graph().parse(data=PREFIXES + snippet, format="turtle")
+        except Exception as exc:
+            raise SystemExit(
+                f"REFUSING TO BUILD — worked example {title!r} is not valid "
+                f"Turtle: {exc}") from exc
+        for name in re.findall(r"\bloze:([A-Za-z][A-Za-z0-9_-]*)", snippet):
+            if name not in known:
+                bad.add(name)
+    if bad:
+        raise SystemExit(
+            "REFUSING TO BUILD — worked examples name terms that are not in the "
+            f"ontology: {', '.join(sorted(bad))}")
+
+
+def render_examples(union: Graph, defined_in: dict) -> str:
+    """Every example in one place. The worked snippets first, because they answer
+    a task; then the per-term examples, which answer 'what counts as one of these'."""
+    # Prefixes once, not four lines of boilerplate before every snippet.
+    prelude = ('<p class="why">Every snippet below assumes these prefixes.</p>'
+               + ttl_html(PREFIXES))
+    blocks = prelude + "".join(
+        f'<div class="worked"><h3>{e(title)}</h3><p class="why">{why}</p>'
+        f'{ttl_html(snippet)}</div>'
+        for title, why, snippet in WORKED)
+
+    ontologies = {str(o) for o in union.subjects(RDF.type, OWL.Ontology)}
+    rows = []
+    for s in sorted({s for s in union.subjects()
+                     if isinstance(s, URIRef) and str(s).startswith(NS)
+                     and str(s) != NS and str(s) not in ontologies},
+                    key=lambda x: local(x).lower()):
+        d = describe(union, s)
+        if not d["example"]:
+            continue
+        rows.append(
+            f'<div class="refrow"><span class="rt">'
+            f'<a href="/{e(local(s))}">{e(d["label"])}</a></span>'
+            f'<span class="rd">{e(d["example"])}</span></div>')
+
+    body = f"""
+<header class="top"><div class="wrap">
+  <div class="trail"><a href="/">loze</a> / <span>examples</span></div>
+  <h1>Examples</h1>
+  <p class="lead measure">Turtle for the jobs people actually turn up with, then the
+  ontology's own examples for every term that has one.</p>
+</div></header>
+<main><div class="wrap">
+  {section("Worked examples", blocks)}
+  {section(f"{len(rows)} terms, by example", "".join(rows))}
+</div></main>
+"""
+    return shell("Examples — loze", alternates_for(""), body, here="/examples")
+
+
+def render_terms(union: Graph, defined_in: dict) -> str:
+    """The reference. Someone who already knows why loze exists and just needs a
+    property lands here, not at the bottom of a page of philosophy."""
+    classes = {c for c in union.subjects(RDF.type, OWL.Class) if str(c).startswith(NS)}
+    roots = sorted([c for c in classes
+                    if not any(p in classes for p in union.objects(c, RDFS.subClassOf))],
+                   key=lambda x: local(x).lower())
+    # Which module a class comes from is worth knowing on the reference page too,
+    # and it is the same tag the front page carries.
+    tags = {k: v for k, v in (defined_in or {}).items() if v}
+    tree = "".join(class_tree(union, r, classes, tags=tags) for r in roots)
+
+    ontologies = {str(o) for o in union.subjects(RDF.type, OWL.Ontology)}
+    props = sorted({s for s in union.subjects()
+                    if isinstance(s, URIRef) and str(s).startswith(NS)
+                    and str(s) != NS and str(s) not in ontologies
+                    and set(union.objects(s, RDF.type)) & PROP_TYPES},
+                   key=lambda x: local(x).lower())
+
+    # Grouped by the class they hang off, because that is how the question
+    # arrives: "I have an eventuality — what can I say about it?"
+    groups: dict[str, list] = {}
+    heads: dict[str, str] = {}
+    for p in props:
+        doms = list(union.objects(p, RDFS.domain))
+        named = [o for o in doms if isinstance(o, URIRef)]
+        if named:
+            key = local(named[0])
+            heads[key] = f'from <a href="/{e(key)}">{e(key)}</a>'
+        elif doms:
+            # An anonymous domain is usually a union — say which classes, not
+            # "Anything", which is both wrong and unhelpful.
+            key = "~" + local(p)
+            heads[key] = f"from {anon_expr(union, doms[0])}"
+        else:
+            key = "~~any"
+            heads[key] = "on any subject"
+        groups.setdefault(key, []).append(p)
+
+    out = []
+    for key in sorted(groups, key=str.lower):
+        rows = []
+        for p in groups[key]:
+            d = describe(union, p)
+            rng = [term_link(union, o) if isinstance(o, URIRef) else anon_expr(union, o)
+                   for o in union.objects(p, RDFS.range)]
+            rows.append(
+                f'<div class="refrow">'
+                f'<span class="rt"><a href="/{e(local(p))}">{e(local(p))}</a></span>'
+                f'<span class="rd">{e(clip(d["definition"]))}</span>'
+                f'<span class="rr">{("&rarr; " + ", ".join(rng)) if rng else ""}</span>'
+                f'</div>')
+        out.append(f'<div class="domgroup"><div class="domhead">{heads[key]}</div>{"".join(rows)}</div>')
+
+    body = f"""
+<header class="top"><div class="wrap">
+  <div class="trail"><a href="/">loze</a> / <span>terms</span></div>
+  <h1>Terms</h1>
+  <p class="lead measure">Every class and every property. Properties sit under the
+  class they attach to — find your thing, then read across.</p>
+</div></header>
+<main><div class="wrap">
+  {section(f"{len(classes)} classes", f'<ul class="tree">{tree}</ul>')}
+  {section(f"{len(props)} properties", "".join(out))}
+</div></main>
+"""
+    return shell("Terms — loze", alternates_for(""), body, here="/terms")
+
+
+
 def main() -> None:
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -1260,6 +1855,12 @@ def main() -> None:
     for t in terms:
         (OUT / f"{local(t)}.html").write_text(
             render_term(union, t, defined_in.get(str(t))), encoding="utf-8")
+
+    # The two pages that are not generated from one term: a reference for someone
+    # who already knows why loze exists, and every example in one place.
+    check_examples(union)
+    (OUT / "terms.html").write_text(render_terms(union, defined_in), encoding="utf-8")
+    (OUT / "examples.html").write_text(render_examples(union, defined_in), encoding="utf-8")
 
     # One stylesheet, not 101 copies. grabbag inlines its CSS on purpose — single
     # file, strict CSP, works from file://. Neither applies here: this is a

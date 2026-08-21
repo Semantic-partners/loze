@@ -4,6 +4,42 @@ An upper-level ontology largely inspired - with a few deviations and additions -
 
 A peculiar feature is the category of schematic particulars: these are repeatable like classes, but have many of the properties that are typical of ordinary individuals. While the concept of a schematic particular might come across as weird to those who are used to the class-individual duality, it has a robust philosophical underpinning, and we believe that it can provide surprisingly powerful design patterns; these could vastly simplify modelling in circumstances in which the standard solution would be use restrictions or punning.
 
+## The site
+
+The Turtle is the source. `docs/` is a generated view of it — one page per term,
+plus a reference and a page of examples. Run these from the root of this repo:
+
+    cd /path/to/loze
+
+    python3 scripts/serve.py     # read it:    http://localhost:8788
+    python3 scripts/build.py     # rebuild docs/ after editing any .ttl
+    python3 scripts/check.py     # assert the output holds together
+
+Nothing to install and no virtualenv: `serve.py` is standard library only, and
+`build.py` needs `rdflib`, which is already on the system Python. Pass a port if
+8788 is taken — `python3 scripts/serve.py 9000`. `serve.py` finds `docs/` from
+its own location, so an absolute path works from any directory.
+
+Do not open the HTML files directly.
+
+Opening `docs/Entity.html` from Finder gives you an unstyled page with dead
+links. Every asset and link is an absolute path — `/style.css`, `/Entity` — and
+under `file://` those resolve against your filesystem root. `python3 -m
+http.server` fixes the stylesheet but not the links, because Cloudflare Pages
+maps `/Entity` to `Entity.html` and a plain static server does not. `serve.py`
+does both, and serves the RDF with the content types from `_headers`.
+
+`npx wrangler pages dev docs` is the same thing through the real Pages runtime,
+if you want to check `_headers` too.
+
+Three places to start:
+
+| page | what it is for |
+|---|---|
+| `/` | why loze exists — the four categories, schematic particulars |
+| `/terms` | every class and property, properties grouped under the class they hang off |
+| `/examples` | Turtle for common modelling jobs, then every term's own example |
+
 ## Namespace
 
     https://loze-ontology.org/

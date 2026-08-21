@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<nav class="site"><div class="wrap"><a class="navmark" href="/">loze</a><a href="/terms">terms</a><a href="/examples">examples</a></div></nav>
 
 <header class="top"><div class="wrap">
   <div class="trail"><a href="/">loze</a> / <span>Entity</span></div>
@@ -25,10 +26,13 @@
   <div class="formats"><a href="/loze.ttl">ttl</a><a href="/loze.rdf">rdf</a><a href="/loze.jsonld">jsonld</a><a href="/loze.nt">nt</a></div>
 </div></header>
 <main><div class="wrap">
+  
   <section><div class="section-head">In the model</div><dl class="props"><dt>equivalent to</dt><dd><code>owl:Thing</code></dd><dt>type</dt><dd><code>owl:Class</code></dd><dt>defined in</dt><dd><a href="/">foundation</a></dd></dl></section>
+  
+  
   <section><div class="section-head">Specialised by</div><div class="chips"><a class="chip" href="/Particular">Particular</a></div></section>
-  <section><div class="section-head">Properties from this</div><div class="chips"><a class="chip chip-prop" href="/isHeldIn">is Held In</a><a class="chip chip-prop" href="/isHolderIn">is Holder In</a><a class="chip chip-prop" href="/isParticipantIn">is Participant In</a><a class="chip chip-prop" href="/isThemeIn">is Theme In</a><a class="chip chip-prop" href="/isTopicIn">is Topic In</a></div></section>
-  <section><div class="section-head">Properties onto this</div><div class="chips"><a class="chip chip-prop" href="/hasHeld">has Held</a><a class="chip chip-prop" href="/hasHolder">has Holder</a><a class="chip chip-prop" href="/hasParticipant">has Participant</a><a class="chip chip-prop" href="/hasTopic">has Topic</a></div></section>
+  <section><div class="section-head">Properties from this</div><div class="refrow"><span class="rt"><a href="/isHeldIn">isHeldIn</a></span><span class="rr rsig"><span class="self">Entity</span> &rarr; <a href="/Eventuality">Eventuality</a></span><span class="rd">The relation that obtains between an entity e and an eventuality e&#x27; if and only if e is…</span></div><div class="refrow"><span class="rt"><a href="/isHolderIn">isHolderIn</a></span><span class="rr rsig"><span class="self">Entity</span> &rarr; <a href="/Eventuality">Eventuality</a></span><span class="rd">The relation that obtains between an entity e and an eventuality e&#x27; if and only if e…</span></div><div class="refrow"><span class="rt"><a href="/isParticipantIn">isParticipantIn</a></span><span class="rr rsig"><span class="self">Entity</span> &rarr; <a href="/Eventuality">Eventuality</a></span><span class="rd">The relation that obtains between an entity e and an eventuality e&#x27; if and only if e&#x27;…</span></div><div class="refrow"><span class="rt"><a href="/isThemeIn">isThemeIn</a></span><span class="rr rsig"><span class="self">Entity</span> &rarr; <a href="/Eventuality">Eventuality</a></span><span class="rd">The relation that obtains between a particular p and an eventuality e if and only if p…</span></div><div class="refrow"><span class="rt"><a href="/isTopicIn">isTopicIn</a></span><span class="rr rsig"><span class="self">Entity</span> &rarr; <a href="/Eventuality">Eventuality</a></span><span class="rd">The relation that obtains between an entity e and an eventuality e&#x27; if and only if e is…</span></div></section>
+  <section><div class="section-head">Properties onto this</div><div class="refrow"><span class="rt"><a href="/hasHeld">hasHeld</a></span><span class="rr rsig"><a href="/Eventuality">Eventuality</a> &rarr; <span class="self">Entity</span></span><span class="rd">The relation that obtains between an eventuality e&#x27; and an entity e if and only if e is…</span></div><div class="refrow"><span class="rt"><a href="/hasHolder">hasHolder</a></span><span class="rr rsig"><a href="/Eventuality">Eventuality</a> &rarr; <span class="self">Entity</span></span><span class="rd">The relation that obtains between an eventuality e&#x27; and an entity e if and only if e is…</span></div><div class="refrow"><span class="rt"><a href="/hasParticipant">hasParticipant</a></span><span class="rr rsig"><a href="/Eventuality">Eventuality</a> &rarr; <span class="self">Entity</span></span><span class="rd">The relation that obtains between an eventuality e&#x27; and an entity e if and only if e is…</span></div><div class="refrow"><span class="rt"><a href="/hasTopic">hasTopic</a></span><span class="rr rsig"><a href="/Eventuality">Eventuality</a> &rarr; <span class="self">Entity</span></span><span class="rd">The relation that obtains between an eventuality e&#x27; and an entity e if and only if e is…</span></div></section>
   
   <section><div class="section-head">Note</div><p class="measure">It corresponds to owl:Thing</p></section>
 </div></main>

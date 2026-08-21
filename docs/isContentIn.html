@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<nav class="site"><div class="wrap"><a class="navmark" href="/">loze</a><a href="/terms">terms</a><a href="/examples">examples</a></div></nav>
 
 <header class="top"><div class="wrap">
   <div class="trail"><a href="/">loze</a> / <span>is Content In</span></div>
@@ -25,7 +26,10 @@
   <div class="formats"><a href="/loze.ttl">ttl</a><a href="/loze.rdf">rdf</a><a href="/loze.jsonld">jsonld</a><a href="/loze.nt">nt</a></div>
 </div></header>
 <main><div class="wrap">
+  
   <section><div class="section-head">In the model</div><dl class="props"><dt>subproperty of</dt><dd><a href="/isThemeIn">is Theme In</a></dd><dt>domain</dt><dd><a href="/Particular">Particular</a></dd><dt>range</dt><dd><a href="/Eventuality">Eventuality</a></dd><dt>type</dt><dd><code>owl:ObjectProperty</code></dd><dt>defined in</dt><dd><a href="/">foundation</a></dd></dl></section>
+  <section><div class="section-head">For example</div><div class="example measure"><p>The liquid is the content in its containment by a tank, the fluid is the content when flowing in a duct</p></div></section>
+  <section><div class="section-head">Specialisation</div><p class="specnote measure">Asserting a sub-property asserts its own domain and range, not just the parent's. Anything you put either side is taken to be of the narrower class, whether or not you said so.</p><div class="specrow" style="padding-left:0.0rem"><span class="rt"><a href="/isParticipantIn">isParticipantIn</a></span><span class="rr rsig"><a href="/Entity">Entity</a> &rarr; <a href="/Eventuality">Eventuality</a></span></div><div class="specrow" style="padding-left:1.4rem"><span class="rt"><a href="/isThemeIn">isThemeIn</a></span><span class="rr rsig"><a href="/Entity">Entity</a> &rarr; <a href="/Eventuality">Eventuality</a></span></div><div class="specrow specnow" style="padding-left:2.8rem"><span class="rt"><span class="self">isContentIn</span></span><span class="rr rsig"><a href="/Particular">Particular</a> &rarr; <a href="/Eventuality">Eventuality</a></span><span class="narrows">narrows domain</span></div><div class="specrow" style="padding-left:4.2rem"><span class="rt"><a href="/isRepeatedContentIn">isRepeatedContentIn</a></span><span class="rr rsig"><a href="/SchematicParticular">Schematic Particular</a> &rarr; <a href="/Containment">Containment</a></span><span class="narrows">narrows domain and range</span></div></section>
   
   
   
