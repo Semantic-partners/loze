@@ -1,0 +1,82 @@
+# A preview deploy per pull request.
+#
+# docs/ is not in git — scripts/build.py writes it — so there is otherwise no
+# way for a reviewer to see what a branch does to the site short of checking it
+# out and building it. This builds it for them.
+#
+# The Pages project is Direct Upload (no Git connection), so Cloudflare never
+# sees this repo. What it needs instead is two repository secrets:
+#
+#   CLOUDFLARE_API_TOKEN   a token with the Cloudflare Pages:Edit permission
+#   CLOUDFLARE_ACCOUNT_ID  the account the loze project sits in
+#
+# Production is still a manual `wrangler pages deploy docs`. Wiring main up here
+# too is a one-job change, but that is a decision about the live site rather
+# than about review, so it is not made here.
+name: preview
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+# A second push to the same branch makes the first preview pointless.
+concurrency:
+  group: preview-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    # Secrets are not exposed to a pull request from a fork, so the deploy would
+    # fail rather than being denied. Skip it and leave the PR unannotated.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install rdflib
+
+      - name: Build the site
+        run: python3 scripts/build.py
+
+      # check.py asserts every term resolves, every page can reach the root, and
+      # the kind chips agree with rdf:type. A branch that fails it should not get
+      # a URL that looks like a working preview.
+      - name: Check the output
+        run: python3 scripts/check.py
+
+      - name: Deploy a preview
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >-
+            pages deploy docs
+            --project-name=loze
+            --branch=${{ github.head_ref }}
+
+      # One comment per PR, edited in place, so a branch pushed ten times does
+      # not leave ten near-identical comments.
+      - name: Post the preview URL
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          URL: ${{ steps.deploy.outputs.deployment-url }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          gh pr comment "$PR" --edit-last --create-if-none --body "\
+          Preview: $URL
+
+          Built from \`${{ github.sha }}\`. \`docs/\` is generated, so this is the
+          only way to read the branch without building it yourself.
+
+          Behind Cloudflare Access — if it bounces you to a login you cannot
+          complete, the Access policy needs to cover preview subdomains as well
+          as the production hostname."
