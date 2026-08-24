@@ -10,9 +10,7 @@
 #   CLOUDFLARE_API_TOKEN   a token with the Cloudflare Pages:Edit permission
 #   CLOUDFLARE_ACCOUNT_ID  the account the loze project sits in
 #
-# Production is still a manual `wrangler pages deploy docs`. Wiring main up here
-# too is a one-job change, but that is a decision about the live site rather
-# than about review, so it is not made here.
+# Merges to main are published by publish.yml, which uses the same two secrets.
 name: preview
 
 on:
@@ -63,12 +61,12 @@ jobs:
             --project-name=loze
             --branch=${{ github.head_ref }}
 
-      # wrangler reports a Pages permission failure as a bare "Authentication
-      # error [code: 10000]", which is the same message you get for a wrong
-      # token, a wrong account, and a token that is fine but not scoped to this
-      # account's Pages. Ask the API which it is. Prints error bodies only —
-      # the token itself is never echoed, and GitHub masks it regardless.
-      - name: Say why the deploy was refused
+      # wrangler reports every credential problem as the same "Authentication
+      # error [code: 10000]". Ask the API what it makes of the credentials and
+      # print the answer. Deliberately no interpretation: the next failure will
+      # be wrong in some new way, and a stale hint reads as fact. Error bodies
+      # only — the token is never echoed, and GitHub masks it regardless.
+      - name: Ask the API what it makes of the credentials
         if: failure()
         env:
           CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -77,19 +75,13 @@ jobs:
           api() { curl -sS -H "Authorization: Bearer $CF_TOKEN" \
                        -H "Content-Type: application/json" "$@"; }
 
-          echo "--- is the token live? ---"
+          echo "--- token ---"
           api https://api.cloudflare.com/client/v4/user/tokens/verify \
             | python3 -c 'import json,sys; d=json.load(sys.stdin); print("success:", d.get("success")); print("status :", (d.get("result") or {}).get("status")); print("errors :", d.get("errors"))'
 
-          echo "--- can it list Pages projects on this account? ---"
+          echo "--- pages projects on CLOUDFLARE_ACCOUNT_ID ---"
           api "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/pages/projects" \
             | python3 -c 'import json,sys; d=json.load(sys.stdin); print("success:", d.get("success")); print("errors :", d.get("errors")); print("projects:", [p.get("name") for p in (d.get("result") or [])])'
-
-          echo
-          echo "success:false with code 10000 on the second call and true on the"
-          echo "first means the token is valid but has no Pages permission on"
-          echo "this account. Add Account -> Cloudflare Pages -> Edit, and check"
-          echo "Account Resources includes the account holding the loze project."
 
       # One comment per PR, edited in place, so a branch pushed ten times does
       # not leave ten near-identical comments.
