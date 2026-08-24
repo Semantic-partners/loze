@@ -63,6 +63,34 @@ jobs:
             --project-name=loze
             --branch=${{ github.head_ref }}
 
+      # wrangler reports a Pages permission failure as a bare "Authentication
+      # error [code: 10000]", which is the same message you get for a wrong
+      # token, a wrong account, and a token that is fine but not scoped to this
+      # account's Pages. Ask the API which it is. Prints error bodies only —
+      # the token itself is never echoed, and GitHub masks it regardless.
+      - name: Say why the deploy was refused
+        if: failure()
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          api() { curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+                       -H "Content-Type: application/json" "$@"; }
+
+          echo "--- is the token live? ---"
+          api https://api.cloudflare.com/client/v4/user/tokens/verify \
+            | python3 -c 'import json,sys; d=json.load(sys.stdin); print("success:", d.get("success")); print("status :", (d.get("result") or {}).get("status")); print("errors :", d.get("errors"))'
+
+          echo "--- can it list Pages projects on this account? ---"
+          api "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/pages/projects" \
+            | python3 -c 'import json,sys; d=json.load(sys.stdin); print("success:", d.get("success")); print("errors :", d.get("errors")); print("projects:", [p.get("name") for p in (d.get("result") or [])])'
+
+          echo
+          echo "success:false with code 10000 on the second call and true on the"
+          echo "first means the token is valid but has no Pages permission on"
+          echo "this account. Add Account -> Cloudflare Pages -> Edit, and check"
+          echo "Account Resources includes the account holding the loze project."
+
       # One comment per PR, edited in place, so a branch pushed ten times does
       # not leave ten near-identical comments.
       - name: Post the preview URL
