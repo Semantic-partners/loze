@@ -1,0 +1,57 @@
+# Publish the site on merge to main.
+#
+# docs/ is not in git, so before this the live site only moved when somebody
+# remembered to run wrangler on their own machine, and nothing recorded when
+# that last happened. Now main is what is published, and the run log says when.
+#
+# Same two secrets as the preview workflow:
+#   CLOUDFLARE_API_TOKEN   needs Account -> Cloudflare Pages -> Edit
+#   CLOUDFLARE_ACCOUNT_ID
+name: publish
+
+on:
+  push:
+    branches: [main]
+  # A manual button, for republishing without an empty commit.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never cancel a deploy that is part-way through uploading. Two merges in quick
+# succession should queue, not race.
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install rdflib
+
+      - name: Build the site
+        run: python3 scripts/build.py
+
+      # The gate. check.py asserts every term IRI has a document, every page can
+      # reach the root, and the kind chips agree with rdf:type. A term that stops
+      # resolving is a broken promise to anyone who used the IRI, so a failure
+      # here has to stop the publish rather than warn about it.
+      - name: Check the output
+        run: python3 scripts/check.py
+
+      - name: Publish
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >-
+            pages deploy docs
+            --project-name=loze
+            --branch=main
