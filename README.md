@@ -64,11 +64,25 @@ and the modules declare themselves under it:
 | temporal relations | `https://loze-ontology.org/temporal-relations` |
 | suggested social extension | `https://loze-ontology.org/suggested-social-extension` |
 
-The IRIs do not dereference yet — nothing is served at the domain. Owning it is what
-makes that possible, and what stops the identity of these terms resting on a name a
-stranger could register. It replaced `http://loze-upper-level-ontology.org/`, which was
-never registered by anyone and never used in anger, so the change was a rename rather
-than a migration: no redirect, no `owl:sameAs` bridge.
+The domain now serves the site, but it is closed. Cloudflare Access sits in front of
+it, so `https://loze-ontology.org/Entity` returns a redirect to a login for anyone
+outside the Access policy, and an RDF client asking for `/loze.ttl` gets that login
+page rather than Turtle. **The IRIs do not dereference for the public yet.** Everything
+needed for them to is in place — a document per term, every module in Turtle, RDF/XML,
+JSON-LD and N-Triples, each with its own content type — and removing the Access
+application is the only step left. That is a decision about when to publish, not more
+work.
+
+Owning the domain is what makes that possible, and what stops the identity of these
+terms resting on a name a stranger could register. It replaced
+`http://loze-upper-level-ontology.org/`, which was never registered by anyone and
+never used in anger, so the change was a rename rather than a migration: no redirect,
+no `owl:sameAs` bridge.
+
+Once it does open, publishing an IRI is a promise that it keeps resolving.
+`scripts/check.py` asserts every term has a document and neither workflow deploys
+without it, but nothing outside this repo enforces it — so renaming or dropping a
+term breaks whatever already points at it.
 
 **References**
 
