@@ -97,13 +97,13 @@ loze:isMemberIn a owl:ObjectProperty ;
     skos:definition "The relation that obtains between an actor a and a membership m if and only if a joins the goals and/or the activities of a group in the context of that m" ;
     skos:example "In the membership of France in the European Union, France is the member and the European Union is the composite group; in the membership of Toyota in JAMA (Japanese Automobile Manufacturers Association), Toyota is the member and JAMA is the composite group" ;
     rdfs:domain loze:Actor ;
-    rdfs:range loze:Group ;
+    rdfs:range loze:Membership ;
     rdfs:subPropertyOf loze:isComponentIn .
 
 loze:hasMember a owl:ObjectProperty ;
     rdfs:label "has Member" ;
     skos:definition "The relation that obtains between a membership m and an actor a if and only if a joins the activities of a group in the context of m" ;
-    rdfs:domain loze:Group ;
+    rdfs:domain loze:Membership ;
     rdfs:range loze:Actor ;
     owl:inverseOf loze:isMemberIn .
 
