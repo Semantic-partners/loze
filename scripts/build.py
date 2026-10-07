@@ -1644,36 +1644,38 @@ WORKED = [
     loze:hasInstrument :card-4417 ;      # the means
     loze:atTime        :2026-08-14 .
 """),
-    ("Put each fact on the rung where it is true",
-     "The marque, the variant and the car on the drive are three different things, "
-     "and the facts belong to different ones. Who makes it is true of every "
-     "Corolla. The advertised weight is true of the hatchback and not of the "
-     "saloon. The weighbridge reading is true of one car. A schematic particular "
-     "gives you a rung to hang each on, and <code>loze:isDeterminationOf</code> "
-     "links them — subclassing's counterpart, without leaving the particulars.",
+    ("Put each fact where it holds",
+     "The model, the model year and the car on the drive are three things, and "
+     "the facts belong to different ones. Who makes it is true of every Corolla. "
+     "The advertised weight is true of the 1985 and not the 2026. The weighbridge "
+     "reading is true of one car. Note that the middle one is still schematic — "
+     "refinement usually takes more than one step before anything concrete — and "
+     "that all three are <code>:Car</code>, which stays an ordinary class "
+     "throughout.",
      """
-:ToyotaCorolla
-    a loze:SchematicParticular ;
+:Car a owl:Class .
+
+:ToyotaCorolla                                 # the model
+    a :Car, loze:SchematicParticular ;
     :manufacturer :Toyota .                    # true of every Corolla
 
-:CorollaHatchback
-    a loze:SchematicParticular ;
-    loze:isDeterminationOf :ToyotaCorolla ;    # more detail, same ladder
-    :advertisedWeight "1205"^^xsd:decimal .    # true of this variant only
+:Corolla1985                                   # a model year — still repeatable
+    a :Car, loze:SchematicParticular ;
+    loze:isDeterminationOf :ToyotaCorolla ;
+    :advertisedWeight "1205"^^xsd:decimal .    # true of this year only
 
-:my-corolla
-    a loze:ConcreteParticular ;
-    loze:isConcretizationOf :CorollaHatchback ;
-    :kerbWeight "1232"^^xsd:decimal ;          # true of this car only
-    :odometer   "41022"^^xsd:integer .
+:my-corolla                                    # AB12 CDE, on the drive
+    a :Car, loze:ConcreteParticular ;
+    loze:isConcretizationOf :Corolla1985 ;
+    :kerbWeight "1232"^^xsd:decimal .          # true of this car only
 
-# isDeterminationOf is transitive, and concretization carries through it, so
-# inference-rules/concretization-inheritance.rq derives the rung you skipped:
+# Nothing here is punned. :Car is a class and never an individual; the model
+# and the model year are instances of it, as the car is.
+#
+# isDeterminationOf is transitive and concretization carries through it, so
+# inference-rules/concretization-inheritance.rq derives the step you skipped:
 #
 #   :my-corolla loze:isConcretizationOf :ToyotaCorolla .
-#
-# Ask what my car is a unit of and the marque comes back, though nobody wrote
-# that triple.
 """),
     ("Say something general, without punning",
      "This is what the category is for. A schematic particular is repeatable like "
@@ -1681,19 +1683,25 @@ WORKED = [
      "is an ordinary triple. The usual alternatives are a pun — one name used as "
      "both a class and an individual — or a restriction.",
      """
-# The usual way. :ToyotaCorolla is a class so units can be instances of it,
-# and an individual so it can hold a weight. OWL 2 permits the pun; nothing
-# keeps the two in step, and the weight is invisible to a query over cars.
-:ToyotaCorolla a owl:Class ;
-    rdfs:subClassOf :Car .
-:ToyotaCorolla :advertisedWeight "1205"^^xsd:decimal .   # the pun
-:my-corolla a :ToyotaCorolla .
+# The usual way. Each model year has to be a class, so units can be instances
+# of it, and an individual, so it can hold a weight. OWL 2 permits the pun;
+# nothing keeps the two in step, and the weight is invisible to a query over
+# cars, because a subclass of :Car is not a :Car.
+:Corolla1985 a owl:Class ;
+    rdfs:subClassOf :ToyotaCorolla .
+:ToyotaCorolla rdfs:subClassOf :Car .
+:Corolla1985 :advertisedWeight "1205"^^xsd:decimal .     # the pun
+:my-corolla a :Corolla1985 .
 
-# loze. One entity, no pun. It is a particular, so the general fact is just
-# a triple, and ?m a :Car / ?m :advertisedWeight ?kg both match it.
-:ToyotaCorolla a loze:SchematicParticular, :Car ;
+# loze. No pun at any level. :Car stays a class; the model and the model year
+# are instances of it, so ?m a :Car / ?m :advertisedWeight ?kg both match the
+# 1985 and the general question is answered with an ordinary pattern.
+:ToyotaCorolla a :Car, loze:SchematicParticular .
+:Corolla1985   a :Car, loze:SchematicParticular ;
+    loze:isDeterminationOf :ToyotaCorolla ;
     :advertisedWeight "1205"^^xsd:decimal .
-:my-corolla loze:isConcretizationOf :ToyotaCorolla .
+:my-corolla    a :Car, loze:ConcreteParticular ;
+    loze:isConcretizationOf :Corolla1985 .
 """),
 ]
 
@@ -1709,24 +1717,24 @@ PREFIXES = """@prefix :     <https://example.org/> .
 # skos:definition is precise and says nothing about what the term buys you.
 IN_SHORT = {
     "SchematicParticular":
-        "RDF hands you two slots and neither fits a model, a work, or a "
-        "material. Say something about a class and you have said it about the "
-        "class, not about its members; to say it of the members takes a "
-        "restriction. Say something about an individual and it is an ordinary "
-        "fact, but nothing instantiates an individual. A schematic particular is "
-        "the slot in between: a particular, so it carries its own facts and "
-        "answers the same query as anything else, and repeatable, because "
-        "concrete particulars concretize it.\n\n"
-        "What that buys is a ladder rather than two rungs. Carbon, then "
-        "carbon-14. Coal, then anthracite. The Toyota Corolla, then the Corolla "
-        "Hatchback. Each lower one is a determination of the one above it — in "
-        "the ontology's words, a gradual increase in detailing and specificity — "
-        "and the car on the drive hangs below the whole chain as a "
-        "concretization of it. So every fact goes on the rung where it is true: "
-        "advertised weight on the variant, kerb weight on the car. Determination "
-        "is transitive, and a concretization of a determination concretizes what "
-        "that determines too, so a fact stated near the top still reaches the "
-        "bottom.",
+        "In RDF you get a class or an individual. A fact about a class is about "
+        "the class; saying it of the members takes a restriction. An individual "
+        "takes facts directly, but nothing is an instance of an individual. A "
+        "car model has to do both. It has specifications of its own, and it has "
+        "units.\n\n"
+        "A schematic particular does both. Facts attach to it directly and a "
+        "query finds it like any other subject, because it is a particular. "
+        "Concrete particulars concretize it, which is how it repeats.\n\n"
+        "It can also be made more specific without turning into a class, and "
+        "there is usually more than one step. The Toyota Corolla is the model. "
+        "The 1985 Corolla is a determination of it and is still repeatable — you "
+        "can meet one anywhere. The car on my drive concretizes the 1985. All "
+        "three are instances of the class Car, and Car never stops being a "
+        "class.\n\n"
+        "So each fact goes where it holds: the advertised weight on the model "
+        "year, the weighbridge reading on my car. Determination is transitive "
+        "and concretization carries through it, so my car counts as a unit of "
+        "the Toyota Corolla without anyone writing that triple.",
     "Eventuality":
         "One category for events, processes, states, qualities and relations. "
         "loze does not split them, because the lines between them do not hold up "
