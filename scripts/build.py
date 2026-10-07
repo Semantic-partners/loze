@@ -433,7 +433,8 @@ nav.site .navmark { font-weight: 700; color: hsl(var(--foreground)); margin-righ
 
 /* Plain English, before the diagrams. Set larger than body text because it is
    the thing to read first. */
-.inshort { font-size: var(--fs-body-lg); margin: 0; }
+.inshort { font-size: var(--fs-body-lg); margin: 0 0 0.9rem; }
+.inshort:last-child { margin-bottom: 0; }
 
 /* Turtle snippets. The ontology's own syntax is the clearest example there is,
    so these are plain code — no diagram, nothing to decode. */
@@ -1392,7 +1393,7 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
   {formats_for('')}
 </div></header>
 <main><div class="wrap">
-  {section("In short", f'<p class="inshort measure">{e(IN_SHORT[d["name"]])}</p>') if d['name'] in IN_SHORT else ""}
+  {section("In short", in_short_html(d["name"])) if d['name'] in IN_SHORT else ""}
   {section("In the model", props_dl)}
   {section("For example", f'<div class="example measure"><p>{e(d["example"])}</p></div>' if d['example'] else "")}
   {section("Specialisation", spec_table(union, s)) if is_prop else ""}
@@ -1643,23 +1644,36 @@ WORKED = [
     loze:hasInstrument :card-4417 ;      # the means
     loze:atTime        :2026-08-14 .
 """),
-    ("Describe a model, not a unit",
-     "The car model has an advertised weight; your car has a weight you could put "
-     "on a weighbridge. They are different facts about different things. Make the "
-     "model a schematic particular and it can carry its own data without becoming "
-     "a class.",
+    ("Put each fact on the rung where it is true",
+     "The marque, the variant and the car on the drive are three different things, "
+     "and the facts belong to different ones. Who makes it is true of every "
+     "Corolla. The advertised weight is true of the hatchback and not of the "
+     "saloon. The weighbridge reading is true of one car. A schematic particular "
+     "gives you a rung to hang each on, and <code>loze:isDeterminationOf</code> "
+     "links them — subclassing's counterpart, without leaving the particulars.",
      """
 :ToyotaCorolla
-    a loze:SchematicParticular .
+    a loze:SchematicParticular ;
+    :manufacturer :Toyota .                    # true of every Corolla
 
 :CorollaHatchback
     a loze:SchematicParticular ;
-    loze:isDeterminationOf :ToyotaCorolla ;   # the counterpart of subclassing
-    :advertisedWeight      "1205"^^xsd:decimal .
+    loze:isDeterminationOf :ToyotaCorolla ;    # more detail, same ladder
+    :advertisedWeight "1205"^^xsd:decimal .    # true of this variant only
 
 :my-corolla
     a loze:ConcreteParticular ;
-    loze:isConcretizationOf :CorollaHatchback .
+    loze:isConcretizationOf :CorollaHatchback ;
+    :kerbWeight "1232"^^xsd:decimal ;          # true of this car only
+    :odometer   "41022"^^xsd:integer .
+
+# isDeterminationOf is transitive, and concretization carries through it, so
+# inference-rules/concretization-inheritance.rq derives the rung you skipped:
+#
+#   :my-corolla loze:isConcretizationOf :ToyotaCorolla .
+#
+# Ask what my car is a unit of and the marque comes back, though nobody wrote
+# that triple.
 """),
     ("Say something general, without punning",
      "This is what the category is for. A schematic particular is repeatable like "
@@ -1695,18 +1709,36 @@ PREFIXES = """@prefix :     <https://example.org/> .
 # skos:definition is precise and says nothing about what the term buys you.
 IN_SHORT = {
     "SchematicParticular":
-        "A schematic particular sits between an instance and a class. It repeats "
-        "like a class — many things can be concretizations of it — but it carries "
-        "data like an instance, and it can be an eventuality as much as a thing. "
-        "That is what lets you say something general about it using the same "
-        "triples you would use for any individual. Without it, saying the same "
-        "thing needs OWL 2 punning or a restriction.",
+        "RDF hands you two slots and neither fits a model, a work, or a "
+        "material. Say something about a class and you have said it about the "
+        "class, not about its members; to say it of the members takes a "
+        "restriction. Say something about an individual and it is an ordinary "
+        "fact, but nothing instantiates an individual. A schematic particular is "
+        "the slot in between: a particular, so it carries its own facts and "
+        "answers the same query as anything else, and repeatable, because "
+        "concrete particulars concretize it.\n\n"
+        "What that buys is a ladder rather than two rungs. Carbon, then "
+        "carbon-14. Coal, then anthracite. The Toyota Corolla, then the Corolla "
+        "Hatchback. Each lower one is a determination of the one above it — in "
+        "the ontology's words, a gradual increase in detailing and specificity — "
+        "and the car on the drive hangs below the whole chain as a "
+        "concretization of it. So every fact goes on the rung where it is true: "
+        "advertised weight on the variant, kerb weight on the car. Determination "
+        "is transitive, and a concretization of a determination concretizes what "
+        "that determines too, so a fact stated near the top still reaches the "
+        "bottom.",
     "Eventuality":
         "One category for events, processes, states, qualities and relations. "
         "loze does not split them, because the lines between them do not hold up "
         "and you do not need them: anything you want to time, or attribute to "
         "someone, or give participants, is an eventuality.",
 }
+
+
+def in_short_html(name: str) -> str:
+    """The plain-English block, one <p> per blank-line-separated paragraph."""
+    return "".join(f'<p class="inshort measure">{e(para.strip())}</p>'
+                   for para in IN_SHORT[name].split("\n\n") if para.strip())
 
 
 def check_examples(union: Graph) -> None:
