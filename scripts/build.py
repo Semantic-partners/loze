@@ -1703,6 +1703,90 @@ WORKED = [
 :my-corolla    a :Car, loze:ConcreteParticular ;
     loze:isConcretizationOf :Corolla1985 .
 """),
+    ("Something that is a happening and still repeatable",
+     "The two cuts are independent, so an eventuality can be schematic. The "
+     "30,000-mile service is a procedure — carry it out anywhere, any number of "
+     "times. The service your car had in March is one occasion in one garage. "
+     "Give the first both types; there is nothing else to it.",
+     """
+:ThirtyThousandMileService
+    a loze:Eventuality, loze:SchematicParticular ;   # the procedure
+    :takesHours "2.0"^^xsd:decimal .
+
+:service-march
+    a loze:Eventuality, loze:ConcreteParticular ;    # one occasion
+    loze:isConcretizationOf :ThirtyThousandMileService ;
+    loze:hasAgent  :the-garage ;
+    loze:hasTheme  :my-corolla ;
+    loze:atTime    :2026-03-11 .
+"""),
+    ("A packaging tree, with no punning in it",
+     "Every tier of a pack is schematic: the tablet, the blister, the carton. "
+     "What holds them together is a <code>loze:Containment</code>, and that is "
+     "schematic too — it is how every carton is packed, not one event on a line. "
+     "<code>loze:hasNumberOfOccurrences</code> carries the count, which makes "
+     "this a bill of materials over schematic particulars.",
+     """
+:Tablet500mg  a :Tablet,  loze:SchematicParticular .
+:BlisterOf10  a :Blister, loze:SchematicParticular .
+:CartonOf3    a :Carton,  loze:SchematicParticular .
+
+# Ten tablets to a blister. The containment is an eventuality AND schematic:
+# this is how every blister is packed, not a particular packing that happened.
+:tablets-in-blister
+    a loze:Containment, loze:SchematicParticular ;
+    loze:hasHolder              :BlisterOf10 ;
+    loze:hasRepeatedContent     :Tablet500mg ;
+    loze:hasNumberOfOccurrences 10 .
+
+# Three blisters to a carton. Same shape, one tier up.
+:blisters-in-carton
+    a loze:Containment, loze:SchematicParticular ;
+    loze:hasHolder              :CartonOf3 ;
+    loze:hasRepeatedContent     :BlisterOf10 ;
+    loze:hasNumberOfOccurrences 3 .
+
+# Only what is on the dock is concrete.
+:carton-SN-88412
+    a :Carton, loze:ConcreteParticular ;
+    loze:isConcretizationOf :CartonOf3 .
+"""),
+    ("Hang your own relations off loze's",
+     "You do not have to model participation twice. Declare your domain relation "
+     "a sub-property of the loze one it specialises, and anything written in your "
+     "terms answers to the general one as well — so tooling that knows only "
+     "<code>loze:isAgentIn</code> still finds your payers. The ontology does this "
+     "to itself: <code>isRecipeIn</code> is under <code>isInstructionIn</code>, "
+     "which is under <code>isStandardIn</code>.",
+     """
+:Payment rdfs:subClassOf loze:Eventuality .
+
+:isPayerIn rdfs:subPropertyOf loze:isAgentIn .
+:isPayeeIn rdfs:subPropertyOf loze:isRecipientIn .
+
+:payment-8871
+    a loze:ConcreteParticular, :Payment ;
+    loze:atTime :2026-08-14 .
+
+:acme-ltd     :isPayerIn :payment-8871 .
+:supplier-ltd :isPayeeIn :payment-8871 .
+
+# With rdfs:subPropertyOf entailment on, the general questions answer
+# themselves. Without a reasoner these return nothing: the entailed triples
+# have to be materialised by something.
+#
+#   ?who loze:isAgentIn       :payment-8871   -> :acme-ltd
+#   ?who loze:isParticipantIn :payment-8871   -> :acme-ltd, :supplier-ltd
+#
+# The second one is the reason to bother. isAgentIn and isRecipientIn are
+# both under isParticipantIn, so "who was involved in this" works across
+# every domain that hung its relations off loze's, without naming any of
+# them.
+#
+# Remember what the sub-property brings with it. isAgentIn runs Thing to
+# Eventuality, so :acme-ltd :isPayerIn ... makes :acme-ltd a loze:Thing
+# whether or not you wrote that down.
+"""),
 ]
 
 PREFIXES = """@prefix :     <https://example.org/> .
@@ -1717,11 +1801,16 @@ PREFIXES = """@prefix :     <https://example.org/> .
 # skos:definition is precise and says nothing about what the term buys you.
 IN_SHORT = {
     "SchematicParticular":
-        "In RDF you get a class or an individual. A fact about a class is about "
-        "the class; saying it of the members takes a restriction. An individual "
-        "takes facts directly, but nothing is an instance of an individual. A "
-        "car model has to do both. It has specifications of its own, and it has "
-        "units.\n\n"
+        "loze cuts particulars twice, and the two cuts are independent. A thing "
+        "or an eventuality: something, or something going on. Schematic or "
+        "concrete: tied to one place at a time, or able to turn up again "
+        "elsewhere. Both cuts are declared as disjoint unions, so everything is "
+        "on one side of each, and all four combinations are inhabited.\n\n"
+        "The second cut is the one you will not have met. In RDF you get a class "
+        "or an individual. A fact about a class is about the class; saying it of "
+        "the members takes a restriction. An individual takes facts directly, "
+        "but nothing is an instance of an individual. A car model has to do "
+        "both. It has specifications of its own, and it has units.\n\n"
         "A schematic particular does both. Facts attach to it directly and a "
         "query finds it like any other subject, because it is a particular. "
         "Concrete particulars concretize it, which is how it repeats.\n\n"
@@ -1734,7 +1823,14 @@ IN_SHORT = {
         "So each fact goes where it holds: the advertised weight on the model "
         "year, the weighbridge reading on my car. Determination is transitive "
         "and concretization carries through it, so my car counts as a unit of "
-        "the Toyota Corolla without anyone writing that triple.",
+        "the Toyota Corolla without anyone writing that triple.\n\n"
+        "None of this is confined to things. The cuts being independent means a "
+        "happening can be schematic too, and plenty are. The 30,000-mile service "
+        "is a procedure you can carry out anywhere, any number of times; the "
+        "service your car had in March is one occasion, in one garage. The first "
+        "is an eventuality and a schematic particular at once, and there is no "
+        "trick to it — give it both types. A recipe, an assembly step, a packing "
+        "arrangement, a clinical protocol all sit there.",
     "Eventuality":
         "One category for events, processes, states, qualities and relations. "
         "loze does not split them, because the lines between them do not hold up "
