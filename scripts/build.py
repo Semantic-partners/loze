@@ -625,7 +625,8 @@ footer.bot .measure p { margin: 0 0 0.75rem; }
 
 FIGURE = '''
 <figure class="fig">
-<svg xmlns="http://www.w3.org/2000/svg" width="1720" height="900" viewBox="0 0 1720 900">
+<svg xmlns="http://www.w3.org/2000/svg" width="1720" height="900" viewBox="0 0 1720 900"
+     role="img" aria-label="Two ways to model the same facts, side by side. On the left, punning: :ToyotaCorolla is a class so Alice's and Bob's Corollas can be instances of it, and separately an individual so it can carry an advertised weight of 1205kg. Two entities share one name. On the right, loze: one :_ToyotaCorolla tagged loze:SchematicParticular carries the advertised weight, Alice's and Bob's Corollas are tagged loze:ConcreteParticular and concretize it, and all three are rdf:type :Car. No pun.">
     <defs>
       <marker id="ah-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
         <path d="M 0 0 L 10 5 L 0 10 z" fill="#0D1117"></path>
@@ -701,15 +702,18 @@ FIGURE = '''
     <rect x="920.5" y="520.5" width="279" height="199" fill="#FBFCFA" stroke="#C9CEC7" stroke-width="1"></rect>
     <rect x="940.5" y="550.5" width="239" height="57" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
     <line x1="941.5" y1="550" x2="941.5" y2="608" stroke="#059669" stroke-width="3"></line>
-    <text x="1060" y="585" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_AlicesCorolla</text>
+    <text x="1060" y="577" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_AlicesCorolla</text>
+    <text x="1060" y="597" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#5A6260" text-anchor="middle">loze:ConcreteParticular</text>
     <rect x="940.5" y="632.5" width="239" height="57" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
     <line x1="941.5" y1="632" x2="941.5" y2="690" stroke="#059669" stroke-width="3"></line>
-    <text x="1060" y="667" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_BobsCorolla</text>
+    <text x="1060" y="659" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_BobsCorolla</text>
+    <text x="1060" y="679" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#5A6260" text-anchor="middle">loze:ConcreteParticular</text>
   
     
     <rect x="1452.5" y="592.5" width="239" height="55" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"></rect>
     <line x1="1453.5" y1="592" x2="1453.5" y2="648" stroke="#059669" stroke-width="3"></line>
-    <text x="1572" y="626" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_ToyotaCorolla</text>
+    <text x="1572" y="618" font-family="DM Mono, Menlo, Consolas, monospace" font-size="19" fill="#0D1117" text-anchor="middle">:_ToyotaCorolla</text>
+    <text x="1572" y="638" font-family="DM Mono, Menlo, Consolas, monospace" font-size="13" fill="#5A6260" text-anchor="middle">loze:SchematicParticular</text>
     <rect x="1452.5" y="648.5" width="239" height="43" fill="#FFFFFF" stroke="#B9BFB8" stroke-width="1" stroke-dasharray="5 4"></rect>
     <text x="1572" y="676" font-family="DM Mono, Menlo, Consolas, monospace" font-size="15" fill="#5A6260" text-anchor="middle">:advertisedWeight 1205kg</text>
   
