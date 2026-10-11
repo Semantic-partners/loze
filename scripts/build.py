@@ -1867,10 +1867,9 @@ IN_SHORT = {
 # says what goes wrong without loze, in terms someone arrives already having.
 WHY = """
 <div class="why">
-<p class="why-lead measure"><a href="https://www.semanticpartners.com/">Semantic Partners</a> builds knowledge graphs across industries
-&mdash; pharma, manufacturing and information exchange between government
-departments among them. Different vocabularies every time, and the same two problems
-underneath.</p>
+<p class="why-lead measure"><a href="https://www.semanticpartners.com/">Semantic Partners</a> builds knowledge graphs in pharma, in
+manufacturing, between government departments, and elsewhere. Different vocabularies
+every time, and the same two problems underneath.</p>
 
 <h3 class="why-h">Time arrives late</h3>
 <p class="measure">Nearly every question worth asking has a time in it. What did we
