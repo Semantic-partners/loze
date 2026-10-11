@@ -1876,7 +1876,7 @@ participants and a period, and you can say as much about it as about anything
 else &mdash; including when it stopped being the case. Nothing has to be bolted on
 later, because the thing that carries the time was there from the start.</p>
 
-<h3 class="why-h">Some things do not fit</h3>
+<h3 class="why-h">Real, but not concrete</h3>
 <p class="measure">Every organisation has things it must describe that are neither
 a class nor an individual. A bill of materials. A material master, which despite the
 name is not material: it describes the thing in general, often from several
