@@ -434,6 +434,9 @@ nav.site .navmark { font-weight: 700; color: hsl(var(--foreground)); margin-righ
 /* Plain English, before the diagrams. Set larger than body text because it is
    the thing to read first. */
 .inshort { font-size: var(--fs-body-lg); margin: 0 0 0.9rem; }
+/* The front page's opening claim. Set at lead size so the first paragraph reads
+   as the thing to read, and the rest at body size behind it. */
+.why-lead { font-size: var(--fs-body-lg); }
 .inshort:last-child { margin-bottom: 0; }
 
 /* Turtle snippets. The ontology's own syntax is the clearest example there is,
@@ -1467,7 +1470,8 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
             for s2, src2 in MODULES if s2)
         modules_nav = section("Modules", f'<div class="grid">{cells}</div>')
 
-    schematic_section = (section("Where the idea comes from", zemach_figure())
+    schematic_section = (section("What this is for", WHY)
+                         + section("Where the idea comes from", zemach_figure())
                          + section("Why a schematic particular", FIGURE)
                          + section("What it buys", QUERY_FIGURE)
                          + section("Things and happenings are a different cut", EVENT_FIGURE))
@@ -1841,6 +1845,33 @@ IN_SHORT = {
         "and you do not need them: anything you want to time, or attribute to "
         "someone, or give participants, is an eventuality.",
 }
+
+
+# The front page opened on where the idea came from — a 1970 philosophy paper —
+# which tells a reader nothing about whether to keep going. This is the part that
+# says what goes wrong without loze, in terms someone arrives already having.
+WHY = """
+<p class="why-lead measure">Most of what an organisation keeps records about is
+not one particular thing. A product model is not a product. A procedure is not an
+occasion of carrying it out. A recipe is not a cake, a document is not a copy, a
+pack size is not a pallet.</p>
+
+<p class="measure">RDF makes you choose. Model the thing as a class and it cannot
+carry its own facts: the advertised weight of a Corolla is a fact about the model,
+and saying it of the cars takes a restriction. Model it as an individual and it
+carries facts, but nothing can be an instance of it. Or pun — one name used as both
+— and keep two entities in step by hand, with nothing to tell you when they drift.</p>
+
+<p class="measure">loze adds a third option. The model is a particular, so it holds
+its own facts and answers an ordinary query, and the cars concretize it. The same
+question shape works whether you are asking about the model, a variant of it, or
+the car on the drive &mdash; which is the point, because that is usually one
+question.</p>
+
+<p class="measure"><a href="/examples">The examples</a> are the quickest way to see
+whether this is your problem. <a href="/terms">The terms</a> are the reference once
+you know it is.</p>
+"""
 
 
 def in_short_html(name: str) -> str:
