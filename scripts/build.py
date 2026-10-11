@@ -1876,7 +1876,7 @@ participants and a period, and you can say as much about it as about anything
 else &mdash; including when it stopped being the case. Nothing has to be bolted on
 later, because the thing that carries the time was there from the start.</p>
 
-<h3 class="why-h">Real, but not concrete</h3>
+<h3 class="why-h">A new place</h3>
 <p class="measure">Every organisation has things it must describe that are neither
 a class nor an individual. A bill of materials. A material master, which despite the
 name is not material: it describes the thing in general, often from several
@@ -1890,7 +1890,7 @@ you could put your hand on.</p>
 individual, which nothing can be an instance of. So people pun: one name doing both
 jobs, two entities kept in step by hand, and nothing to tell you when they drift.</p>
 
-<p class="measure">loze gives each of these a category of its own &mdash;
+<p class="measure">loze gives each of these a place of its own &mdash;
 <a href="/Eventuality">eventualities</a> for the happenings,
 <a href="/SchematicParticular">schematic particulars</a> for the repeatable things.
 Both are ordinary subjects, so ordinary queries reach them.</p>
