@@ -1902,6 +1902,11 @@ invents it again somewhere else.</p>
 <a href="/SchematicParticular">schematic particulars</a> for the repeatable things.
 Both are ordinary subjects, so ordinary queries reach them.</p>
 
+<p class="measure">Which is why this is public. A name that is ours alone solves
+nothing: the next modeller still invents their own, and the two models still do not
+meet. An ontology is worth most when it can be used freely, so loze is meant to be
+taken, extended, and argued with.</p>
+
 <p class="measure"><a href="/examples">The examples</a> are the quickest way to see
 whether this is your problem. <a href="/terms">The terms</a> are the reference once
 you know it is.</p>
