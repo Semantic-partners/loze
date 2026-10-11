@@ -436,6 +436,10 @@ nav.site .navmark { font-weight: 700; color: hsl(var(--foreground)); margin-righ
 .inshort { font-size: var(--fs-body-lg); margin: 0 0 0.9rem; }
 /* The front page's opening claim. Set at lead size so the first paragraph reads
    as the thing to read, and the rest at body size behind it. */
+/* The opening story is prose, so it takes the prose face — the same one the
+   lead above it and the figure captions below it use. In the body sans it read
+   as a different document wedged between them. */
+.why p { font-family: "Newsreader", ui-serif, Georgia, serif; }
 .why-lead { font-size: var(--fs-body-lg); }
 /* Sub-headings inside the opening story. Smaller than a section head and in the
    body face, so they group paragraphs without competing with the section rules. */
@@ -1854,6 +1858,7 @@ IN_SHORT = {
 # which tells a reader nothing about whether to keep going. This is the part that
 # says what goes wrong without loze, in terms someone arrives already having.
 WHY = """
+<div class="why">
 <p class="why-lead measure">Semantic Partners builds knowledge graphs in pharma, in
 manufacturing, and for information exchange between government departments.
 Different industries, different vocabularies, and the same two problems in all of
@@ -1891,6 +1896,7 @@ Both are ordinary subjects, so ordinary queries reach them.</p>
 <p class="measure"><a href="/examples">The examples</a> are the quickest way to see
 whether this is your problem. <a href="/terms">The terms</a> are the reference once
 you know it is.</p>
+</div>
 """
 
 

@@ -7,7 +7,8 @@
 
 loze: a owl:Ontology ;
     rdfs:label "Loze Foundation" ;
-    skos:definition "An upper-level ontology largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe, supplemented with the concept of a schematic particular explored by Eddy Zemach" .
+    skos:definition "An upper-level ontology in which happenings are entities in their own right, so that time is modelled rather than bolted on, and in which the repeatable things an organisation describes, such as materials, product models and recipes, are particulars rather than classes. After Lowe's four categories, with Zemach's schematic particulars" ;
+    skos:note "Largely inspired by the Four-Category Ontology outlined by the philosopher Jonathan Lowe, supplemented with the concept of a schematic particular explored by Eddy Zemach" .
 
 #####################
 # Top-level classes #
