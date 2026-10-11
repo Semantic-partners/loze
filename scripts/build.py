@@ -1887,8 +1887,15 @@ are real to the business and they change over time, and not one of them is somet
 you could put your hand on.</p>
 
 <p class="measure">RDF offers a class, which cannot carry its own facts, or an
-individual, which nothing can be an instance of. So people pun: one name doing both
-jobs, two entities kept in step by hand, and nothing to tell you when they drift.</p>
+individual, which nothing can be an instance of. So people pun, one name doing both
+jobs and two entities kept in step by hand. Or they add a domain class that does a
+schematic particular's work without being called one, which is the commoner case and
+the better instinct.</p>
+
+<p class="measure">Either way the pattern is already in the model. What is missing is
+the name &mdash; and until it has one, nothing can rely on it. No query can ask for
+the repeatable things, no tool can treat them alike, and the next modeller along
+invents it again somewhere else.</p>
 
 <p class="measure">loze gives each of these a place of its own &mdash;
 <a href="/Eventuality">eventualities</a> for the happenings,
