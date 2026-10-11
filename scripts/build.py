@@ -437,6 +437,9 @@ nav.site .navmark { font-weight: 700; color: hsl(var(--foreground)); margin-righ
 /* The front page's opening claim. Set at lead size so the first paragraph reads
    as the thing to read, and the rest at body size behind it. */
 .why-lead { font-size: var(--fs-body-lg); }
+/* Sub-headings inside the opening story. Smaller than a section head and in the
+   body face, so they group paragraphs without competing with the section rules. */
+.why-h { font-size: var(--fs-h4); margin: 1.6rem 0 0.4rem; }
 .inshort:last-child { margin-bottom: 0; }
 
 /* Turtle snippets. The ontology's own syntax is the clearest example there is,
@@ -1851,22 +1854,38 @@ IN_SHORT = {
 # which tells a reader nothing about whether to keep going. This is the part that
 # says what goes wrong without loze, in terms someone arrives already having.
 WHY = """
-<p class="why-lead measure">Most of what an organisation keeps records about is
-not one particular thing. A product model is not a product. A procedure is not an
-occasion of carrying it out. A recipe is not a cake, a document is not a copy, a
-pack size is not a pallet.</p>
+<p class="why-lead measure">Semantic Partners builds knowledge graphs in pharma, in
+manufacturing, and for information exchange between government departments.
+Different industries, different vocabularies, and the same two problems in all of
+them.</p>
 
-<p class="measure">RDF makes you choose. Model the thing as a class and it cannot
-carry its own facts: the advertised weight of a Corolla is a fact about the model,
-and saying it of the cars takes a restriction. Model it as an individual and it
-carries facts, but nothing can be an instance of it. Or pun — one name used as both
-— and keep two entities in step by hand, with nothing to tell you when they drift.</p>
+<h3 class="why-h">Time arrives late</h3>
+<p class="measure">Nearly every question worth asking has a time in it. What did we
+hold, what did it cost, who approved it, and as of when. Time usually gets added
+once the model is settled, and from then on every query pays for it. RDF-star and
+SPARQL 1.2 are the standards agreeing that this matters. We have always taken the
+other route: if you care about it, model it.</p>
 
-<p class="measure">loze adds a third option. The model is a particular, so it holds
-its own facts and answers an ordinary query, and the cars concretize it. The same
-question shape works whether you are asking about the model, a variant of it, or
-the car on the drive &mdash; which is the point, because that is usually one
-question.</p>
+<p class="measure">So in loze a happening is an entity in its own right, with
+participants and a period, and you can say as much about it as about anything
+else &mdash; including when it stopped being the case. Nothing has to be bolted on
+later, because the thing that carries the time was there from the start.</p>
+
+<h3 class="why-h">Some things do not fit</h3>
+<p class="measure">Every organisation has things it must describe that are neither
+a class nor an individual. A bill of materials. A material. An ISA-88 recipe, which
+is itself refined down a chain of recipe types before any batch is made. These are
+real to the business and they change over time, and not one of them is a concrete
+object you could put your hand on.</p>
+
+<p class="measure">RDF offers a class, which cannot carry its own facts, or an
+individual, which nothing can be an instance of. So people pun: one name doing both
+jobs, two entities kept in step by hand, and nothing to tell you when they drift.</p>
+
+<p class="measure">loze gives each of these a category of its own &mdash;
+<a href="/Eventuality">eventualities</a> for the happenings,
+<a href="/SchematicParticular">schematic particulars</a> for the repeatable things.
+Both are ordinary subjects, so ordinary queries reach them.</p>
 
 <p class="measure"><a href="/examples">The examples</a> are the quickest way to see
 whether this is your problem. <a href="/terms">The terms</a> are the reference once
