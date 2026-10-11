@@ -1878,11 +1878,13 @@ later, because the thing that carries the time was there from the start.</p>
 
 <h3 class="why-h">Some things do not fit</h3>
 <p class="measure">Every organisation has things it must describe that are neither
-a class nor an individual. A bill of materials. A material. An ISA-88 recipe, which
-is made more concrete at every step down the chain of recipe types &mdash; general,
-site, master &mdash; and is still not concrete at the end of it. Only the batch is
-that. These are real to the business and they change over time, and not one of them
-is something you could put your hand on.</p>
+a class nor an individual. A bill of materials. A material master, which despite the
+name is not material: it describes the thing in general, often from several
+suppliers, and there is nothing in it to weigh. An ISA-88 recipe, which is made more
+concrete at every step down the chain of recipe types &mdash; general, site, master
+&mdash; and is still not concrete at the end of it. Only the batch is that. These
+are real to the business and they change over time, and not one of them is something
+you could put your hand on.</p>
 
 <p class="measure">RDF offers a class, which cannot carry its own facts, or an
 individual, which nothing can be an instance of. So people pun: one name doing both
