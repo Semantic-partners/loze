@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix loze: <https://loze-ontology.org/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -7,6 +8,7 @@
 
 <https://loze-ontology.org/suggested-social-extension> a owl:Ontology ;
     rdfs:label "Suggested Social Extension" ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     skos:definition "An extension of loze-foundation.ttl pertaining to the social domain" ;
     skos:note "Among the other things, this extension includes a minimal taxonomy of living beings, which not even remotely expected to replicate the richness and depth of a full biological taxonomy - the so-called Tree of Life; if needed, the present taxonomy could be dramatically expanded" ;
     owl:imports loze: .

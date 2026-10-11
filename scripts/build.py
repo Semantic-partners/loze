@@ -1001,6 +1001,11 @@ def shell(title: str, alternates: str, body: str, here: str = "") -> str:
   <p>Generated from the Turtle in
   <a href="https://github.com/Semantic-partners/loze">Semantic-partners/loze</a>.
   The Turtle is the source of truth; this page is a view of it.</p>
+  <p>loze is published by Semantic Partners under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Take it,
+  extend it, use it in anything, including commercially. Credit us. Each module
+  carries the licence as <code>dcterms:license</code>, so it travels with the
+  Turtle rather than only with this page.</p>
 </div></footer>
 </body>
 </html>
