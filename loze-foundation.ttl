@@ -333,7 +333,7 @@ loze:hasWaypoint a owl:ObjectProperty ;
 
 loze:isReferencePointIn a owl:ObjectProperty ;
     rdfs:label "is Reference Point In" ;
-    skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is the term of reference point or the reference framework for a movement, change, or comparison in the context of e" ;
+    skos:definition "The relation that obtains between a particular p and an eventuality e if and only if p is the reference point or framework for a movement, change, or comparison in the context of e" ;
     skos:example "In the case of John being taller than Dan, Dan is the reference point; in the case of an object falling down from the top of a tower, the top of the tower is the reference point; in the case of a vehicle moving on the surface of Earth, Earth - or some Earth-based geolocation framework - is the reference point" ;
     skos:note "The possibility of absolute motion is controversial in theoretical physics and philosophy; however, this matter is operationally irrelevant, because in practice motion can only be assessed relative to a reference framework" ;
     skos:note "In ordinary talk, the reference point of a movement is often not mentioned because it's identified by default with the Earth - or some Earth-based reference framework" ;
@@ -413,7 +413,7 @@ loze:hasHeld a owl:ObjectProperty ;
 loze:isSettingIn a owl:ObjectProperty ;
     rdfs:label "is Setting In" ;
     skos:definition "The relation that obtains between an object o and an eventuality e if and only if o is the setting or context in which e is the case" ;
-    skos:example "The organisation is the setting of a presidency, a living being is the setting in which an organ is vital, a wall is a partition in a house" ;
+    skos:example "The organisation is the setting of a presidency, a living being is the setting in which an organ is vital, a house is the setting in which a wall is a partition" ;
     skos:note "This thematic relation is intended for those eventualities that consist in roles, positions, or functions within a setting or an organised system; the participant that occupies the role is a theme in the eventuality" ;
     skos:note "Only objects can be settings, since they are the only particulars that have the sort of hierarchical structure in which something can occupy a role or function" ;
     rdfs:domain loze:Object ;
