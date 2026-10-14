@@ -422,9 +422,78 @@ nav.site a {
 }
 nav.site a:hover { color: hsl(var(--brand-accent)); }
 nav.site a.here { color: hsl(var(--foreground)); border-bottom: 2px solid hsl(var(--brand-accent)); padding-bottom: 2px; }
-nav.site .navmark { font-weight: 700; color: hsl(var(--foreground)); margin-right: auto;
+nav.site .navhome { display: flex; align-items: center; gap: 0.7rem; margin-right: auto; }
+nav.site .navmark { font-weight: 700; color: hsl(var(--foreground));
   display: inline-flex; align-items: center; gap: 0.5rem; }
 nav.site .navglyph { display: inline-flex; }
+/* A rule, not a middot: it reads as a division between two things rather than
+   as punctuation joining them into one name. "Loze Foundation" is the module
+   label; LOZE | FOUNDATION is the mark and the module you are in. */
+nav.site .navsep { width: 1px; align-self: stretch; margin: 0.15rem 0; background: hsl(var(--border)); }
+nav.site .navwhere, nav.site a.navwhere {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: hsl(var(--foreground));
+}
+nav.site a.navwhere:hover { color: hsl(var(--brand-accent)); }
+
+/* The modules menu. <details> rather than a scripted dropdown: it opens with
+   the keyboard, works with no CSS and no JS, and there is nothing to break.
+   It does not close on an outside click — every item in it is a link that
+   navigates away, so in practice it closes itself. */
+nav.site details.navmenu { position: relative; }
+nav.site details.navmenu > summary {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  cursor: pointer;
+  list-style: none;
+  transition: color 150ms var(--ease-brand);
+}
+nav.site details.navmenu > summary::-webkit-details-marker { display: none; }
+nav.site details.navmenu > summary::after {
+  content: "";
+  display: inline-block;
+  width: 0.34em; height: 0.34em;
+  margin: 0 0 0.18em 0.5em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  vertical-align: middle;
+}
+nav.site details.navmenu > summary:hover { color: hsl(var(--brand-accent)); }
+nav.site details.navmenu[open] > summary { color: hsl(var(--foreground)); }
+nav.site details.navmenu[open] > summary::after { transform: rotate(-135deg); margin-bottom: -0.05em; }
+nav.site .navpanel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.75rem);
+  z-index: 30;
+  min-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem 0;
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 8px 24px hsl(var(--foreground) / 0.09);
+}
+/* Names, not nav chrome: these are long and the ontology's own capitalisation
+   is part of reading them as labels. */
+nav.site .navpanel a, nav.site .navpanel a.here {
+  display: block;
+  padding: 0.5rem 1rem;
+  text-transform: none;
+  letter-spacing: 0;
+  border-bottom: 0;
+  border-left: 2px solid transparent;
+  color: hsl(var(--muted-foreground));
+}
+nav.site .navpanel a:hover { color: hsl(var(--brand-accent)); background: hsl(var(--muted) / 0.5); }
+nav.site .navpanel a.here { color: hsl(var(--foreground)); border-left-color: hsl(var(--brand-accent)); }
 /* Sized against the nav bar, not the nav's small-caps type: at 1em of a 12px
    label the stacked mark is a smudge. */
 nav.site .navglyph svg { height: 26px; width: auto; display: block; }
@@ -981,10 +1050,24 @@ MARK_INLINE = _load_mark()
 
 NAV = [("/terms", "terms"), ("/examples", "examples")]
 
+# slug -> the module's own rdfs:label, filled by main() once the Turtle is
+# parsed. The nav names the module you are in; the label belongs to the module,
+# not to this file.
+MODULE_LABEL: dict[str, str] = {}
 
-def nav(here: str = "") -> str:
+
+def nav(here: str = "", mod: str | None = None) -> str:
     """The same links on every page. Without this the only way out of a term page
-    was the breadcrumb to /, which made every property page a dead end."""
+    was the breadcrumb to /, which made every property page a dead end.
+
+    `mod` is the slug of the module this page belongs to, or None for the pages
+    that belong to no module. It does two jobs. The mark alone left the bar
+    empty, and the module name is the one thing worth saying there: a term page
+    otherwise never names the file its term is asserted in. It also settles how
+    the name reads: in the series LOZE / TEMPORAL RELATIONS / MATERIALS AND
+    COMPOSITION the slot is plainly a place in the ontology, not an
+    organisation. See nav_label below.
+    """
     # Inline rather than <img>: an SVG loaded as an image is its own document,
     # so currentColor cannot reach it and the mark would not follow the theme.
     # The mark already reads LOZE, so setting the word beside it says the name
@@ -992,14 +1075,63 @@ def nav(here: str = "") -> str:
     glyph = f'<span class="navglyph">{MARK_INLINE}</span><span class="visually-hidden">loze</span>'
     mark = (f'<span class="navmark">{glyph}</span>' if here == "/"
             else f'<a class="navmark" href="/">{glyph}</a>')
+    where = nav_label(mod, MODULE_LABEL.get(mod, "")) if mod is not None else ""
+    if where:
+        mod_href = "/" if mod == "" else f"/{mod}"
+        # Not a link when it would point at the page you are already on, and not
+        # a link to "/" when the mark beside it already goes there.
+        label = (f'<span class="navwhere">{e(where)}</span>'
+                 if here == mod_href or mod == ""
+                 else f'<a class="navwhere" href="{mod_href}">{e(where)}</a>')
+        home = f'<div class="navhome">{mark}<span class="navsep"></span>{label}</div>'
+    else:
+        home = f'<div class="navhome">{mark}</div>'
     links = "".join(
         f'<a class="here" href="{href}">{e(label)}</a>' if href == here
         else f'<a href="{href}">{e(label)}</a>'
         for href, label in NAV)
-    return f'<nav class="site"><div class="wrap">{mark}{links}</div></nav>'
+    return f'<nav class="site"><div class="wrap">{home}{modules_menu(mod)}{links}</div></nav>'
 
 
-def shell(title: str, alternates: str, body: str, here: str = "") -> str:
+def modules_menu(mod: str | None) -> str:
+    """Every module, from every page.
+
+    Before this the only route to a module was the grid near the bottom of the
+    front page, so from a term page there was none at all.
+    """
+    items = []
+    for slug, _ in MODULES:
+        href = "/" if slug == "" else f"/{slug}"
+        # "Foundation", not "loze": in a list of five module names there is
+        # nothing for it to be confused with, and "loze" as one item of five
+        # would be wrong — loze is all five.
+        label = strip_brand(MODULE_LABEL.get(slug, "") or slug)
+        cls = ' class="here"' if slug == mod else ""
+        items.append(f'<a href="{href}"{cls}>{e(label)}</a>')
+    return ('<details class="navmenu"><summary>modules</summary>'
+            f'<div class="navpanel">{"".join(items)}</div></details>')
+
+
+def strip_brand(label: str) -> str:
+    '''"Loze Foundation" -> "Foundation". The other four module labels carry no
+    brand prefix, so leaving it on the one makes it read as an organisation
+    rather than as a module.'''
+    return label[5:] if label.lower().startswith("loze ") else label
+
+
+def nav_label(slug: str, label: str) -> str:
+    """What the nav calls the module you are in.
+
+    The foundation is the root of the namespace rather than one module among
+    five, so at the root the slot says loze. Its Turtle label is "Loze
+    Foundation" and stays that way — but set beside a company name that reads
+    as an organisation, and "foundation upper level ontology" argues with
+    itself besides."""
+    return "loze" if slug == "" else label
+
+
+def shell(title: str, alternates: str, body: str, here: str = "",
+          mod: str | None = None) -> str:
     """One page. `alternates` advertises the RDF for this document.
 
     The <link rel="alternate"> lines are the only content negotiation there is:
@@ -1022,7 +1154,7 @@ def shell(title: str, alternates: str, body: str, here: str = "") -> str:
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-{nav(here)}
+{nav(here, mod)}
 {body}
 <footer class="bot"><div class="wrap measure">
   <p>loze is a top-level ontology after E. J. Lowe's four-category ontology, with
@@ -1453,7 +1585,7 @@ def render_term(union: Graph, s: URIRef, defined_in: str | None) -> str:
   {section("Note", f'<p class="measure">{e(d["note"])}</p>' if d['note'] else "")}
 </div></main>
 """
-    return shell(f"{d['label']} — loze", alternates_for(""), body)
+    return shell(f"{d['label']} — loze", alternates_for(""), body, mod=defined_in)
 
 
 def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = None) -> str:
@@ -1537,7 +1669,8 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
   {section(f"{len(own_props)} properties", prop_html)}
 </div></main>
 """
-    return shell(f"{label} — loze", alternates_for(slug), body)
+    return shell(f"{label} — loze", alternates_for(slug), body,
+                 here="/" if slug == "" else f"/{slug}", mod=slug)
 
 
 def check_no_collisions(union: Graph) -> None:
@@ -2097,6 +2230,11 @@ def main() -> None:
         g = ds.graph(URIRef(NS + slug))
         g.parse(ROOT / src, format="turtle")
         per_module[slug] = g
+        # The nav names the module you are in. Read the label from the Turtle
+        # rather than keeping a second copy of it here, so renaming a module is
+        # one edit in one file.
+        onto_ = next(iter(g.subjects(RDF.type, OWL.Ontology)), None)
+        MODULE_LABEL[slug] = str(g.value(onto_, RDFS.label) or "") if onto_ else ""
 
     # Assert the graph name and the ontology IRI agree. They are the same string
     # by construction here, but a module whose owl:Ontology said something else
