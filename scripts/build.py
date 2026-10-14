@@ -556,12 +556,12 @@ pre.ttl .pn   { color: hsl(var(--faint)); }
 
 /* The reference page: one row per term, dense enough to scan. */
 .refrow { display: flex; gap: 0.75rem; align-items: baseline; padding: 0.3rem 0; border-bottom: 1px solid hsl(var(--border) / 0.6); flex-wrap: wrap; }
-.refrow .rt { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-sm); min-width: 15rem; }
-.refrow .rd { font-size: var(--fs-sm); color: hsl(var(--muted-foreground)); flex: 1 1 18rem; }
+.refrow .rt { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-sm); min-width: 13rem; }
+.refrow .rd { font-size: var(--fs-sm); color: hsl(var(--muted-foreground)); flex: 1 1 24rem; }
 .refrow .rr { font-family: "DM Mono", ui-monospace, monospace; font-size: var(--fs-2xs); color: hsl(var(--muted-foreground)); letter-spacing: 0.04em; }
 /* The signature on a class page. Wide enough that domain → range does not wrap
    for the common cases, and it comes before the prose because it is the answer. */
-.refrow .rsig { flex: 0 1 21rem; min-width: 15rem; max-width: 26rem; font-size: var(--fs-xs); overflow-wrap: anywhere; }
+.refrow .rsig { flex: 0 1 18rem; min-width: 13rem; max-width: 22rem; font-size: var(--fs-xs); overflow-wrap: anywhere; }
 /* The end of the signature that is the page you are on. Present, but not the
    thing to read — and not a link back to here. */
 .refrow .self { color: hsl(var(--faint)); }
@@ -1398,7 +1398,7 @@ def prop_row(g: Graph, p: URIRef, current: URIRef | None = None) -> str:
     return (f'<div class="refrow">'
             f'<span class="rt"><a href="/{e(local(p))}">{e(local(p))}</a></span>'
             f'<span class="rr rsig">{sig}</span>'
-            f'<span class="rd">{e(clip(d["definition"], 88))}</span>'
+            f'<span class="rd">{e(clip(d["definition"], 170))}</span>'
             f'</div>')
 
 
