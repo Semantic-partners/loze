@@ -70,7 +70,7 @@ loze:Organisation a owl:Class ;
 loze:OrganisationSubdivision a owl:Class ;
     rdfs:label "Organisation Subdivision" ;
     skos:definition "A group that (i) is part of an organisation, (ii) it serves a specific function in the organisation in question, and (iii) is not itself an organisation" ;
-    skos:example "A government's parliament, a company's committee, a team" ;
+    skos:example "A team, a company's committee, a government's parliament" ;
     skos:note "The difference between an organisation subdivision and an organisation that is part of another organisation is that the official goals of a subdivision are entirely subordinated to those of the organisation of which it is part; by contrast, an organisation can maintain its own goals despite being part of a larger organisation" ;
     rdfs:subClassOf loze:Group ;
     owl:disjointWith loze:Organisation .

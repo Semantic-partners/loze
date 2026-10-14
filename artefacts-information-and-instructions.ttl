@@ -19,7 +19,7 @@
 loze:Artefact a owl:Class ;
     rdfs:label "Artefact" ;
     skos:definition "An object that is designed and made by humans for serving certain purposes or functions" ;
-    skos:example "A vehicle, a hammer, an appliance, a duct, a glass, a house, a cloth, an electronic device, a fork, a piece of software, an artwork" ;
+    skos:example "A fork, a hammer, a glass, a cloth, an appliance, an electronic device, a vehicle, a house, a duct, a piece of software, an artwork" ;
     skos:note "An artefact can be either schematic or concrete: a piece of software - in abstraction from its installed copies - is an artefact; its installed copies are also artefacts; a symphony - as a work of music, in abstraction from its performances - is also an artefact" ;
     rdfs:subClassOf loze:Object .
 
@@ -59,7 +59,7 @@ loze:hasStandard a owl:ObjectProperty ;
 loze:isInstructionIn a owl:ObjectProperty ;
     rdfs:label "is Instruction In" ;
     skos:definition "The sub-relation of loze:isStandardIn that obtains when the standard in question is an information artefact consisting of instructions for performing the eventuality" ;
-    skos:example "The assembly manual is the instruction in the assembly of a piece of furniture, the cookbook recipe is the instruction in the preparation of a cake, the workflow documentation is the instruction in the execution of a technical process, a computer program is the instruction in a computational process or programme execution" ;
+    skos:example "The cookbook recipe is the instruction in the preparation of a cake, the assembly manual is the instruction in the assembly of a piece of furniture, the workflow documentation is the instruction in the execution of a technical process, a computer program is the instruction in a computational process or program execution" ;
     rdfs:domain loze:InformationArtefact ;
     rdfs:range loze:Eventuality ;
     rdfs:subPropertyOf loze:isStandardIn .
@@ -74,7 +74,7 @@ loze:hasInstruction a owl:ObjectProperty ;
 loze:isRecipeIn a owl:ObjectProperty ;
     rdfs:label "is Recipe In" ;
     skos:definition "The sub-relation of loze:isInstructionIn that obtains when the instructions in question prescribe the ingredient ratios and quantities and the procedure for producing concrete particulars of a certain type or with certain features" ;
-    skos:example "The cookbook doses and instructions are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula together with the alloying instructions are the recipe in the manufacturing of steel slabs" ;
+    skos:example "The quantities and method given in a cookbook are the recipe in the preparation of a cake, a pharmaceutical formulation is the recipe in the production of paracetamol tablets, the alloy formula together with the alloying instructions are the recipe in the manufacturing of steel slabs" ;
     skos:note "Whenever an eventuality has a recipe (loze:isRecipeIn) among its participants, it also has a product (loze:isProductIn), which will be a concrete particular" ;
     rdfs:domain loze:InformationArtefact ;
     rdfs:range loze:Eventuality ;

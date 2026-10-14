@@ -19,7 +19,7 @@
 loze:Substance a owl:Class ;
     rdfs:label "Substance" ;
     skos:definition "A schematic particular that (i) is either an object or an aggregate and (ii) is highly dissectable" ;
-    skos:example "Copper, gold, water, wood, kerosene, steel, wheat flour, sugar, liquid acrylic paint" ;
+    skos:example "Water, wood, sugar, wheat flour, gold, copper, steel, kerosene, liquid acrylic paint" ;
     skos:note "Dissectability consists in the concretizations of a schematic particular being iteratively divisible into parts of the same kind: a mass of water can be divided into other masses of water; a chunk of wood can be further divided into other chunks of wood; a piece of gold can be divided into smaller pieces of gold; and so on. Despite the appearance of infinite divisibility, we know from chemistry that this dissectability stops at either the molecular or the atomic level: for example, a water molecule has no smaller parts that are themselves water, and an atom of gold has no smaller parts that are themselves gold" ;
     skos:note "Here the word 'substance' is used in the chemical sense, not in the metaphysical sense - which originated in ancient Greek philosophy and is still used in contemporary analytic metaphysics" ;
     rdfs:subClassOf loze:SchematicParticular, [ a owl:Class ; 
@@ -28,7 +28,7 @@ loze:Substance a owl:Class ;
 loze:isRepeatedComponentIn a owl:ObjectProperty ;
     rdfs:label "is Repeated Component In" ;
     skos:definition "The sub-relation of loze:isComponentIn that obtains whenever the component is a schematic particular that is repeated in the composite in multiple occurrences" ;
-    skos:example "In the case of a monomer making up a polymer chain, the monomer is the repeated component; in the case of water having two atoms of hydrogen, hydrogen atom is the repeated component; in the case of an engine having pistons of a certain type, the piston - construed as a schematic object - is the repeated component" ;
+    skos:example "In the case of an engine having pistons of a certain type, the piston - construed as a schematic object - is the repeated component; in the case of water having two atoms of hydrogen, hydrogen atom is the repeated component; in the case of a monomer making up a polymer chain, the monomer is the repeated component" ;
     skos:note "While the repeated component is always a schematic particular, the composite can be either a schematic particular or a concrete particular" ;
     skos:note "The number of repetitions is specified by the associated number of occurrences (loze:hasNumberOfOccurrences)" ;
     rdfs:domain loze:SchematicParticular ;
@@ -78,7 +78,7 @@ loze:hasRepeatedContent a owl:ObjectProperty ;
 loze:hasNumberOfOccurrences a owl:DatatypeProperty ;
     rdfs:label "has Number Of Occurrences" ;
     skos:definition "The relation that assigns to an eventuality the number of occurrences in which a certain schematic particular is repeated in the context of that eventuality" ;
-    skos:example "In a composition in which a polymer chain has a monomer repeated 3000 times, the number of occurrences is 3000; in the composition of the water molecule out of hydrogen, the number of occurrences is 2; in a containment in which a tablet is repeated 10 times in a blister pack, the number of occurrences is 10" ;
+    skos:example "In a containment in which a tablet is repeated 10 times in a blister pack, the number of occurrences is 10; in the composition of the water molecule out of hydrogen, the number of occurrences is 2; in a composition in which a polymer chain has a monomer repeated 3000 times, the number of occurrences is 3000" ;
     skos:note "This relation is mostly intended to be used in the context of compositions (loze:Composition) and containments (loze:Containment); that being said, its application to other eventualities should not be excluded in principle" ;
     rdfs:domain loze:Eventuality ;
     rdfs:range xsd:nonNegativeInteger .
