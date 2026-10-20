@@ -48,6 +48,21 @@ Three places to start:
 | `/terms` | every class and property, properties grouped under the class they hang off |
 | `/examples` | Turtle for common modelling jobs, then every term's own example |
 
+## Licence
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Use it, extend it, build
+on it, commercially or otherwise. Credit Semantic Partners.
+
+The point of an upper ontology is that other people reuse its terms, so the licence
+has to allow reuse term by term rather than whole. That rules out CC BY-ND, which
+OBO Foundry bans for the same reason. CC0 was the other candidate and would have
+given up the attribution.
+
+Each module declares it, so it travels with the Turtle and not just with this file:
+
+    loze: a owl:Ontology ;
+        dcterms:license <https://creativecommons.org/licenses/by/4.0/> .
+
 ## Namespace
 
     https://loze-ontology.org/
