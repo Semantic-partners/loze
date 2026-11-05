@@ -670,6 +670,26 @@ a.modtag:hover { border-color: hsl(var(--brand-accent)); color: hsl(var(--brand-
 .z-span-lab { font-family: "DM Mono", monospace; font-size: 12.5px; letter-spacing: 0.04em;
   fill: hsl(var(--muted-foreground)); text-anchor: middle; stroke: none; }
 .z-span-hit-lab { fill: hsl(var(--brand-accent)); }
+/* Eventuality is one class across two of Zemach's cells, so it is drawn as one
+   block: the band behind both cells carries its name in the gap between them. */
+.z-block { fill: hsl(var(--muted-foreground) / 0.22); stroke: hsl(var(--foreground)); stroke-width: 2; }
+.z-block-lab { font-family: "DM Mono", monospace; font-size: 13.5px; font-weight: 500; letter-spacing: 0.04em;
+  fill: hsl(var(--foreground)); text-anchor: middle; }
+/* The taxonomies under diagrams/. pele writes these variables and no colours, so
+   the site's tokens theme them and dark mode needs nothing further. */
+.pele { display: block; margin: 0 auto;
+  --pele-bg: transparent; --pele-fg: hsl(var(--foreground));
+  --pele-muted: hsl(var(--muted-foreground)); --pele-line: hsl(var(--muted-foreground));
+  --pele-surface: hsl(var(--background)); --pele-surface-alt: hsl(var(--surface));
+  --pele-border: hsl(var(--border-emphasis)); --pele-accent: hsl(var(--brand-accent));
+  --pele-font: "Archivo", sans-serif; --pele-radius: 0px; }
+.pele .pele-cluster rect { fill-opacity: 1; stroke: hsl(var(--border)); }
+.pele .pele-cluster-label { font-family: "DM Mono", monospace; font-size: 12px; letter-spacing: 0.04em; }
+.pele .pele-node rect { stroke-width: 1.5; transition: stroke 0.12s; }
+.pele .pele-label { font-weight: 500; }
+.pele a:hover rect { stroke: hsl(var(--brand-accent)); }
+/* The same emphasis as the quadrant: the schematic one is the claim. */
+.pele [data-id="SchematicParticular"] rect { fill: hsl(var(--tint)); stroke: hsl(var(--brand-accent)); stroke-width: 2.5; }
 .z-sub { font-family: "DM Sans", sans-serif; font-size: 12px; fill: hsl(var(--faint)); }
 .q-tag { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.04em;
   fill: hsl(var(--faint)); }
@@ -979,7 +999,7 @@ def zemach_figure() -> str:
          ["the moon landing", "a handshake", "yesterday&#8217;s sunset"], ""),
         (560, 96,  "Thing", "CT", "the desk you see again today",
          ["Fido the dog", "the Eiffel Tower", "my pencil"], ""),
-        (170, 298, "Process", "CS", "everywhere at once, then over",
+        (170, 298, "Process", "CS", "different places at different times",
          ["the French Revolution", "this rain", "the current inflation"], ""),
         (560, 298, "Type", "PC", "wholly present in every token",
          ["water, gold, wheat", "the letter A", "Beethoven&#8217;s Fifth"], " z-hit"),
@@ -992,12 +1012,10 @@ def zemach_figure() -> str:
                 f'<text class="z-gloss" x="{x+20}" y="{y+52}">{gloss}</text>')
         for i, it in enumerate(items):
             out += f'<text class="z-item" x="{x+20}" y="{y+82 + i*24}">&#8594; {it}</text>'
-        # Which loze class this quadrant becomes. The whole point of showing
-        # Zemach here is the mapping, and it was left implicit.
     return f'''
 <figure class="fig">
 <svg viewBox="0 0 960 572" role="img" xmlns="http://www.w3.org/2000/svg"
-     aria-label="Zemach's four ontologies as a two by two. Columns are bound in time and continuous in time; rows are bound in space and continuous in space. Event, Thing, Process and Type. The Type quadrant, wholly present in every token, is highlighted: water, the letter A, Beethoven's Fifth. That is the cell loze keeps as a particular rather than a universal.">
+     aria-label="Zemach's four ontologies as a two by two. Columns are bound in time and continuous in time; rows are bound in space and continuous in space. Event, Thing, Process and Type. loze draws three classes over the four cells: Event and Process together are one class, loze:Eventuality; Thing is loze:Thing; Type is loze:SchematicParticular. The Type quadrant, wholly present in every token, is highlighted: water, the letter A, Beethoven's Fifth. That is the cell loze keeps as a particular rather than a universal.">
   <text class="z-axis" x="170" y="34" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">BOUND IN TIME</text>
   <text class="z-sub" x="170" y="52" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">has temporal parts; over when done</text>
   <text class="z-axis" x="560" y="34" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">CONTINUOUS IN TIME</text>
@@ -1009,9 +1027,9 @@ def zemach_figure() -> str:
   <text class="z-axis" x="0" y="370" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">IN SPACE</text>
   <text class="z-sub" x="0" y="390" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">wholly present</text>
   <text class="z-sub" x="0" y="406" font-family="Archivo, sans-serif" font-size="15" font-weight="500" letter-spacing="1.8">at each place</text>
+  <rect class="z-block" x="160" y="86" width="380" height="398"/>
   {out}
-  <rect class="z-span" x="160" y="86" width="380" height="398"/>
-  <text class="z-span-lab" x="350" y="466">loze:Eventuality</text>
+  <text class="z-block-lab" x="350" y="290">loze:Eventuality</text>
   <rect class="z-span z-span-q" x="550" y="86" width="380" height="196"/>
   <text class="z-span-lab" x="740" y="264">loze:Thing</text>
   <rect class="z-span z-span-hit" x="550" y="288" width="380" height="196"/>
@@ -1023,10 +1041,40 @@ def zemach_figure() -> str:
 	The central novelty of loze is the use of <a href="/SchematicParticular">Schematic Particulars</a>; 
     things that are repeatable, wholly present at each time and place, 
     but are a step of abstraction below classes. Examples of such things, 
-    as provided by Zemach, are a work of music (Beethoven’s Fifth), an element or 
-    compound (gold, water), and characters or numbers.</figcaption>
+    as provided by Zemach, are a work of music (Beethoven’s Fifth), an element or
+    compound (gold, water), and characters or numbers. Zemach separates events
+    from processes; loze does not, and both are <a href="/Eventuality">eventualities</a>.
+    So four cells here make three loze classes.</figcaption>
 </figure>
 '''
+
+
+def diagram(name: str, caption: str) -> str:
+    """One of the SVGs under diagrams/images, inlined so the page's CSS reaches it.
+
+    scripts/diagrams.mjs renders them from diagrams/mermaid. They are committed, so
+    this build needs no node.
+    """
+    svg = (ROOT / "diagrams" / "images" / f"{name}.svg").read_text().strip()
+    return f'<figure class="fig">{svg}<figcaption>{caption}</figcaption></figure>'
+
+
+TAXONOMY_CAPTION = (
+    'Each arrow runs from a class to its super-class. loze divides '
+    '<a href="/Particular">Particular</a> twice: into things and eventualities, and '
+    'into schematic and concrete. The two divisions are independent, so every '
+    'particular falls on one side of each. Select a class to read its definition.')
+
+# Diagrams that belong to one module's page, by slug.
+MODULE_DIAGRAMS = {
+    "materials-and-composition": (
+        "composition",
+        "The composition eventualities. Each arrow runs from a class to its super-class."),
+    "suggested-social-extension": (
+        "social-extension-taxonomy",
+        "The classes this module adds under <a href=\"/Object\">Object</a>. Each arrow "
+        "runs from a class to its super-class."),
+}
 
 
 FONTS = (
@@ -1645,10 +1693,15 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
         modules_nav = section("Modules", f'<div class="grid">{cells}</div>')
 
     schematic_section = (section("What this is for", WHY)
+                         + section("The top-level classes",
+                                   diagram("loze-top-taxonomy-complete-view", TAXONOMY_CAPTION))
                          + section("Where the idea comes from", zemach_figure())
                          + section("Why a schematic particular", FIGURE)
                          + section("What it buys", QUERY_FIGURE)
                          + section("Things and happenings are a different cut", EVENT_FIGURE))
+
+    module_diagram = (section("How the classes fit", diagram(*MODULE_DIAGRAMS[slug]))
+                      if slug in MODULE_DIAGRAMS else "")
 
     trail = ("" if slug == ""
              else f'<div class="trail"><a href="/">loze</a> / <span>{e(label)}</span></div>')
@@ -1664,6 +1717,7 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
 </div></header>
 <main><div class="wrap">
   {schematic_section if slug == "" else ""}
+  {module_diagram}
   {modules_nav}
   {section(f"{len(tree_classes)} classes", tree)}
   {section(f"{len(own_props)} properties", prop_html)}
