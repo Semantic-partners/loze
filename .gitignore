@@ -15,3 +15,6 @@ __pycache__/
 # whose hand-written part was a fraction of that, and made every branch collide
 # on files no one edits. The Turtle is the source; docs/ is a view of it.
 docs/
+
+# pele, installed by hand to render diagrams/. See scripts/diagrams.mjs.
+node_modules/
