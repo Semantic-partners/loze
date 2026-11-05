@@ -1939,8 +1939,7 @@ WORKED = [
      "a sub-property of the loze one it specialises, and anything written in your "
      "terms answers to the general one as well — so tooling that knows only "
      "<code>loze:isAgentIn</code> still finds your payers. The ontology does this "
-     "to itself: <code>isRecipeIn</code> is under <code>isInstructionIn</code>, "
-     "which is under <code>isStandardIn</code>.",
+     "to itself: <code>isRecipientIn</code> is under <code>isParticipantIn</code>.",
      """
 :Payment rdfs:subClassOf loze:Eventuality .
 
