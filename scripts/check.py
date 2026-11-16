@@ -28,6 +28,7 @@ MODULES = [
     ("materials-and-composition", "materials-and-composition.ttl"),
     ("temporal-relations", "temporal-relations.ttl"),
     ("suggested-social-extension", "suggested-social-extension.ttl"),
+    ("suggested-calendar-extension", "suggested-calendar-extension.ttl"),
 ]
 PROP_TYPES = {OWL.ObjectProperty, OWL.DatatypeProperty, OWL.AnnotationProperty,
               RDF.Property, OWL.TransitiveProperty, OWL.SymmetricProperty}

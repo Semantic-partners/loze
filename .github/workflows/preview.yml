@@ -39,7 +39,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install rdflib
+      - run: pip install rdflib pyyaml
+
+      - name: Test the calendar periods generator
+        run: python3 -m unittest discover -s calendar-periods -v
 
       - name: Build the site
         run: python3 scripts/build.py
