@@ -73,7 +73,15 @@ MODULES: list[tuple[str, str]] = [
     ("materials-and-composition", "materials-and-composition.ttl"),
     ("temporal-relations", "temporal-relations.ttl"),
     ("suggested-social-extension", "suggested-social-extension.ttl"),
+    ("suggested-calendar-extension", "suggested-calendar-extension.ttl"),
 ]
+
+# slug -> a hand-written HTML fragment shown on that module's page, above the
+# generated lists. For an extension that ships tooling, the prose about the tool
+# lives next to the tool rather than in this script.
+GUIDES: dict[str, str] = {
+    "suggested-calendar-extension": "calendar-periods/guide.html",
+}
 
 def canonical(g: Graph) -> Graph:
     """A graph that serialises to the same bytes every run.
@@ -526,6 +534,18 @@ nav.site .navglyph svg { height: 26px; width: auto; display: block; }
    body face, so they group paragraphs without competing with the section rules. */
 .why-h { font-size: var(--fs-h4); margin: 1.6rem 0 0.4rem; }
 .inshort:last-child { margin-bottom: 0; }
+
+/* A module's guide: hand-written prose from the extension's own directory,
+   placed on the module page above the generated class and property lists. */
+.guide h3 { font-size: var(--fs-h4); margin: 1.8rem 0 0.5rem; }
+.guide h3:first-child { margin-top: 0; }
+.guide .tablewrap { overflow-x: auto; margin: 0 0 1rem; }
+.guide table { border-collapse: collapse; font-size: var(--fs-sm); }
+.guide th, .guide td { text-align: left; vertical-align: top; padding: 0.35rem 1rem 0.35rem 0;
+  border-bottom: 1px solid hsl(var(--border)); }
+.guide th { font-weight: 500; color: hsl(var(--muted-foreground)); }
+.guide td code { white-space: nowrap; }
+.guide .example { margin: 0 0 1.2rem; }
 
 /* Turtle snippets. The ontology's own syntax is the clearest example there is,
    so these are plain code — no diagram, nothing to decode. */
@@ -1650,6 +1670,8 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
                          + section("What it buys", QUERY_FIGURE)
                          + section("Things and happenings are a different cut", EVENT_FIGURE))
 
+    guide = section("Guide", render_guide(GUIDES[slug])) if slug in GUIDES else ""
+
     trail = ("" if slug == ""
              else f'<div class="trail"><a href="/">loze</a> / <span>{e(label)}</span></div>')
 
@@ -1664,6 +1686,7 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
 </div></header>
 <main><div class="wrap">
   {schematic_section if slug == "" else ""}
+  {guide}
   {modules_nav}
   {section(f"{len(tree_classes)} classes", tree)}
   {section(f"{len(own_props)} properties", prop_html)}
@@ -1671,6 +1694,22 @@ def render_module(slug: str, g: Graph, union: Graph, defined_in: dict | None = N
 """
     return shell(f"{label} — loze", alternates_for(slug), body,
                  here="/" if slug == "" else f"/{slug}", mod=slug)
+
+
+GUIDE_CODE = re.compile(r'<pre class="ttl">(.*?)</pre>', re.S)
+
+
+def render_guide(rel: str) -> str:
+    """A module guide, with each <pre class="ttl"> run through ttl_html.
+
+    The fragment holds its code escaped, as HTML has to; it is unescaped and
+    highlighted here so loze: names in it link to their pages, as they do in the
+    worked examples. check.py's link check then catches a name that does not
+    resolve. Other <pre> blocks (YAML, shell) are left as written.
+    """
+    src = (ROOT / rel).read_text(encoding="utf-8")
+    body = GUIDE_CODE.sub(lambda m: ttl_html(html_mod.unescape(m.group(1))), src)
+    return f'<div class="guide measure">{body}</div>'
 
 
 def check_no_collisions(union: Graph) -> None:

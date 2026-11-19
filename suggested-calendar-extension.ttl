@@ -1,0 +1,166 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix loze: <https://loze-ontology.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://loze-ontology.org/suggested-calendar-extension> a owl:Ontology ;
+    rdfs:label "Suggested Calendar Extension" ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    skos:definition "A suggested extension of temporal-relations.ttl for named calendar periods - days, ISO weeks, months, quarters, years, fiscal quarters and years, and seasons - and the conventions that fix where fiscal periods and seasons begin and end" ;
+    skos:note "This is a suggested extension, not part of core loze; calendar-periods/generate_periods.py generates individuals of these classes for a range of dates" ;
+    skos:note "Every period is a loze:PeriodOfTime, and membership is loze:isSubperiodOf, so the temporal relations already in loze apply unchanged" ;
+    owl:imports <https://loze-ontology.org/temporal-relations> ,
+        <https://loze-ontology.org/artefacts-information-and-instructions> ,
+        <https://loze-ontology.org/suggested-social-extension> .
+
+####################
+# Calendar periods #
+####################
+
+loze:CalendarDay a owl:Class ;
+    rdfs:label "Calendar Day" ;
+    skos:definition "A period of time that is one day of the Gregorian calendar" ;
+    skos:example "16 November 2025, 29 February 2024" ;
+    rdfs:subClassOf loze:PeriodOfTime .
+
+loze:CalendarWeek a owl:Class ;
+    rdfs:label "Calendar Week" ;
+    skos:definition "A period of time that is one week of the ISO 8601 week calendar, running Monday to Sunday" ;
+    skos:example "2025-W47, which runs from 17 to 23 November 2025" ;
+    skos:note "An ISO week can straddle two months and two calendar years; week 1 of 2025 starts on 30 December 2024" ;
+    rdfs:subClassOf loze:PeriodOfTime .
+
+loze:CalendarMonth a owl:Class ;
+    rdfs:label "Calendar Month" ;
+    skos:definition "A period of time that is one month of the Gregorian calendar" ;
+    skos:example "November 2025, February 2024" ;
+    rdfs:subClassOf loze:PeriodOfTime .
+
+loze:CalendarQuarter a owl:Class ;
+    rdfs:label "Calendar Quarter" ;
+    skos:definition "A period of time that is one of the four three-month periods of a Gregorian year, starting in January, April, July or October" ;
+    skos:example "2025 Q4, which runs from 1 October to 31 December 2025" ;
+    rdfs:subClassOf loze:PeriodOfTime .
+
+loze:CalendarYear a owl:Class ;
+    rdfs:label "Calendar Year" ;
+    skos:definition "A period of time that is one year of the Gregorian calendar, from 1 January to 31 December" ;
+    skos:example "The year 2025" ;
+    rdfs:subClassOf loze:PeriodOfTime .
+
+loze:FiscalYear a owl:Class ;
+    rdfs:label "Fiscal Year" ;
+    skos:definition "A period of time of twelve months that an organisation uses for its accounts, starting on the date its fiscal calendar fixes" ;
+    skos:example "FY2026 of an organisation whose fiscal year starts on 1 April and is named by the year it ends in, which runs from 1 April 2025 to 31 March 2026" ;
+    skos:note "Two organisations can give the same name to different periods, and different names to the same period, so a fiscal year is always delimited by one fiscal calendar (loze:isDelimitedBy)" ;
+    rdfs:subClassOf loze:PeriodOfTime .
+
+loze:FiscalQuarter a owl:Class ;
+    rdfs:label "Fiscal Quarter" ;
+    skos:definition "A period of time that is one of the four consecutive three-month periods of a fiscal year" ;
+    skos:example "FY2026 Q3 of an organisation whose fiscal year starts on 1 April and is named by the year it ends in, which runs from 1 October to 31 December 2025" ;
+    rdfs:subClassOf loze:PeriodOfTime .
+
+loze:Season a owl:Class ;
+    rdfs:label "Season" ;
+    skos:definition "A period of time that is one of the four seasons of a year, as a season scheme fixes them for one hemisphere" ;
+    skos:example "Autumn 2025 in the northern meteorological scheme, which runs from 1 September to 30 November 2025; the same dates are spring in the southern scheme" ;
+    rdfs:subClassOf loze:PeriodOfTime .
+
+###############
+# Conventions #
+###############
+
+loze:FiscalCalendar a owl:Class ;
+    rdfs:label "Fiscal Calendar" ;
+    skos:definition "An information artefact that records how an organisation divides time for its accounts: the day its fiscal year starts, how it names its fiscal years, and the season scheme it uses" ;
+    skos:note "Recording the convention as data, rather than only applying it, lets the calendars of several organisations sit in one graph and lets a query ask which convention named a period" ;
+    rdfs:subClassOf loze:InformationArtefact .
+
+loze:SeasonScheme a owl:Class ;
+    rdfs:label "Season Scheme" ;
+    skos:definition "An information artefact that fixes where the seasons begin and end, by a method and for a hemisphere" ;
+    skos:example "Meteorological seasons for the northern hemisphere, in which autumn runs from 1 September to 30 November" ;
+    rdfs:subClassOf loze:InformationArtefact .
+
+loze:isDelimitedBy a owl:ObjectProperty ;
+    rdfs:label "is Delimited By" ;
+    skos:definition "The relation that obtains between a period of time p and an information artefact c if and only if c fixes where p begins and ends" ;
+    skos:example "FY2026 Q3 of an organisation is delimited by that organisation's fiscal calendar; autumn 2025 in the northern meteorological scheme is delimited by that scheme" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range loze:InformationArtefact .
+
+loze:delimits a owl:ObjectProperty ;
+    rdfs:label "delimits" ;
+    skos:definition "The relation that obtains between an information artefact c and a period of time p if and only if c fixes where p begins and ends" ;
+    rdfs:domain loze:InformationArtefact ;
+    rdfs:range loze:PeriodOfTime ;
+    owl:inverseOf loze:isDelimitedBy .
+
+loze:isFiscalCalendarOf a owl:ObjectProperty ;
+    rdfs:label "is Fiscal Calendar Of" ;
+    skos:definition "The relation that obtains between a fiscal calendar c and an organisation o if and only if o divides time for its accounts as c records" ;
+    rdfs:domain loze:FiscalCalendar ;
+    rdfs:range loze:Organisation .
+
+loze:hasFiscalCalendar a owl:ObjectProperty ;
+    rdfs:label "has Fiscal Calendar" ;
+    skos:definition "The relation that obtains between an organisation o and a fiscal calendar c if and only if o divides time for its accounts as c records" ;
+    rdfs:domain loze:Organisation ;
+    rdfs:range loze:FiscalCalendar ;
+    owl:inverseOf loze:isFiscalCalendarOf .
+
+loze:usesSeasonScheme a owl:ObjectProperty ;
+    rdfs:label "uses Season Scheme" ;
+    skos:definition "The relation that obtains between a fiscal calendar c and a season scheme s if and only if the organisation whose calendar c is names its seasons as s fixes them" ;
+    rdfs:domain loze:FiscalCalendar ;
+    rdfs:range loze:SeasonScheme .
+
+loze:hasFiscalYearStart a owl:DatatypeProperty ;
+    rdfs:label "has Fiscal Year Start" ;
+    skos:definition "The relation that assigns to a fiscal calendar the month and day on which each of its fiscal years starts" ;
+    skos:example "\"--04-01\"^^xsd:gMonthDay for a fiscal year starting on 1 April" ;
+    rdfs:domain loze:FiscalCalendar ;
+    rdfs:range xsd:gMonthDay .
+
+loze:namesFiscalYearBy a owl:DatatypeProperty ;
+    rdfs:label "names Fiscal Year By" ;
+    skos:definition "The relation that assigns to a fiscal calendar which end of a fiscal year gives the year its number: \"start\" or \"end\"" ;
+    skos:example "Under \"end\", the fiscal year from 1 April 2025 to 31 March 2026 is FY2026; under \"start\", it is FY2025" ;
+    rdfs:domain loze:FiscalCalendar ;
+    rdfs:range xsd:string .
+
+loze:hasSeasonMethod a owl:DatatypeProperty ;
+    rdfs:label "has Season Method" ;
+    skos:definition "The relation that assigns to a season scheme how it fixes the seasons: \"meteorological\" (whole months, starting 1 March, 1 June, 1 September and 1 December) or \"astronomical\" (from the equinoxes and solstices)" ;
+    skos:note "Equinox and solstice dates move by a day or so from year to year; a scheme that uses fixed dates for them is an approximation, and should say so" ;
+    rdfs:domain loze:SeasonScheme ;
+    rdfs:range xsd:string .
+
+loze:hasHemisphere a owl:DatatypeProperty ;
+    rdfs:label "has Hemisphere" ;
+    skos:definition "The relation that assigns to a season scheme the hemisphere its season names hold for: \"north\" or \"south\"" ;
+    rdfs:domain loze:SeasonScheme ;
+    rdfs:range xsd:string .
+
+#########################
+# Start and end by date #
+#########################
+
+loze:hasStartDate a owl:DatatypeProperty ;
+    rdfs:label "has Start Date" ;
+    skos:definition "The relation that assigns to a period of time the calendar day on which it starts" ;
+    skos:example "\"2025-10-01\"^^xsd:date for FY2026 Q3 of an organisation with an April fiscal year named by its end" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range xsd:date .
+
+loze:hasEndDate a owl:DatatypeProperty ;
+    rdfs:label "has End Date" ;
+    skos:definition "The relation that assigns to a period of time the last calendar day it includes" ;
+    skos:example "\"2025-12-31\"^^xsd:date for calendar 2025 Q4" ;
+    skos:note "The end date is inclusive: a period with start date d and end date d is one day long" ;
+    rdfs:domain loze:PeriodOfTime ;
+    rdfs:range xsd:date .

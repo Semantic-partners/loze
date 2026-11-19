@@ -1,0 +1,69 @@
+# Sample data for the suggested calendar extension: payments between the two
+# organisations in example.yaml, each placed in time with loze:atTime on a
+# generated period. Load with the output of
+#
+#   python3 calendar-periods/generate_periods.py calendar-periods/example.yaml
+#
+# and "everything in Acme's FY2026 Q3" is a property path; see the
+# suggested-calendar-extension page for the queries.
+
+@prefix :      <https://example.org/> .
+@prefix day:   <https://example.org/time/day/> .
+@prefix month: <https://example.org/time/month/> .
+@prefix loze:  <https://loze-ontology.org/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+:Payment
+    a owl:Class ;
+    rdfs:subClassOf loze:Eventuality .
+
+:payment-8801
+    a :Payment ;
+    rdfs:label "Payment 8801, deposit" ;
+    loze:hasAgent     :acme-ltd ;
+    loze:hasRecipient :supplier-ltd ;
+    loze:atTime       day:2025-05-14 .
+
+:payment-8834
+    a :Payment ;
+    rdfs:label "Payment 8834, stage one" ;
+    loze:hasAgent     :acme-ltd ;
+    loze:hasRecipient :supplier-ltd ;
+    loze:atTime       day:2025-09-30 .     # last day of FY2026 Q2
+
+:payment-8852
+    a :Payment ;
+    rdfs:label "Payment 8852, stage two" ;
+    loze:hasAgent     :acme-ltd ;
+    loze:hasRecipient :supplier-ltd ;
+    loze:atTime       day:2025-10-01 .     # first day of FY2026 Q3
+
+:payment-8871
+    a :Payment ;
+    rdfs:label "Payment 8871, stage three" ;
+    loze:hasAgent     :acme-ltd ;
+    loze:hasRecipient :supplier-ltd ;
+    loze:atTime       day:2025-11-16 .
+
+:payment-8890
+    a :Payment ;
+    rdfs:label "Payment 8890, retainer for November" ;
+    loze:hasAgent     :acme-ltd ;
+    loze:hasRecipient :supplier-ltd ;
+    loze:atTime       month:2025-11 .      # timed by the month, not a day
+
+:payment-8902
+    a :Payment ;
+    rdfs:label "Payment 8902, year-end balance" ;
+    loze:hasAgent     :acme-ltd ;
+    loze:hasRecipient :supplier-ltd ;
+    loze:atTime       day:2025-12-31 .     # last day of FY2026 Q3
+
+:payment-8917
+    a :Payment ;
+    rdfs:label "Payment 8917, final" ;
+    loze:hasAgent     :acme-ltd ;
+    loze:hasRecipient :supplier-ltd ;
+    loze:atTime       day:2026-01-02 .     # FY2026 Q4

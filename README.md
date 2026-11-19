@@ -78,6 +78,13 @@ and the modules declare themselves under it:
 | materials and composition | `https://loze-ontology.org/materials-and-composition` |
 | temporal relations | `https://loze-ontology.org/temporal-relations` |
 | suggested social extension | `https://loze-ontology.org/suggested-social-extension` |
+| suggested calendar extension | `https://loze-ontology.org/suggested-calendar-extension` |
+
+The calendar extension ships a generator for date-based periods, in
+`calendar-periods/`. Its guide is on the module page, `/suggested-calendar-extension`.
+Its tests need PyYAML, and rdflib for the Turtle checks:
+
+    python3 -m unittest discover -s calendar-periods
 
 The domain now serves the site, but it is closed. Cloudflare Access sits in front of
 it, so `https://loze-ontology.org/Entity` returns a redirect to a login for anyone
