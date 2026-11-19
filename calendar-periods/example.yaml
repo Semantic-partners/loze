@@ -5,7 +5,8 @@
 # Load periods.ttl with sample-payments.ttl to run the queries on the
 # suggested-calendar-extension page.
 
-# Generated IRIs are <base>day/2025-11-16, <base>fiscal/acme-ltd/FY2026-Q3 and so on.
+# Generated IRIs are {base}day/2025-11-16, {base}fiscal/acme-ltd/FY2026-Q3 and so
+# on, written day:2025-11-16 and fiscal-acme-ltd:FY2026-Q3, one prefix per folder.
 base: https://example.org/time/
 
 # Days are generated for exactly this range, inclusive. Every month, quarter,
@@ -23,7 +24,7 @@ granularity: [day, month, quarter, year, fiscal_quarter, fiscal_year, season]
 orgs:
   - id: acme-ltd
     label: Acme Ltd
-    iri: https://example.org/acme-ltd      # optional; default <base>org/<id>
+    iri: https://example.org/acme-ltd      # optional; default {base}org/{id}
     fiscal_year_start: {month: 4, day: 1}
     label_by: end                          # FY2026 = 1 Apr 2025 to 31 Mar 2026
     seasons: {scheme: meteorological, hemisphere: north}

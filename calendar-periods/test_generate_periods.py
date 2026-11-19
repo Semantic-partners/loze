@@ -171,6 +171,28 @@ class Turtle(unittest.TestCase):
     def test_same_input_same_bytes(self):
         self.assertEqual(self.ttl, gp.generate(self.data))
 
+    def test_no_relative_iris(self):
+        # Default org IRIs and weeks too, which the example does not use.
+        other = gp.generate({"base": BASE, "range": {"start": "2025-11-01", "end": "2025-11-30"},
+                             "granularity": ALL, "orgs": [org("acme")]})
+        for ttl in (self.ttl, other):
+            self.assertNotIn("@base", ttl)
+            self.assertEqual(re.findall(r"<(?!https?://)[^>]*>", ttl), [])
+        self.assertIn("org:acme\n", other)
+        self.assertIn("day:2025-11-16", other)
+        if rdflib:
+            g = rdflib.Graph()
+            g.parse(data=other, format="turtle")
+            self.assertIn((rdflib.URIRef(BASE + "day/2025-11-16"), None, None), g)
+
+    def test_names_fall_back_to_full_iris(self):
+        n = gp.Names(BASE)
+        self.assertEqual(n("day/2025-11-16"), "day:2025-11-16")
+        self.assertEqual(n("https://example.org/acme"), "<https://example.org/acme>")
+        self.assertEqual(n("org/acme.ltd."), f"<{BASE}org/acme.ltd.>")   # PN_LOCAL can't end in '.'
+        self.assertEqual(n("org/a:b"), f"<{BASE}org/a:b>")
+        self.assertEqual(n("loze/x"), f"<{BASE}loze/x>")                 # loze: is taken
+
     @unittest.skipUnless(rdflib, "rdflib not installed")
     def test_parses_and_describes_its_conventions(self):
         g = rdflib.Graph()

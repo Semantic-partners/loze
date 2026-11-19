@@ -32,7 +32,7 @@ granularity: [day, month, quarter, year, fiscal_quarter, fiscal_year, season]  #
 orgs:                                 # or a single org: mapping
   - id: acme-ltd                      # fiscal IRIs are namespaced by this
     label: Acme Ltd
-    iri: https://example.org/acme-ltd # optional; default &lt;base&gt;org/&lt;id&gt;
+    iri: https://example.org/acme-ltd # optional; default {base}org/{id}
     fiscal_year_start: {month: 4, day: 1}
     label_by: end                     # FY2026 = 1 Apr 2025 to 31 Mar 2026; start would call it FY2025
     seasons: {scheme: meteorological, hemisphere: north}   # or astronomical; north or south</pre>
@@ -41,21 +41,25 @@ generated whole, with its true start and end. A fiscal year can start on day 1
 to 28 of any month.</p>
 
 <h3>IRI patterns</h3>
-<p>Relative to <code>base</code>. Every pattern is readable and fixed by the
-date, so two runs over overlapping ranges agree on the names they share.</p>
+<p>Every IRI sits under <code>base</code>, one folder per kind of period, and the
+output declares a prefix per folder: <code>day:</code> is
+<code>https://example.org/time/day/</code>, <code>fiscal-acme-ltd:</code> is
+<code>https://example.org/time/fiscal/acme-ltd/</code>. Every name is readable
+and fixed by the date, so two runs over overlapping ranges agree on the names
+they share.</p>
 <div class="tablewrap"><table>
-  <tr><th>period</th><th>IRI</th><th>class</th></tr>
-  <tr><td>day</td><td><code>day/2025-11-16</code></td><td><a href="/CalendarDay">CalendarDay</a></td></tr>
-  <tr><td>ISO week</td><td><code>week/2025-W46</code></td><td><a href="/CalendarWeek">CalendarWeek</a></td></tr>
-  <tr><td>month</td><td><code>month/2025-11</code></td><td><a href="/CalendarMonth">CalendarMonth</a></td></tr>
-  <tr><td>quarter</td><td><code>quarter/2025-Q4</code></td><td><a href="/CalendarQuarter">CalendarQuarter</a></td></tr>
-  <tr><td>year</td><td><code>year/2025</code></td><td><a href="/CalendarYear">CalendarYear</a></td></tr>
-  <tr><td>fiscal year</td><td><code>fiscal/acme-ltd/FY2026</code></td><td><a href="/FiscalYear">FiscalYear</a></td></tr>
-  <tr><td>fiscal quarter</td><td><code>fiscal/acme-ltd/FY2026-Q3</code></td><td><a href="/FiscalQuarter">FiscalQuarter</a></td></tr>
-  <tr><td>fiscal calendar</td><td><code>fiscal/acme-ltd/calendar</code></td><td><a href="/FiscalCalendar">FiscalCalendar</a></td></tr>
-  <tr><td>season</td><td><code>season/meteorological-north/2025-autumn</code></td><td><a href="/Season">Season</a></td></tr>
-  <tr><td>season scheme</td><td><code>season/meteorological-north</code></td><td><a href="/SeasonScheme">SeasonScheme</a></td></tr>
-  <tr><td>organisation</td><td><code>org/acme-ltd</code>, unless the config gives <code>iri</code></td><td><a href="/Organisation">Organisation</a></td></tr>
+  <tr><th>period</th><th>name</th><th>class</th></tr>
+  <tr><td>day</td><td><code>day:2025-11-16</code></td><td><a href="/CalendarDay">CalendarDay</a></td></tr>
+  <tr><td>ISO week</td><td><code>week:2025-W46</code></td><td><a href="/CalendarWeek">CalendarWeek</a></td></tr>
+  <tr><td>month</td><td><code>month:2025-11</code></td><td><a href="/CalendarMonth">CalendarMonth</a></td></tr>
+  <tr><td>quarter</td><td><code>quarter:2025-Q4</code></td><td><a href="/CalendarQuarter">CalendarQuarter</a></td></tr>
+  <tr><td>year</td><td><code>year:2025</code></td><td><a href="/CalendarYear">CalendarYear</a></td></tr>
+  <tr><td>fiscal year</td><td><code>fiscal-acme-ltd:FY2026</code></td><td><a href="/FiscalYear">FiscalYear</a></td></tr>
+  <tr><td>fiscal quarter</td><td><code>fiscal-acme-ltd:FY2026-Q3</code></td><td><a href="/FiscalQuarter">FiscalQuarter</a></td></tr>
+  <tr><td>fiscal calendar</td><td><code>fiscal-acme-ltd:calendar</code></td><td><a href="/FiscalCalendar">FiscalCalendar</a></td></tr>
+  <tr><td>season</td><td><code>season-meteorological-north:2025-autumn</code></td><td><a href="/Season">Season</a></td></tr>
+  <tr><td>season scheme</td><td><code>season:meteorological-north</code></td><td><a href="/SeasonScheme">SeasonScheme</a></td></tr>
+  <tr><td>organisation</td><td><code>org:acme-ltd</code>, unless the config gives <code>iri</code></td><td><a href="/Organisation">Organisation</a></td></tr>
 </table></div>
 <p>A season is named by the year it starts in, so December 2025 to February
 2026 is <code>2025-winter</code> in the north; its label says "winter 2025-26".</p>
@@ -73,25 +77,32 @@ both <code>xsd:date</code> and both inclusive. Membership is
     already links there. So each link is written once, from the largest calendar
     period that fits.</li>
 </ul>
-<p>With an April fiscal year, <code>quarter/2025-Q4</code> links to
-<code>FY2026-Q3</code> and the months and days under it reach it through the
+<p>With an April fiscal year, <code>quarter:2025-Q4</code> links to
+<code>fiscal-acme-ltd:FY2026-Q3</code> and the months and days under it reach it through the
 quarter. With meteorological seasons a month links to its season; with
 astronomical seasons the days at either end of a season link to it directly.
 If a fiscal year starts mid-month, its quarters split months, and days link to
 them directly. A level left out of <code>granularity</code> is skipped: without
 months, days link to quarters.</p>
-<pre class="ttl">&lt;day/2025-11-16&gt; a loze:CalendarDay ;
+<pre class="ttl">@prefix day:     &lt;https://example.org/time/day/&gt; .
+@prefix month:   &lt;https://example.org/time/month/&gt; .
+@prefix quarter: &lt;https://example.org/time/quarter/&gt; .
+@prefix year:    &lt;https://example.org/time/year/&gt; .
+@prefix fiscal-acme-ltd: &lt;https://example.org/time/fiscal/acme-ltd/&gt; .
+@prefix season-meteorological-north: &lt;https://example.org/time/season/meteorological-north/&gt; .
+
+day:2025-11-16 a loze:CalendarDay ;
     loze:hasStartDate "2025-11-16"^^xsd:date ;
     loze:hasEndDate   "2025-11-16"^^xsd:date ;
-    loze:isSubperiodOf &lt;month/2025-11&gt; .
-&lt;month/2025-11&gt; loze:isSubperiodOf &lt;quarter/2025-Q4&gt; ,
-    &lt;season/meteorological-north/2025-autumn&gt; .
-&lt;quarter/2025-Q4&gt; loze:isSubperiodOf &lt;year/2025&gt; , &lt;fiscal/acme-ltd/FY2026-Q3&gt; .
-&lt;fiscal/acme-ltd/FY2026-Q3&gt; a loze:FiscalQuarter ;
+    loze:isSubperiodOf month:2025-11 .
+month:2025-11 loze:isSubperiodOf quarter:2025-Q4 ,
+    season-meteorological-north:2025-autumn .
+quarter:2025-Q4 loze:isSubperiodOf year:2025 , fiscal-acme-ltd:FY2026-Q3 .
+fiscal-acme-ltd:FY2026-Q3 a loze:FiscalQuarter ;
     loze:hasStartDate  "2025-10-01"^^xsd:date ;
     loze:hasEndDate    "2025-12-31"^^xsd:date ;
-    loze:isSubperiodOf &lt;fiscal/acme-ltd/FY2026&gt; ;
-    loze:isDelimitedBy &lt;fiscal/acme-ltd/calendar&gt; .</pre>
+    loze:isSubperiodOf fiscal-acme-ltd:FY2026 ;
+    loze:isDelimitedBy fiscal-acme-ltd:calendar .</pre>
 <p>Without a reasoner, query with <code>loze:isSubperiodOf+</code> or
 <code>*</code>. With one, <code>owl:TransitiveProperty</code> fills in the rest.</p>
 <p>Calendar 2025 Q4 and Acme's FY2026 Q3 cover the same days. Loze individuates
@@ -105,14 +116,16 @@ and each season scheme a <a href="/SeasonScheme">loze:SeasonScheme</a>. Every
 fiscal period and season says which one delimits it. A graph can then hold the
 calendars of several organisations at once, and a query can ask which
 convention named a period.</p>
-<pre class="ttl">&lt;https://example.org/acme-ltd&gt; a loze:Organisation ;
-    loze:hasFiscalCalendar &lt;fiscal/acme-ltd/calendar&gt; .
-&lt;fiscal/acme-ltd/calendar&gt; a loze:FiscalCalendar ;
+<pre class="ttl">@prefix season: &lt;https://example.org/time/season/&gt; .
+
+&lt;https://example.org/acme-ltd&gt; a loze:Organisation ;
+    loze:hasFiscalCalendar fiscal-acme-ltd:calendar .
+fiscal-acme-ltd:calendar a loze:FiscalCalendar ;
     loze:isFiscalCalendarOf &lt;https://example.org/acme-ltd&gt; ;
     loze:hasFiscalYearStart "--04-01"^^xsd:gMonthDay ;
     loze:namesFiscalYearBy  "end" ;
-    loze:usesSeasonScheme   &lt;season/meteorological-north&gt; .
-&lt;season/meteorological-north&gt; a loze:SeasonScheme ;
+    loze:usesSeasonScheme   season:meteorological-north .
+season:meteorological-north a loze:SeasonScheme ;
     loze:hasSeasonMethod "meteorological" ;
     loze:hasHemisphere   "north" .</pre>
 <p>On the same day, 16 November 2025, Acme (April start, named by the end) is in
@@ -150,18 +163,20 @@ yourself if your data already uses OWL-Time.</p>
 November retainer is timed by the month, and is found.</p>
 <pre class="ttl">PREFIX loze: &lt;https://loze-ontology.org/&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX fiscal-acme-ltd: &lt;https://example.org/time/fiscal/acme-ltd/&gt;
 
 SELECT ?thing ?when WHERE {
   ?thing loze:atTime ?period .
-  ?period loze:isSubperiodOf* &lt;https://example.org/time/fiscal/acme-ltd/FY2026-Q3&gt; ;
+  ?period loze:isSubperiodOf* fiscal-acme-ltd:FY2026-Q3 ;
           rdfs:label ?when .
 }</pre>
 <p><strong>Which fiscal quarter is 16 November 2025 in, for each organisation,
 and by what convention.</strong></p>
 <pre class="ttl">PREFIX loze: &lt;https://loze-ontology.org/&gt;
+PREFIX day:  &lt;https://example.org/time/day/&gt;
 
 SELECT ?org ?quarter ?fyStart ?namedBy WHERE {
-  &lt;https://example.org/time/day/2025-11-16&gt; loze:isSubperiodOf+ ?quarter .
+  day:2025-11-16 loze:isSubperiodOf+ ?quarter .
   ?quarter a loze:FiscalQuarter ;
            loze:isDelimitedBy ?calendar .
   ?calendar loze:isFiscalCalendarOf ?org ;
@@ -171,12 +186,13 @@ SELECT ?org ?quarter ?fyStart ?namedBy WHERE {
 <p><strong>Payments per northern meteorological season.</strong></p>
 <pre class="ttl">PREFIX loze: &lt;https://loze-ontology.org/&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX season: &lt;https://example.org/time/season/&gt;
 
 SELECT ?season (COUNT(?payment) AS ?n) WHERE {
   ?payment loze:atTime ?period .
   ?period loze:isSubperiodOf* ?s .
   ?s a loze:Season ;
-     loze:isDelimitedBy &lt;https://example.org/time/season/meteorological-north&gt; ;
+     loze:isDelimitedBy season:meteorological-north ;
      rdfs:label ?season .
 }
 GROUP BY ?season</pre>

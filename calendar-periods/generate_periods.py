@@ -15,6 +15,7 @@ the largest calendar period that fits; see calendar_links() and the module page.
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from dataclasses import dataclass, field
 from datetime import date, timedelta
@@ -23,6 +24,8 @@ from typing import Dict, List, Optional, Tuple
 import yaml
 
 LOZE = "https://loze-ontology.org/"
+FIXED_PREFIXES = {"loze": LOZE, "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+                  "xsd": "http://www.w3.org/2001/XMLSchema#"}
 CALENDAR_KINDS = ["day", "month", "quarter", "year"]
 KINDS = CALENDAR_KINDS + ["week", "fiscal_quarter", "fiscal_year", "season"]
 DEFAULT_GRANULARITY = ["day", "month", "quarter", "year",
@@ -371,12 +374,35 @@ def lit(s: str) -> str:
     return '"' + s.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n") + '"'
 
 
-def iri(cfg: Config, path_or_iri: str) -> str:
-    """Relative to @base when it is one of ours, else absolute."""
-    if "://" in path_or_iri:
-        rel = path_or_iri[len(cfg.base):] if path_or_iri.startswith(cfg.base) else None
-        return f"<{rel}>" if rel is not None else f"<{path_or_iri}>"
-    return f"<{path_or_iri}>"
+# A prefixed name needs no escapes when the prefix and local part match these.
+PN_PREFIX = re.compile(r"[A-Za-z][A-Za-z0-9_-]*")
+PN_LOCAL = re.compile(r"[A-Za-z0-9_]([A-Za-z0-9_.-]*[A-Za-z0-9_-])?")
+
+
+class Names:
+    """Prefixed names for our IRIs, one prefix per folder under base.
+
+    day/2025-11-16 is day:2025-11-16, fiscal/acme-ltd/FY2026-Q3 is
+    fiscal-acme-ltd:FY2026-Q3. Anything outside base, or that will not make a
+    clean prefixed name, is written in full.
+    """
+
+    def __init__(self, base: str):
+        self.base = base
+        self.prefixes: Dict[str, str] = dict(FIXED_PREFIXES)
+
+    def __call__(self, path_or_iri: str) -> str:
+        full = path_or_iri if "://" in path_or_iri else self.base + path_or_iri
+        if not full.startswith(self.base):
+            return f"<{full}>"
+        folder, _, local = full[len(self.base):].rpartition("/")
+        name = folder.replace("/", "-")
+        ns = self.base + folder + "/"
+        if (not folder or not PN_PREFIX.fullmatch(name) or not PN_LOCAL.fullmatch(local)
+                or self.prefixes.get(name, ns) != ns):
+            return f"<{full}>"
+        self.prefixes[name] = ns
+        return f"{name}:{local}"
 
 
 def block(subject: str, pairs: List[Tuple[str, List[str]]]) -> str:
@@ -391,24 +417,25 @@ def block(subject: str, pairs: List[Tuple[str, List[str]]]) -> str:
 def to_turtle(cfg: Config, ps: Periods) -> str:
     blocks: List[Tuple[str, str]] = []
     abs_ = lambda p: p if "://" in p else cfg.base + p
+    name = Names(cfg.base)
 
     schemes = {}
     for o in cfg.orgs:
         org_pairs = [("a", ["loze:Organisation"])]
         if o.label:
             org_pairs.append(("rdfs:label", [lit(o.label)]))
-        org_pairs.append(("loze:hasFiscalCalendar", [iri(cfg, f"fiscal/{o.id}/calendar")]))
-        blocks.append((abs_(o.iri), block(iri(cfg, o.iri), org_pairs)))
+        org_pairs.append(("loze:hasFiscalCalendar", [name(f"fiscal/{o.id}/calendar")]))
+        blocks.append((abs_(o.iri), block(name(o.iri), org_pairs)))
         cal_pairs = [
             ("a", ["loze:FiscalCalendar"]),
             ("rdfs:label", [lit(f"{o.label or o.id} fiscal calendar")]),
-            ("loze:isFiscalCalendarOf", [iri(cfg, o.iri)]),
+            ("loze:isFiscalCalendarOf", [name(o.iri)]),
             ("loze:hasFiscalYearStart", [f'"--{o.fy_month:02d}-{o.fy_day:02d}"^^xsd:gMonthDay']),
             ("loze:namesFiscalYearBy", [lit(o.label_by)]),
-            ("loze:usesSeasonScheme", [iri(cfg, f"season/{o.scheme}")] if o.scheme else []),
+            ("loze:usesSeasonScheme", [name(f"season/{o.scheme}")] if o.scheme else []),
         ]
         path = f"fiscal/{o.id}/calendar"
-        blocks.append((abs_(path), block(iri(cfg, path), cal_pairs)))
+        blocks.append((abs_(path), block(name(path), cal_pairs)))
         if o.scheme:
             schemes[o.scheme] = o
 
@@ -424,7 +451,7 @@ def to_turtle(cfg: Config, ps: Periods) -> str:
             pairs.append(("rdfs:comment", [lit(
                 "Approximate: equinoxes and solstices fixed at 20 March, 21 June, "
                 "22 September and 21 December every year")]))
-        blocks.append((abs_(path), block(iri(cfg, path), pairs)))
+        blocks.append((abs_(path), block(name(path), pairs)))
 
     for p in ps.by_path.values():
         pairs = [
@@ -432,19 +459,15 @@ def to_turtle(cfg: Config, ps: Periods) -> str:
             ("rdfs:label", [lit(p.label)]),
             ("loze:hasStartDate", [f'"{p.start.isoformat()}"^^xsd:date']),
             ("loze:hasEndDate", [f'"{p.end.isoformat()}"^^xsd:date']),
-            ("loze:isSubperiodOf", [iri(cfg, x) for x in sorted(set(p.parents))]),
-            ("loze:isDelimitedBy", [iri(cfg, p.delimiter)] if p.delimiter else []),
+            ("loze:isSubperiodOf", [name(x) for x in sorted(set(p.parents))]),
+            ("loze:isDelimitedBy", [name(p.delimiter)] if p.delimiter else []),
         ]
-        blocks.append((abs_(p.path), block(iri(cfg, p.path), pairs)))
+        blocks.append((abs_(p.path), block(name(p.path), pairs)))
 
     head = (
         "# Generated by calendar-periods/generate_periods.py from loze's suggested\n"
         "# calendar extension. Regenerate rather than edit.\n"
-        f"@base <{cfg.base}> .\n"
-        f"@prefix loze: <{LOZE}> .\n"
-        "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n"
-        "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n"
-    )
+    ) + "".join(f"@prefix {k}: <{v}> .\n" for k, v in sorted(name.prefixes.items()))
     body = "\n\n".join(b for _, b in sorted(blocks, key=lambda x: x[0]))
     return head + "\n" + body + "\n"
 
